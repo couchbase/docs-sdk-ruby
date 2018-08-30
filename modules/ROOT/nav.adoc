@@ -9,7 +9,7 @@
 * xref:sdk-user-management-overview.adoc[User Management]
  ** xref:sdk-user-management-example.adoc[Sample Code]
 * xref:common/encryption.adoc[Field Level Encryption]
- ** xref:encrypting-using-sdk.adoc[Field Level Encryption from the PHP SDK]
+ ** xref:encrypting-using-sdk.adoc[Field Level Encryption from the Ruby SDK]
 
 .Working with Data
 * xref:common/core-operations.adoc[Core Operations]
