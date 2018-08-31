@@ -1,0 +1,1 @@
+include::6.0@sdk-common:pages:partial$webui-cli-access.adoc[]
