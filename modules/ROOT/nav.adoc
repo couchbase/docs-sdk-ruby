@@ -1,7 +1,7 @@
 .Hello World!
 * xref:start-using-sdk.adoc[Start Using the SDK]
-* xref:common/sample-application.adoc[Sample Application]
- ** xref:sample-app-backend.adoc[Sample App Backend]
+// * xref:common/sample-application.adoc[Sample Application]
+// ** xref:sample-app-backend.adoc[Sample App Backend]
 * xref:common/webui-cli-access.adoc[Browser and CLI Access]
 
 .Users and Security

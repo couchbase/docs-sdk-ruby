@@ -1,0 +1,88 @@
+= Install and Start Using the Ruby SDK with Couchbase Server
+:navtitle: Start Using the SDK
+include::partial$attributes.adoc[]
+
+[abstract]
+The Couchbase Ruby SDK enables ruby programs to access a Couchbase cluster.
+
+== Features
+
+* Supports Ruby MRI (CRuby) 2.3+.
+* Key-Value (CRUD) operations ([.api]`Couchbase::Bucket#get`, [.api]`Couchbase::Bucket#set`, etc.)
+* N1QL query operations ([.api]`Couchbase::Bucket#query`)
+* Map Reduce (view) query operations ([.api]`Couchbase::View`)
+* Secure SSL connections (Couchbase Enterprise only)
+
+Note that SSL and N1QL features depend on server support.  See
+xref:compatibility-versions-features.adoc[Compatibility] to see which server versions support which
+features.
+
+== Platform support and installation
+
+The Couchbase Ruby SDK can be installed from https://rubygems.org. The library depends on
+libcouchbase, so the development package have to be installed before running the following command:
+
+[source,bash]
+----
+gem install couchbase
+----
+
+NOTE: On windows platform, rubygems will serve precompiled binaries, which already include libcouchbase.
+
+== Installing from Source Code
+
+You may install the library from source code via a repository checkout:
+
+[source,bash]
+----
+bundle install
+bundle exec rake package
+gem install pkg/couchbase-X.Y.Z.gem
+----
+
+Where `X.Y.Z` is version of the built package.
+
+== Documentation and Examples
+
+* A reference guide (this manual) is suitable for a general overview and learning how to use the
+  library.
+* The {ruby-api-link}[API documentation^] is generated from comments in the header and covers all
+  the APIs of the library.
+* Small standalone examples can be found in the
+  https://github.com/couchbase/couchbase-ruby-client/tree/master/example[github repository^].
+
+Information on new features, fixes, known issues as well as information on how to install older
+release versions is available in the
+link:/server/other-products/release-notes-archives/ruby-sdk[release notes].
+
+== Hello Couchbase
+
+A simple example below (requires version 2.0.0 or higher to function).
+
+[source,ruby]
+----
+require 'couchbase'
+
+bucket = Couchbase.connect('couchbase://localhost/bucketname',
+                           :username => 'Administrator',
+                           :password => 'secret')
+doc = {'foo' => 42}
+res = bucket.set('key', doc)
+res.success?  #=> true
+res.cas       #=> 1535726648783208448
+
+res = bucket.get('key')
+res.success?  #=> true
+res.cas       #=> 1535726648783208448
+res.value     #=> {"foo"=>42}
+----
+
+== Scheduling, Blocking and non-blocking
+
+The library works in blocking mode, i.e. it waits until operation completes or times out. But while
+in libcouchbase, the library releases global VM lock, so ruby green threads still may be scheduled.
+
+== API Reference
+
+The API reference is generated for each version.
+The API reference for version `{ruby-current-version}` is at {ruby-api-link}[]
