@@ -1,0 +1,105 @@
+= Authentication
+
+[abstract]
+RBAC requires that users pass appropriate _credentials_ to Couchbase Server in order to access
+cluster-resources.The SDK provides enhanced support for the passing of credentials.
+
+include::6.0@sdk-common:shared:partial$sdk-authentication-overview.adoc[tag=RBAC_and_the_SDK]
+
+include::6.0@sdk-common:shared:partial$sdk-authentication-overview.adoc[tag=authenticating_with_legacy_sdk_versions]
+
+== Passing Credentials
+
+Ruby SDK 2.x does not support authenticator entities, but still support RBAC-enabled
+servers. Credentials have to be passed with `:username` and `:password` options to
+`Couchbase::Bucket` constructor or `Couchbase.connect` method.
+
+[code,ruby]
+----
+Couchbase.connect('couchbase://localhost/bucketname',
+                  :username => 'Administrator',
+                  :password => 'secret')
+----
+
+== Further Information on RBAC
+
+All aspects of the Couchbase RBAC system are covered in the section xref:6.0@server:security:security-authorization.adoc[Authorization].
+Specifically, for information on:
+
+* Adding _Users_ and assigning _roles_, by means of the Couchbase Web Console, see
+  xref:6.0@server:security:security-rbac-for-admins-and-apps.adoc[Creating and Managing Users with
+  the UI].
+* _Roles_ required for resource-access, and the privileges they entail, see
+  xref:6.0@server:security:concepts-rba-for-apps.adoc[RBAC for Applications].
+* _Resources_ controlled by Couchbase RBAC, see
+  xref:6.0@server:security:security-resources-under-access-control.adoc[Resources Under Access
+  Control].
+
+== Certificate-Based Authentication
+
+Couchbase Server supports the use of X.509 certificates to authenticate clients.  This allows
+authenticated users to access specific resources by means of the data service (no other service is
+currently available to clients through this form of authentication).
+
+The process relies on a certificate authority, for the issuing of certificates that validate
+identities.  A certificate includes information such as the name of the entity it identifies, an
+expiration date, the name of the authority that issued the certificate, and the digital signature of
+the authority.  A client attempting to access Couchbase Server can present a certificate to the
+server, allowing the server to check the validity of the certificate.  If the certificate is valid,
+the user under whose identity the client is running, and the roles assigned that user, are verified.
+If the assigned roles are appropriate for the level of access requested to the specified resource,
+access is granted.
+
+The Ruby SDK has supported working with X.509 certificates through libcouchbase 2.8.4+. Version
+2.8.5 of libcouchbase added the ability for the SSL trust store to be kept in a separate file. The
+trust store has to be specified with option `truststorepath=…`, otherwise the library will expect it
+to be stored with the certificate in `certpath=`, and the trust store and certificate concatenated
+in the certpath.
+
+This shell script will generate the client certificate - you will need to ensure that you have
+https://www.openssl.org[OpenSSL^] installed on your system:
+
+----
+export CB_ROOT=/opt/couchbase
+
+export TOPDIR=SSLCA
+export ROOT_DIR=rootdir
+export CLIENT_DIR=clientdir
+export INT_DIR=intdir
+export ROOT_CA=ca
+export INTERMEDIATE=int
+export CLIENT=client
+export CHAIN=chain
+
+export ADMINCRED=Administrator:password
+export ip=127.0.0.1
+export USERNAME=testuser
+
+cd ${TOPDIR}
+
+mkdir -p ${CLIENT_DIR}
+
+cd ${CLIENT_DIR}
+openssl genrsa -out ${CLIENT}.key 2048
+openssl req -new -key ${CLIENT}.key -out ${CLIENT}.csr -subj "/CN=${USERNAME}/OU=None/O=None/L=None/S=None/C=US"
+openssl x509 -req -in ${CLIENT}.csr -CA ../${INT_DIR}/${INTERMEDIATE}.pem \
+  -CAkey ../${INT_DIR}/${INTERMEDIATE}.key -CAcreateserial \
+  -CAserial ../${INT_DIR}/intermediateCA.srl -out ${CLIENT}.pem -days 365
+
+cat ./${CLIENT}.pem ../${INT_DIR}/${INTERMEDIATE}.pem ../${ROOT_DIR}/${ROOT_CA}.pem > ./${CHAIN}.pem
+----
+
+Which is then used by passing `+${CLIENT_DIR}/${CHAIN}.pem+` as the `certpath` option, and
+`+${CLIENT_DIR}/${CLIENT}.key+` as `keypath` in the connection string (and don't forget
+couchbase**s** or http**s** in the schema).  For example:
+
+[code,ruby]
+----
+Couchbase.connect('couchbases://localhost/bucketname?certpath=/path/to/chain.pem&keypath=/path/to/client.key')
+----
+
+When necessary the root certificate, along with all intermediates, might be supplied with a separate
+connection string option `truststorepath`, and in this case concatenation (the last step in
+certification generation) is not necessary, and the client certificate could be specified as is.
+See full example at
+https://github.com/couchbaselabs/devguide-examples/blob/master/c/connecting-cert-auth.c[^].
