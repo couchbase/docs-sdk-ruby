@@ -1,118 +1,189 @@
 = Handling Errors
 :navtitle: Handling Errors
 :page-topic-type: howto
-:page-aliases: handling-error-conditions.adoc
-:source-language: php
-:lang: php
+:page-aliases: ROOT:handling-error-conditions,ROOT:exception-handling
+:source-language: python
 
 [abstract]
-Practical steps to handle errors and exceptions.
+Errors, handling them from the Python SDK.
 
 
 Errors are inevitable.
 The developer’s job is to be prepared for whatever is likely to come up -- and to try and be prepared for anything that conceivably could come up.
 Couchbase gives you a lot of flexibility, but it is recommended that you equip yourself with an understanding of the possibilities.
 
+== How the SDK Handles Errors
 
-As covered xref:concurrent-async-apis.adoc[here], the PHP SDK ships with two different APIs, allowing you to structure your application the way you want.
-That guide also covers how errors are actually returned (e.g. via `Try`, `Future`, or `Mono`) and handled, so this document will focus instead on specific errors, along with a broader look at error handling strategies.
+Couchbase-specific exceptions are all derived from `CouchbaseException`.
+Errors that cannot be recovered by the SDK will be returned to the application.
+These unrecoverable errors are left to the application developer to handle -- this section covers handling many of the common error scenarios.
 
-== Key-Value Errors
+== Handling Errors
+
+The approach will depend upon the type of error thrown.
+Is it transient?
+Is it even recoverable?
+Below we examine error handling strategies in relation to the Couchbase SDKs, then take a practical walk through some common error scenarios you are likely to have to handle when working with a Couchbase cluster.
+
+=== Failing
+While most of the time you want more sophisticated error handling strategies, sometimes you just need to fail.
+It makes no sense for some errors to be retried, either because they are not transient, or because you already tried everything to make it work and it still keeps failing.
+If containment is not able to handle the error, then it needs to propagate up to a parent component that can handle it.
+
+For synchronous programs, every error is converted into an Exception and thrown so that you can use regular `try`/`catch` semantics.
+
+If you do not catch the Exception, it will bubble up:
+
+[source,python]
+----
+Exception in thread "main" java.lang.RuntimeException: java.lang.Exception: I'm failing
+ at rx.observables.BlockingObservable.blockForSingle(BlockingObservable.java:482)
+ at rx.observables.BlockingObservable.single(BlockingObservable.java:349)
+----
+
+=== Logging
+
+It is always important to log errors, but even more so in the case of reactive applications. Because of the event driven nature, stack traces get harder to look at, and caller context is sometimes lost.
+
+////
+# SDK-specific text in each case
+# Note that Logging has its own page.
+
+# recommendation of good practice ADMONITION link
+////
+
+=== Retry
+
+Transient errors -- such as those caused by resource starvation -- are best tackled with one of the following retry strategies:
+
+Retry immediately.
+Retry with a fixed delay.
+Retry with a linearly increasing delay.
+Retry with an exponentially increasing delay.
+Retry with a random delay.
+
+[source,python]
+----
+include::example$error-handling.py[tag=handle_retryable]
+----
+
+=== Fallback
+
+Instead of (or in addition to) retrying, another valid option is falling back to either a different `Observable`, or to a default value.
+
+// == Generic Errors (see Errors rfc)
+// There are some errors which can be surfaced from across all of the SDK services. These include...
+
+////
+=== Temporary Failure
+=== Timeout (possibly covered below in connections?)
+=== ServiceNotAvailable
+=== ServiceNotConfigured
+////
+
+== KV
 
 The KV Service exposes several common errors that can be encountered - both during development, and to be handled by the production app. Here we will cover some of the most common errors.
 
-If a particular key cannot be found it is raised as an `DocumentNotFoundException`:
+=== Doc does not exist
 
-[source,scala]
+[source,python]
 ----
-include::example$ErrorHandling.scala[tag=key-not-found,indent=0]
-----
-
-[source,scala]
-----
-include::example$ErrorHandling.scala[tag=get,indent=0]
+include::example$error-handling.py[tag=KeyNotFoundException]
 ----
 
-On the other hand if the key already exists and should not (e.g. on an insert) then it is raised as a `DocumentExistsException`:
+=== Doc already exists
 
-[source,scala]
+[source,python]
 ----
-include::example$ErrorHandling.scala[tag=key-exists,indent=0]
-----
-
-=== Concurrency
-Couchbase provides optimistic concurrency using CAS.
-Each document gets a CAS value on the server, which is changed on each mutation.
-When you get a document you automatically receive its CAS value, and when replacing the document, if you provide that CAS the server can check that the document has not been concurrently modified by another agent in-between.  If it has, it returns `CasMismatchException`, and the most appropriate response is to simply retry it:
-
-[source,scala]
-----
-include::example$ErrorHandling.scala[tag=cas,indent=0]
+include::example$error-handling.py[tag=KeyExistsException]
 ----
 
-=== Ambiguity
-There are situations with any distributed system in which it is simply impossible to know for sure if the operation completed successfully or not.
-Take this as an example: your application requests that a new document be created on Couchbase Server.  This completes, but, just before the server can notify the client that it was successful, a network switch dies and the application's connection to the server is lost.  The client will timeout waiting for a response and will raise a `TimeoutException`, but it's ambiguous to the app whether the operation succeeded or not.
+=== Doc too large
 
-So `TimeoutException` is one ambiguous error, another is `DurabilityAmbiguousException`, which can returned when performing a durable operation.  This similarly indicates that the operation may or may not have succeeded: though when using durability you are guaranteed that the operation will either have been applied to all replicas, or none.
+`RequestTooBigException`
 
-Given the inevitability of ambiguity, how is the application supposed to handle this?
+=== CAS Mismatch
 
-It really needs to be considered case-by-case, but the general strategy is to become certain if the operation succeeded or not, and to retry it if required.
-
-For instance, for inserts, they can simply be retried to see if they fail on `DocumentExistsException`, in which case the operation was successful:
-
-[source,scala]
+[source,python]
 ----
-include::example$ErrorHandling.scala[tag=insert,indent=0]
+include::example$error-handling.py[tag=CASMismatchException]
 ----
 
-That example is much closer to what an application will want to be doing.  Let's flesh it out further.
+=== Durability ambiguous
 
-=== Real-World Error Handling
-The application can write wrappers so that it can easily do operations without having to duplicate the error handling each time.  Something like this:
-
-[source,scala]
+[source,python]
 ----
-include::example$ErrorHandling.scala[tag=insert-real,indent=0]
+include::example$error-handling.py[tag=DurabilitySyncWriteAmbiguousException]
 ----
 
-This will make a 'best effort' to do the insert (though its retry strategy is rather naive, and applications may want to implement a more sophisticated approach involving exponential backoff and circuit breaking.)
+=== Durability invalid level
 
-If that best effort fails, and the `doInsert` call still returns a `Failure`, then it's highly context-dependent how to handle that.  Examples would include displaying a "please try again later" error to a user, if there is one, and logging it for manual human review.  The application must make a suitable call for each case.
+[source,python]
+----
+include::example$error-handling.py[tag=DurabilityInvalidLevelException]
+----
 
-The application can write similar wrappers for the other operations - replace, upsert et al.
-Note that the logic is a little different in each case: for inserts, we confirm if the operation has already been successful on an ambiguous result by checking for `DocumentExistsException`.  But this wouldn't make sense for an upsert.
+=== No Cluster replicas configured
 
-=== Non-Idempotent Operations
-Idempotent operations are those that can be applied multiple times and only have one effect.  Repeatedly setting an email field is idempotent - increasing a counter by one is not.
+[source,python]
+----
+include::example$error-handling.py[tag=ReplicaNotConfiguredException]
+----
 
-Some operations we can view as idempotent as they will fail with no effect after the first success - such as inserts.
+=== Replicate to / persist to greater than replica count
 
-Idempotent operations are much easier to handle, as on ambiguous error results (`DurabilityAmbiguousException` and `TimeoutException`) the operation can simply be retried.
+[source,python]
+----
+include::example$error-handling.py[tag=DurabilityImpossibleException]
+----
 
-Most key-value operations are idempotent.  For those that aren't, such as a Sub-Document `arrayAppend` call, or a counter increment, the application should, on an ambiguous result, first read the document to see if that change was applied.
+=== Timeout with replicate to / persist to requirements
+
+[source,python]
+----
+include::example$error-handling.py[tag=TimeoutException]
+----
 
 == Query and Analytics Errors
-A N1QL query either returns results or `QueryError`, like so:
 
-[source,scala]
-----
-include::example$ErrorHandling.scala[tag=query,indent=0]
-----
+N1ql and Analytics either return results or an error. If there is an error then it exposed in the following way(s)...
 
-Analytics works in an identical fashion, raising an `AnalyticsError`.
+== Search and View Errors
+
+Unlike N1ql and Analytics, Search and Views can return multiple errors as well as errors and partial results.
+// This next bit is going to be highly SDK specific too.
+
+== Connections...
+// Network / buckets / Timeouts / …
+
+Networks, remotely-located clusters, and XDCR all offer opportunities for packets to go astray, or resources to go offline or become temporarily unavailable.
+// As well as the above `Timeout` errors, and those in the next section on authenticating against clusters, there are ??network-related??
+// The most common scenarios that the developer is likely to encounter when working with Couchbase Clusters are ?????
+
+== Authentication
+
+=== RBAC Roles - permissions on Service / Bucket / etc.
+
+Standard since Couchbase Data Platform 5.0, xref:[Role Based Access Control (RBAC)] gives fine-grained permissions designed to protect the security of and access to data with a range of user roles encompassing different privileges.
+xref:6.5@server:learn:security/authorization-overview.adoc[Refer to our Authorization pages] for a fuller understanding.
+
+The developer must match an application’s need for data access with the necessary permissions for access.
+// SCENARIO??
+// ---> Certificates?
+
+NOTE: If you are using Couchbase Community Edition, the only _roles_ available are xref:link-here[Bucket Full Access, Admin, and Read-only Admin].
 
 == Additional Resources
+
 Errors & Exception handling is an expansive topic.
 Here, we have covered examples of the kinds of exception scenarios that you are most likely to face.
 More fundamentally, you also need to weigh up xref:concept-docs:durability-replication-failure-considerations.adoc[concepts of durability].
 
-Diagnostic methods are available to check on the xref:health-check.adoc[health of the cluster].
-// , and the xref:tracing-from-the-sdk.adoc[health of the network].
+Diagnostic methods are available to check on the xref:health-check.adoc[health if the cluster], and the xref:tracing-from-the-sdk.adoc[health of the network].
 
 Logging methods are dependent upon the platform and SDK used.
 We offer xref:collecting-information-and-logging.adoc[recommendations and practical examples].
 
-// We have a xref:ref:error-codes.adoc[listing of error messages], with some pointers to what to do when you encounter them.
+We have a xref:ref:error-codes.adoc[listing of error messages], with some pointers to what to do when you encounter them.
 
