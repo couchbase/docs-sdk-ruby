@@ -1,0 +1,11 @@
+= Durability in Action
+:page-topic-type: howto
+
+[abstract]
+Data durability is handled by Couchbase Server, but the application programmer needs to code for the best way of handling problems for their particular application.
+This example case covers timeouts, node failures, and how to deal with both Couchbase Server's Synchronous Replication, and the older Server versions' Enhanced Durability.
+
+[source,php]
+----
+include::example$durability.php[tag=enhanced]
+----

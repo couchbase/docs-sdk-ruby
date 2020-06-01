@@ -1,0 +1,99 @@
+= Install and Start Using the PHP SDK with Couchbase Server
+:page-aliases: ROOT:getting-started,ROOT:start-using,ROOT:hello-couchbase,ROOT:start-using-sdk
+:navtitle: Start Using the SDK
+
+[abstract]
+The Couchbase PHP SDK allows you to connect to a Couchbase cluster from PHP.
+The Couchbase PHP SDK is a native PHP extension and uses the Couchbase high-performance C library to handle communicating to the cluster over Couchbase binary protocols.
+
+
+The Couchbase PHP SDK 3.0 is a complete rewrite of the API, reducing the number of overloads to present a simplified surface area, and adding support for future Couchbase Server features like Collections and Scopes (available in Couchbase Server 6.5 as a xref:concept-docs:collections.adoc[developer preview]).
+
+The Couchbase PHP SDK is compatible with PHP 7.2+.
+
+// tag::install[]
+
+== Installing the SDK
+
+Before installing the PHP SDK, you must install the xref:3.0@c-sdk:hello-world:start-using-sdk.adoc[C SDK -- _libcouchbase_ (LCB)];
+version 3.0 or higher is required from PHP Client 3.0.
+
+After installing the C SDK, install the PHP SDK through your PHP distribution's pecl command:
+
+[source,bash]
+----
+$ pecl install https://packages.couchbase.com/clients/php/couchbase-3.0.0.tgz
+----
+
+Further details can be found on the xref:project-docs:sdk-release-notes.adoc[Release Notes & Archives page].
+
+// installation and post-installation across platforms
+
+// end::install[]
+
+== Hello Couchbase
+
+Couchbase uses xref:6.5@server:learn:security/roles.adoc[Role Based Access Control (RBAC)] to control access to resources.
+Here we will use the _Full Admin_ role created during installation of the Couchbase Data Platform.
+For production client code, you will want to use xref:howtos:managing-connections.adoc#rbac[more appropriate, restrictive settings], but here we want to get you up and running quickly.
+If you're developing client code on the same VM or machine as the Couchbase Server, your URI can be _localhost_.
+
+
+// initialize cluster
+
+[source,php]
+----
+$connectionString = "couchbase://localhost";
+$options = new \Couchbase\ClusterOptions();
+$options->credentials("Administrator", "password");
+$cluster = new \Couchbase\Cluster($connectionString, $options);
+----
+
+The `Cluster` provides access to cluster-level operations like N1Ql queries, analytics, or full-text search.
+You will also find different management APIs on it.
+
+To access the KV (Key/Value) API or to query views, you need to open a `Bucket`:
+
+[source,php]
+----
+// get a bucket reference
+$bucket = $cluster->bucket("bucket-name");
+----
+
+If you installed the travel sample data bucket, substitute _travel-sample_ for _bucket-name_.
+
+[source,php]
+----
+// get a collection reference
+$collection = $bucket->defaultCollection();
+
+// or for named collection
+$collection = $bucket->scope("myapp")->collection("my-collection");
+----
+
+The 3.0 SDK is ready for the introduction of xref:6.5@server:developer-preview:collections/collections-overview.adoc[Collections] in an upcoming release of the Couchbase Data Platform.
+Couchbase Server 6.5 brings a limited xref:6.5@server:developer-preview:preview-mode.adoc[Developer Preview] of Collections, allowing Documents to be grouped by purpose or theme, according to a specified _Collection_. 
+Here we've used the `DefaultCollection`, which provides the same functionality as bucket-level operations did in previous versions of Couchbase Server.
+
+[source,php]
+----
+// upsert document
+$upsertResult = $collection->upsert("my-document", ["name" => "mike"]);
+
+// get document
+$getResult = $collection->get("my-document");
+----
+
+KV Operations are described in detail on the xref:howtos:kv-operations.adoc[KV Operations page].
+Now that you know the basics, you may wish to go straight to that page -- or first see a complete worked example of
+using the Couchbase php client, our xref:hello-world:sample-application.adoc[Travel Sample Application].
+
+== Additional Resources
+
+// The API reference is generated for each release and can be found http://docs.couchbase.com/sdk-api/couchbase-php-client-3.0.0/[here].
+Older API references are linked from their respective sections in the xref:project-docs:sdk-release-notes.adoc[Release Notes].
+
+xref:project-docs:migrating-sdk-code-to-3.n.adoc[The Migrating from SDK2 to 3 page] highlights the main differences to be aware of when migrating your code.
+
+Couchbase welcomes community contributions to the PHP SDK.
+The PHP SDK source code is available on https://github.com/couchbase/php-couchbase[GitHub].

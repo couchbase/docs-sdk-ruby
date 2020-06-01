@@ -1,0 +1,68 @@
+= MapReduce Views Using the .NET SDK with Couchbase Server
+:navtitle: MapReduce Views
+:page-topic-type: howto
+:page-aliases: ROOT:view-queries-with-sdk
+
+[abstract]
+You can use MapReduce views to create queryable indexes in Couchbase Data Platform.
+
+ 
+////
+include::6.5@sdk:shared:partial$views.adoc[tag=views-intro]
+
+include::6.5@sdk:shared:partial$views.adoc[tag=example-beer]
+
+
+[source,php]
+----
+$options = new \Couchbase\ViewOptions();
+$options->range("A", NULL)
+        ->limit(10);
+$result = $bucket->viewQuery("beer", "brewery_beers", $options);
+----
+
+include::6.5@sdk:shared:partial$views.adoc[tag=example-travel]
+
+
+[source,php]
+----
+$options = new \Couchbase\ViewOptions();
+$options->key("<landmark-name>");
+$result = $bucket->viewQuery("landmarks", "by_name", $options);
+----
+
+include::6.5@sdk:shared:partial$views.adoc[tag=example-geo-travel]
+
+[source,php]
+---
+foreach($result->rows() as $row) {
+    $row->id();
+    $row->key();
+    $row->value();
+}
+----
+
+// We only need the briefest of samples - the content brought in at the top of the page will recommend avoiding Views.[source,javascript]
+----
+function (doc, meta) {
+    if (doc.type && doc.type == "landmark" && doc.geo) {
+        emit([doc.geo.lon, doc.geo.lat], null);
+    }
+}
+----
+
+
+== Querying Views through the PHP SDK
+
+Once you have a view defined, it can be queried from the PHP SDK by using the `ViewQuery` method on a Bucket instance.
+
+Here is an example:
+
+[source,php]
+----
+$options = new \Couchbase\ViewOptions();
+$options->limit(10);
+$result = $bucket->viewQuery("design-doc", "view-name", $options);
+----
+
+////
