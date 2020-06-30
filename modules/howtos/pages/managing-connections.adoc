@@ -240,6 +240,11 @@ Proceeding with normal bootstrap.
 ----
 ////
 
+
+// Cloud connections
+include::6.5@sdk:shared:partial$managing-connections.adoc[tag=cloud]
+
+
 == Async APIs
 
 The Couchbase Python SDK provides first-class support for asynchronous programming.
