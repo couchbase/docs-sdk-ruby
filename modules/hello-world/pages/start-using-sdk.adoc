@@ -92,7 +92,7 @@ You can also perform a N1QL query at the cluster level:
 
 [source,ruby]
 ----
-include::example$start_usig.rb[tag=n1ql-query,indent=0]
+include::example$start_using.rb[tag=n1ql-query,indent=0]
 ----
 
 You can learn more about N1QL queries on the xref:howtos:n1ql-queries-with-sdk.adoc[Query page].
