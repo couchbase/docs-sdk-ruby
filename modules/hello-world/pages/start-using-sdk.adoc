@@ -18,7 +18,7 @@ The Couchbase Ruby SDK is compatible with Ruby 2.6 and 2.7.
 Before installing the Ruby SDK, you must install the xref:3.0@c-sdk:hello-world:start-using-sdk.adoc[C SDK -- _libcouchbase_ (LCB)];
 version 3.0 or higher is required from Ruby Client 3.0.
 
-After installing the C SDK, install the Ruby SDK through????:
+After installing the C SDK, install the Ruby SDK through rubygems:
 
 [source,bash]
 ----
@@ -39,16 +39,16 @@ For production client code, you will want to use xref:howtos:managing-connection
 If you're developing client code on the same VM or machine as the Couchbase Server, your URI can be _localhost_.
 
 
-// initialize cluster
-
+// imports
 [source,ruby]
 ----
-require 'couchbase'
-include Couchbase
+include::example$start_using.rb[tag=imports,indent=0]
+----
 
-options = Cluster::ClusterOptions.new
-options.authenticate("username", "password")
-cluster = Cluster.connect("couchbase://10.143.201.101", options)
+// initialize cluster
+[source,ruby]
+----
+include::example$start_using.rb[tag=connect,indent=0]
 ----
 
 The `Cluster` provides access to cluster-level operations like N1Ql queries, analytics, or full-text search.
@@ -57,53 +57,54 @@ If you're developing client code on the same VM or machine as the Couchbase Serv
 
 Couchbase uses xref:6.5@server:learn:security/roles.adoc[Role Based Access Control (RBAC)] to control access to resources.
 For production client code, you will want to use more appropriate, restrictive settings
- -- but here we want to get you up and running quickly, 
+ -- but here we want to get you up and running quickly,
 so you can use the _Full Admin_ role created during installation of the Couchbase Data Platform, in which case set _Administrator_ as the username, and use the password that you defined in setting up your test Couchbase cluster.
 
 To access the KV (Key/Value) API or to query views, you need to open a `Bucket`:
 
 [source,ruby]
 ----
-bucket = cluster.bucket("test1")
+include::example$start_using.rb[tag=bucket,indent=0]
 ----
 
 // If you installed the travel sample data bucket, substitute _travel-sample_ for _bucket-name_.
 
 [source,ruby]
 ----
-// get a collection reference
-collection = bucket.default_collection
-
-// or for named collection
-collection = bucket.my-collection
+include::example$start_using.rb[tag=collection,indent=0]
 ----
 
 The 3.0 SDK is ready for the introduction of xref:6.5@server:developer-preview:collections/collections-overview.adoc[Collections] in an upcoming release of the Couchbase Data Platform.
-Couchbase Server 6.5 brings a limited xref:6.5@server:developer-preview:preview-mode.adoc[Developer Preview] of Collections, allowing Documents to be grouped by purpose or theme, according to a specified _Collection_. 
+Couchbase Server 6.5 brings a limited xref:6.5@server:developer-preview:preview-mode.adoc[Developer Preview] of Collections, allowing Documents to be grouped by purpose or theme, according to a specified _Collection_.
 Here we've used the `DefaultCollection`, which provides the same functionality as bucket-level operations did in previous versions of Couchbase Server.
 
 [source,ruby]
 ----
-// upsert document
-res = collection.upsert("u:king_arthur", {'name': 'Arthur', 'email': 'kingarthur@couchbase.com', 'interests': ['Holy Grails', 'African Swallows']})
-p res.cas
-
-// get document
-res = collection.get("u:king_arthur")
-p res.content
-p res.cas
+include::example$start_using.rb[tag=upsert-get,indent=0]
 ----
 
-After completing operations, finish with:
-
-[source,ruby]
-----
-cluster.disconnect
-----
 
 KV Operations are described in detail on the xref:howtos:kv-operations.adoc[KV Operations page].
 Now that you know the basics, you may wish to go straight to that page.
 // -- or first see a complete worked example of using the Couchbase php client, our xref:hello-world:sample-application.adoc[Travel Sample Application].
+
+You can also perform a N1QL query at the cluster level:
+
+[source,ruby]
+----
+include::example$start_usig.rb[tag=n1ql-query,indent=0]
+----
+
+You can learn more about N1QL queries on the xref:howtos:n1ql-queries-with-sdk.adoc[Query page].
+Other services (like analytics, search or views) work very similar to the two shown above.
+Please refer to their respective documentation sections to learn more.
+
+After completing operations, finish with (otherwise resources will be released by garbage collector):
+
+[source,ruby]
+----
+include::example$start_using.rb[tag=disconnect,indent=0]
+----
 
 == Additional Resources
 
