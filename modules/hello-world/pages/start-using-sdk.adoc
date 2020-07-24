@@ -111,4 +111,4 @@ Now that you know the basics, you may wish to go straight to that page.
 // Older API references are linked from their respective sections in the xref:project-docs:sdk-release-notes.adoc[Release Notes].
 
 Couchbase welcomes community contributions to the Ruby SDK.
-The Ruby SDK source code is available on https://github.com/couchbase/ruby-couchbase[GitHub].
+The Ruby SDK source code is available on https://github.com/couchbase/couchbase-ruby-client[GitHub].
