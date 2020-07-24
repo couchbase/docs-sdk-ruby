@@ -9,20 +9,20 @@ The Couchbase Ruby SDK is a native Ruby extension and uses the Couchbase high-pe
 
 The Couchbase Ruby SDK 3.0 is a complete rewrite of the API, reducing the number of overloads to present a simplified surface area, and adding support for future Couchbase Server features like Collections and Scopes (available in Couchbase Server 6.5 as a xref:concept-docs:collections.adoc[developer preview]).
 
-The Couchbase Ruby SDK is compatible with Ruby ???.
+The Couchbase Ruby SDK is compatible with Ruby 2.6 and 2.7.
 
 // tag::install[]
 
 == Installing the SDK
 
 Before installing the Ruby SDK, you must install the xref:3.0@c-sdk:hello-world:start-using-sdk.adoc[C SDK -- _libcouchbase_ (LCB)];
-version 3.0 or higher is required from PHP Client 3.0.
+version 3.0 or higher is required from Ruby Client 3.0.
 
-After installing the C SDK, install the Ruby SDK through????:
+After installing the C SDK, install the Ruby SDK through rubygems:
 
 [source,bash]
 ----
-$ pecl install https://packages.couchbase.com/clients/php/couchbase-3.0.0.tgz
+gem install --pre couchbase
 ----
 
 Further details can be found on the xref:project-docs:sdk-release-notes.adoc[Release Notes & Archives page].
@@ -39,61 +39,77 @@ For production client code, you will want to use xref:howtos:managing-connection
 If you're developing client code on the same VM or machine as the Couchbase Server, your URI can be _localhost_.
 
 
-// initialize cluster
-
-[source,php]
+// imports
+[source,ruby]
 ----
-$connectionString = "couchbase://localhost";
-$options = new \Couchbase\ClusterOptions();
-$options->credentials("Administrator", "password");
-$cluster = new \Couchbase\Cluster($connectionString, $options);
+include::example$start_using.rb[tag=imports,indent=0]
+----
+
+// initialize cluster
+[source,ruby]
+----
+include::example$start_using.rb[tag=connect,indent=0]
 ----
 
 The `Cluster` provides access to cluster-level operations like N1Ql queries, analytics, or full-text search.
 You will also find different management APIs on it.
+If you're developing client code on the same VM or machine as the Couchbase Server, your connection string can be just `localhost`.
+
+Couchbase uses xref:6.5@server:learn:security/roles.adoc[Role Based Access Control (RBAC)] to control access to resources.
+For production client code, you will want to use more appropriate, restrictive settings
+ -- but here we want to get you up and running quickly,
+so you can use the _Full Admin_ role created during installation of the Couchbase Data Platform, in which case set _Administrator_ as the username, and use the password that you defined in setting up your test Couchbase cluster.
 
 To access the KV (Key/Value) API or to query views, you need to open a `Bucket`:
 
-[source,php]
+[source,ruby]
 ----
-// get a bucket reference
-$bucket = $cluster->bucket("bucket-name");
+include::example$start_using.rb[tag=bucket,indent=0]
 ----
 
-If you installed the travel sample data bucket, substitute _travel-sample_ for _bucket-name_.
+// If you installed the travel sample data bucket, substitute _travel-sample_ for _bucket-name_.
 
-[source,php]
+[source,ruby]
 ----
-// get a collection reference
-$collection = $bucket->defaultCollection();
-
-// or for named collection
-$collection = $bucket->scope("myapp")->collection("my-collection");
+include::example$start_using.rb[tag=collection,indent=0]
 ----
 
 The 3.0 SDK is ready for the introduction of xref:6.5@server:developer-preview:collections/collections-overview.adoc[Collections] in an upcoming release of the Couchbase Data Platform.
-Couchbase Server 6.5 brings a limited xref:6.5@server:developer-preview:preview-mode.adoc[Developer Preview] of Collections, allowing Documents to be grouped by purpose or theme, according to a specified _Collection_. 
+Couchbase Server 6.5 brings a limited xref:6.5@server:developer-preview:preview-mode.adoc[Developer Preview] of Collections, allowing Documents to be grouped by purpose or theme, according to a specified _Collection_.
 Here we've used the `DefaultCollection`, which provides the same functionality as bucket-level operations did in previous versions of Couchbase Server.
 
-[source,php]
+[source,ruby]
 ----
-// upsert document
-$upsertResult = $collection->upsert("my-document", ["name" => "mike"]);
+include::example$start_using.rb[tag=upsert-get,indent=0]
+----
 
-// get document
-$getResult = $collection->get("my-document");
-----
 
 KV Operations are described in detail on the xref:howtos:kv-operations.adoc[KV Operations page].
-Now that you know the basics, you may wish to go straight to that page -- or first see a complete worked example of
-using the Couchbase php client, our xref:hello-world:sample-application.adoc[Travel Sample Application].
+Now that you know the basics, you may wish to go straight to that page.
+// -- or first see a complete worked example of using the Couchbase php client, our xref:hello-world:sample-application.adoc[Travel Sample Application].
+
+You can also perform a N1QL query at the cluster level:
+
+[source,ruby]
+----
+include::example$start_usig.rb[tag=n1ql-query,indent=0]
+----
+
+You can learn more about N1QL queries on the xref:howtos:n1ql-queries-with-sdk.adoc[Query page].
+Other services (like analytics, search or views) work very similar to the two shown above.
+Please refer to their respective documentation sections to learn more.
+
+After completing operations, finish with (otherwise resources will be released by garbage collector):
+
+[source,ruby]
+----
+include::example$start_using.rb[tag=disconnect,indent=0]
+----
 
 == Additional Resources
 
 // The API reference is generated for each release and can be found http://docs.couchbase.com/sdk-api/couchbase-ruby-client-3.0.0/[here].
-Older API references are linked from their respective sections in the xref:project-docs:sdk-release-notes.adoc[Release Notes].
-
-xref:project-docs:migrating-sdk-code-to-3.n.adoc[The Migrating from SDK2 to 3 page] highlights the main differences to be aware of when migrating your code.
+// Older API references are linked from their respective sections in the xref:project-docs:sdk-release-notes.adoc[Release Notes].
 
 Couchbase welcomes community contributions to the Ruby SDK.
-The PHP SDK source code is available on https://github.com/couchbase/ruby-couchbase[GitHub].
+The Ruby SDK source code is available on https://github.com/couchbase/couchbase-ruby-client[GitHub].
