@@ -20,9 +20,9 @@ version 3.0 or higher is required from Ruby Client 3.0.
 
 After installing the C SDK, install the Ruby SDK through rubygems:
 
-[source,bash]
+[source,console]
 ----
-gem install --pre couchbase
+$ gem install --pre couchbase
 ----
 
 Further details can be found on the xref:project-docs:sdk-release-notes.adoc[Release Notes & Archives page].
@@ -77,6 +77,7 @@ include::example$start_using.rb[tag=collection,indent=0]
 The 3.0 SDK is ready for the introduction of xref:6.5@server:developer-preview:collections/collections-overview.adoc[Collections] in an upcoming release of the Couchbase Data Platform.
 Couchbase Server 6.5 brings a limited xref:6.5@server:developer-preview:preview-mode.adoc[Developer Preview] of Collections, allowing Documents to be grouped by purpose or theme, according to a specified _Collection_.
 Here we've used the `DefaultCollection`, which provides the same functionality as bucket-level operations did in previous versions of Couchbase Server.
+
 
 [source,ruby]
 ----
