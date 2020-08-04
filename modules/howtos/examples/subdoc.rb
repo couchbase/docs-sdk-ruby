@@ -173,7 +173,7 @@ result = collection.mutate_in("player432", [
 # Counter operations return the updated count
 puts "player432 has #{result.content(0)} gold coins"
 #=> player432 has 850 gold coins
-# end::counter-inc[]
+# end::counter-dec[]
 
 # tag::create-path[]
 collection.upsert("some_doc", {})
