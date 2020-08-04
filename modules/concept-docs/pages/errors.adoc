@@ -7,7 +7,7 @@
 When the unexpected happens, take a step-by-step approach. .
 
 
-== General Approach to PHP Exceptions
+== General Approach to Ruby Exceptions
 
 include::6.5@sdk:shared:partial$errors.adoc[tag=exception]
 
