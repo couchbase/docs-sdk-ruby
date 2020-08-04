@@ -1,17 +1,18 @@
-= Compatibility of Couchbase Features, Couchbase Server Versions, and the Couchbase PHP SDK
+= Compatibility of Couchbase Features, Couchbase Server Versions, and the Couchbase Ruby SDK
 :navtitle: Compatibility
 :page-aliases: ROOT:overview,ROOT:compatibility-versions-features,compatibility-versions-features
 
 [abstract]
-Features available in different SDK versions, and compatibility between Server and SDK.
+Features available in different SDK versions, and compatibility between Server and SDK. 
+Plus notes on Cloud, networks, and AWS Lambda.
 
-The Couchbase PHP SDK is compatible with PHP 7.
+The Couchbase Ruby SDK is compatible with Ruby 2.5, 2.6, and 2.7.
 
 
 == Couchbase Version/SDK Version Matrix
 
 Couchbase SDKs are tested against a variety of different environments to ensure both backward and forward compatibility with different versions of Couchbase Server.
-The matrix below denotes the version of Couchbase Server, the version of the PHP SDK and whether the SDK is:
+The matrix below denotes the version of Couchbase Server, the version of the Ruby SDK and whether the SDK is:
 
 * ✖ *Unsupported*: This combination is not tested, and is not within the scope of technical support if you have purchased a support agreement.
 * ◎ *Compatible*: This combination has been tested previously, and should be compatible.
@@ -21,27 +22,18 @@ It is best to upgrade either the SDK or the Couchbase version you are using.
 
 .Recommended SDK per Server Version Matrix
 [#table_sdk_versions]
-[cols="40,25,20,20,25"]
+[cols="40,25"]
 |===
-| | SDK 2.3, 2.4 | SDK 2.5 | SDK 2.6  | SDK 3.0 
+|  | SDK 3.0 
 
 | *Server 5.0-5.5*
-| *✔*
-| *✔*
-| *✔*
 | ◎
 
 | *Server 6.0*
-| ◎
-| *✔*
-| *✔*
 | *✔*
 
 
 | *Server 6.5*
-| *✖*
-| ◎
-| *✔*
 | *✔*
 |===
 
@@ -51,22 +43,22 @@ See the notes there for Support details.
 == Couchbase New Feature Availability Matrix
 
 .Couchbase Server and SDK Supported Version Matrix
+[.table-merge-cells] 
 |===
-| | Server 5.0, 5.1, & 5.5 | Server 6.0 | Server 6.5
+| | Server 6.0 | Server 6.5
 
 | Enhanced Durability
-3+| All SDK versions
+2+| All SDK versions
 
 | Durable Writes 
-2+| Not Supported
+| Not Supported
 | Since 3.0
 
 | Analytics
-| DP in 5.5 with 2.5
-2+| Since 2.6
+2+| Since 3.0
 
 | Collections
-2+| Not Supported
+| 
 | SDK 3.0 for Developer Preview in Server 6.5
 
 |===
