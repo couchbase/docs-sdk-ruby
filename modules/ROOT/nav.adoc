@@ -7,10 +7,8 @@ Couchbase PHP SDK
 .Working with Data
 * xref:howtos:kv-operations.adoc[Key Value Operations]
 * xref:howtos:subdocument-operations.adoc[Sub-Document Operations]
-//  ** xref:howtos:sdk-xattr-example.adoc[Extended Attributes]
 * xref:howtos:n1ql-queries-with-sdk.adoc[Query]
 // * xref:howtos:analytics-using-sdk.adoc[Analytics]
-//  ** xref:howtos:advanced-analytics-querying.adoc[Advanced Analytics Querying]
 * xref:howtos:full-text-searching-with-sdk.adoc[Full Text Search]
 // * xref:howtos:view-queries-with-sdk.adoc[MapReduce Views]
 
@@ -56,7 +54,7 @@ Couchbase PHP SDK
 ** xref:concept-docs:rbac.adoc[RBAC]
 
 .References
-* https://docs.couchbase.com/sdk-api/couchbase-ruby-client/files/couchbase.html[Ruby API Reference]
+* https://docs.couchbase.com/sdk-api/couchbase-ruby-client/[Ruby API Reference]
 // * xref:ref:error-codes.adoc[Error Messages]
 * xref:ref:client-settings.adoc[Client Settings]
 // * xref:ref:travel-app-data-model.adoc[Travel Sample Data Model]
@@ -64,7 +62,6 @@ Couchbase PHP SDK
 .Project Docs
 * xref:project-docs:sdk-release-notes.adoc[Release Notes]
 * xref:project-docs:compatibility.adoc[Compatibility]
-// ** xref:project-docs:migrating-sdk-code-to-3.n.adoc[Migrating to SDK 3 API] // not
 * xref:project-docs:sdk-licenses.adoc[Licenses]
 * xref:project-docs:get-involved.adoc[Get involved]
  ** https://docs.couchbase.com/home/contribute/index.html[Improve the Docs]
