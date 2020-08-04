@@ -6,7 +6,7 @@
 Couchbase SDKs' source code is licensed under the Apache Licence 2.0.
 Dependencies carry their own licenses.
 
-The Couchbase PHP Client is distributed as source under the https://www.apache.org/licenses/LICENSE-2.0[Apache License, Version 2.0].
+The Couchbase Ruby Client is distributed as source under the https://www.apache.org/licenses/LICENSE-2.0[Apache License, Version 2.0].
 
 
 == Binary Distribution
