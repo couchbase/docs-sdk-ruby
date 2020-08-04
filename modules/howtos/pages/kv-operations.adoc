@@ -3,6 +3,9 @@
 :page-topic-type: howto
 :page-aliases: document-operations.adoc
 
+[abstract]
+Key-Value (KV) or data service offers the simplest way to retrieve or mutate data where the key is known. 
+Here we cover CRUD operations, document expiration, and optimistic locking with CAS.
 
 
 ////
@@ -17,51 +20,45 @@ A _document_ refers to an entry in the database (other databases may refer to th
 A document has an ID (_primary key_ in other databases), which is unique to the document and by which it can be located.
 The document also has a value which contains the actual application data.
 See xref:concept-docs:documents.adoc[the concept guide to _Documents_] for a deeper dive into documents in the Couchbase Data Platform.
-Or read on, for a hands-on introduction to working with documents from the PHP SDK.
+Or read on, for a hands-on introduction to working with documents from the Ruby SDK.
 
 == CRUD Operations
 
 The core interface to Couchbase Server is simple KV operations on full documents.
 Make sure you're familiar with the basics of authorization and connecting to a Cluster from the xref:hello-world:start-using-sdk.adoc[Start Using the SDK section].
 We're going to expand on the short _Upsert_ example we used there, adding options as we move through the various CRUD operations.
-Here is the _Insert_ operation at its simplest:
+Here is the _Insert_ operation, with simple error handling:
 
-[source,php]
+[source,ruby]
 ----
-include::example$kv-crud.php[tag=insert]
+include::example$kv_operations.rb[tag=insert]
 ----
 
-Options may be added to operations:
-
-[source,php]
-----
-include::example$kv-crud.php[tag=insertwithoptions]
-----
 
 Setting a Compare and Swap (CAS) value is a form of optimistic locking - dealt with in depth in the xref:concurrent-document-mutations.adoc[CAS page].
 Here we just note that the CAS is a value representing the current state of an item; each time the item is modified, its CAS changes.
 The CAS value is returned as part of a document’s metadata whenever a document is accessed.
 Without explicitly setting it, a newly-created document would have a CAS value of _0_.
 
-_Timeout_ is an optional parameter which is a integer value representing time duration in microseconds..
-Timeout sets the timeout value for the underlying network connection.
-We will add to these options for the _Replace_ example:
+// _Timeout_ is an optional parameter which is a integer value representing time duration in microseconds..
+// Timeout sets the timeout value for the underlying network connection.
+// We will add to these options for the _Replace_ example:
 
-[source,php]
+[source,ruby]
 ----
-include::example$kv-crud.php[tag=replacewithcas]
+include::example$kv_operations.rb[tag=replace]
 ----
 
-The example above also shows how to handle the case when optimistic falure will fail.
+// The example above also shows how to handle the case when optimistic falure will fail.
 
-Expiration sets an explicit time to live (TTL) for a document, for which you can also xref:sdk-xattr-example.adoc[see a more detailed example of TTL discovery] later in the docs.
-We'll discuss modifying `expiry` in more details xref:#php-modifying-expiration[below].
+Expiration sets an explicit time to live (TTL) for a document.
+// We'll discuss modifying `expiry` in more details xref:#php-modifying-expiration[below].
 For a discussion of item (Document) _vs_ Bucket expiration, see the
 xref:6.5@server:learn:buckets-memory-and-storage/expiration.adoc#expiration-bucket-versus-item[Expiration Overview page].
 
-[source,php]
+[source,ruby]
 ----
-include::example$kv-crud.php[tag=upsertwithexpiry]
+include::example$kv_operations.rb[tag=expiry-insert]
 ----
 
 // TODO: old-style durability will come later
@@ -70,10 +67,11 @@ include::example$kv-crud.php[tag=upsertwithexpiry]
 
 == Durability
 
+////
 In Couchbase Server releases before 6.5, Durability was set with these two options -- see the xref:2.6@php-sdk::durability.adoc[6.0 Durability documentation] -- covering  how many replicas the operation must be propagated to and how many persisted copies of the modified record must exist.
+////
 
-
-If 6.5 or above is being used, you can take advantage of the xref:concept-docs:durability-replication-failure-considerations.adoc#durable-writes[Durable Write] feature,
+If Server 6.5 or above is being used, you can take advantage of the xref:concept-docs:durability-replication-failure-considerations.adoc#durable-writes[Durable Write] feature,
 in which Couchbase Server will only return success to the SDK after the requested replication level has been achieved.
 The three replication levels are:
 
@@ -87,9 +85,10 @@ These trade offs, as well as which settings may be tuned, are discussed in the x
 
 The following example demonstrates using the newer durability features available in Couchbase server 6.5 onwards.
 
-[source,php]
+
+[source,ruby]
 ----
-include::example$kv-crud.php[tag=removewithdurability]
+include::example$kv_operations.rb[tag=durability]
 ----
 
 To stress, durability is a useful feature but should not be the default for most applications, as there is a performance consideration,
@@ -105,18 +104,18 @@ Where the number of operations or other circumstances make bandwidth a significa
 
 == Retrieving full documents
 
-Using the `Get()` method with the document key can be done in a similar fashion to the other operations:
+Using the `.get()` method with the document key can be done in a similar fashion to the other operations:
 
-[source,php]
+[source,ruby]
 ----
-include::example$kv-crud.php[tag=get]
+include::example$kv_operations.rb[tag=get-simple]
 ----
 
-Timeout can also be set - as in the earlier `Insert` example:
+You can then add in logic to filter on the fields returned:
 
-[source,php]
+[source,ruby]
 ----
-include::example$kv-crud.php[tag=getwithoptions]
+include::example$kv_operations.rb[tag=get]
 ----
 
 
@@ -124,41 +123,59 @@ include::example$kv-crud.php[tag=getwithoptions]
 
 When removing a document, you will have the same concern for durability as with any additive modification to the Bucket:
 
-Remove (with options)
-[source,php]
+
+[source,ruby]
 ----
-include::example$kv-crud.php[tag=removewithoptions]
+include::example$kv_operations.rb[tag=remove]
 ----
+
 // TODO: old-style durability will come later
 
 
 == Expiration / TTL
 
-By default, Couchbase documents do not expire, but transient or temporary data may be needed for user sessions, caches, or other temporary documents.
-Using `Touch()`, you can set expiration values on documents to handle transient data:
 
-[source,php]
-----
-include::example$kv-expiry.php[tag=touch]
-----
+Couchbase Server includes an option to have particular documents automatically expire after a set time. 
+This can be useful for some use-cases, such as user sessions, caches, or other temporary documents.
 
-A network timeout can be set with the optional `TouchOptions()`, in the same fashion as earlier examples on this page:
+You can set an expiry value when creating a document:
 
-[source,php]
+
+[source,ruby]
 ----
-include::example$kv-expiry.php[tag=touchwithoptions]
+include::example$kv_operations.rb[tag=expiry-insert]
 ----
 
-Another way to change expiration time is to use `getAndTouch()` method of the collection.
+When getting a document, the expiry is not provided automatically by Couchbase Server but it can be requested:
 
-[source,php]
+[source,ruby]
 ----
-include::example$kv-expiry.php[tag=getandtouch]
+include::example$kv_operations.rb[tag=expiry-get]
 ----
+
+
+Note that when updating the document, special care must be taken to avoid resetting the expiry to zero. 
+Here's how:
+
+
+[source,ruby]
+----
+include::example$kv_operations.rb[tag=expiry-replace]
+----
+
+Some applications may find `getAndTouch` useful, which fetches a document while updating its expiry field. 
+It can be used like this:
+
+
+[source,ruby]
+----
+include::example$kv_operations.rb[tag=expiry-touch]
+----
+
 
 include::6.5@sdk:shared:partial$documents.adoc[tag=exp-note]
 
-
+////
 == Atomic document modifications
 
 The value of a document can be increased or decreased atomically using `Binary.Increment()` and `.Binary.Decrement()`.
@@ -187,6 +204,7 @@ include::example$kv-counter.php[tag=decrementwithoptions]
 ----
 
 NOTE: Increment & Decrement are considered part of the ‘binary’ API and as such may still be subject to change
+////
 
 == Additional Resources
 
