@@ -1,4 +1,4 @@
-= Managing Connections using the Python SDK with Couchbase Server
+= Managing Connections using the Ruby SDK with Couchbase Server
 :navtitle: Managing Connections
 :page-topic-type: concept
 :page-aliases: ROOT:managing-connections,howtos:multi-network,ROOT:connecting,ROOT:connection-advanced
@@ -7,7 +7,7 @@
 Please also refer to the xref:6.5@server:learn:security/authorization-overview.adoc[Server docs].
 
 [abstract]
-This section describes how to connect the Python SDK to a Couchbase cluster.
+This section describes how to connect the Ruby SDK to a Couchbase cluster.
 It contains best practices as well as information on TLS/SSL and other advanced connection options.
 
 == Connecting to a Cluster
@@ -16,14 +16,19 @@ A connection to a Couchbase Server cluster is represented by a `Cluster` object.
 A `Cluster` provides access to Buckets, Scopes, and Collections, as well as various Couchbase services and management interfaces.
 The simplest way to create a `Cluster` object is to call `Cluster.connect()` with a <<connection-strings, connection string>>, username, and password:
 
-[source,python]
+[source,ruby]
 ----
-include::example$managing_connections.py[tag=simpleconnect,indent=0]
+require "couchbase"
+include Couchbase # to avoid repeating module name
+options = Cluster::ClusterOptions.new
+options.authenticate("Administrator", "password")
+cluster = Cluster.connect("couchbase://localhost", options)
 ----
 
 NOTE: If you are connecting to a version of Couchbase Server older than 6.5, it will be more efficient if the addresses are those of data (KV) nodes.
-You will in any case, with 6.0 and earlier, need to open a ``Bucket` instance before connecting to any other HTTP services (such as _Query_ or _Search_).
+You will in any case, with 6.0 and earlier, need to open a `Bucket` instance before connecting to any other HTTP services (such as _Query_ or _Search_).
 
+////
 In a production environment, your connection string should include the addresses of multiple server nodes in case some are currently unavailable.
 Multiple addresses may be specified in a connection string by delimiting them with commas:
 
@@ -35,7 +40,7 @@ include::example$managing_connections.py[tag=multinodeconnect,indent=0]
 TIP: You don't need to include the address of every node in the cluster.
 The client fetches the full address list from the first node it is able to contact.
 
-////
+
 N/A for Python currently
 [#cluster-settings]
 == Cluster Settings
@@ -48,7 +53,7 @@ One way to customize the client's behavior is to build your own `ClusterEnvironm
 ----
 include::example$managing_connections.py[tag=customenv,indent=0]
 ----
-////
+
 
 [#connection-strings]
 == Connection Strings
@@ -210,9 +215,9 @@ E.....@.@.............+....Z.'yZ..#........
 .%v.....4....m*...A.2I.1.&.*,6+..#..#.5
 ----
 
-////
+
 TODO: verify
-include::6.0@sdk:shared:partial$dnssrv-pars.adoc[tag=dnssrv]
+include::6.5@sdk:shared:partial$dnssrv-pars.adoc[tag=dnssrv]
 
 DNS SRV bootstrapping is available in the Python SDK from version 2.5.
 In order to make the SDK actually use the SRV records, you need to enable DNS SRV on the environment and pass in the host name from your records (here `example.com`):
