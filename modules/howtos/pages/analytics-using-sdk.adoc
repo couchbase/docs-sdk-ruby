@@ -1,4 +1,4 @@
-= Analytics using the PHP SDK
+= Analytics using the Ruby SDK
 :page-topic-type: howto
 :page-edition: Enterprise Edition:
 
@@ -16,67 +16,75 @@ The analytics service is available in Couchbase Data Platform 6.0 and later (dev
 
 After familiarizing yourself with our xref:6.5@server:analytics:primer-beer.adoc[introductory primer],
 in particular creating a dataset and linking it to a bucket to shadow the operational data, 
-try Couchbase Analytics using the PHP SDK.
+try Couchbase Analytics using the Ruby SDK.
 Intentionally, the API for analytics is very similar to that of the query service. 
 In these examples we will be using an `airports` dataset created on the `travel-sample` bucket.
 
-// TODO: update when valid
-// In PHP SDK 2.x, Analytics was only available on the `Bucket` object;
-// in PHP SDK 3.0, Analytics queries are submitted using the Cluster reference, not a Bucket or Collection:
-
-[source,php]
+[source,ruby]
 ----
-include::example$analytics.php[tag=query]
+include::example$analytics.rb[tag=simple]
 ----
 
 
 == Queries
 
-A query can either be `simple` or be `parameterized`. If parameters are used, they can either be `positional` or `named`. 
-Here is one example of each:
+A query can either be `simple` or be `parameterized`. 
+If parameters are used, they can either be `positional` or `named`:
 
-[source,php]
+.Positional parameters
+[source,ruby]
 ----
-include::example$analytics.php[tag=simple]
-----
-
-The query may be performed with positional parameters:
-
-[source,php]
-----
-include::example$analytics.php[tag=positional]
+include::example$analytics.rb[tag=positional]
 ----
 
-Alternatively, the query may be performed with named parameters:
-
-[source,php]
+.Named parameters
+[source,ruby]
 ----
-include::example$analytics.php[tag=named]
+include::example$analytics.rb[tag=named]
 ----
 
 NOTE: As timeouts are propagated to the server by the client, a timeout set on the client side may be used to stop the processing of a request, in order to save system resources.
-See example in the next section.
+// See example in the next section.
 
 
 == Options
 
 Additional parameters may be sent as part of the query.
 
-// * *Client Context ID*, sets a context ID that is returned back as part of the result.
-// Uses `ClientContextID string` default is a random UUID 
-* *Server Side Timeout*, customizes the timeout sent to the server. 
-Does not usually have to be set, as the client sets it based on the timeout on the operation. 
-Uses `timeout(long)`, and defaults to the Analytics timeout set on the client (75s).
-This can be adjusted at the xref:ref:client-settings.adoc#timeout-options[cluster global config level].
-// * *Priority*, set if the request should have priority over others.
-// The `Priority bool` option defaults to `false`.
 
+.AnalyticsOptions
+[options="header"]
+[cols="29,71"]
+|====
+| Name       | Description
+| `String #client_context_id` | Provides a custom client context ID for this query; default is a random UUID.
+| `Boolean #priority` | Allows certain requests to have higher priority than others.
+| `Boolean #readonly` | Allows explicitly marking a query as being read-only, and not mutating any documents on the server side.
+| `Symbol #scan_consistency` | Specifies level of consistency for the query -- `:not_bounded`, `:request_plus`.
+| `Integer #scan_wait` | The maximum duration (in milliseconds) the query engine is willing to wait before failing.
+| `Integer #timeout` | Timeout in milliseconds.
+| `JsonTranscoder #transcoder` | Transcoder to use on rows.
+|====
 
-Here, we set a custom, server-side timeout value:
+Here, we set a `client_context_id`:
 
-[source,php]
+[source,ruby]
 ----
-include::example$analytics.php[tag=options]
+include::example$analytics.rb[tag=clientcontextid]
+----
+
+And here we set high priority for the query:
+
+[source,ruby]
+----
+include::example$analytics.rb[tag=priority]
+----
+
+Here we pass `readonly` to explicitly mark a query as being read only, and not mutating any documents on the server side.
+
+[source,ruby]
+----
+include::example$analytics.rb[tag=readonly]
 ----
 
 
@@ -86,13 +94,9 @@ The analytics query result may contain various sorts of data and metadata,
 depending upon the nature of the query, 
 as you will have seen when working through our xref:6.5@server:analytics:primer-beer.adoc[introductory primer]. 
 
-[source,php]
-----
-include::example$analytics.php[tag=results]
-----
-
 // Move these to Error reference doc?
-Common errors are listed in our xref:ref:error-codes.adoc#analytics-errors[Errors Reference doc], with errors caused by resource unavailability (such as timeouts and _Operation cannot be performed during rebalance_ messages) leading to an xref:howtos:error-handling.adoc#retry[automatic retry] by the SDK.
+// Common errors are listed in our xref:ref:error-codes.adoc#analytics-errors[Errors Reference doc], with 
+Errors caused by resource unavailability (such as timeouts and _Operation cannot be performed during rebalance_ messages) leading to an xref:howtos:error-handling.adoc#retry[automatic retry] by the SDK.
 
 ////
 Moving these to error reference doc
@@ -107,12 +111,25 @@ Moving these to error reference doc
 === MetaData
 
 The `metadata` object contains useful metadata, such as `Metrics` and `ClientContextID`.
-Here is a snippet using several items of metadata
 
-[source,php]
+[source,ruby]
 ----
-include::example$analytics.php[tag=metadata]
+include::example$analytics.rb[tag=printmetrics]
+----
+
+// For a listing of available `Metrics` in `MetaData`, see the xref:concept-docs:analytics-for-sdk-users.adoc[Understanding Analytics] SDK doc.
+
+
+
+== Scan Consistency
+
+
+Like the xref:n1ql-queries-with-sdk.adoc#scan-consistency[Couchbase Query Service], and xref:full-text-searching-with-sdk.html#consistency[Search], 
+Analytics allows `:request_plus` queries -- ensuring results contain information from updated indexes:
+
+[source,ruby]
+----
+include::example$analytics.rb[tag=scanconsistency]
 ----
 
 
-For a listing of available `Metrics` in `MetaData`, see the xref:concept-docs:analytics-for-sdk-users.adoc[Understanding Analytics] SDK doc.
