@@ -31,9 +31,9 @@ puts "Reported execution time: #{result.meta_data.metrics.execution_time}"
 options = Cluster::QueryOptions.new
 options.named_parameters({"country" => "France"})
 result = cluster.query(
-    'SELECT COUNT(*) AS cnt FROM `travel-sample` WHERE type = "airport" AND country = $country',
+    'SELECT COUNT(*) AS airport_count FROM `travel-sample` WHERE type = "airport" AND country = $country',
     options)
-puts "Airports in France: #{result.rows.first["cnt"]}"
+puts "Airports in France: #{result.rows.first["airport_count"]}"
 #=> Airports in France: 221
 # end::named[]
 
@@ -41,9 +41,9 @@ puts "Airports in France: #{result.rows.first["cnt"]}"
 options = Cluster::QueryOptions.new
 options.positional_parameters(["France"])
 result = cluster.query(
-    'SELECT COUNT(*) AS cnt FROM `travel-sample` WHERE type = "airport" AND country = ?',
+    'SELECT COUNT(*) AS airport_count FROM `travel-sample` WHERE type = "airport" AND country = ?',
     options)
-puts "Airports in France: #{result.rows.first["cnt"]}"
+puts "Airports in France: #{result.rows.first["airport_count"]}"
 #=> Airports in France: 221
 # end::positional[]
 
@@ -51,9 +51,9 @@ puts "Airports in France: #{result.rows.first["cnt"]}"
 options = Cluster::QueryOptions.new
 options.scan_consistency = :request_plus
 result = cluster.query(
-    'SELECT COUNT(*) AS cnt FROM `travel-sample` WHERE type = "airport"',
+    'SELECT COUNT(*) AS airport_count FROM `travel-sample` WHERE type = "airport"',
     options)
-puts "Airports in the database: #{result.rows.first["cnt"]}"
+puts "Airports in the database: #{result.rows.first["airport_count"]}"
 #=> Airports in the database: 1968
 # end::scan-consistency[]
 
@@ -61,7 +61,7 @@ puts "Airports in the database: #{result.rows.first["cnt"]}"
 options = Cluster::QueryOptions.new
 options.client_context_id = "user-44-#{rand}"
 result = cluster.query(
-    'SELECT COUNT(*) AS cnt FROM `travel-sample` WHERE type = "airport"',
+    'SELECT COUNT(*) AS airport_count FROM `travel-sample` WHERE type = "airport"',
     options)
 puts "client_context_id: #{result.meta_data.client_context_id}"
 #=> client_context_id: user-44-0.9899233780544747
@@ -71,7 +71,7 @@ puts "client_context_id: #{result.meta_data.client_context_id}"
 options = Cluster::QueryOptions.new
 options.readonly = true
 cluster.query(
-    'SELECT COUNT(*) AS cnt FROM `travel-sample` WHERE type = "airport"',
+    'SELECT COUNT(*) AS airport_count FROM `travel-sample` WHERE type = "airport"',
     options)
 # end::read-only[]
 
@@ -79,7 +79,7 @@ cluster.query(
 options = Cluster::QueryOptions.new
 options.metrics = true
 result = cluster.query(
-    'SELECT COUNT(*) AS cnt FROM `travel-sample` WHERE type = "airport"',
+    'SELECT COUNT(*) AS airport_count FROM `travel-sample` WHERE type = "airport"',
     options)
 puts "Reported execution time: #{result.meta_data.metrics.execution_time}"
 #=> Reported execution time: 2.516245ms
