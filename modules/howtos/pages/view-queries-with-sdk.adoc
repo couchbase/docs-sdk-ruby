@@ -1,4 +1,4 @@
-= MapReduce Views Using the .NET SDK with Couchbase Server
+= MapReduce Views Using the Ruby SDK with Couchbase Server
 :navtitle: MapReduce Views
 :page-topic-type: howto
 :page-aliases: ROOT:view-queries-with-sdk
@@ -6,63 +6,32 @@
 [abstract]
 You can use MapReduce views to create queryable indexes in Couchbase Data Platform.
 
+
+WARNING: Although still maintained and supported for legacy use, Views date from the earliest days of Couchbase Server development, and as such are rarely the best choice over, say, xref:n1ql-queries-with-sdk.adoc[our Query service] for your application, see xref:concept-docs:data-services.adoc[our guide to choosing the right service].
  
-////
 include::6.5@sdk:shared:partial$views.adoc[tag=views-intro]
 
-include::6.5@sdk:shared:partial$views.adoc[tag=example-beer]
+// include::6.5@sdk:shared:partial$views.adoc[tag=example-beer]
 
+== Querying Views
 
-[source,php]
-----
-$options = new \Couchbase\ViewOptions();
-$options->range("A", NULL)
-        ->limit(10);
-$result = $bucket->viewQuery("beer", "brewery_beers", $options);
-----
-
-include::6.5@sdk:shared:partial$views.adoc[tag=example-travel]
-
-
-[source,php]
-----
-$options = new \Couchbase\ViewOptions();
-$options->key("<landmark-name>");
-$result = $bucket->viewQuery("landmarks", "by_name", $options);
-----
-
-include::6.5@sdk:shared:partial$views.adoc[tag=example-geo-travel]
-
-[source,php]
----
-foreach($result->rows() as $row) {
-    $row->id();
-    $row->key();
-    $row->value();
-}
-----
-
-// We only need the briefest of samples - the content brought in at the top of the page will recommend avoiding Views.[source,javascript]
-----
-function (doc, meta) {
-    if (doc.type && doc.type == "landmark" && doc.geo) {
-        emit([doc.geo.lon, doc.geo.lat], null);
-    }
-}
-----
-
-
-== Querying Views through the PHP SDK
-
-Once you have a view defined, it can be queried from the PHP SDK by using the `ViewQuery` method on a Bucket instance.
+Once you have a view defined, it can be queried from the Ruby SDK by using the `view_query` method on a `Bucket` instance.
 
 Here is an example:
 
-[source,php]
+[source,ruby]
 ----
-$options = new \Couchbase\ViewOptions();
-$options->limit(10);
-$result = $bucket->viewQuery("design-doc", "view-name", $options);
+include::example$views.rb[tag=simple]
 ----
 
-////
+
+== MetaData
+
+The `meta_data` returned with the results can be used to show the total number of results, and various debug info:
+
+[source,ruby]
+----
+include::example$views.rb[tag=meta]
+----
+
+For more details, see the https://docs.couchbase.com/sdk-api/couchbase-ruby-client/Couchbase/Bucket/ViewMetaData.html[API reference].
