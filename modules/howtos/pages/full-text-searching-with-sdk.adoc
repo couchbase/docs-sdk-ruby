@@ -37,7 +37,7 @@ Here is a simple query that looks for the text "hop beer" using the defined inde
 
 [source,ruby]
 ----
-include::example$search.rb[tag=index]
+include::example$search.rb[tag=simple]
 ----
 
 `match_phrase()` builds a phrase query is built from the results of an analysis of the terms in the query phrase; 
@@ -48,18 +48,6 @@ here it's built on a search in the name field.
 include::example$search.rb[tag=query_fields]
 ----
 
-Queries can also be combined together.
-A conjunction query contains multiple child queries; its result documents must satisfy all of the child queries:
-
-
-[source,ruby]
-----
-include::example$search.rb[tag=index]
-----
-[source,php]
-----
-include::example$search.php[tag=conjunctionquery]
-----
 
 == Working with Results
 
