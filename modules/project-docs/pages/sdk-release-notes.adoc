@@ -5,7 +5,7 @@
 
 
 [abstract]
-Release notes, installation instructions, and download archive for the Couchbase PHP Client.
+Release notes, installation instructions, and download archive for the Couchbase Ruby Client.
 
 These pages cover the 3.0 versions of the Couchbase Ruby SDK.
 
