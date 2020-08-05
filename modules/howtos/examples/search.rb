@@ -7,6 +7,7 @@ options = Cluster::ClusterOptions.new
 options.authenticate("Administrator", "password")
 cluster = Cluster.connect("couchbase://localhost", options)
 
+# tag::index[]
 search_indexes = cluster.search_indexes.get_all_indexes
 unless search_indexes.any? {|idx| idx.name == "my-index-name"}
   index = Management::SearchIndex.new
@@ -111,6 +112,7 @@ unless search_indexes.any? {|idx| idx.name == "my-index-name"}
     puts "#{index.name.inspect} indexed #{num_indexed}"
   end
 end
+# end::index[]
 
 # tag::simple[]
 result = cluster.search_query(
