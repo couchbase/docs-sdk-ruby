@@ -54,7 +54,7 @@ Couchbase PHP SDK
 ** xref:concept-docs:rbac.adoc[RBAC]
 
 .References
-* https://docs.couchbase.com/sdk-api/couchbase-ruby-client/[Ruby API Reference]
+* https://docs.couchbase.com/sdk-api/couchbase-ruby-client/Couchbase.html[Ruby API Reference]
 // * xref:ref:error-codes.adoc[Error Messages]
 * xref:ref:client-settings.adoc[Client Settings]
 // * xref:ref:travel-app-data-model.adoc[Travel Sample Data Model]
