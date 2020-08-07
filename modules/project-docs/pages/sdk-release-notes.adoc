@@ -29,6 +29,7 @@ package, but also precompiled binaries for Linux and MacOS.
 | 2.7   | https://packages.couchbase.com/clients/ruby/2.7.0/
 | 2.6   | https://packages.couchbase.com/clients/ruby/2.6.0/
 | 2.5   | https://packages.couchbase.com/clients/ruby/2.5.0/
+|===
 
 To use official repository, it have to be registered in the `.gemrc` file:
 
@@ -73,3 +74,4 @@ https://docs.couchbase.com/sdk-api/couchbase-ruby-client-3.0.0.beta.1/index.html
 | macOS 10.13 x84_64 | 2.5.0    | https://packages.couchbase.com/clients/ruby/sdk-3.0.0.beta.1/couchbase-3.0.0.beta.1-x86_64-darwin-17-2.5.0.gem[couchbase-3.0.0.beta.1-x86_64-darwin-17-2.5.0.gem]
 // Hidden. Binary build for the Ruby 2.2.0 on Ubuntu 16.04, that has reached EOL
 // | Ubuntu 16.04  | 2.2.0 | https://packages.couchbase.com/clients/ruby/sdk-3.0.0.beta.1/couchbase-3.0.0.beta.1-x86_64-linux-2.2.0.gem[couchbase-3.0.0.beta.1-x86_64-linux-2.2.0.gem]
+|===
