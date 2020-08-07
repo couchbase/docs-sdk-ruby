@@ -9,7 +9,67 @@ Release notes, installation instructions, and download archive for the Couchbase
 
 These pages cover the 3.0 versions of the Couchbase Ruby SDK.
 
-// == SDK Installation
+== SDK Installation
 
-// === Installing on Linux-like systems
+Ruby SDK  supports MRI Ruby versions 2.5, 2.6 and 2.7. The source package is available through
+https://rubygems.org/gems/couchbase and could be installed with
 
+[source,bash]
+----
+gem install --pre couchbase
+----
+
+Note that `--pre` is necessary while the SDK in Beta phase.
+
+In addition to rubygems.org, we also maintain official gem repositories, where we publish not only source version of the
+package, but also precompiled binaries for Linux and MacOS.
+
+|===
+| Ruby ABI version | Source URL
+| 2.7   | https://packages.couchbase.com/clients/ruby/2.7.0/
+| 2.6   | https://packages.couchbase.com/clients/ruby/2.6.0/
+| 2.5   | https://packages.couchbase.com/clients/ruby/2.5.0/
+
+To use official repository, it have to be registered in the `.gemrc` file:
+
+The example above selects repsitor with the packages for Ruby 2.7.x. For other version, please refer the table.
+
+The repository could be also specified in `Gemfile` for bundler. And in this case the source would be applied only for
+Couchbase SDK library:
+
+[source,ruby]
+----
+gem "couchbase", "3.0.0.beta.1", :source => "https://packages.couchbase.com/clients/ruby/2.7.0/"
+----
+
+And finally, it is possible to download the package and install from the file. In the notes below, we specify tables
+with links to every release package along with precompiled binaries.
+
+[source,bash]
+----
+wget https://packages.couchbase.com/clients/ruby/sdk-3.0.0.beta.1/couchbase-3.0.0.beta.1-x86_64-linux-2.7.0.gem
+gem install couchbase-3.0.0.beta.1-x86_64-linux-2.7.0.gem
+----
+
+[#latest-release]
+== Version 3.0.0.beta.1 (August 07, 2020)
+
+This is the first beta release.
+
+https://docs.couchbase.com/sdk-api/couchbase-ruby-client-3.0.0.beta.1/index.html[API Reference]
+
+|===
+| Platform           | Ruby ABI | File
+| Checksums          |          | https://packages.couchbase.com/clients/ruby/sdk-3.0.0.beta.1/couchbase-3.0.0.beta.1.sha256sum[couchbase-3.0.0.beta.1.sha256sum]
+| Source Archive     |          | https://packages.couchbase.com/clients/ruby/sdk-3.0.0.beta.1/couchbase-3.0.0.beta.1.gem[couchbase-3.0.0.beta.1.gem]
+| Linux x86_64       | 2.7.0    | https://packages.couchbase.com/clients/ruby/sdk-3.0.0.beta.1/couchbase-3.0.0.beta.1-x86_64-linux-2.7.0.gem[couchbase-3.0.0.beta.1-x86_64-linux-2.7.0.gem]
+| Linux x86_64       | 2.6.0    | https://packages.couchbase.com/clients/ruby/sdk-3.0.0.beta.1/couchbase-3.0.0.beta.1-x86_64-linux-2.6.0.gem[couchbase-3.0.0.beta.1-x86_64-linux-2.6.0.gem]
+| Linux x86_64       | 2.5.0    | https://packages.couchbase.com/clients/ruby/sdk-3.0.0.beta.1/couchbase-3.0.0.beta.1-x86_64-linux-2.5.0.gem[couchbase-3.0.0.beta.1-x86_64-linux-2.5.0.gem]
+| macOS 10.15 x84_64 | 2.7.0    | https://packages.couchbase.com/clients/ruby/sdk-3.0.0.beta.1/couchbase-3.0.0.beta.1-x86_64-darwin-19-2.7.0.gem[couchbase-3.0.0.beta.1-x86_64-darwin-19-2.7.0.gem]
+| macOS 10.15 x84_64 | 2.6.0    | https://packages.couchbase.com/clients/ruby/sdk-3.0.0.beta.1/couchbase-3.0.0.beta.1-x86_64-darwin-19-2.6.0.gem[couchbase-3.0.0.beta.1-x86_64-darwin-19-2.6.0.gem]
+| macOS 10.15 x84_64 | 2.5.0    | https://packages.couchbase.com/clients/ruby/sdk-3.0.0.beta.1/couchbase-3.0.0.beta.1-x86_64-darwin-19-2.5.0.gem[couchbase-3.0.0.beta.1-x86_64-darwin-19-2.5.0.gem]
+| macOS 10.13 x84_64 | 2.7.0    | https://packages.couchbase.com/clients/ruby/sdk-3.0.0.beta.1/couchbase-3.0.0.beta.1-x86_64-darwin-17-2.7.0.gem[couchbase-3.0.0.beta.1-x86_64-darwin-17-2.7.0.gem]
+| macOS 10.13 x84_64 | 2.6.0    | https://packages.couchbase.com/clients/ruby/sdk-3.0.0.beta.1/couchbase-3.0.0.beta.1-x86_64-darwin-17-2.6.0.gem[couchbase-3.0.0.beta.1-x86_64-darwin-17-2.6.0.gem]
+| macOS 10.13 x84_64 | 2.5.0    | https://packages.couchbase.com/clients/ruby/sdk-3.0.0.beta.1/couchbase-3.0.0.beta.1-x86_64-darwin-17-2.5.0.gem[couchbase-3.0.0.beta.1-x86_64-darwin-17-2.5.0.gem]
+// Hidden. Binary build for the Ruby 2.2.0 on Ubuntu 16.04, that has reached EOL
+// | Ubuntu 16.04  | 2.2.0 | https://packages.couchbase.com/clients/ruby/sdk-3.0.0.beta.1/couchbase-3.0.0.beta.1-x86_64-linux-2.2.0.gem[couchbase-3.0.0.beta.1-x86_64-linux-2.2.0.gem]
