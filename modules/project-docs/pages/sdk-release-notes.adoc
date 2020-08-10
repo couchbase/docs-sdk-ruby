@@ -11,10 +11,10 @@ These pages cover the 3.0 versions of the Couchbase Ruby SDK.
 
 == SDK Installation
 
-Ruby SDK  supports MRI Ruby versions 2.5, 2.6 and 2.7. The source package is available through
-https://rubygems.org/gems/couchbase and could be installed with
+Ruby SDK supports MRI Ruby versions 2.5, 2.6, and 2.7. 
+The source package is available through https://rubygems.org/gems/couchbase and can be installed with
 
-[source,bash]
+[source,console]
 ----
 gem install --pre couchbase
 ----
