@@ -9,24 +9,25 @@ The Couchbase Ruby SDK is a native Ruby extension and uses the Couchbase high-pe
 
 The Couchbase Ruby SDK 3.0 is a complete rewrite of the API, reducing the number of overloads to present a simplified surface area, and adding support for future Couchbase Server features like Collections and Scopes (available in Couchbase Server 6.5 as a xref:concept-docs:collections.adoc[developer preview]).
 
-The Couchbase Ruby SDK is compatible with Ruby 2.6 and 2.7.
+Ruby SDK supports MRI Ruby versions 2.5, 2.6, and 2.7. 
 
 // tag::install[]
 
 == Installing the SDK
 
-Install the Ruby SDK through rubygems:
+The source package is available through https://rubygems.org/gems/couchbase and can be installed with
 
 [source,console]
 ----
-$ gem install --pre couchbase
+gem install --pre couchbase
 ----
 
+Note that `--pre` is necessary while the SDK in Beta phase.
+
+In addition to rubygems.org, we also maintain official gem repositories, where we publish not only source version of the package, but also precompiled binaries for Linux and MacOS.
 Further details can be found on the xref:project-docs:sdk-release-notes.adoc[Release Notes & Archives page].
-
-// installation and post-installation across platforms
-
 // end::install[]
+
 
 == Hello Couchbase
 
