@@ -52,6 +52,8 @@ The `Cluster` provides access to cluster-level operations like N1Ql queries, ana
 You will also find different management APIs on it.
 If you're developing client code on the same VM or machine as the Couchbase Server, your connection string can be just `localhost`.
 
+If you are connecting to Couchbase Cloud rather than a local Couchbase Server, then also refer to the <<cloud-connections, Cloud section>>, below.
+
 Couchbase uses xref:6.5@server:learn:security/roles.adoc[Role Based Access Control (RBAC)] to control access to resources.
 For production client code, you will want to use more appropriate, restrictive settings
  -- but here we want to get you up and running quickly,
@@ -103,6 +105,16 @@ After completing operations, finish with (otherwise resources will be released b
 ----
 include::example$start_using.rb[tag=disconnect,indent=0]
 ----
+
+
+== Cloud Connections
+
+For developing on Couchbase Cloud, if you are not working from the same _Availability Zone_ as your Couchbase Cloud, refer to the follorwing:
+
+* Notes on xref:ref:client-settings.adoc#constrained-network-environments[Constrained Network Environments], 
+* xref:project-docs:compatibility.adoc#network-requirements[Network Requirements], 
+* If you have a consumer-grade router which has problems with DNS-SRV records review our xref:howtos:troubleshooting-cloud-connections.adoc#troubleshooting-host-not-found[Troubleshooting Guide].
+
 
 == Additional Resources
 
