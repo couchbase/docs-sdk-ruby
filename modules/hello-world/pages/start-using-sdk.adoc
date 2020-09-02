@@ -109,7 +109,7 @@ include::example$start_using.rb[tag=disconnect,indent=0]
 
 == Cloud Connections
 
-For developing on Couchbase Cloud, if you are not working from the same _Availability Zone_ as your Couchbase Cloud, refer to the follorwing:
+For developing on Couchbase Cloud, if you are not working from the same _Availability Zone_ as your Couchbase Cloud, refer to the following:
 
 * Notes on xref:ref:client-settings.adoc#constrained-network-environments[Constrained Network Environments], 
 * xref:project-docs:compatibility.adoc#network-requirements[Network Requirements], 
