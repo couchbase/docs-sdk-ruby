@@ -75,3 +75,8 @@ https://docs.couchbase.com/sdk-api/couchbase-ruby-client-3.0.0.beta.1/index.html
 // Hidden. Binary build for the Ruby 2.2.0 on Ubuntu 16.04, that has reached EOL
 // | Ubuntu 16.04  | 2.2.0 | https://packages.couchbase.com/clients/ruby/sdk-3.0.0.beta.1/couchbase-3.0.0.beta.1-x86_64-linux-2.2.0.gem[couchbase-3.0.0.beta.1-x86_64-linux-2.2.0.gem]
 |===
+
+
+== Older Releases
+
+Although https://www.couchbase.com/support-policy/enterprise-software[no longer supported], documentation for older releases continues to be available in our https://docs-archive.couchbase.com/home/index.html[docs archive].
