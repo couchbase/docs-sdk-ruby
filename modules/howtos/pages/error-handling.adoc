@@ -5,7 +5,7 @@
 :source-language: python
 
 [abstract]
-Errors, handling them from the Python SDK.
+Errors, handling them from the Ruby SDK.
 
 
 Errors are inevitable.
