@@ -1,4 +1,4 @@
-= Document 
+= Document
 :nav-title: Documents & Doc Ops
 :page-topic-type: concept
 //:page-aliases: ROOT:core-operations
@@ -33,13 +33,13 @@ include::6.5@sdk:shared:partial$documents.adoc[tag=document]
 
 == Primitive Key-Value Operations
 
-[source,python]
+[source,ruby]
 ----
-upsert(docid, document)
-insert(docid, document)
-replace(docid, document)
-get(docid)
-remove(docid)
+collection.upsert(docid, document)
+collection.insert(docid, document)
+collection.replace(docid, document)
+collection.get(docid)
+collection.remove(docid)
 ----
 
 include::6.5@sdk:shared:partial$documents.adoc[tag=crud-overview]
@@ -52,14 +52,16 @@ If you wish to only modify certain parts of a document, you can use xref:subdocu
 
 [source,python]
 ----
-collection.mutate_in("customer123", [SD.upsert("fax", "311-555-0151")])
+collection.mutate_in("customer123", [
+  MutateInSpec.upsert("fax", "311-555-0151"),
+])
 ----
 
 or xref:6.0@server:n1ql:n1ql-language-reference/update.adoc[N1QL UPDATE] to update documents based on specific query criteria:
 
 [source,sql]
 ----
-update `default` SET sale_price = msrp * 0.75 WHERE msrp < 19.95;
+UPDATE `default` SET sale_price = msrp * 0.75 WHERE msrp < 19.95;
 ----
 ====
 
@@ -77,12 +79,30 @@ or
 SELECT * FROM default WHERE META(default).id = "docid";
 ----
 
-You can also retrieve _parts_ of documents using xref:subdocument-operations.adoc[sub-document operations], by specifying one or more sections of the document to be retrieved
+You can also retrieve _parts_ of documents using xref:subdocument-operations.adoc[sub-document operations], by
+specifying one or more sections of the document to be retrieved
 
-[source,python]
+[source,ruby]
 ----
-name, email = cb.retrieve_in('user:kingarthur', 'contact.name', 'contact.email')
+res = collection.lookup_in("user:kingarthur", [
+  LookupInSpec.get("contact.name"),
+  LookupInSpec.get("contact.email"),
+])
+name = res.content(0)
+email = res.content(1)
 ----
+
+The same behaviour could be achieved by using get with projections:
+
+[source,ruby]
+----
+options = Couchbase::Collection::GetOptions.new
+options.project(["contact.name", "contact.email"])
+res = collection.get("user:kingarthur", options)
+res.content
+#=> {"contact"=>{"email"=>"kingarthur@couchbase.com", "name"=>"King Arthur"}}
+----
+
 
 include::6.5@sdk:shared:partial$documents.adoc[tag=expiration]
 
