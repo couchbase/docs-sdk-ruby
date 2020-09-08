@@ -55,7 +55,7 @@ gem install couchbase-3.0.0-x86_64-linux-2.7.0.gem
 ----
 
 [#latest-release]
-== Version 3.0.0 (September 08, 2020)
+== Version 3.0.0 (8 September 2020)
 
 This is the first GA release.
 
@@ -78,7 +78,7 @@ https://docs.couchbase.com/sdk-api/couchbase-ruby-client-3.0.0/index.html[API Re
 // | Ubuntu 16.04  | 2.2.0 | https://packages.couchbase.com/clients/ruby/sdk-3.0.0/couchbase-3.0.0-x86_64-linux-2.2.0.gem[couchbase-3.0.0-x86_64-linux-2.2.0.gem]
 |===
 
-== Version 3.0.0.beta.1 (August 07, 2020)
+== Version 3.0.0.beta.1 (7 August 2020)
 
 This is the first beta release.
 
