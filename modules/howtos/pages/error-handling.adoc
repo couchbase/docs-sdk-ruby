@@ -67,11 +67,13 @@ Transient errors -- such as those caused by resource starvation -- are best tack
 * Retry with an exponentially increasing delay.
 * Retry with a random delay.
 
+
+////
 [source,ruby]
 ----
 include::example$error_handling.rb[tag=handle_retryable]
 ----
-
+////
 
 == KV
 
