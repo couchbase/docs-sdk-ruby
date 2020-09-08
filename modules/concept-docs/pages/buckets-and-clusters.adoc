@@ -10,6 +10,7 @@ include::6.5@sdk:shared:partial$clusters-buckets.adoc[tag=management]
 
 Management operations in the Ruby SDK may be performed through several interfaces depending on the object:
 
+
 == Creating and Removing Buckets
 
 To create or delete a bucket, call the bucket manager with the `buckets` call on the cluster:
@@ -33,4 +34,3 @@ This class is also used to expose information about an existing bucket (`manager
 existing bucket (`manager.update_bucket(bucket_settings)`).
 
 The default Collection & Default Scope will be used automatically.
-////
