@@ -3,12 +3,14 @@
 :page-topic-type: howto
 
 [abstract]
-The PHP SDK logs its own and libcouchbase events using the default logger implementation in PHP.
+Setting log levels
+
 
 == Logging
 
 The Couchbase Ruby SDK has no hard dependency on a specific logger implementation.
-By default it uses built-in means to report events.  The default log level is `warning`.
+By default it uses built-in means to report events.  
+The default log level is `warning`.
 
 The following log levels are supported (in order of increasing amount of information logged):
 
@@ -20,8 +22,8 @@ The following log levels are supported (in order of increasing amount of informa
 . debug
 . trace
 
-The Ruby SDK is configured to send logs to standard output. The logging level can be changed using environment variable
-`COUCHBASE_BACKEND_LOG_LEVEL`.
+The Ruby SDK is configured to send logs to standard output. 
+The logging level can be changed using the environment variable `COUCHBASE_BACKEND_LOG_LEVEL`.
 
 [source,ruby]
 ----
@@ -60,3 +62,8 @@ $ COUCHBASE_BACKEND_LOG_LEVEL=debug ruby script.rb
 [2020-09-07 14:30:26.378] [186383,186390] [debug] 0ms, [plain/8447ccca-720c-4fd0-c49f-359487f4fbab/d5a8f89d-8c9c-4253-f390-754ff8cdaeeb/-] <localhost/::1:11210> stop MCBP connection, reason=do_not_retry
 [2020-09-07 14:30:26.378] [186383,186390] [debug] 0ms, [plain/8447ccca-720c-4fd0-c49f-359487f4fbab/9c6f61d7-b2f7-42c8-d507-b3af3fa3fe6c/default] <localhost/::1:11210> stop MCBP connection, reason=do_not_retry
 ----
+
+
+// todo
+// 
+// == Log Redaction
