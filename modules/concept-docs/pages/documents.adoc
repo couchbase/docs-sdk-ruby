@@ -57,7 +57,7 @@ collection.mutate_in("customer123", [
 ])
 ----
 
-or xref:6.0@server:n1ql:n1ql-language-reference/update.adoc[N1QL UPDATE] to update documents based on specific query criteria:
+or xref:6.5@server:n1ql:n1ql-language-reference/update.adoc[N1QL UPDATE] to update documents based on specific query criteria:
 
 [source,sql]
 ----
