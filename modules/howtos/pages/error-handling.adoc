@@ -69,7 +69,7 @@ Transient errors -- such as those caused by resource starvation -- are best tack
 
 [source,ruby]
 ----
-include::example$error-handling.rb[tag=handle_retryable]
+include::example$error_handling.rb[tag=handle_retryable]
 ----
 
 
@@ -82,14 +82,14 @@ Here we will cover some of the most common errors.
 
 [source,ruby]
 ----
-include::example$error-handling.ru[tag=DocumentNotFound]
+include::example$error_handling.rb[tag=DocumentNotFound]
 ----
 
 === Document already exists
 
 [source,ruby]
 ----
-include::example$error-handling.ru[tag=KeyExistsException]
+include::example$error_handling.rb[tag=KeyExistsException]
 ----
 
 === Document too large
@@ -100,21 +100,21 @@ include::example$error-handling.ru[tag=KeyExistsException]
 
 [source,ruby]
 ----
-include::example$error-handling.rb[tag=CasMismatch]
+include::example$error_handling.rb[tag=CasMismatch]
 ----
 
 === Durability ambiguous
 
 [source,ruby]
 ----
-include::example$error-handling.rb[tag=DurabilityAmbiguous]
+include::example$error_handling.rb[tag=DurabilityAmbiguous]
 ----
 
 === Durability invalid level
 
 [source,ruby]
 ----
-include::example$error-handling.rb[tag=DurabilityLevelNotAvailable]
+include::example$error_handling.rb[tag=DurabilityLevelNotAvailable]
 ----
 
 
