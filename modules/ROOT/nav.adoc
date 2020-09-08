@@ -25,8 +25,8 @@ Couchbase PHP SDK
 ** xref:howtos:troubleshooting-cloud-connections.adoc[Troubleshooting Cloud Connections]
 
 .Errors & Diagnostics
-// * xref:howtos:error-handling.adoc[Handling Errors]
-// * xref:howtos:collecting-information-and-logging.adoc[Logging]
+* xref:howtos:error-handling.adoc[Handling Errors]
+* xref:howtos:collecting-information-and-logging.adoc[Logging]
 // * xref:howtos:health-check.adoc[Health Check]
 
 .Learn

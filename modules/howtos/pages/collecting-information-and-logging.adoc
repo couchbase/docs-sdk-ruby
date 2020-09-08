@@ -3,113 +3,67 @@
 :page-topic-type: howto
 
 [abstract]
-The PHP SDK logs its own and libcouchbase events using the default logger implementation in PHP.
+Setting log levels
+
 
 == Logging
 
-The Couchbase PHP SDK has no hard dependency on a specific logger implementation.
-By default it uses built-in means to report events.
-The only thing you may change is the log level, which is controlled by `couchbase.log_level` in `php.ini`.
-The default log level is `WARN`.
+The Couchbase Ruby SDK has no hard dependency on a specific logger implementation.
+By default it uses built-in means to report events.  
+The default log level is `warning`.
 
 The following log levels are supported (in order of increasing amount of information logged):
 
-. FATAL
-. ERROR
-. WARN
-. INFO
-. DEBUG
-. TRACE
+. off
+. critical
+. error
+. warning
+. info
+. debug
+. trace
 
-The PHP SDK is configured to send logs to standard output (when http://php.net/error_log[error_log^] is set to NULL).
-You can set it to `syslog` to redirect all logs (including libcouchbase and PHP SDK) to the syslog device.
-For example, the script below:
+The Ruby SDK is configured to send logs to standard output. 
+The logging level can be changed using the environment variable `COUCHBASE_BACKEND_LOG_LEVEL`.
 
-[source,php]
+[source,ruby]
 ----
-$cluster = new CouchbaseCluster('couchbase://localhost');
-$bucket = $cluster->openBucket('default');
-$bucket->get('foo');
-----
-
-...along with this `php.ini` snippet:
-
-[source,ini]
-----
-error_log = syslog
-
-extension = couchbase.so
-couchbase.log_level = DEBUG
+require "couchbase"
+cluster = Couchbase::Cluster.connect("couchbase://localhost", "Administrator", "password")
+cluster.bucket("default").default_collection.upsert("foo", {"bar" => 42})
 ----
 
-Could be observed like this (assuming Linux with systemd):
+...when executed like this:
 
 [source,console]
 ----
-$ sudo journalctl -t php
+$ COUCHBASE_BACKEND_LOG_LEVEL=debug ruby script.rb
 ----
 
 [source,console]
 ----
- Sep 07 01:24:21 mars.local php[17655]: [cb,INFO] (pcbc/bucket L:182) New lcb_t instance has been initialized. I=0x5646d40a3dc0
- Sep 07 01:24:21 mars.local php[17655]: [cb,DEBG] (confmon L:89 I:0) Preparing providers (this may be called multiple times)
- Sep 07 01:24:21 mars.local php[17655]: [cb,DEBG] (confmon L:99 I:0) Provider FILE is DISABLED
- Sep 07 01:24:21 mars.local php[17655]: [cb,DEBG] (confmon L:96 I:0) Provider CCCP is ENABLED
- Sep 07 01:24:21 mars.local php[17655]: [cb,DEBG] (confmon L:96 I:0) Provider HTTP is ENABLED
- Sep 07 01:24:21 mars.local php[17655]: [cb,DEBG] (confmon L:99 I:0) Provider MCRAW is DISABLED
- Sep 07 01:24:21 mars.local php[17655]: [cb,INFO] (cccp L:118 I:0) Requesting connection to node localhost:11210 for CCCP configuration
- Sep 07 01:24:21 mars.local php[17655]: [cb,DEBG] (lcbio_mgr L:416 I:0) <localhost:11210> (HE=0x5646d40a9eb0) Creating new connection because none are available in the pool
- Sep 07 01:24:21 mars.local php[17655]: [cb,DEBG] (lcbio_mgr L:321 I:0) <localhost:11210> (HE=0x5646d40a9eb0) Starting connection on I=0x5646d40aa420
- Sep 07 01:24:21 mars.local php[17655]: [cb,INFO] (connection L:450 I:0) <localhost:11210> (SOCK=0x5646d40aa4f0) Starting. Timeout=2000000us
- Sep 07 01:24:21 mars.local php[17655]: [cb,INFO] (connection L:116 I:0) <localhost:11210> (SOCK=0x5646d40aa4f0) Connected
- Sep 07 01:24:21 mars.local php[17655]: [cb,DEBG] (connection L:123 I:0) <localhost:11210> (SOCK=0x5646d40aa4f0) Successfuly set TCP_NODELAY
- Sep 07 01:24:21 mars.local php[17655]: [cb,DEBG] (lcbio_mgr L:271 I:0) <localhost:11210> (HE=0x5646d40a9eb0) Received result for I=0x5646d40aa420,C=0x5646d40aa4f0; E=0x0
- Sep 07 01:24:21 mars.local php[17655]: [cb,DEBG] (lcbio_mgr L:223 I:0) <localhost:11210> (HE=0x5646d40a9eb0) Assigning R=0x5646d40a9e60 SOCKET=0x5646d40aa4f0
- Sep 07 01:24:21 mars.local php[17655]: [cb,DEBG] (ioctx L:101 I:0) <localhost:11210> (CTX=0x5646d40abb10,unknown) Pairing with SOCK=0x5646d40aa4f0
- Sep 07 01:24:21 mars.local php[17655]: [cb,DEBG] (negotiation L:368 I:0) <localhost:11210> (SASLREQ=0x5646d40aa3e0) Found feature 0x3 (TCP NODELAY)
- Sep 07 01:24:21 mars.local php[17655]: [cb,DEBG] (ioctx L:151 I:0) <localhost:11210> (CTX=0x5646d40abb10,sasl) Destroying. PND=0,ENT=1,SORC=1
- Sep 07 01:24:21 mars.local php[17655]: [cb,DEBG] (ioctx L:101 I:0) <localhost:11210> (CTX=0x5646d40abd50,unknown) Pairing with SOCK=0x5646d40aa4f0
- Sep 07 01:24:21 mars.local php[17655]: [cb,DEBG] (ioctx L:151 I:0) <localhost:11210> (CTX=0x5646d40abd50,bc_cccp) Destroying. PND=0,ENT=1,SORC=1
- Sep 07 01:24:21 mars.local php[17655]: [cb,INFO] (lcbio_mgr L:491 I:0) <localhost:11210> (HE=0x5646d40a9eb0) Placing socket back into the pool. I=0x5646d40aa420,C=0x5646d40aa4f0
- Sep 07 01:24:21 mars.local php[17655]: [cb,INFO] (confmon L:174 I:0) Setting new configuration. Received via CCCP
- Sep 07 01:24:21 mars.local php[17655]: [cb,DEBG] (bootstrap L:55 I:0) Instance configured!
- Sep 07 01:24:21 mars.local php[17655]: [cb,DEBG] (confmon L:89 I:0) Preparing providers (this may be called multiple times)
- Sep 07 01:24:21 mars.local php[17655]: [cb,DEBG] (confmon L:99 I:0) Provider FILE is DISABLED
- Sep 07 01:24:21 mars.local php[17655]: [cb,DEBG] (confmon L:96 I:0) Provider CCCP is ENABLED
- Sep 07 01:24:21 mars.local php[17655]: [cb,DEBG] (confmon L:99 I:0) Provider HTTP is DISABLED
- Sep 07 01:24:21 mars.local php[17655]: [cb,DEBG] (confmon L:99 I:0) Provider MCRAW is DISABLED
- Sep 07 01:24:21 mars.local php[17655]: [cb,INFO] (pcbc/bucket L:243) lcb_t instance has been connected. I=0x5646d40a3dc0
- Sep 07 01:24:21 mars.local php[17655]: [cb,INFO] (lcbio_mgr L:407 I:0) <localhost:11210> (HE=0x5646d40a9eb0) Found ready connection in pool. Reusing socket and not creating new connection
- Sep 07 01:24:21 mars.local php[17655]: [cb,DEBG] (lcbio_mgr L:223 I:0) <localhost:11210> (HE=0x5646d40a9eb0) Assigning R=0x5646d40ab290 SOCKET=0x5646d40aa4f0
- Sep 07 01:24:21 mars.local php[17655]: [cb,DEBG] (ioctx L:101 I:0) <localhost:11210> (CTX=0x5646d40abc50,unknown) Pairing with SOCK=0x5646d40aa4f0
- Sep 07 01:24:21 mars.local php[17655]: [cb,DEBG] (server L:552 I:0) <localhost:11210> (SRV=0x5646d40b8820,IX=0) Setting initial timeout=2499ms
- Sep 07 01:24:21 mars.local php[17655]: [cb,DEBG] (server L:747 I:0) <localhost:11210> (SRV=0x5646d40b8820,IX=0) Finalizing ctx 0x5646d40abc50
- Sep 07 01:24:21 mars.local php[17655]: [cb,DEBG] (ioctx L:151 I:0) <localhost:11210> (CTX=0x5646d40abc50,memcached) Destroying. PND=0,ENT=0,SORC=1
+[2020-09-07 14:30:26.311] [186383,186383] [info] 0ms, couchbase backend has been initialized: {:sdk=>"3.0.0.snapshot", :backend=>"0.5.0", :build_timestamp=>"2020-09-07 11:24:46", :revision=>"fa3ce49b6b142e2c2e6d03ab16d33b37da3f8c55", :platform=>"Linux-5.7.10-201.fc32.x86_64", :cpu=>"x86_64", :cc=>"GNU 10.2.1", :cxx=>"GNU 10.2.1", :ruby=>"2.7.0", :spdlog=>"1.6.0", :asio=>"1.16.1", :snappy=>"1.1.8", :http_parser=>"2.9.4", :openssl_headers=>"OpenSSL 1.1.1g FIPS  21 Apr 2020", :openssl_runtime=>"OpenSSL 1.1.1g FIPS  21 Apr 2020"}
+[2020-09-07 14:30:26.358] [186383,186390] [warning] 47ms, DNS SRV query returned 0 records for "localhost", assuming that cluster is listening this address
+[2020-09-07 14:30:26.358] [186383,186390] [debug] 0ms, [plain/8447ccca-720c-4fd0-c49f-359487f4fbab/d5a8f89d-8c9c-4253-f390-754ff8cdaeeb/-] <localhost:11210> attempt to establish MCBP connection
+[2020-09-07 14:30:26.359] [186383,186390] [debug] 0ms, [plain/8447ccca-720c-4fd0-c49f-359487f4fbab/d5a8f89d-8c9c-4253-f390-754ff8cdaeeb/-] <localhost:11210> connecting to ::1:11210
+[2020-09-07 14:30:26.360] [186383,186390] [debug] 0ms, [plain/8447ccca-720c-4fd0-c49f-359487f4fbab/d5a8f89d-8c9c-4253-f390-754ff8cdaeeb/-] <localhost:11210> connected to ::1:11210
+[2020-09-07 14:30:26.360] [186383,186390] [debug] 0ms, [plain/8447ccca-720c-4fd0-c49f-359487f4fbab/d5a8f89d-8c9c-4253-f390-754ff8cdaeeb/-] <localhost/::1:11210> user_agent={"a":"ruby/0.5.0/fa3ce49b6b142e2c2e6d03ab16d33b37da3f8c55","i":"8447ccca-720c-4fd0-c49f-359487f4fbab/d5a8f89d-8c9c-4253-f390-754ff8cdaeeb"}, requested_features=[tcp_nodelay, mutation_seqno, xattr, xerror, select_bucket, snappy, json, duplex, clustermap_change_notification, unordered_execution, alt_request_support, tracing, sync_replication, vattr, collections]
+[2020-09-07 14:30:26.361] [186383,186390] [debug] 1ms, [plain/8447ccca-720c-4fd0-c49f-359487f4fbab/d5a8f89d-8c9c-4253-f390-754ff8cdaeeb/-] <localhost/::1:11210> supported_features=[tcp_nodelay, mutation_seqno, xattr, xerror, select_bucket, snappy, json, duplex, clustermap_change_notification, unordered_execution, tracing, alt_request_support, sync_replication, collections, vattr]
+[2020-09-07 14:30:26.372] [186383,186390] [debug] 10ms, [plain/8447ccca-720c-4fd0-c49f-359487f4fbab/d5a8f89d-8c9c-4253-f390-754ff8cdaeeb/-] <localhost/::1:11210> received new configuration: #<config:fd801dc8-1b1c-4790-a6de-0830a705bede rev=35, nodes(1)=[#<node:0 hostname="localhost", plain=(kv=11210, mgmt=8091, cbas=8095, fts=8094, n1ql=8093, capi=8092), tls=(kv=11207, mgmt=18091, cbas=18095, fts=18094, n1ql=18093, capi=18092), alt=[]>]>
+[2020-09-07 14:30:26.372] [186383,186390] [info] 0ms, [plain/8447ccca-720c-4fd0-c49f-359487f4fbab/d5a8f89d-8c9c-4253-f390-754ff8cdaeeb/-] <localhost/::1:11210> detected network is "default"
+[2020-09-07 14:30:26.372] [186383,186383] [debug] 0ms, [plain/8447ccca-720c-4fd0-c49f-359487f4fbab/9c6f61d7-b2f7-42c8-d507-b3af3fa3fe6c/default] <localhost:11210> attempt to establish MCBP connection
+[2020-09-07 14:30:26.372] [186383,186390] [debug] 0ms, [plain/8447ccca-720c-4fd0-c49f-359487f4fbab/9c6f61d7-b2f7-42c8-d507-b3af3fa3fe6c/default] <localhost:11210> connecting to ::1:11210
+[2020-09-07 14:30:26.372] [186383,186390] [debug] 0ms, [plain/8447ccca-720c-4fd0-c49f-359487f4fbab/9c6f61d7-b2f7-42c8-d507-b3af3fa3fe6c/default] <localhost:11210> connected to ::1:11210
+[2020-09-07 14:30:26.372] [186383,186390] [debug] 0ms, [plain/8447ccca-720c-4fd0-c49f-359487f4fbab/9c6f61d7-b2f7-42c8-d507-b3af3fa3fe6c/default] <localhost/::1:11210> user_agent={"a":"ruby/0.5.0/fa3ce49b6b142e2c2e6d03ab16d33b37da3f8c55","i":"8447ccca-720c-4fd0-c49f-359487f4fbab/9c6f61d7-b2f7-42c8-d507-b3af3fa3fe6c"}, requested_features=[tcp_nodelay, mutation_seqno, xattr, xerror, select_bucket, snappy, json, duplex, clustermap_change_notification, unordered_execution, alt_request_support, tracing, sync_replication, vattr, collections]
+[2020-09-07 14:30:26.373] [186383,186390] [debug] 0ms, [plain/8447ccca-720c-4fd0-c49f-359487f4fbab/9c6f61d7-b2f7-42c8-d507-b3af3fa3fe6c/default] <localhost/::1:11210> supported_features=[tcp_nodelay, mutation_seqno, xattr, xerror, select_bucket, snappy, json, duplex, clustermap_change_notification, unordered_execution, tracing, alt_request_support, sync_replication, collections, vattr]
+[2020-09-07 14:30:26.377] [186383,186390] [debug] 3ms, [plain/8447ccca-720c-4fd0-c49f-359487f4fbab/9c6f61d7-b2f7-42c8-d507-b3af3fa3fe6c/default] <localhost/::1:11210> selected bucket: default
+[2020-09-07 14:30:26.377] [186383,186390] [debug] 0ms, [plain/8447ccca-720c-4fd0-c49f-359487f4fbab/9c6f61d7-b2f7-42c8-d507-b3af3fa3fe6c/default] <localhost/::1:11210> received new configuration: #<config:e5a3bdf4-179c-4f80-7c49-1f121de9f3a7 rev=35, uuid=4772d383f8170ac18f3878a6a9b97c90, bucket=default, replicas=0, partitions=1024, nodes(1)=[#<node:0 hostname="localhost", plain=(kv=11210, mgmt=8091, cbas=8095, fts=8094, n1ql=8093, capi=8092), tls=(kv=11207, mgmt=18091, cbas=18095, fts=18094, n1ql=18093, capi=18092), alt=[]>]>
+[2020-09-07 14:30:26.377] [186383,186390] [debug] 0ms, [8447ccca-720c-4fd0-c49f-359487f4fbab/default] initialize configuration rev=35
+[2020-09-07 14:30:26.377] [186383,186390] [debug] 0ms, [8447ccca-720c-4fd0-c49f-359487f4fbab/default] rev=35, preserve session="9c6f61d7-b2f7-42c8-d507-b3af3fa3fe6c", address="localhost:11210"
+[2020-09-07 14:30:26.378] [186383,186390] [debug] 0ms, [plain/8447ccca-720c-4fd0-c49f-359487f4fbab/d5a8f89d-8c9c-4253-f390-754ff8cdaeeb/-] <localhost/::1:11210> stop MCBP connection, reason=do_not_retry
+[2020-09-07 14:30:26.378] [186383,186390] [debug] 0ms, [plain/8447ccca-720c-4fd0-c49f-359487f4fbab/9c6f61d7-b2f7-42c8-d507-b3af3fa3fe6c/default] <localhost/::1:11210> stop MCBP connection, reason=do_not_retry
 ----
 
-In this example, the part before the first column belongs to `journald/syslog` formatter.
-Everything else is described in the table below:
 
-[#table_php_logger_output_format,cols="50,213"]
-|===
-| Format | Description
-
-| `[cb,LEVEL]`
-| A string representing the severity of the level
-
-| `(subsystem - L:line I:n)`
-| The _subsystem_ that produced this message, followed by the source code line at which this message was created.
-The subsystem will typically, but not always, resemble the source code file.
-It is a small string describing what the current line is doing.
-
-The identifier _n_ of the `lcb_t` object associated with the current message.
-This allows you to determine the origin of the message in the case where the application contains multiple such `lcb_t` objects.
-The number is incremented for each call to [.api]`lcb_create()`.
-
-| `<host:port>`
-| The host and port, if any, associated with the message.
-This is supplied for messages that relate to the state of a particular connection.
-|===
-
-NOTE: By default, `php-fpm` redirects the standard output and error streams to `/dev/null` for performance and FastCGI conformance reasons.
-In order to capture the logs in this setup, you must explicitly configure `catch_workers_output = yes`.
+// todo
+// 
+// == Log Redaction
