@@ -19,7 +19,7 @@ The source package is available through https://rubygems.org/gems/couchbase and 
 gem install couchbase
 ----
 
-Note that `--pre` is necessary while the SDK in Beta/Preview phase, otherwise latest stable release will be installed.
+Note that `--pre` is necessary when the SDK in Beta/Preview phase -- `gem install --pre couchbase` -- otherwise the latest stable release will be installed.
 
 In addition to rubygems.org, we also maintain official gem repositories, where we publish not only source version of the
 package, but also precompiled binaries for Linux and MacOS.
