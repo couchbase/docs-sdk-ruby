@@ -1,4 +1,4 @@
-Couchbase PHP SDK
+Couchbase Ruby SDK
 
 .Getting Started!
 * xref:hello-world:start-using-sdk.adoc[Start Using the Ruby SDK]
