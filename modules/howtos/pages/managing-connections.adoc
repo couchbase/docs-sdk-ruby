@@ -4,18 +4,16 @@
 :page-aliases: ROOT:managing-connections,howtos:multi-network,ROOT:connecting,ROOT:connection-advanced
 
 
-Please also refer to the xref:6.5@server:learn:security/authorization-overview.adoc[Server docs].
-
 [abstract]
 This section describes how to connect the Ruby SDK to a Couchbase cluster.
 It contains best practices as well as information on TLS/SSL and other advanced connection options.
 
+
 == Connecting to a Cluster
 
-A connection to a Couchbase Server cluster is represented by a `Cluster` object.  A `Cluster` provides access to
-Buckets, Scopes, and Collections, as well as various Couchbase services and management interfaces.  The simplest way to
-create a `Cluster` object is to call `Cluster.connect()` with a <<connection-strings, connection string>>, username, and
-password:
+A connection to a Couchbase Server cluster is represented by a `Cluster` object.  
+A `Cluster` provides access to Buckets, Scopes, and Collections, as well as various Couchbase services and management interfaces.  
+The simplest way to create a `Cluster` object is to call `Cluster.connect()` with a <<connection-strings, connection string>>, username, and password:
 
 [source,ruby]
 ----
@@ -26,12 +24,11 @@ options.authenticate("Administrator", "password")
 cluster = Cluster.connect("couchbase://localhost", options)
 ----
 
-NOTE: If you are connecting to a version of Couchbase Server older than 6.5, it will be more efficient if the addresses
-are those of data (KV) nodes.  You will in any case, with 6.0 and earlier, need to open a `Bucket` instance before
-connecting to any other HTTP services (such as _Query_ or _Search_).
+NOTE: If you are connecting to a version of Couchbase Server older than 6.5, it will be more efficient if the addresses are those of data (KV) nodes.  
+You will in any case, with 6.0 and earlier, need to open a `Bucket` instance before connecting to any other HTTP services (such as _Query_ or _Search_).
 
-In a production environment, your connection string should include the addresses of multiple server nodes in case some
-are currently unavailable.  Multiple addresses may be specified in a connection string by delimiting them with commas:
+In a production environment, your connection string should include the addresses of multiple server nodes in case some are currently unavailable.  
+Multiple addresses may be specified in a connection string by delimiting them with commas:
 
 [source,ruby]
 ----
@@ -41,15 +38,15 @@ include::example$managing_connections.rb[tag=multinodeconnect,indent=0]
 TIP: You don't need to include the address of every node in the cluster.
 The client fetches the full address list from the first node it is able to contact.
 
+
 [#connection-strings]
 == Connection Strings
 
 A Couchbase connection string is a comma-delimited list of IP addresses and/or hostnames, optionally followed by a list
 of parameters.
 
-The parameter list is just like the query component of a URI; name-value pairs have an equals sign (`=`) separating the
-name and value, with an ampersand (`&`) between each pair.  Just as in a URI, the first parameter is prefixed by a
-question mark (`?`).
+The parameter list is just like the query component of a URI; name-value pairs have an equals sign (`=`) separating the name and value, with an ampersand (`&`) between each pair.  
+Just as in a URI, the first parameter is prefixed by a question mark (`?`).
 
 .Simple connection string with one seed node
 ----
@@ -68,51 +65,47 @@ couchbases://127.0.0.1?enable_dns_srv=false&query_timeout=10000
 
 The full list of recognized parameters is in the table below.
 
-A connection string must be prefixed by either `"couchbase://"` or `"couchbases://"`.
+A connection string must be prefixed by either `couchbase://` or `couchbases://`.
+
 
 [#connection-lifecycle]
 == Connection Lifecycle
 
 Most of the high-level classes in the Ruby SDK are designed to be safe for concurrent use by multiple threads.
 
-We recommend creating a single `Cluster` instance when your application starts up, and sharing this instance throughout
-your application.  If you know at startup time which buckets, scopes, and collections your application will use, we
-recommend obtaining them from the `Cluster` at startup time and sharing those instances throughout your application as
-well.
+We recommend creating a single `Cluster` instance when your application starts up, and sharing this instance throughout your application.  
+If you know at startup time which buckets, scopes, and collections your application will use, we recommend obtaining them from the `Cluster` at startup time and sharing those instances throughout your application as well.
+
 
 [#alternate-addresses]
 == Alternate Addresses and Custom Ports
 
-If your Couchbase Server cluster is running in a containerized, port mapped, or otherwise NAT'd environment like Docker
-or Kubernetes, a client running outside that environment may need additional information in order to connect the
-cluster. Both the client and server require special configuration in this case.
+If your Couchbase Server cluster is running in a containerized, port mapped, or otherwise NATed environment like Docker or Kubernetes, 
+a client running outside that environment may need additional information in order to connect the cluster. 
+Both the client and server require special configuration in this case.
 
-On the server side, each server node must be configured to advertise its external address as well as any custom port
-mapping.  This is done with the `setting-alternate-address` CLI command introduced in Couchbase Server 6.5.
-A node configured in this way will advertise two addresses: one for connecting from the same network, and another for
-connecting from an external network.
-
-https://docs.couchbase.com/server/6.6/rest-api/rest-set-up-alternate-address.html#assign-alternate-address-and-port-numbers
+On the server side, each server node must be configured to advertise its external address as well as any custom port mapping.  
+This is done with the `setting-alternate-address` xref:6.6@server:cli:cbcli/couchbase-cli-setting-alternate-address.adoc[CLI command] introduced in Couchbase Server 6.5.
+A node configured in this way will advertise two addresses: one for connecting from the same network, and another for connecting from an external network.
+This can also be set and retrieved 6.6@server:rest-api:rest-set-up-alternate-address.adoc#assign-alternate-address-and-port-numbers[through the REST API].
 
 
-On the client side, the externally visible ports must be used when connecting.  If the external ports are not the
-default, you can specify custom ports explicitly in the connection string.
-
+On the client side, the externally visible ports must be used when connecting.  
+If the external ports are not the default, you can specify custom ports explicitly in the connection string.
 
 [source,ruby]
 ----
 include::example$managing_connections.rb[tag=explicitports,indent=0]
 ----
 
-TIP: In a deployment that uses multi-dimensional scaling, a custom KV port is only applicable for nodes running the KV
-service.  A custom manager port may be specified regardless of which services are running on the node.
+TIP: In a deployment that uses multi-dimensional scaling, a custom KV port is only applicable for nodes running the KV service.  
+A custom manager port may be specified regardless of which services are running on the node.
 
-In many cases the client is able to automatically select the correct set of addresses to use when connecting to a
-cluster that advertises multiple addresses.  If the detection heuristic fails in your environment, you can override it
-by setting the `network` client setting to `default` if the client and server are on the same network, or
-`external` if they're on different networks.
+In many cases the client is able to automatically select the correct set of addresses to use when connecting to a cluster that advertises multiple addresses.  
+If the detection heuristic fails in your environment, you can override it by setting the `network` client setting to `default` if the client and server are on the same network, or`external` if they're on different networks.
 
 NOTE: Any TLS certificates must be set up at the point where the connections are being made.
+
 
 [#ssl]
 == Secure Connections
@@ -126,12 +119,12 @@ To configure encryption for the Ruby SDK:
 . Get the CA certificate from the cluster and save it in a text file.
 . Enable encryption on the client side and point it to the file containing the certificate.
 
-It is important to make sure you are transferring the certificate in an encrypted manner from the server to the client
-side, so either copy it through SSH or through a similar secure mechanism.
+It is important to make sure you are transferring the certificate in an encrypted manner from the server to the client side, 
+so either copy it through SSH or through a similar secure mechanism.
 
 If you are running on `localhost` and just want to enable TLS for a development machine, just copying and pasting it suffices.
-Navigate in the admin UI to menu:Settings[Cluster] and copy the input box of the TLS certificate into a file on your
-machine (which we will refer to as `cluster.crt`).  It looks similar to this:
+Navigate in the admin UI to menu:Settings[Cluster] and copy the input box of the TLS certificate into a file on your machine (which we will refer to as `cluster.crt`).  
+It looks similar to this:
 
 ----
 -----BEGIN CERTIFICATE-----
@@ -147,8 +140,8 @@ F4+FjEqAEIr1mQepDaNM0gEfVcgd2SzGhC3yhYFBAH//8W4DUot5ciEhoBs=
 -----END CERTIFICATE-----
 ----
 
-The next step is to enable encryption by connecting to a cluster with the 'couchbases://' protocol in the connection
-string and pass it the path to the certificate file via '?trust_certificate=...' in the connection string itself.
+The next step is to enable encryption by connecting to a cluster with the 'couchbases://' protocol in the connection string 
+and pass it the path to the certificate file via '?trust_certificate=...' in the connection string itself.
 
 [source,ruby]
 ----
@@ -174,7 +167,7 @@ E.....@.@.............+....Z.'yZ..#........
 ----
 
 
-TODO: verify
+// DNS-SRV
 include::6.5@sdk:shared:partial$dnssrv-pars.adoc[tag=dnssrv]
 
 DNS SRV bootstrapping is available in the Ruby SDK from version 3.0.
@@ -185,7 +178,7 @@ In order to make the SDK actually use the SRV records, you need to enable DNS SR
 include::example$managing_connections.rb[tag=dnssrv,indent=0]
 ----
 
-If the DNS SRV records could not be loaded properly you'll get the message logged and the given host name will be used as a A record lookup.
+If the DNS SRV records could not be loaded properly you'll get the message logged and the given host name will be used as an A record lookup.
 
 ----
 [2020-09-07 14:30:26.358] [186383,186390] [warning] 47ms, DNS SRV query returned 0 records for "localhost", assuming that cluster is listening this address
@@ -193,5 +186,11 @@ If the DNS SRV records could not be loaded properly you'll get the message logge
 
 Also, if you pass in more than one node, DNS SRV bootstrap will not be initiated:
 
+
 // Cloud connections
 include::6.5@sdk:shared:partial$managing-connections.adoc[tag=cloud]
+
+
+== Further Reading
+
+For more on RBAC, refer to the xref:6.5@server:learn:security/authorization-overview.adoc[Server docs].
