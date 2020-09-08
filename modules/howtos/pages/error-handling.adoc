@@ -89,7 +89,7 @@ include::example$error_handling.rb[tag=DocumentNotFound]
 
 [source,ruby]
 ----
-include::example$error_handling.rb[tag=KeyExistsException]
+include::example$error_handling.rb[tag=DocumentExists]
 ----
 
 === Document too large
