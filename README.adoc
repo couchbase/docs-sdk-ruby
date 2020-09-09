@@ -11,7 +11,7 @@ endif::[]
 
 .Work In Progress!
 [WARNING]
-Documentation component for the renewed Couchbase Ruby 2.0 SDK.
+Documentation component for the renewed Couchbase Ruby 3.0 SDK.
 
 == Contributing
 
