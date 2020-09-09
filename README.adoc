@@ -9,8 +9,7 @@ endif::[]
 :url-ui: {url-org}/docs-ui
 :url-playbook: {url-org}/docs-site
 
-.Work In Progress!
-[WARNING]
+
 Documentation component for the renewed Couchbase Ruby 3.0 SDK.
 
 == Contributing
