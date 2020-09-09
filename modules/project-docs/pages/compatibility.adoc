@@ -58,7 +58,7 @@ See the notes there for Support details.
 2+| Since 3.0
 
 | Collections
-| 
+| Not Supported
 | SDK 3.0 for Developer Preview in Server 6.5 & 6.6
 
 |===
