@@ -68,7 +68,7 @@ The cluster-wide timeouts might be changed using connection string in millisecon
 
 [source,ruby]
 ----
-"couchbase://localhost?query_timeout=10000
+couchbase://localhost?query_timeout=10000
 ----
 
 === Timeout Options Reference
