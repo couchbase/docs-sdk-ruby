@@ -14,7 +14,7 @@ Couchbase Ruby SDK
 
 
 .Advanced Data Operations
-// * xref:howtos:concurrent-async-apis.adoc[Batching]
+* xref:howtos:concurrent-async-apis.adoc[Async API]
 * xref:howtos:concurrent-document-mutations.adoc[Concurrent Document Mutations]
 
 
