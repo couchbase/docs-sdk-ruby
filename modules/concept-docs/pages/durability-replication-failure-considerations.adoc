@@ -15,7 +15,8 @@ include::6.5@sdk:shared:partial$durability-replication-failure-considerations.ad
 
 include::6.5@sdk:shared:partial$durability-replication-failure-considerations.adoc[tag=syncrep]
 
-include::6.5@sdk:shared:partial$durability-replication-failure-considerations.adoc[tag=older]
+// No old-style durability options in the 3.0 Ruby SDK.
+// include::6.5@sdk:shared:partial$durability-replication-failure-considerations.adoc[tag=older]
 
 include::6.5@sdk:shared:partial$durability-replication-failure-considerations.adoc[tag=performance]
 
