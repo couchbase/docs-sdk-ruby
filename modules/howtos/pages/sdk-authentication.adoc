@@ -24,7 +24,7 @@ include::6.5@sdk:shared:partial$auth-overview.adoc[tag=rbac]
 
 include::6.5@sdk:shared:partial$auth-overview.adoc[tag=cert-auth]
 
-
+////
 == Authenticating a Scala Client by Certificate
 
 For sample procedures whereby certificates can be generated and deployed, see xref:6.5@server:manage:manage-security/manage-certificates.adoc[Manage Certificates].
@@ -35,7 +35,7 @@ That is, a cluster certificate has been created and installed on the server, a c
 ----
 include::example$Auth.scala[tag=auth,indent=0]
 ----
-
+////
 
 include::6.5@sdk:shared:partial$auth-overview.adoc[tag=ldap]
 
