@@ -14,9 +14,9 @@ Our xref:hello-world:start-using-sdk.adoc[Getting Started] guide covered the bas
 
 Our xref:hello-world:start-using-sdk.adoc[Getting Started] guide introduced basic authentication against a Couchbase cluster:
 
-[source,scala]
+[source,ruby]
 ----
-include::example$Auth.scala[tag=basic,indent=0]
+include::hello-world:example$start_using.rb[tag=connect,indent=0]
 ----
 
 
