@@ -1,1 +1,13 @@
-include::6.5@sdk:pages:partial$encryption.adoc[]
+= Field Level Encryption
+:page-topic-type: concept
+:page-edition: Enterprise Edition
+include::partial$attributes.adoc[]
+:page-aliases: ROOT:encrypting-using-sdk,ROOT:encryption
+
+[abstract]
+Fields within a document can be securely encrypted by the SDK, to support FIPS-140-2 compliance.
+
+
+Client-side implementation of Field Level Encryption is available in previous versions of the C, .NET, Go, Java, Node.js, PHP, and Python SDK.
+It will be enabled in a future release of the third generation SDK, including the Ruby SDK.
+A developer preview is available for the xref:3.0@java-sdk:concept-docs:encryption.adoc[Java SDK 3.0].
