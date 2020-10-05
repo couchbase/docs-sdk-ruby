@@ -35,14 +35,21 @@ package, but also precompiled binaries for Linux and MacOS.
 
 To use official repository, it have to be registered in the `.gemrc` file:
 
-The example above selects repsitor with the packages for Ruby 2.7.x. For other version, please refer the table.
+The example above selects repository with the packages for Ruby 2.7.x. For other version, please refer the table.
 
 The repository could be also specified in `Gemfile` for bundler. And in this case the source would be applied only for
 Couchbase SDK library:
 
 [source,ruby]
 ----
-gem "couchbase", "3.0.0", :source => "https://packages.couchbase.com/clients/ruby/2.7.0/"
+gem "couchbase", "3.0.1", :source => "https://packages.couchbase.com/clients/ruby/2.7.0/"
+----
+
+Or run in terminal:
+
+[source,bash]
+----
+gem install couchbase --source https://packages.couchbase.com/clients/ruby/2.7.0/
 ----
 
 And finally, it is possible to download the package and install from the file. In the notes below, we specify tables
@@ -50,11 +57,62 @@ with links to every release package along with precompiled binaries.
 
 [source,bash]
 ----
-wget https://packages.couchbase.com/clients/ruby/sdk-3.0.0/couchbase-3.0.0-x86_64-linux-2.7.0.gem
-gem install couchbase-3.0.0-x86_64-linux-2.7.0.gem
+wget https://packages.couchbase.com/clients/ruby/sdk-3.0.1/couchbase-3.0.1-x86_64-linux-2.7.0.gem
+gem install couchbase-3.0.1-x86_64-linux-2.7.0.gem
 ----
 
 [#latest-release]
+== Version 3.0.1 (5 October 2020)
+
+This is the second GA release.
+
+* https://issues.couchbase.com/browse/RCBC-219[RCBC-219], https://issues.couchbase.com/browse/RCBC-252[RCBC-252]:
+  Implemented diagnostics API.
+
+* https://issues.couchbase.com/browse/RCBC-272[RCBC-272]:
+  Allow disabling of scoring in Full-Text Search results.
+
+* https://issues.couchbase.com/browse/RCBC-229[RCBC-229]:
+  Geopolygon Search support.
+
+* https://issues.couchbase.com/browse/RCBC-271[RCBC-271]:
+  Enhanced user management for collections.
+
+* https://issues.couchbase.com/browse/RCBC-230[RCBC-230]:
+  Added query option for flex index.
+
+* https://issues.couchbase.com/browse/RCBC-233[RCBC-233]:
+  Updated eviction policy types (now it covers ephemeral buckets).
+
+* https://issues.couchbase.com/browse/RCBC-274[RCBC-274]:
+  Skip non-kv nodes when switching networks (fixes warnings in Cloud environment).
+
+* https://issues.couchbase.com/browse/RCBC-266[RCBC-266]:
+  Deprecated `GetResult.expiry`.
+
+* Fixed Query prepared statements cache for older servers.
+
+* Build and test system improvements
+
+https://docs.couchbase.com/sdk-api/couchbase-ruby-client-3.0.1/index.html[API Reference]
+
+|===
+| Platform           | Ruby ABI | File
+| Checksums          |          | https://packages.couchbase.com/clients/ruby/sdk-3.0.1/couchbase-3.0.1.sha256sum[couchbase-3.0.1.sha256sum]
+| Source Archive     |          | https://packages.couchbase.com/clients/ruby/sdk-3.0.1/couchbase-3.0.1.gem[couchbase-3.0.1.gem]
+| Linux x86_64       | 2.7.0    | https://packages.couchbase.com/clients/ruby/sdk-3.0.1/couchbase-3.0.1-x86_64-linux-2.7.0.gem[couchbase-3.0.1-x86_64-linux-2.7.0.gem]
+| Linux x86_64       | 2.6.0    | https://packages.couchbase.com/clients/ruby/sdk-3.0.1/couchbase-3.0.1-x86_64-linux-2.6.0.gem[couchbase-3.0.1-x86_64-linux-2.6.0.gem]
+| Linux x86_64       | 2.5.0    | https://packages.couchbase.com/clients/ruby/sdk-3.0.1/couchbase-3.0.1-x86_64-linux-2.5.0.gem[couchbase-3.0.1-x86_64-linux-2.5.0.gem]
+| macOS 10.15 x84_64 | 2.7.0    | https://packages.couchbase.com/clients/ruby/sdk-3.0.1/couchbase-3.0.1-x86_64-darwin-19-2.7.0.gem[couchbase-3.0.1-x86_64-darwin-19-2.7.0.gem]
+| macOS 10.15 x84_64 | 2.6.0    | https://packages.couchbase.com/clients/ruby/sdk-3.0.1/couchbase-3.0.1-x86_64-darwin-19-2.6.0.gem[couchbase-3.0.1-x86_64-darwin-19-2.6.0.gem]
+| macOS 10.15 x84_64 | 2.5.0    | https://packages.couchbase.com/clients/ruby/sdk-3.0.1/couchbase-3.0.1-x86_64-darwin-19-2.5.0.gem[couchbase-3.0.1-x86_64-darwin-19-2.5.0.gem]
+| macOS 10.13 x84_64 | 2.7.0    | https://packages.couchbase.com/clients/ruby/sdk-3.0.1/couchbase-3.0.1-x86_64-darwin-17-2.7.0.gem[couchbase-3.0.1-x86_64-darwin-17-2.7.0.gem]
+| macOS 10.13 x84_64 | 2.6.0    | https://packages.couchbase.com/clients/ruby/sdk-3.0.1/couchbase-3.0.1-x86_64-darwin-17-2.6.0.gem[couchbase-3.0.1-x86_64-darwin-17-2.6.0.gem]
+| macOS 10.13 x84_64 | 2.5.0    | https://packages.couchbase.com/clients/ruby/sdk-3.0.1/couchbase-3.0.1-x86_64-darwin-17-2.5.0.gem[couchbase-3.0.1-x86_64-darwin-17-2.5.0.gem]
+// Hidden. Binary build for the Ruby 2.2.0 on Ubuntu 16.04, that has reached EOL
+// | Ubuntu 16.04  | 2.2.0 | https://packages.couchbase.com/clients/ruby/sdk-3.0.1/couchbase-3.0.1-x86_64-linux-2.2.0.gem[couchbase-3.0.1-x86_64-linux-2.2.0.gem]
+|===
+
 == Version 3.0.0 (8 September 2020)
 
 This is the first GA release.
