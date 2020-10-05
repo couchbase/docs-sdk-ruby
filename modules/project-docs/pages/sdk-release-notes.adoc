@@ -67,28 +67,28 @@ gem install couchbase-3.0.1-x86_64-linux-2.7.0.gem
 This is the second GA release.
 
 * https://issues.couchbase.com/browse/RCBC-219[RCBC-219], https://issues.couchbase.com/browse/RCBC-252[RCBC-252]:
-  Implement diagnostics API
+  Implemented diagnostics API.
 
 * https://issues.couchbase.com/browse/RCBC-272[RCBC-272]:
-  Allow to disable scoring of full-text search results
+  Allow disabling of scoring in Full-Text Search results.
 
 * https://issues.couchbase.com/browse/RCBC-229[RCBC-229]:
-  Geopolygon full-text search support
+  Geopolygon Search support.
 
 * https://issues.couchbase.com/browse/RCBC-271[RCBC-271]:
-  Enhance user management for collections
+  Enhanced user management for collections.
 
 * https://issues.couchbase.com/browse/RCBC-230[RCBC-230]:
-  Add query option for flex index
+  Added query option for flex index.
 
 * https://issues.couchbase.com/browse/RCBC-233[RCBC-233]:
-  Update eviction policy types (now it covers ephemeral buckets)
+  Updated eviction policy types (now it covers ephemeral buckets).
 
 * https://issues.couchbase.com/browse/RCBC-274[RCBC-274]:
-  Skip non-kv nodes when switching networks (fixes warnings in Cloud environment)
+  Skip non-kv nodes when switching networks (fixes warnings in Cloud environment).
 
 * https://issues.couchbase.com/browse/RCBC-266[RCBC-266]:
-  Deprecate GetResult#expiry
+  Deprecated `GetResult.expiry`.
 
 * Fixed Query prepared statements cache for older servers.
 
