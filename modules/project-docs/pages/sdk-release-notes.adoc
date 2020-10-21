@@ -24,6 +24,7 @@ Note that `--pre` is necessary when the SDK in Beta/Preview phase -- `gem instal
 In addition to rubygems.org, we also maintain official gem repositories, where we publish not only source version of the
 package, but also precompiled binaries for Linux and MacOS.
 
+[cols="4,17"]
 |===
 | Ruby ABI version | Source URL
 | 2.7   | https://packages.couchbase.com/clients/ruby/2.7.0/
