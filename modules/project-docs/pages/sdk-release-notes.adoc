@@ -96,7 +96,7 @@ This is the second GA release.
 
 https://docs.couchbase.com/sdk-api/couchbase-ruby-client-3.0.1/index.html[API Reference]
 
-[cols="9,7,19"]
+[cols="9,5,19"]
 |===
 | Platform           | Ruby ABI | File
 | Checksums          |          | https://packages.couchbase.com/clients/ruby/sdk-3.0.1/couchbase-3.0.1.sha256sum[couchbase-3.0.1.sha256sum]
@@ -120,7 +120,7 @@ This is the first GA release.
 
 https://docs.couchbase.com/sdk-api/couchbase-ruby-client-3.0.0/index.html[API Reference]
 
-[cols="9,7,19"]
+[cols="9,5,19"]
 |===
 | Platform           | Ruby ABI | File
 | Checksums          |          | https://packages.couchbase.com/clients/ruby/sdk-3.0.0/couchbase-3.0.0.sha256sum[couchbase-3.0.0.sha256sum]
@@ -144,7 +144,7 @@ This is the first beta release.
 
 https://docs.couchbase.com/sdk-api/couchbase-ruby-client-3.0.0.beta.1/index.html[API Reference]
 
-[cols="9,7,19"]
+[cols="9,5,19"]
 |===
 | Platform           | Ruby ABI | File
 | Checksums          |          | https://packages.couchbase.com/clients/ruby/sdk-3.0.0.beta.1/couchbase-3.0.0.beta.1.sha256sum[couchbase-3.0.0.beta.1.sha256sum]
