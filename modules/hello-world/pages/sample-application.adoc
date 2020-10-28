@@ -97,6 +97,9 @@ Here's the airport search code, which checks to see whether the search term for 
 The https://github.com/couchbaselabs/try-cb-nodejs/blob/6.5/index.js[index.js] file also contains the functions for handling users, registration, and N1QL queries.
 ////
 
+
+NOTE: Travel Sample app is not currently available for the recently-released 3.0 Couchbase Ruby SDK.
+
 == Data Model
 
 See the xref:ref:travel-app-data-model.adoc[Travel App Data Model] reference page for more information about the sample data set used.
