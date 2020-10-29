@@ -1,1 +1,8 @@
-= 
+= Data Structures Reference
+:page-aliases: 
+
+[abstract]
+You can use complex data structures such as dictionaries and lists in Couchbase.
+
+
+The https://docs.couchbase.com/sdk-api/couchbase-ruby-client/Couchbase/Datastructures.html[API docs] contain details for all of the Ruby SDK Data Structures.
