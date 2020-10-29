@@ -8,35 +8,17 @@ Common use cases are outlined here, more recherché use cases are covered in the
 
 include::6.5@sdk:shared:partial$flush-info-pars.adoc[tag=management-intro]
 
-The PHP SDK also comes with some convenience functionality for common Couchbase management requests.
+The Ruby SDK also comes with some convenience functionality for common Couchbase management requests.
 
-Management operations in the SDK may be performed through several interfaces depending on the object (see xref#further-reading--api-guides[below]):
-
-* BucketManager -- `Cluster.Buckets()`
-* UserManager -- `Cluster.Users()` 
-// see xref
-* QueryIndexManager -- `Cluster.QueryIndexes()`
-* AnalyticsIndexManager -- `Cluster.AnalyticsIndexes()`
-* SearchIndexManager -- `Cluster.SearchIndexes()`
-* CollectionManager -- `Bucket.Collections()`
-* ViewIndexManager -- `Bucket.ViewIndexes()`.
+Management operations in the SDK may be performed through several interfaces depending on the object (see xref#further-reading--api-guides[below]).
 
 NOTE: When using a Couchbase version earlier than 6.5, you must create a valid Bucket connection using `cluster.Bucket(name)` before you can use cluster level managers.
 
 
 == Creating and Removing Buckets
 
-The `ClusterManager` interface may be used to create and delete buckets from the Couchbase cluster.
-It is instantiated through the `Cluster.Buckets()` method.
-
-////
-[source,golang,indent=0]
-----
-include::devguide:example$go/provisioning-resources-buckets.go[tag=creatingbucketmgr]
-----
-////
-
-The `CreateBucketSettings` and `BucketSettings` structs are used for creating and updating buckets, `BucketSettings` is also used for exposing information about existing buckets.
+The https://docs.couchbase.com/sdk-api/couchbase-ruby-client/Couchbase/Management/BucketManager.html[BucketManager] interface may be used to create and delete buckets from the Couchbase cluster.
+It is instantiated through the `#create_bucket()` method.
 
 include::6.5@sdk:shared:partial$flush-info-pars.adoc[tag=update-bucket-warning]
 
@@ -79,12 +61,11 @@ include::devguide:example$go/provisioning-resources-buckets.go[tag=removeBucket]
 ----
 ////
 
-[#go-flushing]
 == Flushing Buckets
 
 include::6.5@sdk:shared:partial$flush-info-pars.adoc[tag=flush-intro]
 
-You can flush a bucket in the SDK by using the `Flush` method:
+You can flush a bucket in the SDK by using the `Flush` method.
 
 ////
 [source,golang,indent=0]
