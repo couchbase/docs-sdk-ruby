@@ -14,8 +14,8 @@ include::6.5@sdk:shared:partial$data-model.adoc[tag=intro]
 
 Data structures in Couchbase are similar in concept to data structures in PHP:
 
-* *Map* is like PHP `array`, where a value is accessed by using a key string.
-* *List* is like a PHP `array` and is a sequential data structure.
+* *Map* is like Ruby `map` and is a key-value structure, where a value is accessed by using a key string.
+* *List* is like a Ruby `array` and is a sequential data structure.
 Values can be placed in the beginning or end of a list, and can be accessed using numeric indexes.
 * *Queue* is a wrapper over a _list_ which offers FIFO (first-in-first-out) semantics, allowing it to be used as a lightweight job queue.
 * *Set* is a wrapper over a _list_ which provides the ability to handle unique values.
@@ -29,5 +29,12 @@ Using the data structures API may help your application in two ways:
 Adding an item to a dictionary is expressed as `mapAdd`, rather than retrieving the entire document, modifying it locally, and then saving it back to the server.
 * *Efficiency*: Data structure operations do not transfer the entire document across the network.
 Only the relevant data is exchanged between client and server, allowing for less network overhead and lower latency.
+
+
+== Further Reading & API Guides
+
+The https://docs.couchbase.com/sdk-api/couchbase-ruby-client/Couchbase/Datastructures.html[API docs] contain details for all of the Ruby SDK Data Structures.
+
+
 
 // == Creating a Data Structure
