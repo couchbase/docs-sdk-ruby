@@ -10,10 +10,11 @@ include::6.5@sdk:shared:partial$flush-info-pars.adoc[tag=management-intro]
 
 The PHP SDK also comes with some convenience functionality for common Couchbase management requests.
 
-Management operations in the SDK may be performed through several interfaces depending on the object:
+Management operations in the SDK may be performed through several interfaces depending on the object (see xref#[below]):
 
 * BucketManager -- `Cluster.Buckets()`
-* UserManager -- `Cluster.Users()` // see xref
+* UserManager -- `Cluster.Users()` 
+// see xref
 * QueryIndexManager -- `Cluster.QueryIndexes()`
 * AnalyticsIndexManager -- `Cluster.AnalyticsIndexes()`
 * SearchIndexManager -- `Cluster.SearchIndexes()`
@@ -160,3 +161,16 @@ To remove this design document:
 include::devguide:example$go/provisioning-resources-views.go[tag=removeView]
 ----
 ////
+
+
+== Further Reading & API Guides
+
+The https://docs.couchbase.com/sdk-api/couchbase-ruby-client/Couchbase/Management.html[API Guide] contains info on the following Management APIs:
+
+* https://docs.couchbase.com/sdk-api/couchbase-ruby-client/Couchbase/Management/BucketManager.html[BucketManager] -- `Couchbase::Management::BucketManager`
+* https://docs.couchbase.com/sdk-api/couchbase-ruby-client/Couchbase/Management/UserManager.html[UserManager] -- `Couchbase::Management::UserManager` 
+* https://docs.couchbase.com/sdk-api/couchbase-ruby-client/Couchbase/Management/QueryIndexManager.html[QueryIndexManager] -- `Couchbase::Management::QueryIndexManager`
+* https://docs.couchbase.com/sdk-api/couchbase-ruby-client/Couchbase/Management/AnalyticsIndexManager.html[AnalyticsIndexManager] -- `Couchbase::Management::AnalyticsIndexManager`
+* https://docs.couchbase.com/sdk-api/couchbase-ruby-client/Couchbase/Management/SearchIndexManager.html[SearchIndexManager] -- `Couchbase::Management::SearchIndexManager`
+* https://docs.couchbase.com/sdk-api/couchbase-ruby-client/Couchbase/Management/CollectionManager.html[CollectionManager] -- `Couchbase::Management::CollectionManager`
+* https://docs.couchbase.com/sdk-api/couchbase-ruby-client/Couchbase/Management/ViewIndexManager.html[ViewIndexManager] -- `Couchbase::Management::ViewIndexManager`.
