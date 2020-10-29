@@ -10,7 +10,7 @@ include::6.5@sdk:shared:partial$flush-info-pars.adoc[tag=management-intro]
 
 The Ruby SDK also comes with some convenience functionality for common Couchbase management requests.
 
-Management operations in the SDK may be performed through several interfaces depending on the object (see xref#further-reading--api-guides[below]).
+Management operations in the SDK may be performed through several interfaces depending on the object (see xref:#further-reading-api-guides[below]).
 
 NOTE: When using a Couchbase version earlier than 6.5, you must create a valid Bucket connection using `cluster.Bucket(name)` before you can use cluster level managers.
 
