@@ -1,4 +1,4 @@
-= Collecting Information and Logging in the PHP SDK with Couchbase Server
+= Collecting Information and Logging in the Ruby SDK with Couchbase Server
 :navtitle: Collecting Information
 :page-topic-type: howto
 
@@ -9,7 +9,7 @@ Setting log levels
 == Logging
 
 The Couchbase Ruby SDK has no hard dependency on a specific logger implementation.
-By default it uses built-in means to report events.  
+By default it uses built-in means to report events.
 The default log level is `warning`.
 
 The following log levels are supported (in order of increasing amount of information logged):
@@ -22,7 +22,7 @@ The following log levels are supported (in order of increasing amount of informa
 . debug
 . trace
 
-The Ruby SDK is configured to send logs to standard output. 
+The Ruby SDK is configured to send logs to standard output.
 The logging level can be changed using the environment variable `COUCHBASE_BACKEND_LOG_LEVEL`.
 
 [source,ruby]
@@ -65,5 +65,5 @@ $ COUCHBASE_BACKEND_LOG_LEVEL=debug ruby script.rb
 
 
 // todo
-// 
+//
 // == Log Redaction

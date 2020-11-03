@@ -116,8 +116,8 @@ For developing on Couchbase Cloud, if you are not working from the same _Availab
 
 == Additional Resources
 
-// The API reference is generated for each release and can be found http://docs.couchbase.com/sdk-api/couchbase-ruby-client-3.0.0/[here].
-// Older API references are linked from their respective sections in the xref:project-docs:sdk-release-notes.adoc[Release Notes].
+The API reference is generated for each release and can be found https://docs.couchbase.com/sdk-api/couchbase-ruby-client/Couchbase.html[here].
+Older API references are linked from their respective sections in the xref:project-docs:sdk-release-notes.adoc[Release Notes].
 
 Couchbase welcomes community contributions to the Ruby SDK.
 The Ruby SDK source code is available on https://github.com/couchbase/couchbase-ruby-client[GitHub].
