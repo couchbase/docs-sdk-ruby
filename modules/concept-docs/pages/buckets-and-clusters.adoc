@@ -4,7 +4,7 @@
 :page-aliases: managing-clusters
 
 [abstract]
-The Couchbase PHP SDK provides an API for managing a Couchbase cluster programmatically.
+The Couchbase Ruby SDK provides an API for managing a Couchbase cluster programmatically.
 
 include::6.5@sdk:shared:partial$clusters-buckets.adoc[tag=management]
 
