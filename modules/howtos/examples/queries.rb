@@ -84,3 +84,25 @@ result = cluster.query(
 puts "Reported execution time: #{result.meta_data.metrics.execution_time}"
 #=> Reported execution time: 2.516245ms
 # end::print-metrics[]
+
+# tag::scope[]
+
+bucket = cluster.bucket("travel-sample")
+
+myscope = bucket.scope("us")
+mycollection = "airline"
+
+options = Couchbase::Cluster::QueryOptions.new
+options.metrics = true
+result = myscope.query("SELECT * FROM #{mycollection} LIMIT 10", options)
+result.rows.each do |row|
+  puts row
+end
+puts "Reported execution time: #{result.meta_data.metrics.execution_time}"
+
+#=>
+#{"airline"=>{"callsign"=>"TXW", "iata"=>"TQ", "icao"=>"TXW", "name"=>"Texas Wings"}}
+#{"airline"=>{"callsign"=>"SASQUATCH", "iata"=>"K5", "icao"=>"SQH", "name"=>"SeaPort Airlines"}}
+
+#Reported execution time: 3.620224ms
+# end::scope[]
