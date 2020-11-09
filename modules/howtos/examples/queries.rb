@@ -86,7 +86,6 @@ puts "Reported execution time: #{result.meta_data.metrics.execution_time}"
 # end::print-metrics[]
 
 # tag::scope[]
-
 bucket = cluster.bucket("travel-sample")
 
 myscope = bucket.scope("us")
