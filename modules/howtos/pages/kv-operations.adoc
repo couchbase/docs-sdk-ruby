@@ -153,8 +153,9 @@ When getting a document, the expiry is not provided automatically by Couchbase S
 include::example$kv_operations.rb[tag=expiry-get]
 ----
 
-Note that the type returned by `#expiry_time` is `Time`, and always represents absolute time when the document will expire. Method `#expiry`
-that returned integer number of seconds since epoch is deprecated and will be removed in release `3.1`.
+
+NOTE: The type returned by `#expiry_time` is `Time`, and always represents absolute time when the document will expire. 
+The `#expiry` method that returned integer number of seconds since epoch is _*deprecated*_, and will be removed in release `3.1`.
 
 
 Note that when updating the document, special care must be taken to avoid resetting the expiry to zero.
