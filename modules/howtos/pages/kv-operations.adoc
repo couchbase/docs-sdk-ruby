@@ -4,7 +4,7 @@
 :page-aliases: document-operations.adoc
 
 [abstract]
-Key-Value (KV) or data service offers the simplest way to retrieve or mutate data where the key is known. 
+Key-Value (KV) or data service offers the simplest way to retrieve or mutate data where the key is known.
 Here we cover CRUD operations, document expiration, and optimistic locking with CAS.
 
 
@@ -75,9 +75,9 @@ If Server 6.5 or above is being used, you can take advantage of the xref:concept
 in which Couchbase Server will only return success to the SDK after the requested replication level has been achieved.
 The three replication levels are:
 
- * `Majority` - The server will ensure that the change is available in memory on the majority of configured replicas.
- * `MajorityAndPersistToActive` - Majority level, plus persisted to disk on the active node.
- * `PersistToMajority` - Majority level, plus persisted to disk on the majority of configured replicas.
+ * `:majority` - The server will ensure that the change is available in memory on the majority of configured replicas.
+ * `:majority_and_persist_to_active` - Majority level, plus persisted to disk on the active node.
+ * `:persist_to_majority` - Majority level, plus persisted to disk on the majority of configured replicas.
 
 The options are in increasing levels of safety.
 Note that nothing comes for free - for a given node, waiting for writes to storage is considerably slower than waiting for it to be available in-memory.
@@ -135,7 +135,7 @@ include::example$kv_operations.rb[tag=remove]
 == Expiration / TTL
 
 
-Couchbase Server includes an option to have particular documents automatically expire after a set time. 
+Couchbase Server includes an option to have particular documents automatically expire after a set time.
 This can be useful for some use-cases, such as user sessions, caches, or other temporary documents.
 
 You can set an expiry value when creating a document:
@@ -153,8 +153,11 @@ When getting a document, the expiry is not provided automatically by Couchbase S
 include::example$kv_operations.rb[tag=expiry-get]
 ----
 
+Note that the type returned by `#expiry_time` is `Time`, and always represents absolute time when the document will expire. Method `#expiry`
+that returned integer number of seconds since epoch is deprecated and will be removed in release `3.1`.
 
-Note that when updating the document, special care must be taken to avoid resetting the expiry to zero. 
+
+Note that when updating the document, special care must be taken to avoid resetting the expiry to zero.
 Here's how:
 
 
@@ -163,7 +166,7 @@ Here's how:
 include::example$kv_operations.rb[tag=expiry-replace]
 ----
 
-Some applications may find `getAndTouch` useful, which fetches a document while updating its expiry field. 
+Some applications may find `getAndTouch` useful, which fetches a document while updating its expiry field.
 It can be used like this:
 
 
@@ -181,30 +184,28 @@ include::6.5@sdk:shared:partial$documents.adoc[tag=exp-note]
 The value of a document can be increased or decreased atomically using `#increment()` and `#decrement()` on the `Couchbase::BinaryCollection`.
 See the https://docs.couchbase.com/sdk-api/couchbase-ruby-client/Couchbase/BinaryCollection.html[API Guide] for more information.
 
-////
 .Increment
 [source,ruby]
 ----
-include::example$kv-counter.php[tag=increment]
+include::example$kv_counter.rb[tag=increment]
 ----
 
 [source,ruby]
 ----
-include::example$kv-counter.php[tag=incrementwithoptions]
+include::example$kv_counter.rb[tag=incrementwithoptions]
 ----
 
 .Decrement
 [source,ruby]
 ----
-include::example$kv-counter.php[tag=decrement]
+include::example$kv_counter.rb[tag=decrement]
 ----
 
 .Decrement (with options)
 [source,ruby]
 ----
-include::example$kv-counter.php[tag=decrementwithoptions]
+include::example$kv_counter.rb[tag=decrementwithoptions]
 ----
-////
 
 NOTE: Increment & Decrement are considered part of the ‘binary’ API and as such may still be subject to change
 
