@@ -3,9 +3,7 @@ require "couchbase"
 include Couchbase # to avoid repeating module name
 # end::imports[]
 
-options = Cluster::ClusterOptions.new
-options.authenticate("Administrator", "password")
-cluster = Cluster.connect("couchbase://localhost", options)
+cluster = Cluster.connect("couchbase://localhost", "Administrator", "password")
 
 # tag::apis[]
 bucket = cluster.bucket("default")
@@ -56,9 +54,7 @@ result = collection.get("my-document")
 content = result.content
 content["modified"] = true
 content["initial"] = false
-options = Collection::ReplaceOptions.new
-options.cas = result.cas
-collection.replace("my-document", content, options)
+collection.replace("my-document", content, Options::Replace(cas: result.cas))
 # end::replace[]
 
 # tag::replace-retry[]
@@ -69,9 +65,7 @@ loop do
   found = collection.get(id)
   content = found.content
   content.update("modified" => true, "initial" => false)
-  options = Collection::ReplaceOptions.new
-  options.cas = found.cas
-  collection.replace(id, content, options)
+  collection.replace(id, content, Options::Replace(cas: found.cas))
   break
 rescue Error::CasMismatch
   # don't do anything, we'll retry the loop
@@ -87,41 +81,43 @@ end
 # end::remove[]
 
 # tag::durability[]
-options = Collection::UpsertOptions.new
-options.durability_level = :majority
-collection.upsert("my-document", {"doc" => true}, options)
+collection.upsert("my-document", {"doc" => true},
+                  Options::Upsert(durability_level: :majority))
 # end::durability[]
 
 # tag::expiry-insert[]
-options = Collection::InsertOptions.new
-options.expiration = 2 * 60 * 60
-# or
-#   require 'active_support/core_ext/numeric/time'
-#   options.expiration = 2.hours
-collection.upsert("my-document", {"doc" => true}, options)
+collection.upsert("my-document", {"doc" => true},
+                  Options::Insert(expiry: 2 * 60 * 60))
+
+# or with ActiveSupport::Duration
+require 'active_support/core_ext/numeric/time'
+collection.upsert("my-document", {"doc" => true},
+                  Options::Insert(expiry: 2.hours))
+
+# Time instances also acceptable as absolute time points
+expiry = Time.now + 30 # 30 seconds from now
+collection.upsert("my-document", {"doc" => true},
+                  Options::Insert(expiry: expiry))
+
 # end::expiry-insert[]
 
 # tag::expiry-get[]
-options = Collection::GetOptions.new
-options.with_expiration = true
-found = collection.get("my-document", options)
-puts "Expiry of found doc: #{found.expiration} (or #{Time.at(found.expiration)})"
-#=> Expiry of found doc: 1595789542 (or 2020-07-26 21:52:22 +0300)
+found = collection.get("my-document", Options::Get(with_expiry: true))
+puts "Expiry of found doc: #{found.expiry_time})"
+#=> Expiry of found doc: 2020-07-26 21:52:22 +0300
 # end::expiry-get[]
 
 # tag::expiry-replace[]
-options = Collection::GetOptions.new
-options.with_expiration = true
-found = collection.get("my-document", options)
+found = collection.get("my-document", Options::Get(with_expiry: true))
 
-options = Collection::ReplaceOptions.new
-options.expiration = found.expiration
-collection.replace("my-document", {"content" => "something new"}, options)
+collection.replace("my-document", {"content" => "something new"},
+                   Options::Replace(expiry: found.expiry_time))
 # end::expiry-replace[]
 
 # tag::expiry-touch[]
 collection.get_and_touch("my-document", 24 * 60 * 60)
-# or
-#   require 'active_support/core_ext/numeric/time'
-#   collection.get_and_touch("my-document", 1.day)
+
+# or with ActiveSupport::Duration
+require 'active_support/core_ext/numeric/time'
+collection.get_and_touch("my-document", 1.day)
 # end::expiry-touch[]
