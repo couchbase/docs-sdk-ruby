@@ -53,7 +53,7 @@ See the notes there for Support details.
 
 | Durable Writes 
 | Not Supported
-3+| Since 3.0
+2+| Since 3.0
 
 | Analytics
 3+| Since 3.0
@@ -64,7 +64,7 @@ See the notes there for Support details.
 | Since 1.0
 
 | Scope-Level N1QL Queries
-3+| Not Supported
+2+| Not Supported
 | Developer Preview in 7.0β, SDK 3.0.2
 |===
 
