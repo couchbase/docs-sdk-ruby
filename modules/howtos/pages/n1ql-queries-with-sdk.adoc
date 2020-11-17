@@ -125,7 +125,8 @@ Select this when consistency is always more important than performance.
 ----
 include::example$queries.rb[tag=scan-consistency]
 ----
-////
+
+
 == Querying at Scope level
 
 From version 3.0.2 of the Ruby SDK, it is possible to query off the xref:7.0@server:learn:data/scopes-and-collections.adoc[`Scope` level] _with the beta version of the next Couchbase Server release, 7.0β_,
@@ -144,7 +145,7 @@ include::example$queries.rb[tag=scope]
 ----
 
 A complete list of `QueryOptions` can be found in the https://docs.couchbase.com/sdk-api/couchbase-ruby-client/Couchbase/Options/Query.html[API docs].
-////
+
 
 == Additional Resources
 
