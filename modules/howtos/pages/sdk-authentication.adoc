@@ -30,10 +30,11 @@ include::6.5@sdk:shared:partial$auth-overview.adoc[tag=cert-auth]
 For sample procedures whereby certificates can be generated and deployed, see xref:6.5@server:manage:manage-security/manage-certificates.adoc[Manage Certificates].
 The rest of this document assumes that the processes there, or something similar, have been followed:
 
+
+// include::example$auth.rb[tag=auth1,indent=0]
+
 [source,ruby]
 ----
-include::example$auth.rb[tag=auth1,indent=0]
-
 include::example$auth.rb[tag=auth2,indent=0]
 ----
 
