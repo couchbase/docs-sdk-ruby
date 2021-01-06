@@ -1,3 +1,0 @@
-:ruby-api-link: https://docs.couchbase.com/sdk-api/couchbase-ruby-client-3.0.2/index.html
-:ruby-current-version: 3.0.2
-:version-server: 6.5
