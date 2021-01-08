@@ -25,7 +25,7 @@ This version also demonstrated the Developer Preview of the upcoming Collections
 
 include::6.5@sdk:shared:partial$sample-application.adoc[tag=prereq]
 
-////
+
 == Preparation
 
 As well as the xref:start-using-sdk.adoc[Node.js SDK 3.0] and Couchbase Server, 
