@@ -21,3 +21,9 @@ Cluster.connect("couchbase://localhost", "Administrator", "password")
 options.authenticator = CertificateAuthenticator.new("/tmp/certificate.pem", "/tmp/private.key")
 Cluster.connect("couchbases://localhost?trust_certificate=/tmp/ca.pem", options)
 # end::auth2[]
+
+# tag::auth3[]
+# Creates a LDAP compatible password authenticator which is INSECURE if not used with TLS (uses PLAIN sasl mechanism).
+options.authenticator = PasswordAuthenticator.ldap_compatible("Administrator", "password")
+Cluster.connect("couchbase://localhost", options)
+# end::auth3[]
