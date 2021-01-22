@@ -41,3 +41,7 @@ include::example$auth.rb[tag=auth2,indent=0]
 
 include::6.5@sdk:shared:partial$auth-overview.adoc[tag=ldap]
 
+[source,ruby]
+----
+include::example$auth.rb[tag=auth3,indent=0]
+----
