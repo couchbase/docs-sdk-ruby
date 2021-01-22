@@ -1,0 +1,31 @@
+= Integrations & Ecosystem
+:navtitle: Integrations
+:page-topic-type: project-doc
+:page-aliases: 
+
+[abstract]
+
+The Couchbase Ruby SDK is often used with unofficial and third party tools and applications to integrate into broader language and platform ecosystems, and across data lakes in heterogeneous environments.
+
+
+include::6.6@sdk:shared:partial$integrations.adoc[tag=intro]
+
+
+include::6.6@sdk:shared:partial$integrations.adoc[tag=important]
+
+The Couchbase Ruby SDK integrates well with Ruby-on-Rails, particularly for use as a https://guides.rubyonrails.org/caching_with_rails.html#cache-stores[Rails Cache Store^].
+To do so, add the following to your Rails application config:
+
+[source,ruby]
+----
+config.cache_store = :couchbase_store, {
+  connection_string: "couchbase://localhost",
+  username: "app_cache_user",
+  password: "s3cret",
+  bucket: "app_cache"
+}
+----
+
+An example of just such a Cache Store can be found in our https://github.com/couchbase/couchbase-ruby-client/blob/master/lib/active_support/cache/couchbase_store.rb[Ruby client repo].
+
+// Add in Sinatra after we use it in the Travel Sample App.
