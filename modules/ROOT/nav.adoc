@@ -66,6 +66,7 @@ Couchbase Ruby SDK
 .Project Docs
 * xref:project-docs:sdk-release-notes.adoc[Release Notes]
 * xref:project-docs:compatibility.adoc[Compatibility]
+** xref:project-docs:third-party-integrations.adoc[3rd Party Integrations]
 * xref:project-docs:sdk-licenses.adoc[Licenses]
 * xref:project-docs:get-involved.adoc[Get involved]
  ** https://docs.couchbase.com/home/contribute/index.html[Improve the Docs]
