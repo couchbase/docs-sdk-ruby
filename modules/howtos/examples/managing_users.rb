@@ -106,4 +106,4 @@ result.rows.each_with_index do |row, idx|
 end
 
 user_cluster.disconnect
-#tag::accessing-data[]
+#end::accessing-data[]
