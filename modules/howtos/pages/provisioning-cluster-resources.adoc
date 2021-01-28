@@ -4,13 +4,28 @@
 
 [abstract]
 Provisioning cluster resources is managed at the collection or bucket level, depending upon the service affected.
-Common use cases are outlined here, more recherché use cases are covered in the https://pkg.go.dev/github.com/couchbase/gocb/v2?tab=doc[API docs].
+Common use cases are outlined here, more recherché use cases are covered in the https://docs.couchbase.com/sdk-api/couchbase-ruby-client/Couchbase/Management.html[API docs].
 
-include::6.5@sdk:shared:partial$flush-info-pars.adoc[tag=management-intro]
+include::6.6@sdk:shared:partial$flush-info-pars.adoc[tag=management-intro]
 
 The Ruby SDK also comes with some convenience functionality for common Couchbase management requests.
 
-Management operations in the SDK may be performed through several interfaces depending on the object (see xref:#further-reading-api-guides[below]).
+Management operations in the SDK may be performed through several interfaces depending on the object:
+
+* BucketManager -- `Couchbase::Management::BucketManager` 
+-- see https://docs.couchbase.com/sdk-api/couchbase-ruby-client/Couchbase/Management/BucketManager.html[API docs].
+* UserManager -- `Couchbase::Management::UserManager`  
+-- see https://docs.couchbase.com/sdk-api/couchbase-ruby-client/Couchbase/Management/UserManager.html[API docs].
+* QueryIndexManager -- `Couchbase::Management::QueryIndexManager` 
+-- see https://docs.couchbase.com/sdk-api/couchbase-ruby-client/Couchbase/Management/QueryIndexManager.html[API docs].
+* AnalyticsIndexManager -- `Couchbase::Management::AnalyticsIndexManager` 
+-- see https://docs.couchbase.com/sdk-api/couchbase-ruby-client/Couchbase/Management/AnalyticsIndexManager.html[API docs].
+* SearchIndexManager -- `Couchbase::Management::SearchIndexManager` 
+-- see https://docs.couchbase.com/sdk-api/couchbase-ruby-client/Couchbase/Management/SearchIndexManager.html[API docs].
+* CollectionManager -- `Couchbase::Management::CollectionManager` 
+-- see https://docs.couchbase.com/sdk-api/couchbase-ruby-client/Couchbase/Management/CollectionManager.html[API docs].
+* ViewIndexManager -- `Couchbase::Management::ViewIndexManager` 
+-- see https://docs.couchbase.com/sdk-api/couchbase-ruby-client/Couchbase/Management/ViewIndexManager.html[API docs].
 
 NOTE: When using a Couchbase version earlier than 6.5, you must create a valid Bucket connection using `cluster.Bucket(name)` before you can use cluster level managers.
 
@@ -20,11 +35,11 @@ NOTE: When using a Couchbase version earlier than 6.5, you must create a valid B
 The https://docs.couchbase.com/sdk-api/couchbase-ruby-client/Couchbase/Management/BucketManager.html[BucketManager] interface may be used to create and delete buckets from the Couchbase cluster.
 It is instantiated through the `#create_bucket()` method.
 
-include::6.5@sdk:shared:partial$flush-info-pars.adoc[tag=update-bucket-warning]
+include::6.6@sdk:shared:partial$flush-info-pars.adoc[tag=update-bucket-warning]
 
 ////
 Here is the list of parameters available:
-
+// Ruby SDK doesn't have a good equivalent list...
 |====
 | Name | Description | Can be updated
 | `Name string` | The name of the bucket, required for creation. | false
@@ -38,72 +53,60 @@ Here is the list of parameters available:
 | `CompressionMode CompressionMode` | The compression mode to apply to documents in the bucket. (note: This option is only available for Couchbase and Ephemeral buckets in Couchbase Enterprise Edition.) | true
 | `ConflictResolutionType ConflictResolutionType` | The conflict resolution type to apply to conflicts on the bucket, defaults to `seqno` | false
 |====
-
-The following example creates a "hello" bucket:
-
-[source,golang,indent=0]
-----
-include::devguide:example$go/provisioning-resources-buckets.go[tag=createBucket]	
-----
-
-We can now get this bucket and update it to enable Flush:
-
-[source,golang,indent=0]
-----
-include::devguide:example$go/provisioning-resources-buckets.go[tag=updateBucket]
-----
-
-Once you no longer need to use the bucket, you can remove it:
-
-[source,golang,indent=0]
-----
-include::devguide:example$go/provisioning-resources-buckets.go[tag=removeBucket]
-----
 ////
+The following example creates a new bucket, adding settings including making it flushable:
+
+[source,ruby]
+----
+include::example$provisioning-resources-buckets.rb[tag=create]
+----
+
+We can retrieve information on various settings:
+
+[source,ruby]
+----
+include::example$provisioning-resources-buckets.rb[tag=get]
+----
+
+As well as flushing the bucket.
+
 
 == Flushing Buckets
 
-include::6.5@sdk:shared:partial$flush-info-pars.adoc[tag=flush-intro]
+include::6.6@sdk:shared:partial$flush-info-pars.adoc[tag=flush-intro]
 
-You can flush a bucket in the SDK by using the `Flush` method.
+You can flush a bucket in the SDK by using the `flush_bucket()` method.
 
-////
-[source,golang,indent=0]
+
+[source,ruby]
 ----
-include::devguide:example$go/provisioning-resources-buckets.go[tag=flushBucket]
+flush_bucket(bucket_name, options = FlushBucketOptions.new)
 ----
 
-The `Flush` operation may fail if the bucket does not have flush enabled, in that case it will return an `ErrBucketNotFlushable`.
-////
+The `flush_bucket()` operation may fail if the bucket does not have flush enabled, in which case it will return an `Error::BucketNotFlushable`.
+
 
 == Collection Management
 
-This is a xref:6.5@server:developer-preview:collections/collections-overview.adoc[Developer Preview feature], see the https://pkg.go.dev/github.com/couchbase/gocb/v2?tab=doc#Bucket.Collections[API doc].
+This is a xref:6.@server:developer-preview:collections/collections-overview.adoc[Developer Preview feature], see the https://docs.couchbase.com/sdk-api/couchbase-ruby-client/Couchbase/Management/CollectionManager.html[API doc].
 
-////
+There is a full example in the https://github.com/couchbase/couchbase-ruby-client/blob/master/examples/managing_collections.rb[Ruby SDK repo on GitHub].
+
+
 == Index Management
 
 In general,you will rarely need to work with Index Managers from the SDK.
-For those occasions when you do, please see the relevant API docs:
+For those occasions when you do, please see the relevant API docs, linked xref:#further-reading-api-guides[below].
 
-* QueryIndexManager -- https://pkg.go.dev/github.com/couchbase/gocb/v2?tab=doc#Cluster.QueryIndexes[`Cluster.QueryIndexes()`];
-* AnalyticsIndexManager -- https://pkg.go.dev/github.com/couchbase/gocb/v2?tab=doc#Cluster.AnalyticsIndexes[`Cluster.AnalyticsIndexes()`];
-* SearchIndexManager -- https://pkg.go.dev/github.com/couchbase/gocb/v2?tab=doc#Cluster.SearchIndexes[`Cluster.SearchIndexes()`];
-* ViewIndexManager -- https://pkg.go.dev/github.com/couchbase/gocb/v2?tab=doc#Bucket.ViewIndexes[`Bucket.ViewIndexes()`].
-////
-
-// * Query
-
-// * Search - note & link to FTS page & API?
 
 == View Management
 
-include::6.5@sdk:shared:partial$flush-info-pars.adoc[tag=view-management]
+include::6.6@sdk:shared:partial$flush-info-pars.adoc[tag=view-management]
 
 In the SDK, design documents are represented by the `DesignDocument` and `View` structs.
 All operations on design documents are performed on the `ViewIndexManager` instance:
 
-////
+
 [source,golang,indent=0]
 ----
 include::devguide:example$go/provisioning-resources-views.go[tag=viewmgr]
@@ -141,7 +144,7 @@ To remove this design document:
 ----
 include::devguide:example$go/provisioning-resources-views.go[tag=removeView]
 ----
-////
+
 
 
 == Further Reading & API Guides
