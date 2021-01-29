@@ -37,23 +37,9 @@ It is instantiated through the `#create_bucket()` method.
 
 include::6.6@sdk:shared:partial$flush-info-pars.adoc[tag=update-bucket-warning]
 
-////
-Here is the list of parameters available:
-// Ruby SDK doesn't have a good equivalent list...
-|====
-| Name | Description | Can be updated
-| `Name string` | The name of the bucket, required for creation. | false
-| `FlushEnabled boolean` | Enables flushing to be performed on this bucket (see the <<go-flushing>> section below). | true
-| `ReplicaIndexDisabled boolean` | Whether or not to replicate indexes. | false
-| `RAMQuotaMB uint64` | How much memory should each node use for the bucket, required for creation. | true
-| `NumReplicas uint32` | The number of replicas to use for the bucket. | true
-| `BucketType BucketType` | The type of the bucket, required for creation. | false
-| `EvictionPolicy EvictionPolicyType` | The type of the eviction to use for the bucket, defaults to `valueOnly`. | true (note: changing will cause the bucket to restart causing temporary inaccessibility)
-| `MaxTTL time.Duration` | The default maximum time-to-live to apply to documents in the bucket. (note: This option is only available for Couchbase and Ephemeral buckets in Couchbase Enterprise Edition.) | true
-| `CompressionMode CompressionMode` | The compression mode to apply to documents in the bucket. (note: This option is only available for Couchbase and Ephemeral buckets in Couchbase Enterprise Edition.) | true
-| `ConflictResolutionType ConflictResolutionType` | The conflict resolution type to apply to conflicts on the bucket, defaults to `seqno` | false
-|====
-////
+See the https://github.com/couchbase/couchbase-ruby-client/blob/8a042f28e8cc00423edd880164e1db132c687a96/lib/couchbase/management/bucket_manager.rb#L203-L254[commented guide in the repo^] for a full list of settings options.
+
+
 The following example creates a new bucket, adding settings including making it flushable:
 
 [source,ruby]
