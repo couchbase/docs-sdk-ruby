@@ -37,7 +37,7 @@ It is instantiated through the `#create_bucket()` method.
 
 include::6.6@sdk:shared:partial$flush-info-pars.adoc[tag=update-bucket-warning]
 
-See the https://github.com/couchbase/couchbase-ruby-client/blob/8a042f28e8cc00423edd880164e1db132c687a96/lib/couchbase/management/bucket_manager.rb#L203-L254[commented guide in the repo^] for a full list of settings options.
+See the https://docs.couchbase.com/sdk-api/couchbase-ruby-client/Couchbase/Management/BucketSettings.html[API docs^] for a full list of settings options.
 
 
 The following example creates a new bucket, adding settings including making it flushable:
