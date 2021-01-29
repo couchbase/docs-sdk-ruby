@@ -106,45 +106,7 @@ include::6.6@sdk:shared:partial$flush-info-pars.adoc[tag=view-management]
 In the SDK, design documents are represented by the `DesignDocument` and `View` structs.
 All operations on design documents are performed on the `ViewIndexManager` instance:
 
-
-[source,golang,indent=0]
-----
-include::devguide:example$go/provisioning-resources-views.go[tag=viewmgr]
-----
-
-The following example upserts a design document with two views:
-
-[source,golang,indent=0]
-----
-include::devguide:example$go/provisioning-resources-views.go[tag=createView]
-----
-
-include::6.5@sdk:shared:partial$flush-info-pars.adoc[tag=one-view-update-warning]
-
-Note the use of `DesignDocumentNamespaceDevelopment`, the other option is `DesignDocumentNamespaceProduction`.
-This parameter specifies whether the design document should be created as development, or as production -- with the former running over only a small fraction of the documents.
-
-Now that we've created a design document we can fetch it:
-
-[source,golang,indent=0]
-----
-include::devguide:example$go/provisioning-resources-views.go[tag=getView]
-----
-
-We've created the design document using `DesignDocumentNamespaceDevelopment` and now want to push it to production, we can do this with:
-
-[source,golang,indent=0]
-----
-include::devguide:example$go/provisioning-resources-views.go[tag=publishView]
-----
-
-To remove this design document:
-
-[source,golang,indent=0]
-----
-include::devguide:example$go/provisioning-resources-views.go[tag=removeView]
-----
-
+There is a full example in the https://github.com/couchbase/couchbase-ruby-client/blob/master/examples/managing_view_indexes.rb[Ruby SDK repo on GitHub].
 
 
 == Further Reading & API Guides
