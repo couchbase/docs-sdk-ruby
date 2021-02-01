@@ -11,7 +11,7 @@ An async implementation is not yet available in the 3.0 API Ruby SDK.
 
 Upserting (or fetching or deleting) multiple documents simultaneously may be performed with the `get_multi()`,
 `upsert_multi()`, and `remove_multi()` methods.
-These are part of the https://docs.couchbase.com/sdk-api/couchbase-ruby-client/Couchbase/Collection.html[Collection^];
+These are part of the https://docs.couchbase.com/sdk-api/couchbase-ruby-client/Couchbase/Collection.html[Collection^].
 
 ### Using the Collection Methods
 
