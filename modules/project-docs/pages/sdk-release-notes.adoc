@@ -11,7 +11,7 @@ These pages cover the 3.0 versions of the Couchbase Ruby SDK.
 
 == SDK Installation
 
-Ruby SDK supports MRI Ruby versions 2.5, 2.6, and 2.7.
+Ruby SDK supports MRI Ruby versions 2.5, 2.6, 2.7 and 3.0.
 The source package is available through https://rubygems.org/gems/couchbase and can be installed with
 
 [source,console]
@@ -27,6 +27,7 @@ package, but also precompiled binaries for Linux and MacOS.
 [cols="4,17"]
 |===
 | Ruby ABI version | Source URL
+| 3.0   | https://packages.couchbase.com/clients/ruby/3.0.0/
 | 2.7   | https://packages.couchbase.com/clients/ruby/2.7.0/
 | 2.6   | https://packages.couchbase.com/clients/ruby/2.6.0/
 | 2.5   | https://packages.couchbase.com/clients/ruby/2.5.0/
@@ -43,7 +44,7 @@ Couchbase SDK library:
 
 [source,ruby]
 ----
-gem "couchbase", "3.0.2", :source => "https://packages.couchbase.com/clients/ruby/2.7.0/"
+gem "couchbase", "3.0.3", :source => "https://packages.couchbase.com/clients/ruby/2.7.0/"
 ----
 
 Or run in terminal:
@@ -58,12 +59,76 @@ with links to every release package along with precompiled binaries.
 
 [source,bash]
 ----
-wget https://packages.couchbase.com/clients/ruby/sdk-3.0.2/couchbase-3.0.2-x86_64-linux-2.7.0.gem
-gem install couchbase-3.0.2-x86_64-linux-2.7.0.gem
+wget https://packages.couchbase.com/clients/ruby/sdk-3.0.3/couchbase-3.0.2-x86_64-linux-2.7.0.gem
+gem install couchbase-3.0.3-x86_64-linux-2.7.0.gem
 ----
 
 
 [#latest-release]
+== Version 3.0.3 (3 February 2021)
+
+This is the fourth GA release of 3.0 series.
+
+https://docs.couchbase.com/sdk-api/couchbase-ruby-client-3.0.3/index.html[API Reference]
+
+* https://issues.couchbase.com/browse/RCBC-226[RCBC-226]:
+  add minimal durability setting in bucket manager
+
+* https://issues.couchbase.com/browse/RCBC-238[RCBC-238]:
+  refactor expiration (TTL) options:
+
+   - it accepts `Time` instance in addition to `Duration` (`#in_seconds`)
+   - when `Integer` passed, it implicitly converts to epoch time to resolve disambiguation
+
+* https://issues.couchbase.com/browse/RCBC-291[RCBC-291]:
+  Implementation of `ActiveSupport::Cache::Store` interface. To enable it, put the following lines into application configuration section:
+
+[source,ruby]
+----
+config.cache_store = :couchbase_store, {
+  connection_string: "couchbase://localhost",
+  username: "app_cache_user",
+  password: "s3cret",
+  bucket: "app_cache"
+}
+----
+
+* https://issues.couchbase.com/browse/RCBC-292[RCBC-292]:
+  Swap bytes in CAS for compatiblity. Now the value of CAS matches to representation in other services (e.g. Query).
+
+* https://issues.couchbase.com/browse/RCBC-300[RCBC-300]:
+  Allow to enforce PLAIN SASL mechanism. It is necessary when LDAP authentication enabled, but SDK does not use client
+  certificate to authenticate.
+
+* https://issues.couchbase.com/browse/RCBC-237[RCBC-237]:
+  Add collections support for analytics. `Scope#analytics_query` automatically sets scope qualifier. Also it is possible
+  to provide custom qualifier in the options.
+
+* Status of single operation now accessible on result object of `get_multi`, `upsert_multi` and `remove_multi`
+  operations.
+
+* Error context objects now accessible on exceptions (via `#context` method).
+
+[cols="9,5,19"]
+|===
+| Platform           | Ruby ABI | File
+| Checksums          |          | https://packages.couchbase.com/clients/ruby/sdk-3.0.3/couchbase-3.0.3.sha256sum[couchbase-3.0.3.sha256sum]
+| Source Archive     |          | https://packages.couchbase.com/clients/ruby/sdk-3.0.3/couchbase-3.0.3.gem[couchbase-3.0.3.gem]
+| Linux x86_64       | 3.0.0    | https://packages.couchbase.com/clients/ruby/sdk-3.0.3/couchbase-3.0.3-x86_64-linux-3.0.0.gem[couchbase-3.0.3-x86_64-linux-3.0.0.gem]
+| Linux x86_64       | 2.7.0    | https://packages.couchbase.com/clients/ruby/sdk-3.0.3/couchbase-3.0.3-x86_64-linux-2.7.0.gem[couchbase-3.0.3-x86_64-linux-2.7.0.gem]
+| Linux x86_64       | 2.6.0    | https://packages.couchbase.com/clients/ruby/sdk-3.0.3/couchbase-3.0.3-x86_64-linux-2.6.0.gem[couchbase-3.0.3-x86_64-linux-2.6.0.gem]
+| Linux x86_64       | 2.5.0    | https://packages.couchbase.com/clients/ruby/sdk-3.0.3/couchbase-3.0.3-x86_64-linux-2.5.0.gem[couchbase-3.0.3-x86_64-linux-2.5.0.gem]
+| macOS 11 Universal | 2.6.0    | https://packages.couchbase.com/clients/ruby/sdk-3.0.3/couchbase-3.0.3-universal-darwin-20-2.6.0.gem[couchbase-3.0.3-universal-darwin-20-2.6.0.gem]
+| macOS 10.15 x84_64 | 3.0.0    | https://packages.couchbase.com/clients/ruby/sdk-3.0.3/couchbase-3.0.3-x86_64-darwin-19-3.0.0.gem[couchbase-3.0.3-x86_64-darwin-19-3.0.0.gem]
+| macOS 10.15 x84_64 | 2.7.0    | https://packages.couchbase.com/clients/ruby/sdk-3.0.3/couchbase-3.0.3-x86_64-darwin-19-2.7.0.gem[couchbase-3.0.3-x86_64-darwin-19-2.7.0.gem]
+| macOS 10.15 x84_64 | 2.6.0    | https://packages.couchbase.com/clients/ruby/sdk-3.0.3/couchbase-3.0.3-x86_64-darwin-19-2.6.0.gem[couchbase-3.0.3-x86_64-darwin-19-2.6.0.gem]
+| macOS 10.15 x84_64 | 2.5.0    | https://packages.couchbase.com/clients/ruby/sdk-3.0.3/couchbase-3.0.3-x86_64-darwin-19-2.5.0.gem[couchbase-3.0.3-x86_64-darwin-19-2.5.0.gem]
+| macOS 10.13 x84_64 | 3.0.0    | https://packages.couchbase.com/clients/ruby/sdk-3.0.3/couchbase-3.0.3-x86_64-darwin-17-3.0.0.gem[couchbase-3.0.3-x86_64-darwin-17-3.0.0.gem]
+| macOS 10.13 x84_64 | 2.7.0    | https://packages.couchbase.com/clients/ruby/sdk-3.0.3/couchbase-3.0.3-x86_64-darwin-17-2.7.0.gem[couchbase-3.0.3-x86_64-darwin-17-2.7.0.gem]
+| macOS 10.13 x84_64 | 2.6.0    | https://packages.couchbase.com/clients/ruby/sdk-3.0.3/couchbase-3.0.3-x86_64-darwin-17-2.6.0.gem[couchbase-3.0.3-x86_64-darwin-17-2.6.0.gem]
+| macOS 10.13 x84_64 | 2.5.0    | https://packages.couchbase.com/clients/ruby/sdk-3.0.3/couchbase-3.0.3-x86_64-darwin-17-2.5.0.gem[couchbase-3.0.3-x86_64-darwin-17-2.5.0.gem]
+|===
+
 == Version 3.0.2 (3 November 2020)
 
 This is the third GA release of 3.0 series.
@@ -71,7 +136,7 @@ This is the third GA release of 3.0 series.
 https://docs.couchbase.com/sdk-api/couchbase-ruby-client-3.0.2/index.html[API Reference]
 
 * https://issues.couchbase.com/browse/RCBC-281[RCBC-281]:
-  Implemented batching API for several data operations. 
+  Implemented batching API for several data operations.
   (Read docs for
   https://docs.couchbase.com/sdk-api/couchbase-ruby-client-3.0.2/Couchbase/Collection.html#get_multi-instance_method[Collection#get_multi],
   https://docs.couchbase.com/sdk-api/couchbase-ruby-client-3.0.2/Couchbase/Collection.html#upsert_multi-instance_method[Collection#upsert_multi],
@@ -81,11 +146,11 @@ https://docs.couchbase.com/sdk-api/couchbase-ruby-client-3.0.2/index.html[API Re
   Implemented ping and diagnostics APIs.
 
 * https://issues.couchbase.com/browse/RCBC-278[RCBC-278]:
-  Exposed getter and setter for log level, for example, `Couchbase.log_level = :trace` will switch logger to maximum verbosity. 
+  Exposed getter and setter for log level, for example, `Couchbase.log_level = :trace` will switch logger to maximum verbosity.
   (details in https://docs.couchbase.com/sdk-api/couchbase-ruby-client-3.0.2/Couchbase.html#log_level=-class_method[Couchbase] module documentation).
 
 * https://issues.couchbase.com/browse/RCBC-277[RCBC-277]:
-  Implemented append/prepend for binary collection 
+  Implemented append/prepend for binary collection
   (more in https://docs.couchbase.com/sdk-api/couchbase-ruby-client-3.0.2/Couchbase/BinaryCollection.html[BinaryCollection] documentation).
 
 * https://issues.couchbase.com/browse/RCBC-276[RCBC-276]:
