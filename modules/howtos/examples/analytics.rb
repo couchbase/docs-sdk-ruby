@@ -5,7 +5,7 @@ include Couchbase # to avoid repeating module name
 
 options = Cluster::ClusterOptions.new
 options.authenticate("Administrator", "password")
-cluster = Cluster.connect("couchbase://localhost", options)
+cluster = Cluster.connect("couchbase://127.0.0.1", options)
 
 options = Management::AnalyticsIndexManager::CreateDatasetOptions.new
 options.ignore_if_exists = true
@@ -77,3 +77,19 @@ result = cluster.analytics_query(
 result = cluster.analytics_query("SELECT 1=1")
 puts "Execution time: #{result.meta_data.metrics.execution_time}"
 # end::printmetrics[]
+
+# tag::handle-collection[]
+result = cluster.analytics_query('SELECT airportname, country FROM `airports-collection` WHERE country="France" LIMIT 3')
+# end::handle-collection[]
+result.rows.each do |row|
+  puts row
+end
+
+# # tag::handle-scope[]
+# bucket = cluster.bucket("travel-sample")
+# scope = bucket.scope("inventory")
+# result = scope.analytics_query('SELECT airportname, country FROM `airports-collection` WHERE country="France" LIMIT 3')
+# # end::handle-scope[]
+# result.rows.each do |row|
+#   puts row
+# end

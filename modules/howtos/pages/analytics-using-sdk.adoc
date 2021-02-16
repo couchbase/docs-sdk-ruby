@@ -133,3 +133,27 @@ include::example$analytics.rb[tag=scanconsistency]
 ----
 
 
+
+== Scoped Queries on Named Collections
+
+Given a dataset created against a collection, for example:
+
+[source,n1ql]
+----
+CREATE DATASET `airports-collection` ON `travel-sample`.inventory.airport;
+----
+
+You can run a query as follows:
+
+[source,ruby]
+----
+include::../examples/analytics.rb[tag=handle-collection]
+----
+
+// // The following is pending a query
+// In addition to running a query via the `Cluster` object, you can run one via the `Scope` object.
+
+// [source,ruby]
+// ----
+// include::../examples/analytics.rb[tag=handle-scope]
+// ----
