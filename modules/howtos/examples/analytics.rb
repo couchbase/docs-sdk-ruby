@@ -3,6 +3,11 @@ require "couchbase"
 include Couchbase # to avoid repeating module name
 # end::imports[]
 
+# Requires:
+#   `travel-sample` bucket
+#     *  CREATE DATASET `airports` ON `travel-sample` where `type` = "airport";
+#     *  ALTER COLLECTION `travel-sample`.`inventory`.`airport` ENABLE ANALYTICS;
+
 options = Cluster::ClusterOptions.new
 options.authenticate("Administrator", "password")
 cluster = Cluster.connect("couchbase://127.0.0.1", options)
@@ -79,17 +84,17 @@ puts "Execution time: #{result.meta_data.metrics.execution_time}"
 # end::printmetrics[]
 
 # tag::handle-collection[]
-result = cluster.analytics_query('SELECT airportname, country FROM `airports-collection` WHERE country="France" LIMIT 3')
+result = cluster.analytics_query('SELECT airportname, country FROM `travel-sample`.inventory.airport WHERE country="France" LIMIT 3')
 # end::handle-collection[]
 result.rows.each do |row|
   puts row
 end
 
-# # tag::handle-scope[]
-# bucket = cluster.bucket("travel-sample")
-# scope = bucket.scope("inventory")
-# result = scope.analytics_query('SELECT airportname, country FROM `airports-collection` WHERE country="France" LIMIT 3')
-# # end::handle-scope[]
-# result.rows.each do |row|
-#   puts row
-# end
+# tag::handle-scope[]
+bucket = cluster.bucket("travel-sample")
+scope = bucket.scope("inventory")
+result = scope.analytics_query('SELECT airportname, country FROM airport WHERE country="France" LIMIT 3')
+# end::handle-scope[]
+result.rows.each do |row|
+  puts row
+end
