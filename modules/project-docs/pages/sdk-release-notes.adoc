@@ -7,11 +7,11 @@
 [abstract]
 Release notes, installation instructions, and download archive for the Couchbase Ruby Client.
 
-These pages cover the 3.0 versions of the Couchbase Ruby SDK.
+These pages cover the 3.1 versions of the Couchbase Ruby SDK.
 
 == SDK Installation
 
-Ruby SDK supports MRI Ruby versions 2.5, 2.6, and 2.7.
+Ruby SDK supports MRI Ruby versions 2.5, 2.6, 2.7 and 3.0.
 The source package is available through https://rubygems.org/gems/couchbase and can be installed with
 
 [source,console]
@@ -27,11 +27,10 @@ package, but also precompiled binaries for Linux and MacOS.
 [cols="4,17"]
 |===
 | Ruby ABI version | Source URL
+| 3.0   | https://packages.couchbase.com/clients/ruby/3.0.0/
 | 2.7   | https://packages.couchbase.com/clients/ruby/2.7.0/
 | 2.6   | https://packages.couchbase.com/clients/ruby/2.6.0/
 | 2.5   | https://packages.couchbase.com/clients/ruby/2.5.0/
-// Hidden. Binary build for the Ruby 2.2.0 on Ubuntu 16.04, that has reached EOL
-// | 2.2   | https://packages.couchbase.com/clients/ruby/2.2.0/
 |===
 
 To use official repository, it have to be registered in the `.gemrc` file:
@@ -43,7 +42,7 @@ Couchbase SDK library:
 
 [source,ruby]
 ----
-gem "couchbase", "3.0.2", :source => "https://packages.couchbase.com/clients/ruby/2.7.0/"
+gem "couchbase", "3.1.0", :source => "https://packages.couchbase.com/clients/ruby/2.7.0/"
 ----
 
 Or run in terminal:
@@ -58,160 +57,59 @@ with links to every release package along with precompiled binaries.
 
 [source,bash]
 ----
-wget https://packages.couchbase.com/clients/ruby/sdk-3.0.2/couchbase-3.0.2-x86_64-linux-2.7.0.gem
-gem install couchbase-3.0.2-x86_64-linux-2.7.0.gem
+wget https://packages.couchbase.com/clients/ruby/sdk-3.1.0/couchbase-3.1.0-x86_64-linux-2.7.0.gem
+gem install couchbase-3.1.0-x86_64-linux-2.7.0.gem
 ----
 
 
 [#latest-release]
-== Version 3.0.2 (3 November 2020)
+== Version 3.1.0 (24 March 2021)
 
-This is the third GA release of 3.0 series.
+This is the first GA release of 3.1 series.
 
-https://docs.couchbase.com/sdk-api/couchbase-ruby-client-3.0.2/index.html[API Reference]
+https://docs.couchbase.com/sdk-api/couchbase-ruby-client-3.1.0/index.html[API Reference]
 
-* https://issues.couchbase.com/browse/RCBC-281[RCBC-281]:
-  Implemented batching API for several data operations. 
-  (Read docs for
-  https://docs.couchbase.com/sdk-api/couchbase-ruby-client-3.0.2/Couchbase/Collection.html#get_multi-instance_method[Collection#get_multi],
-  https://docs.couchbase.com/sdk-api/couchbase-ruby-client-3.0.2/Couchbase/Collection.html#upsert_multi-instance_method[Collection#upsert_multi],
-  and https://docs.couchbase.com/sdk-api/couchbase-ruby-client-3.0.2/Couchbase/Collection.html#remove_multi-instance_method[Collection#remove_multi]).
-
-* https://issues.couchbase.com/browse/RCBC-223[RCBC-223], https://issues.couchbase.com/browse/RCBC-253[RCBC-253]:
-  Implemented ping and diagnostics APIs.
-
-* https://issues.couchbase.com/browse/RCBC-278[RCBC-278]:
-  Exposed getter and setter for log level, for example, `Couchbase.log_level = :trace` will switch logger to maximum verbosity. 
-  (details in https://docs.couchbase.com/sdk-api/couchbase-ruby-client-3.0.2/Couchbase.html#log_level=-class_method[Couchbase] module documentation).
-
-* https://issues.couchbase.com/browse/RCBC-277[RCBC-277]:
-  Implemented append/prepend for binary collection 
-  (more in https://docs.couchbase.com/sdk-api/couchbase-ruby-client-3.0.2/Couchbase/BinaryCollection.html[BinaryCollection] documentation).
+* https://issues.couchbase.com/browse/RCBC-314[RCBC-314]:
+  Fix class resolution for Analytics on scope level.
 
 * https://issues.couchbase.com/browse/RCBC-276[RCBC-276]:
-  Support for `create_as_deleted` option for `Collection#mutate_in` to create document in tombstone state.
+  Mark `create_as_deleted` of subdocument API as private.
 
-* Build, test, and documentation improvements.
+* https://issues.couchbase.com/browse/RCBC-287[RCBC-287]:
+  Update URLs of endpoints for Collections management API.
 
-[cols="9,5,19"]
-|===
-| Platform           | Ruby ABI | File
-| Checksums          |          | https://packages.couchbase.com/clients/ruby/sdk-3.0.2/couchbase-3.0.2.sha256sum[couchbase-3.0.2.sha256sum]
-| Source Archive     |          | https://packages.couchbase.com/clients/ruby/sdk-3.0.2/couchbase-3.0.2.gem[couchbase-3.0.2.gem]
-| Linux x86_64       | 2.7.0    | https://packages.couchbase.com/clients/ruby/sdk-3.0.2/couchbase-3.0.2-x86_64-linux-2.7.0.gem[couchbase-3.0.2-x86_64-linux-2.7.0.gem]
-| Linux x86_64       | 2.6.0    | https://packages.couchbase.com/clients/ruby/sdk-3.0.2/couchbase-3.0.2-x86_64-linux-2.6.0.gem[couchbase-3.0.2-x86_64-linux-2.6.0.gem]
-| Linux x86_64       | 2.5.0    | https://packages.couchbase.com/clients/ruby/sdk-3.0.2/couchbase-3.0.2-x86_64-linux-2.5.0.gem[couchbase-3.0.2-x86_64-linux-2.5.0.gem]
-| macOS 10.15 x84_64 | 2.7.0    | https://packages.couchbase.com/clients/ruby/sdk-3.0.2/couchbase-3.0.2-x86_64-darwin-19-2.7.0.gem[couchbase-3.0.2-x86_64-darwin-19-2.7.0.gem]
-| macOS 10.15 x84_64 | 2.6.0    | https://packages.couchbase.com/clients/ruby/sdk-3.0.2/couchbase-3.0.2-x86_64-darwin-19-2.6.0.gem[couchbase-3.0.2-x86_64-darwin-19-2.6.0.gem]
-| macOS 10.15 x84_64 | 2.5.0    | https://packages.couchbase.com/clients/ruby/sdk-3.0.2/couchbase-3.0.2-x86_64-darwin-19-2.5.0.gem[couchbase-3.0.2-x86_64-darwin-19-2.5.0.gem]
-| macOS 10.13 x84_64 | 2.7.0    | https://packages.couchbase.com/clients/ruby/sdk-3.0.2/couchbase-3.0.2-x86_64-darwin-17-2.7.0.gem[couchbase-3.0.2-x86_64-darwin-17-2.7.0.gem]
-| macOS 10.13 x84_64 | 2.6.0    | https://packages.couchbase.com/clients/ruby/sdk-3.0.2/couchbase-3.0.2-x86_64-darwin-17-2.6.0.gem[couchbase-3.0.2-x86_64-darwin-17-2.6.0.gem]
-| macOS 10.13 x84_64 | 2.5.0    | https://packages.couchbase.com/clients/ruby/sdk-3.0.2/couchbase-3.0.2-x86_64-darwin-17-2.5.0.gem[couchbase-3.0.2-x86_64-darwin-17-2.5.0.gem]
-// Hidden. Binary build for the Ruby 2.2.0 on Ubuntu 16.04, that has reached EOL
-// | Ubuntu 16.04  | 2.2.0 | https://packages.couchbase.com/clients/ruby/sdk-3.0.2/couchbase-3.0.2-x86_64-linux-2.2.0.gem[couchbase-3.0.2-x86_64-linux-2.2.0.gem]
-|===
+* https://issues.couchbase.com/browse/RCBC-303[RCBC-303]:
+  Deprecate `CollectionManager#get_scope`, instead the application should use `CollectionManager#get_scopes` and
+iterate/filter the results.
 
+* https://issues.couchbase.com/browse/RCBC-313[RCBC-313]:
+  Send collection name as value on network level for `0xbb` (`GET_COLLECTION_ID`) command.
 
-== Version 3.0.1 (5 October 2020)
+* https://issues.couchbase.com/browse/RCBC-302[RCBC-302]:
+  Allow to disable configuration push from server (using `enable_clustermap_notification=false` in the connection string).
 
-This is the second GA release.
+* https://issues.couchbase.com/browse/RCBC-307[RCBC-307]:
+  Allow to disable unordered execution of commands (using `enable_unordered_execution=false` in the connection string).
 
-* https://issues.couchbase.com/browse/RCBC-219[RCBC-219], https://issues.couchbase.com/browse/RCBC-252[RCBC-252]:
-  Implemented diagnostics API.
-
-* https://issues.couchbase.com/browse/RCBC-272[RCBC-272]:
-  Allow disabling of scoring in Full-Text Search results.
-
-* https://issues.couchbase.com/browse/RCBC-229[RCBC-229]:
-  Geopolygon Search support.
-
-* https://issues.couchbase.com/browse/RCBC-271[RCBC-271]:
-  Enhanced user management for collections.
-
-* https://issues.couchbase.com/browse/RCBC-230[RCBC-230]:
-  Added query option for flex index.
-
-* https://issues.couchbase.com/browse/RCBC-233[RCBC-233]:
-  Updated eviction policy types (now it covers ephemeral buckets).
-
-* https://issues.couchbase.com/browse/RCBC-274[RCBC-274]:
-  Skip non-kv nodes when switching networks (fixes warnings in Cloud environment).
-
-* https://issues.couchbase.com/browse/RCBC-266[RCBC-266]:
-  Deprecated `GetResult.expiry`.
-
-* Fixed Query prepared statements cache for older servers.
-
-* Build and test system improvements
-
-https://docs.couchbase.com/sdk-api/couchbase-ruby-client-3.0.1/index.html[API Reference]
+* The library does not keep GVL lock durng IO anymore. It release lock when scheduling command, and acquire it back once command is completed. This change allows runtime to use fibers or threads and do something useful, while the operation is in progress.
 
 [cols="9,5,19"]
 |===
 | Platform           | Ruby ABI | File
-| Checksums          |          | https://packages.couchbase.com/clients/ruby/sdk-3.0.1/couchbase-3.0.1.sha256sum[couchbase-3.0.1.sha256sum]
-| Source Archive     |          | https://packages.couchbase.com/clients/ruby/sdk-3.0.1/couchbase-3.0.1.gem[couchbase-3.0.1.gem]
-| Linux x86_64       | 2.7.0    | https://packages.couchbase.com/clients/ruby/sdk-3.0.1/couchbase-3.0.1-x86_64-linux-2.7.0.gem[couchbase-3.0.1-x86_64-linux-2.7.0.gem]
-| Linux x86_64       | 2.6.0    | https://packages.couchbase.com/clients/ruby/sdk-3.0.1/couchbase-3.0.1-x86_64-linux-2.6.0.gem[couchbase-3.0.1-x86_64-linux-2.6.0.gem]
-| Linux x86_64       | 2.5.0    | https://packages.couchbase.com/clients/ruby/sdk-3.0.1/couchbase-3.0.1-x86_64-linux-2.5.0.gem[couchbase-3.0.1-x86_64-linux-2.5.0.gem]
-| macOS 10.15 x84_64 | 2.7.0    | https://packages.couchbase.com/clients/ruby/sdk-3.0.1/couchbase-3.0.1-x86_64-darwin-19-2.7.0.gem[couchbase-3.0.1-x86_64-darwin-19-2.7.0.gem]
-| macOS 10.15 x84_64 | 2.6.0    | https://packages.couchbase.com/clients/ruby/sdk-3.0.1/couchbase-3.0.1-x86_64-darwin-19-2.6.0.gem[couchbase-3.0.1-x86_64-darwin-19-2.6.0.gem]
-| macOS 10.15 x84_64 | 2.5.0    | https://packages.couchbase.com/clients/ruby/sdk-3.0.1/couchbase-3.0.1-x86_64-darwin-19-2.5.0.gem[couchbase-3.0.1-x86_64-darwin-19-2.5.0.gem]
-| macOS 10.13 x84_64 | 2.7.0    | https://packages.couchbase.com/clients/ruby/sdk-3.0.1/couchbase-3.0.1-x86_64-darwin-17-2.7.0.gem[couchbase-3.0.1-x86_64-darwin-17-2.7.0.gem]
-| macOS 10.13 x84_64 | 2.6.0    | https://packages.couchbase.com/clients/ruby/sdk-3.0.1/couchbase-3.0.1-x86_64-darwin-17-2.6.0.gem[couchbase-3.0.1-x86_64-darwin-17-2.6.0.gem]
-| macOS 10.13 x84_64 | 2.5.0    | https://packages.couchbase.com/clients/ruby/sdk-3.0.1/couchbase-3.0.1-x86_64-darwin-17-2.5.0.gem[couchbase-3.0.1-x86_64-darwin-17-2.5.0.gem]
-// Hidden. Binary build for the Ruby 2.2.0 on Ubuntu 16.04, that has reached EOL
-// | Ubuntu 16.04  | 2.2.0 | https://packages.couchbase.com/clients/ruby/sdk-3.0.1/couchbase-3.0.1-x86_64-linux-2.2.0.gem[couchbase-3.0.1-x86_64-linux-2.2.0.gem]
-|===
-
-
-== Version 3.0.0 (8 September 2020)
-
-This is the first GA release.
-
-https://docs.couchbase.com/sdk-api/couchbase-ruby-client-3.0.0/index.html[API Reference]
-
-[cols="9,5,19"]
-|===
-| Platform           | Ruby ABI | File
-| Checksums          |          | https://packages.couchbase.com/clients/ruby/sdk-3.0.0/couchbase-3.0.0.sha256sum[couchbase-3.0.0.sha256sum]
-| Source Archive     |          | https://packages.couchbase.com/clients/ruby/sdk-3.0.0/couchbase-3.0.0.gem[couchbase-3.0.0.gem]
-| Linux x86_64       | 2.7.0    | https://packages.couchbase.com/clients/ruby/sdk-3.0.0/couchbase-3.0.0-x86_64-linux-2.7.0.gem[couchbase-3.0.0-x86_64-linux-2.7.0.gem]
-| Linux x86_64       | 2.6.0    | https://packages.couchbase.com/clients/ruby/sdk-3.0.0/couchbase-3.0.0-x86_64-linux-2.6.0.gem[couchbase-3.0.0-x86_64-linux-2.6.0.gem]
-| Linux x86_64       | 2.5.0    | https://packages.couchbase.com/clients/ruby/sdk-3.0.0/couchbase-3.0.0-x86_64-linux-2.5.0.gem[couchbase-3.0.0-x86_64-linux-2.5.0.gem]
-| macOS 10.15 x84_64 | 2.7.0    | https://packages.couchbase.com/clients/ruby/sdk-3.0.0/couchbase-3.0.0-x86_64-darwin-19-2.7.0.gem[couchbase-3.0.0-x86_64-darwin-19-2.7.0.gem]
-| macOS 10.15 x84_64 | 2.6.0    | https://packages.couchbase.com/clients/ruby/sdk-3.0.0/couchbase-3.0.0-x86_64-darwin-19-2.6.0.gem[couchbase-3.0.0-x86_64-darwin-19-2.6.0.gem]
-| macOS 10.15 x84_64 | 2.5.0    | https://packages.couchbase.com/clients/ruby/sdk-3.0.0/couchbase-3.0.0-x86_64-darwin-19-2.5.0.gem[couchbase-3.0.0-x86_64-darwin-19-2.5.0.gem]
-| macOS 10.13 x84_64 | 2.7.0    | https://packages.couchbase.com/clients/ruby/sdk-3.0.0/couchbase-3.0.0-x86_64-darwin-17-2.7.0.gem[couchbase-3.0.0-x86_64-darwin-17-2.7.0.gem]
-| macOS 10.13 x84_64 | 2.6.0    | https://packages.couchbase.com/clients/ruby/sdk-3.0.0/couchbase-3.0.0-x86_64-darwin-17-2.6.0.gem[couchbase-3.0.0-x86_64-darwin-17-2.6.0.gem]
-| macOS 10.13 x84_64 | 2.5.0    | https://packages.couchbase.com/clients/ruby/sdk-3.0.0/couchbase-3.0.0-x86_64-darwin-17-2.5.0.gem[couchbase-3.0.0-x86_64-darwin-17-2.5.0.gem]
-// Hidden. Binary build for the Ruby 2.2.0 on Ubuntu 16.04, that has reached EOL
-// | Ubuntu 16.04  | 2.2.0 | https://packages.couchbase.com/clients/ruby/sdk-3.0.0/couchbase-3.0.0-x86_64-linux-2.2.0.gem[couchbase-3.0.0-x86_64-linux-2.2.0.gem]
-|===
-
-
-== Version 3.0.0.beta.1 (7 August 2020)
-
-This is the first beta release.
-
-https://docs.couchbase.com/sdk-api/couchbase-ruby-client-3.0.0.beta.1/index.html[API Reference]
-
-[cols="9,5,19"]
-|===
-| Platform           | Ruby ABI | File
-| Checksums          |          | https://packages.couchbase.com/clients/ruby/sdk-3.0.0.beta.1/couchbase-3.0.0.beta.1.sha256sum[couchbase-3.0.0.beta.1.sha256sum]
-| Source Archive     |          | https://packages.couchbase.com/clients/ruby/sdk-3.0.0.beta.1/couchbase-3.0.0.beta.1.gem[couchbase-3.0.0.beta.1.gem]
-| Linux x86_64       | 2.7.0    | https://packages.couchbase.com/clients/ruby/sdk-3.0.0.beta.1/couchbase-3.0.0.beta.1-x86_64-linux-2.7.0.gem[couchbase-3.0.0.beta.1-x86_64-linux-2.7.0.gem]
-| Linux x86_64       | 2.6.0    | https://packages.couchbase.com/clients/ruby/sdk-3.0.0.beta.1/couchbase-3.0.0.beta.1-x86_64-linux-2.6.0.gem[couchbase-3.0.0.beta.1-x86_64-linux-2.6.0.gem]
-| Linux x86_64       | 2.5.0    | https://packages.couchbase.com/clients/ruby/sdk-3.0.0.beta.1/couchbase-3.0.0.beta.1-x86_64-linux-2.5.0.gem[couchbase-3.0.0.beta.1-x86_64-linux-2.5.0.gem]
-| macOS 10.15 x84_64 | 2.7.0    | https://packages.couchbase.com/clients/ruby/sdk-3.0.0.beta.1/couchbase-3.0.0.beta.1-x86_64-darwin-19-2.7.0.gem[couchbase-3.0.0.beta.1-x86_64-darwin-19-2.7.0.gem]
-| macOS 10.15 x84_64 | 2.6.0    | https://packages.couchbase.com/clients/ruby/sdk-3.0.0.beta.1/couchbase-3.0.0.beta.1-x86_64-darwin-19-2.6.0.gem[couchbase-3.0.0.beta.1-x86_64-darwin-19-2.6.0.gem]
-| macOS 10.15 x84_64 | 2.5.0    | https://packages.couchbase.com/clients/ruby/sdk-3.0.0.beta.1/couchbase-3.0.0.beta.1-x86_64-darwin-19-2.5.0.gem[couchbase-3.0.0.beta.1-x86_64-darwin-19-2.5.0.gem]
-| macOS 10.13 x84_64 | 2.7.0    | https://packages.couchbase.com/clients/ruby/sdk-3.0.0.beta.1/couchbase-3.0.0.beta.1-x86_64-darwin-17-2.7.0.gem[couchbase-3.0.0.beta.1-x86_64-darwin-17-2.7.0.gem]
-| macOS 10.13 x84_64 | 2.6.0    | https://packages.couchbase.com/clients/ruby/sdk-3.0.0.beta.1/couchbase-3.0.0.beta.1-x86_64-darwin-17-2.6.0.gem[couchbase-3.0.0.beta.1-x86_64-darwin-17-2.6.0.gem]
-| macOS 10.13 x84_64 | 2.5.0    | https://packages.couchbase.com/clients/ruby/sdk-3.0.0.beta.1/couchbase-3.0.0.beta.1-x86_64-darwin-17-2.5.0.gem[couchbase-3.0.0.beta.1-x86_64-darwin-17-2.5.0.gem]
-// Hidden. Binary build for the Ruby 2.2.0 on Ubuntu 16.04, that has reached EOL
-// | Ubuntu 16.04  | 2.2.0 | https://packages.couchbase.com/clients/ruby/sdk-3.0.0.beta.1/couchbase-3.0.0.beta.1-x86_64-linux-2.2.0.gem[couchbase-3.0.0.beta.1-x86_64-linux-2.2.0.gem]
+| Checksums          |          | https://packages.couchbase.com/clients/ruby/sdk-3.1.0/couchbase-3.1.0.sha256sum[couchbase-3.1.0.sha256sum]
+| Source Archive     |          | https://packages.couchbase.com/clients/ruby/sdk-3.1.0/couchbase-3.1.0.gem[couchbase-3.1.0.gem]
+| Linux x86_64       | 3.0.0    | https://packages.couchbase.com/clients/ruby/sdk-3.1.0/couchbase-3.1.0-x86_64-linux-3.0.0.gem[couchbase-3.1.0-x86_64-linux-3.0.0.gem]
+| Linux x86_64       | 2.7.0    | https://packages.couchbase.com/clients/ruby/sdk-3.1.0/couchbase-3.1.0-x86_64-linux-2.7.0.gem[couchbase-3.1.0-x86_64-linux-2.7.0.gem]
+| Linux x86_64       | 2.6.0    | https://packages.couchbase.com/clients/ruby/sdk-3.1.0/couchbase-3.1.0-x86_64-linux-2.6.0.gem[couchbase-3.1.0-x86_64-linux-2.6.0.gem]
+| Linux x86_64       | 2.5.0    | https://packages.couchbase.com/clients/ruby/sdk-3.1.0/couchbase-3.1.0-x86_64-linux-2.5.0.gem[couchbase-3.1.0-x86_64-linux-2.5.0.gem]
+| macOS 10.15 x84_64 | 3.0.0    | https://packages.couchbase.com/clients/ruby/sdk-3.1.0/couchbase-3.1.0-x86_64-darwin-19-3.0.0.gem[couchbase-3.1.0-x86_64-darwin-19-3.0.0.gem]
+| macOS 10.15 x84_64 | 2.7.0    | https://packages.couchbase.com/clients/ruby/sdk-3.1.0/couchbase-3.1.0-x86_64-darwin-19-2.7.0.gem[couchbase-3.1.0-x86_64-darwin-19-2.7.0.gem]
+| macOS 10.15 x84_64 | 2.6.0    | https://packages.couchbase.com/clients/ruby/sdk-3.1.0/couchbase-3.1.0-x86_64-darwin-19-2.6.0.gem[couchbase-3.1.0-x86_64-darwin-19-2.6.0.gem]
+| macOS 10.15 x84_64 | 2.5.0    | https://packages.couchbase.com/clients/ruby/sdk-3.1.0/couchbase-3.1.0-x86_64-darwin-19-2.5.0.gem[couchbase-3.1.0-x86_64-darwin-19-2.5.0.gem]
+| macOS 10.13 x84_64 | 3.0.0    | https://packages.couchbase.com/clients/ruby/sdk-3.1.0/couchbase-3.1.0-x86_64-darwin-17-3.0.0.gem[couchbase-3.1.0-x86_64-darwin-17-3.0.0.gem]
+| macOS 10.13 x84_64 | 2.7.0    | https://packages.couchbase.com/clients/ruby/sdk-3.1.0/couchbase-3.1.0-x86_64-darwin-17-2.7.0.gem[couchbase-3.1.0-x86_64-darwin-17-2.7.0.gem]
+| macOS 10.13 x84_64 | 2.6.0    | https://packages.couchbase.com/clients/ruby/sdk-3.1.0/couchbase-3.1.0-x86_64-darwin-17-2.6.0.gem[couchbase-3.1.0-x86_64-darwin-17-2.6.0.gem]
+| macOS 10.13 x84_64 | 2.5.0    | https://packages.couchbase.com/clients/ruby/sdk-3.1.0/couchbase-3.1.0-x86_64-darwin-17-2.5.0.gem[couchbase-3.1.0-x86_64-darwin-17-2.5.0.gem]
 |===
 
 
