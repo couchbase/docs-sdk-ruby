@@ -88,21 +88,21 @@ include::example$provisioning-resources-collections.rb[tag=create-collection-man
 
 You can create a scope:
 
-[source,java]
+[source,ruby]
 ----
 include::example$provisioning-resources-collections.rb[tag=create-scope,indent=0]
 ----
 
 You can then create a collection within that scope:
 
-[source,java]
+[source,ruby]
 ----
 include::example$provisioning-resources-collections.rb[tag=create-collection,indent=0]
 ----
 
 Finally, you can drop unneeded collections and scopes:
 
-[source,java]
+[source,ruby]
 ----
 include::example$provisioning-resources-collections.rb[tag=drop-collection,indent=0]
 
@@ -114,7 +114,7 @@ The same role also lets you manage Collections, though a more minimal set of pri
 
 You can create users with the appropriate RBAC programmatically:
 
-[source,java]
+[source,ruby]
 ----
 include::example$provisioning-resources-collections.rb[tag=bucketAdmin, indent=0]
 

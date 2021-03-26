@@ -5,7 +5,7 @@ include Couchbase # rubocop:disable Style/MixinUsage for brevity
 def getCollections(username, password)
     puts "create-collection-manager"
 
-    #  tag::create-collection-manager[]
+    # tag::create-collection-manager[]
     options = Cluster::ClusterOptions.new
     options.authenticate(username, password)
     cluster = Cluster.connect("couchbase://localhost", options)
@@ -20,7 +20,6 @@ def main
     options = Cluster::ClusterOptions.new
     options.authenticate("Administrator", "password")
     cluster = Cluster.connect("couchbase://localhost", options)
-    # bucket = cluster.bucket("travel-sample")
     users = cluster.users
 
     puts "bucketAdmin"
@@ -68,7 +67,6 @@ def main
                 role.name = "data_reader"
                 role.bucket = "travel-sample"}
             ]
-
     }
     users.upsert_user(user)
     # end::scopeAdmin[]
