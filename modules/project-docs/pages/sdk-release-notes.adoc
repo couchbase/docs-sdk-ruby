@@ -12,7 +12,7 @@ This page covers installation of the 3.1 versions of the Couchbase Ruby SDK, and
 
 == SDK Installation
 
-Ruby SDK supports MRI Ruby versions 2.5, 2.6, 2.7 and 3.0.
+Ruby SDK supports MRI Ruby versions 2.5, 2.6, 2.7, and 3.0.
 The source package is available through https://rubygems.org/gems/couchbase and can be installed with
 
 [source,console]
@@ -64,7 +64,7 @@ gem install couchbase-3.1.1-x86_64-linux-2.7.0.gem
 
 
 [#latest-release]
-== Version 3.1.1 (08 April 2021)
+== Version 3.1.1 (8 April 2021)
 
 This is the second GA release of 3.1 series.
 
@@ -80,13 +80,10 @@ https://docs.couchbase.com/sdk-api/couchbase-ruby-client-3.1.1/index.html[API Re
   Raise `CasMismatch` exception only when query returns code `12009` with `"CAS mismatch"` in message.
 
 * https://issues.couchbase.com/browse/RCBC-298[RCBC-298]:
-  Support preserving expiration for mutations. `Collection#replace`, `Collection#upsert` and `Collection#mutate_in`
-methods now accept new boolean option `preserve_expiry` which determines whether the server will update expiration for
-existing documents (`false` by default).
-
-In the following example, the server will not reset expiration if the document already exists, and only use `100`
-seconds if the document has to be created.
-
+  Support preserving expiration for mutations. `Collection#replace`, `Collection#upsert`, and `Collection#mutate_in` methods now accept new boolean option `preserve_expiry` which determines whether the server will update expiration for existing documents (`false` by default).
++
+In the following example, the server will not reset expiration if the document already exists, and only use `100` seconds if the document has to be created.
++
 [source,ruby]
 ----
 collection.upsert(doc_id, {answer: 43},
