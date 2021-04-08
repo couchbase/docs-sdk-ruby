@@ -12,19 +12,19 @@ The Ruby SDK also comes with some convenience functionality for common Couchbase
 
 Management operations in the SDK may be performed through several interfaces depending on the object:
 
-* BucketManager -- `Couchbase::Management::BucketManager` 
+* BucketManager -- `Couchbase::Management::BucketManager`
 -- see https://docs.couchbase.com/sdk-api/couchbase-ruby-client/Couchbase/Management/BucketManager.html[API docs].
-* UserManager -- `Couchbase::Management::UserManager`  
+* UserManager -- `Couchbase::Management::UserManager`
 -- see https://docs.couchbase.com/sdk-api/couchbase-ruby-client/Couchbase/Management/UserManager.html[API docs].
-* QueryIndexManager -- `Couchbase::Management::QueryIndexManager` 
+* QueryIndexManager -- `Couchbase::Management::QueryIndexManager`
 -- see https://docs.couchbase.com/sdk-api/couchbase-ruby-client/Couchbase/Management/QueryIndexManager.html[API docs].
-* AnalyticsIndexManager -- `Couchbase::Management::AnalyticsIndexManager` 
+* AnalyticsIndexManager -- `Couchbase::Management::AnalyticsIndexManager`
 -- see https://docs.couchbase.com/sdk-api/couchbase-ruby-client/Couchbase/Management/AnalyticsIndexManager.html[API docs].
-* SearchIndexManager -- `Couchbase::Management::SearchIndexManager` 
+* SearchIndexManager -- `Couchbase::Management::SearchIndexManager`
 -- see https://docs.couchbase.com/sdk-api/couchbase-ruby-client/Couchbase/Management/SearchIndexManager.html[API docs].
-* CollectionManager -- `Couchbase::Management::CollectionManager` 
+* CollectionManager -- `Couchbase::Management::CollectionManager`
 -- see https://docs.couchbase.com/sdk-api/couchbase-ruby-client/Couchbase/Management/CollectionManager.html[API docs].
-* ViewIndexManager -- `Couchbase::Management::ViewIndexManager` 
+* ViewIndexManager -- `Couchbase::Management::ViewIndexManager`
 -- see https://docs.couchbase.com/sdk-api/couchbase-ruby-client/Couchbase/Management/ViewIndexManager.html[API docs].
 
 NOTE: When using a Couchbase version earlier than 6.5, you must create a valid Bucket connection using `cluster.Bucket(name)` before you can use cluster level managers.
@@ -74,7 +74,53 @@ The `flush_bucket()` operation may fail if the bucket does not have flush enable
 
 == Collection Management
 
-This is a xref:6.@server:developer-preview:collections/collections-overview.adoc[Developer Preview feature], see the https://docs.couchbase.com/sdk-api/couchbase-ruby-client/Couchbase/Management/CollectionManager.html[API doc].
+[.status]#Developer Preview#
+
+The CollectionManager interface may be used to create and delete scopes and collections from the Couchbase cluster.
+It is instantiated through the `Bucket.collections()` method.
+Refer to the https://docs.couchbase.com/sdk-api/couchbase-ruby-client/Couchbase/Management/CollectionManager.html[`CollectionManager` API documentation]
+for further details.
+
+[source,ruby]
+----
+include::example$provisioning-resources-collections.rb[tag=create-collection-manager,indent=0]
+----
+
+You can create a scope:
+
+[source,ruby]
+----
+include::example$provisioning-resources-collections.rb[tag=create-scope,indent=0]
+----
+
+You can then create a collection within that scope:
+
+[source,ruby]
+----
+include::example$provisioning-resources-collections.rb[tag=create-collection,indent=0]
+----
+
+Finally, you can drop unneeded collections and scopes:
+
+[source,ruby]
+----
+include::example$provisioning-resources-collections.rb[tag=drop-collection,indent=0]
+
+include::example$provisioning-resources-collections.rb[tag=drop-scope,indent=0]
+----
+
+Note that you require at least the https://docs.couchbase.com/server/7.0/learn/security/roles.html#bucket-admin[Bucket Admin] privilege to create or drop a Scope.
+The same role also lets you manage Collections, though a more minimal set of privileges is https://docs.couchbase.com/server/7.0/learn/security/roles.html#manage-collections-in-scope[Manage Collections in Scope] along with https://docs.couchbase.com/server/7.0/learn/security/roles.html#data-reader[Data Reader].
+
+You can create users with the appropriate RBAC programmatically:
+
+[source,ruby]
+----
+include::example$provisioning-resources-collections.rb[tag=bucketAdmin, indent=0]
+
+include::example$provisioning-resources-collections.rb[tag=scopeAdmin, indent=0]
+----
+
 
 There is a full example in the https://github.com/couchbase/couchbase-ruby-client/blob/master/examples/managing_collections.rb[Ruby SDK repo on GitHub].
 
@@ -100,7 +146,7 @@ There is a full example in the https://github.com/couchbase/couchbase-ruby-clien
 The https://docs.couchbase.com/sdk-api/couchbase-ruby-client/Couchbase/Management.html[API Guide] contains info on the following Management APIs:
 
 * https://docs.couchbase.com/sdk-api/couchbase-ruby-client/Couchbase/Management/BucketManager.html[BucketManager] -- `Couchbase::Management::BucketManager`
-* https://docs.couchbase.com/sdk-api/couchbase-ruby-client/Couchbase/Management/UserManager.html[UserManager] -- `Couchbase::Management::UserManager` 
+* https://docs.couchbase.com/sdk-api/couchbase-ruby-client/Couchbase/Management/UserManager.html[UserManager] -- `Couchbase::Management::UserManager`
 * https://docs.couchbase.com/sdk-api/couchbase-ruby-client/Couchbase/Management/QueryIndexManager.html[QueryIndexManager] -- `Couchbase::Management::QueryIndexManager`
 * https://docs.couchbase.com/sdk-api/couchbase-ruby-client/Couchbase/Management/AnalyticsIndexManager.html[AnalyticsIndexManager] -- `Couchbase::Management::AnalyticsIndexManager`
 * https://docs.couchbase.com/sdk-api/couchbase-ruby-client/Couchbase/Management/SearchIndexManager.html[SearchIndexManager] -- `Couchbase::Management::SearchIndexManager`
