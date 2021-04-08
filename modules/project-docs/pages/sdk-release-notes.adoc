@@ -12,7 +12,7 @@ This page covers installation of the 3.1 versions of the Couchbase Ruby SDK, and
 
 == SDK Installation
 
-Ruby SDK supports MRI Ruby versions 2.5, 2.6, 2.7 and 3.0.
+Ruby SDK supports MRI Ruby versions 2.5, 2.6, 2.7, and 3.0.
 The source package is available through https://rubygems.org/gems/couchbase and can be installed with
 
 [source,console]
@@ -43,7 +43,7 @@ Couchbase SDK library:
 
 [source,ruby]
 ----
-gem "couchbase", "3.1.0", :source => "https://packages.couchbase.com/clients/ruby/2.7.0/"
+gem "couchbase", "3.1.1", :source => "https://packages.couchbase.com/clients/ruby/2.7.0/"
 ----
 
 Or run in terminal:
@@ -58,12 +58,62 @@ with links to every release package along with precompiled binaries.
 
 [source,bash]
 ----
-wget https://packages.couchbase.com/clients/ruby/sdk-3.1.0/couchbase-3.1.0-x86_64-linux-2.7.0.gem
-gem install couchbase-3.1.0-x86_64-linux-2.7.0.gem
+wget https://packages.couchbase.com/clients/ruby/sdk-3.1.1/couchbase-3.1.1-x86_64-linux-2.7.0.gem
+gem install couchbase-3.1.1-x86_64-linux-2.7.0.gem
 ----
 
 
 [#latest-release]
+== Version 3.1.1 (8 April 2021)
+
+This is the second GA release of 3.1 series.
+
+https://docs.couchbase.com/sdk-api/couchbase-ruby-client-3.1.1/index.html[API Reference]
+
+* https://issues.couchbase.com/browse/RCBC-309[RCBC-309]:
+  Allow subdocument remove operation with empty path.
+
+* https://issues.couchbase.com/browse/RCBC-316[RCBC-316]:
+  Fix exceptions for collections manager.
+
+* https://issues.couchbase.com/browse/RCBC-315[RCBC-315]:
+  Raise `CasMismatch` exception only when query returns code `12009` with `"CAS mismatch"` in message.
+
+* https://issues.couchbase.com/browse/RCBC-298[RCBC-298]:
+  Support preserving expiration for mutations. `Collection#replace`, `Collection#upsert`, and `Collection#mutate_in` methods now accept new boolean option `preserve_expiry` which determines whether the server will update expiration for existing documents (`false` by default).
++
+In the following example, the server will not reset expiration if the document already exists, and only use `100` seconds if the document has to be created.
++
+[source,ruby]
+----
+collection.upsert(doc_id, {answer: 43},
+    Options::Upsert(expiry: 100, preserve_expiry: true))
+----
+
+* https://issues.couchbase.com/browse/RCBC-317[RCBC-317]:
+  Allow to disable snappy compression with `enable_compression=false` in connection string.
+
+[cols="9,5,19"]
+|===
+| Platform           | Ruby ABI | File
+| Checksums          |          | https://packages.couchbase.com/clients/ruby/sdk-3.1.1/couchbase-3.1.1.sha256sum[couchbase-3.1.1.sha256sum]
+| Source Archive     |          | https://packages.couchbase.com/clients/ruby/sdk-3.1.1/couchbase-3.1.1.gem[couchbase-3.1.1.gem]
+| Linux x86_64       | 3.0.0    | https://packages.couchbase.com/clients/ruby/sdk-3.1.1/couchbase-3.1.1-x86_64-linux-3.0.0.gem[couchbase-3.1.1-x86_64-linux-3.0.0.gem]
+| Linux x86_64       | 2.7.0    | https://packages.couchbase.com/clients/ruby/sdk-3.1.1/couchbase-3.1.1-x86_64-linux-2.7.0.gem[couchbase-3.1.1-x86_64-linux-2.7.0.gem]
+| Linux x86_64       | 2.6.0    | https://packages.couchbase.com/clients/ruby/sdk-3.1.1/couchbase-3.1.1-x86_64-linux-2.6.0.gem[couchbase-3.1.1-x86_64-linux-2.6.0.gem]
+| Linux x86_64       | 2.5.0    | https://packages.couchbase.com/clients/ruby/sdk-3.1.1/couchbase-3.1.1-x86_64-linux-2.5.0.gem[couchbase-3.1.1-x86_64-linux-2.5.0.gem]
+| macOS 10.15 x84_64 | 3.0.0    | https://packages.couchbase.com/clients/ruby/sdk-3.1.1/couchbase-3.1.1-x86_64-darwin-19-3.0.0.gem[couchbase-3.1.1-x86_64-darwin-19-3.0.0.gem]
+| macOS 10.15 x84_64 | 2.7.0    | https://packages.couchbase.com/clients/ruby/sdk-3.1.1/couchbase-3.1.1-x86_64-darwin-19-2.7.0.gem[couchbase-3.1.1-x86_64-darwin-19-2.7.0.gem]
+| macOS 10.15 x84_64 | 2.6.0    | https://packages.couchbase.com/clients/ruby/sdk-3.1.1/couchbase-3.1.1-x86_64-darwin-19-2.6.0.gem[couchbase-3.1.1-x86_64-darwin-19-2.6.0.gem]
+| macOS 10.15 x84_64 | 2.5.0    | https://packages.couchbase.com/clients/ruby/sdk-3.1.1/couchbase-3.1.1-x86_64-darwin-19-2.5.0.gem[couchbase-3.1.1-x86_64-darwin-19-2.5.0.gem]
+| macOS 11 x84_64 | 3.0.0    | https://packages.couchbase.com/clients/ruby/sdk-3.1.1/couchbase-3.1.1-x86_64-darwin-20-3.0.0.gem[couchbase-3.1.1-x86_64-darwin-20-3.0.0.gem]
+| macOS 11 x84_64 | 2.7.0    | https://packages.couchbase.com/clients/ruby/sdk-3.1.1/couchbase-3.1.1-x86_64-darwin-20-2.7.0.gem[couchbase-3.1.1-x86_64-darwin-20-2.7.0.gem]
+| macOS 11 x84_64 | 2.6.0    | https://packages.couchbase.com/clients/ruby/sdk-3.1.1/couchbase-3.1.1-x86_64-darwin-20-2.6.0.gem[couchbase-3.1.1-x86_64-darwin-20-2.6.0.gem]
+| macOS 11 x84_64 | 2.5.0    | https://packages.couchbase.com/clients/ruby/sdk-3.1.1/couchbase-3.1.1-x86_64-darwin-20-2.5.0.gem[couchbase-3.1.1-x86_64-darwin-20-2.5.0.gem]
+| macOS 11 Universal | 2.6.0    | https://packages.couchbase.com/clients/ruby/sdk-3.1.1/couchbase-3.1.1-x86_64-darwin-20.gem[couchbase-3.1.1-x86_64-darwin-20.gem]
+|===
+
+
 == Version 3.1.0 (24 March 2021)
 
 This is the first GA release of 3.1 series.
@@ -91,8 +141,8 @@ https://docs.couchbase.com/sdk-api/couchbase-ruby-client-3.1.0/index.html[API Re
 * https://issues.couchbase.com/browse/RCBC-307[RCBC-307]:
   Allow to disable unordered execution of commands (using `enable_unordered_execution=false` in the connection string).
 
-* The library does not keep GVL lock durng IO anymore. 
-It releases lock when scheduling a command, and acquires it back once the command is completed. 
+* The library does not keep GVL lock durng IO anymore.
+It releases lock when scheduling a command, and acquires it back once the command is completed.
 This change allows runtime to use fibers or threads, and do something useful while the operation is in progress.
 
 [cols="9,5,19"]
@@ -108,10 +158,10 @@ This change allows runtime to use fibers or threads, and do something useful whi
 | macOS 10.15 x84_64 | 2.7.0    | https://packages.couchbase.com/clients/ruby/sdk-3.1.0/couchbase-3.1.0-x86_64-darwin-19-2.7.0.gem[couchbase-3.1.0-x86_64-darwin-19-2.7.0.gem]
 | macOS 10.15 x84_64 | 2.6.0    | https://packages.couchbase.com/clients/ruby/sdk-3.1.0/couchbase-3.1.0-x86_64-darwin-19-2.6.0.gem[couchbase-3.1.0-x86_64-darwin-19-2.6.0.gem]
 | macOS 10.15 x84_64 | 2.5.0    | https://packages.couchbase.com/clients/ruby/sdk-3.1.0/couchbase-3.1.0-x86_64-darwin-19-2.5.0.gem[couchbase-3.1.0-x86_64-darwin-19-2.5.0.gem]
-| macOS 10.13 x84_64 | 3.0.0    | https://packages.couchbase.com/clients/ruby/sdk-3.1.0/couchbase-3.1.0-x86_64-darwin-17-3.0.0.gem[couchbase-3.1.0-x86_64-darwin-17-3.0.0.gem]
-| macOS 10.13 x84_64 | 2.7.0    | https://packages.couchbase.com/clients/ruby/sdk-3.1.0/couchbase-3.1.0-x86_64-darwin-17-2.7.0.gem[couchbase-3.1.0-x86_64-darwin-17-2.7.0.gem]
-| macOS 10.13 x84_64 | 2.6.0    | https://packages.couchbase.com/clients/ruby/sdk-3.1.0/couchbase-3.1.0-x86_64-darwin-17-2.6.0.gem[couchbase-3.1.0-x86_64-darwin-17-2.6.0.gem]
-| macOS 10.13 x84_64 | 2.5.0    | https://packages.couchbase.com/clients/ruby/sdk-3.1.0/couchbase-3.1.0-x86_64-darwin-17-2.5.0.gem[couchbase-3.1.0-x86_64-darwin-17-2.5.0.gem]
+| macOS 11 x84_64 | 3.0.0    | https://packages.couchbase.com/clients/ruby/sdk-3.1.0/couchbase-3.1.0-x86_64-darwin-20-3.0.0.gem[couchbase-3.1.0-x86_64-darwin-20-3.0.0.gem]
+| macOS 11 x84_64 | 2.7.0    | https://packages.couchbase.com/clients/ruby/sdk-3.1.0/couchbase-3.1.0-x86_64-darwin-20-2.7.0.gem[couchbase-3.1.0-x86_64-darwin-20-2.7.0.gem]
+| macOS 11 x84_64 | 2.6.0    | https://packages.couchbase.com/clients/ruby/sdk-3.1.0/couchbase-3.1.0-x86_64-darwin-20-2.6.0.gem[couchbase-3.1.0-x86_64-darwin-20-2.6.0.gem]
+| macOS 11 x84_64 | 2.5.0    | https://packages.couchbase.com/clients/ruby/sdk-3.1.0/couchbase-3.1.0-x86_64-darwin-20-2.5.0.gem[couchbase-3.1.0-x86_64-darwin-20-2.5.0.gem]
 |===
 
 
@@ -132,7 +182,7 @@ Refactored expiration (TTL) options:
    - When `Integer` is passed, it implicitly converts to epoch time to resolve disambiguation.
 
 * https://issues.couchbase.com/browse/RCBC-291[RCBC-291]:
-Implementation of `ActiveSupport::Cache::Store` interface. 
+Implementation of `ActiveSupport::Cache::Store` interface.
 To enable it, put the following lines into application configuration section:
 
 [source,ruby]
@@ -146,16 +196,16 @@ config.cache_store = :couchbase_store, {
 ----
 
 * https://issues.couchbase.com/browse/RCBC-292[RCBC-292]:
-Swap bytes in CAS for compatiblity. 
+Swap bytes in CAS for compatiblity.
 Now the value of CAS matches the representation in other services (e.g. Query).
 
 * https://issues.couchbase.com/browse/RCBC-300[RCBC-300]:
-Allow the enforcement of PLAIN SASL mechanism. 
+Allow the enforcement of PLAIN SASL mechanism.
 This is necessary when LDAP authentication is enabled, but the SDK does not use client certification to authenticate.
 
 * https://issues.couchbase.com/browse/RCBC-237[RCBC-237]:
-Added collections support for analytics. 
-`Scope#analytics_query` automatically sets scope qualifier. 
+Added collections support for analytics.
+`Scope#analytics_query` automatically sets scope qualifier.
 Also, it is now possible to provide custom qualifier in the options.
 
 * Status of single operation now accessible on result object of `get_multi`, `upsert_multi`, and `remove_multi` operations.
