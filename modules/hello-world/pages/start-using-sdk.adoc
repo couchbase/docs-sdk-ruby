@@ -1,9 +1,10 @@
 = Install and Start Using the Ruby SDK with Couchbase Server
+:description: The Couchbase Ruby SDK allows you to connect to a Couchbase cluster from Ruby.
 :page-aliases: ROOT:getting-started,ROOT:start-using,ROOT:hello-couchbase,ROOT:start-using-sdk
 :navtitle: Start Using the SDK
 
 [abstract]
-The Couchbase Ruby SDK allows you to connect to a Couchbase cluster from Ruby.
+{description}
 The Ruby SDK includes high-performance native Ruby extensions to handle communicating to the cluster over Couchbase’s binary protocols.
 
 The Couchbase Ruby SDK 3.0 is a complete rewrite of the API, reducing the number of overloads to present a simplified surface area, and adding support for future Couchbase Server features like Collections and Scopes (available in Couchbase Server 6.5 & 6.6 as a xref:concept-docs:collections.adoc[developer preview]).

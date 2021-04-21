@@ -1,9 +1,10 @@
 = Full Text Search from the SDK
+:description: You can use the Full Text Search service (FTS) to create queryable, full-text indexes in Couchbase Server.
 :navtitle: Search from the Ruby SDK
 :page-topic-type: howto
 
 [abstract]
-You can use the Full Text Search service (FTS) to create queryable, full-text indexes in Couchbase Server.
+{description}
 
 
 Full Text Search (FTS) -- or _Search_ for short -- allows you to create, manage, and query full text indexes on JSON documents stored in Couchbase buckets. 

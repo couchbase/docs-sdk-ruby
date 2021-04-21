@@ -1,10 +1,11 @@
 = Compatibility of Couchbase Features, Couchbase Server Versions, and the Couchbase Ruby SDK
+:description: Features available in different SDK versions, and compatibility between Server and SDK. \
+Plus notes on Cloud, networks, and AWS Lambda.
 :navtitle: Compatibility
 :page-aliases: ROOT:overview,ROOT:compatibility-versions-features,compatibility-versions-features
 
 [abstract]
-Features available in different SDK versions, and compatibility between Server and SDK. 
-Plus notes on Cloud, networks, and AWS Lambda.
+{description}
 
 The Couchbase Ruby SDK is compatible with Ruby 2.5, 2.6, and 2.7.
 
