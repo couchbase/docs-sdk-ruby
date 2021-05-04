@@ -81,14 +81,14 @@ end
 # end::remove[]
 
 begin
-# tag::durability[]
-collection.upsert("my-document", {"doc" => true},
+  # tag::durability[]
+  collection.upsert("my-document", {"doc" => true},
                   Options::Upsert(durability_level: :majority))
-# end::durability[]
-# Majority durability level requires a multi-node environment.
-# We catch the DurabilityImpossible error to ensure that the example
-# can run successfully on a single node cluster.
+  # end::durability[]
 rescue Error::DurabilityImpossible
+  # Majority durability level requires a multi-node environment.
+  # We catch the DurabilityImpossible error to ensure that the example
+  # can run successfully on a single node cluster.
   puts "Example requires a multi-node environment"
 end
 
