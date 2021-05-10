@@ -6,10 +6,10 @@ include Couchbase # to avoid repeating module name
 cluster = Cluster.connect("couchbase://localhost", "Administrator", "password")
 
 # tag::apis[]
-bucket = cluster.bucket("default")
-collection = bucket.scope("myapp").collection("users")
+bucket = cluster.bucket("travel-sample")
+collection = bucket.scope("_default").collection("_default")
 # implicitly use default scope
-collection = bucket.collection("users")
+collection = bucket.collection("_default")
 # open default collection in default scope
 collection = bucket.default_collection
 # end::apis[]
@@ -80,10 +80,17 @@ rescue Error::DocumentNotFound
 end
 # end::remove[]
 
-# tag::durability[]
-collection.upsert("my-document", {"doc" => true},
+begin
+  # tag::durability[]
+  collection.upsert("my-document", {"doc" => true},
                   Options::Upsert(durability_level: :majority))
-# end::durability[]
+  # end::durability[]
+rescue Error::DurabilityImpossible
+  # Majority durability level requires a multi-node environment.
+  # We catch the DurabilityImpossible error to ensure that the example
+  # can run successfully on a single node cluster.
+  puts "Example requires a multi-node environment"
+end
 
 # tag::expiry-insert[]
 collection.upsert("my-document", {"doc" => true},
@@ -121,3 +128,12 @@ collection.get_and_touch("my-document", 24 * 60 * 60)
 require 'active_support/core_ext/numeric/time'
 collection.get_and_touch("my-document", 1.day)
 # end::expiry-touch[]
+
+# tag::named-collection-upsert[]
+agent_scope = bucket.scope("tenant_agent_00")
+users_collection = agent_scope.collection("users")
+document = {"name" => "John Doe", "preferred_email" => "johndoe111@test123.test"}
+
+result = users_collection.upsert("user-key", document)
+# end::named-collection-upsert[]
+puts "CAS: #{result.cas}"
