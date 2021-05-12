@@ -1,10 +1,11 @@
 = Health Check
+:description: The Health Check API is not a part of the initial 3.0 Ruby SDK release.
 :nav-title: Health Check
 :page-topic-type: concept
 :page-aliases: ROOT:health-check
 
 
-The Health Check API is not a part of the initial 3.0 Ruby SDK release.
+{description}
 
 
 

@@ -1,9 +1,10 @@
 = Collecting Information and Logging in the Ruby SDK with Couchbase Server
+:description: Setting log levels.
 :navtitle: Collecting Information
 :page-topic-type: howto
 
 [abstract]
-Setting log levels
+{description}
 
 
 == Logging

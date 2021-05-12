@@ -1,11 +1,12 @@
 = Couchbase Ruby Release Notes and Archives
+:description: Release notes, installation instructions, and download archive for the Couchbase Ruby Client.
 :navtitle: Release Notes
 :page-topic-type: project-doc
 :page-aliases: ROOT:relnotes-ruby-sdk,ROOT:release-notes,ROOT:sdk-release-notes
 
 
 [abstract]
-Release notes, installation instructions, and download archive for the Couchbase Ruby Client.
+{description}
 
 This page covers installation of the 3.1 versions of the Couchbase Ruby SDK, and release notes for all 3.x versions.
 

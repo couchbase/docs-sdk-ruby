@@ -1,8 +1,9 @@
 = Diagnosing and preventing Network Problems with Health Check
+:description: The Health Check API is not a part of the initial 3.0 Ruby SDK release.
 :navtitle: Health Check
 :page-topic-type: howto
 
-The Health Check API is not a part of the initial 3.0 Ruby SDK release.
+{description}
 
 
 ////
