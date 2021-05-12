@@ -1,5 +1,5 @@
 = Collecting Information and Logging in the Ruby SDK with Couchbase Server
-:description: Setting log levels
+:description: Setting log levels.
 :navtitle: Collecting Information
 :page-topic-type: howto
 
