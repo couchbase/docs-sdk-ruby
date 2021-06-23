@@ -21,7 +21,7 @@ def main
             Management::Role.new {|role|
                 role.name = "data_reader"
                 role.bucket = "travel-sample"}
-            ]
+        ]
     }
     users.upsert_user(user)
     # end::scopeAdmin[]
@@ -53,6 +53,16 @@ def main
 
     collections.create_collection(collection)
     # end::create-collection[]
+
+    puts "listing-scope-collection"
+    # tag::listing-scope-collection[]
+    collections.get_all_scopes().each {|scope|
+        puts "#{scope.name} :"
+        scope.collections.each {|collection|
+            puts "  * #{collection.name}"
+        }
+    }
+    # end::listing-scope-collection[]
 
     puts "drop-collection"
     # tag::drop-collection[]
