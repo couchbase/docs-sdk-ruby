@@ -87,6 +87,8 @@ for further details.
 include::example$provisioning-resources-collections.rb[tag=create-collection-manager,indent=0]
 ----
 
+=== Creating and Deleting Scopes and Collections
+
 You can create a scope:
 
 [source,ruby]
@@ -124,6 +126,18 @@ include::example$provisioning-resources-collections.rb[tag=scopeAdmin, indent=0]
 
 ----
 
+=== Listing the Scopes and Collections available
+
+You can enumerate Scopes and Collections using
+the `CollectionManager.get_all_scopes()` method and
+the `Scope.collections` property.
+
+[source,ruby]
+----
+include::example$provisioning-resources-collections.rb[tag=listing-scope-collection, indent=0]
+----
+
+=== More examples
 
 There is a full example in the https://github.com/couchbase/couchbase-ruby-client/blob/master/examples/managing_collections.rb[Ruby SDK repo on GitHub].
 
