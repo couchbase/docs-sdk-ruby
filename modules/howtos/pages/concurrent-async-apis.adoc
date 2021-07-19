@@ -1,5 +1,5 @@
 = Choosing an API
-:description: An async implementation is not yet available in the 3.0 API Ruby SDK.
+:description: An async implementation is not yet available in the 3.x API Ruby SDK.
 :navtitle: Choosing an API
 :page-topic-type: howto
 :page-aliases: ROOT:async-programming,ROOT:batching-operations,multiple-apis

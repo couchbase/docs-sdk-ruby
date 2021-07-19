@@ -55,7 +55,7 @@ include::example$kv_operations.rb[tag=replace]
 Expiration sets an explicit time to live (TTL) for a document.
 // We'll discuss modifying `expiry` in more details xref:#php-modifying-expiration[below].
 For a discussion of item (Document) _vs_ Bucket expiration, see the
-xref:6.5@server:learn:buckets-memory-and-storage/expiration.adoc#expiration-bucket-versus-item[Expiration Overview page].
+xref:7.0@server:learn:buckets-memory-and-storage/expiration.adoc#expiration-bucket-versus-item[Expiration Overview page].
 
 [source,ruby]
 ----
@@ -178,7 +178,7 @@ include::example$kv_operations.rb[tag=expiry-touch]
 ----
 
 
-include::6.5@sdk:shared:partial$documents.adoc[tag=exp-note]
+include::7.0@sdk:shared:partial$documents.adoc[tag=exp-note]
 
 
 == Atomic Counters

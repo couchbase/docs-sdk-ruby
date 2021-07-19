@@ -20,7 +20,7 @@ NOTE: When using a Couchbase version earlier than 6.5, you must create a valid B
 == Index Creation
 
 For the purposes of the below examples we will use the Beer Sample sample bucket.
-Full Text Search indexes can be xref:6.5@server:fts:fts-creating-indexes.adoc[created through the UI or throuth the REST API], or created programatically as follows:
+Full Text Search indexes can be xref:7.0@server:fts:fts-creating-indexes.adoc[created through the UI or throuth the REST API], or created programatically as follows:
 
 [source,ruby]
 ----

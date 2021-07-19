@@ -28,9 +28,12 @@ The logging level can be changed using the environment variable `COUCHBASE_BACKE
 
 [source,ruby]
 ----
-require "couchbase"
-cluster = Couchbase::Cluster.connect("couchbase://localhost", "Administrator", "password")
-cluster.bucket("default").default_collection.upsert("foo", {"bar" => 42})
+require 'couchbase'
+cluster = Couchbase::Cluster.connect('couchbase://localhost', 'Administrator', 'password')
+cluster.bucket('travel-sample')
+       .scope('inventory')
+       .collection('airport')
+       .upsert('foo', { 'bar' => 42 })
 ----
 
 ...when executed like this:

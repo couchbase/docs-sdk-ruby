@@ -7,7 +7,7 @@ options = Cluster::ClusterOptions.new
 options.authenticate("Administrator", "password")
 cluster = Cluster.connect("couchbase://localhost", options)
 
-collection = cluster.bucket("default").default_collection
+collection = cluster.bucket("travel-sample").scope("inventory").collection("airport")
 collection.upsert("user-id", {"visitCount" => 0})
 
 # tag::handlingerrors[]

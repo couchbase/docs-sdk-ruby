@@ -3,7 +3,7 @@
 :page-topic-type: howto
 :page-edition: Enterprise Edition
 :page-status: Developer Preview
-// // :page-aliases: ROOT:encrypting-using-sdk.adoc
+:page-aliases: ROOT:encrypting-using-sdk.adoc
 
 [abstract]
 {description}
@@ -11,5 +11,3 @@
 
 Client-side implementation of Field Level Encryption is available in the previous versions of some of the other SDKs.
 It will be enabled in a future release of the third generation SDK.
-
-A _Developer Preview_ is available in the xref:3.0@java-sdk:howtos:encrypting-using-sdk.adoc[Java SDK].
