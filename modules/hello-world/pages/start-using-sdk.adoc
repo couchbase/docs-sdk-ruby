@@ -7,7 +7,8 @@
 {description}
 The Ruby SDK includes high-performance native Ruby extensions to handle communicating to the cluster over Couchbase’s binary protocols.
 
-The Couchbase Ruby SDK 3.0 is a complete rewrite of the API, reducing the number of overloads to present a simplified surface area, and adding support for future Couchbase Server features like Collections and Scopes (available in Couchbase Server 6.5 & 6.6 as a xref:concept-docs:collections.adoc[developer preview]).
+The Couchbase Ruby SDK 3.x is a complete rewrite of the API, reducing the number of overloads to present a simplified surface area,
+and adding support for future Couchbase Server features like xref:concept-docs:collections.adoc[Collections and Scopes] (available in Couchbase Server 7.0).
 
 Ruby SDK supports MRI Ruby versions 2.5, 2.6, and 2.7.
 
@@ -29,7 +30,7 @@ Further details can be found on the xref:project-docs:sdk-release-notes.adoc[Rel
 
 == Hello Couchbase
 
-Couchbase uses xref:6.5@server:learn:security/roles.adoc[Role Based Access Control (RBAC)] to control access to resources.
+Couchbase uses xref:7.0@server:learn:security/roles.adoc[Role Based Access Control (RBAC)] to control access to resources.
 Here we will use the _Full Admin_ role created during installation of the Couchbase Data Platform.
 For production client code, you will want to use xref:howtos:managing-connections.adoc#rbac[more appropriate, restrictive settings], but here we want to get you up and running quickly.
 If you're developing client code on the same VM or machine as the Couchbase Server, your URI can be _localhost_.
@@ -53,7 +54,7 @@ If you're developing client code on the same VM or machine as the Couchbase Serv
 
 If you are connecting to Couchbase Cloud rather than a local Couchbase Server, then also refer to the <<cloud-connections, Cloud section>>, below.
 
-Couchbase uses xref:6.5@server:learn:security/roles.adoc[Role Based Access Control (RBAC)] to control access to resources.
+Couchbase uses xref:7.0@server:learn:security/roles.adoc[Role Based Access Control (RBAC)] to control access to resources.
 For production client code, you will want to use more appropriate, restrictive settings
  -- but here we want to get you up and running quickly,
 so you can use the _Full Admin_ role created during installation of the Couchbase Data Platform, in which case set _Administrator_ as the username, and use the password that you defined in setting up your test Couchbase cluster.
@@ -65,16 +66,16 @@ To access the KV (Key/Value) API or to query views, you need to open a `Bucket`:
 include::example$start_using.rb[tag=bucket,indent=0]
 ----
 
-// If you installed the travel sample data bucket, substitute _travel-sample_ for _bucket-name_.
+If you installed the travel sample data bucket, substitute _travel-sample_ for _bucket_name_.
 
 [source,ruby]
 ----
 include::example$start_using.rb[tag=collection,indent=0]
 ----
 
-The 3.0 SDK is ready for the introduction of xref:6.5@server:developer-preview:collections/collections-overview.adoc[Collections] in an upcoming release of the Couchbase Data Platform.
-Couchbase Server 6.5 brings a limited xref:6.5@server:developer-preview:preview-mode.adoc[Developer Preview] of Collections, allowing Documents to be grouped by purpose or theme, according to a specified _Collection_.
-Here we've used the `DefaultCollection`, which provides the same functionality as bucket-level operations did in previous versions of Couchbase Server.
+The 3.2 SDK supports full integration with the xref:concept-docs:collections.adoc[Collections] feature in the latest release of the Couchbase Data Platform, Couchbase Server 7.0.
+This brings complete support for Collections, allowing Documents to be grouped by purpose or theme, according to a specified _Scope_.
+Here we will use the `users` collection within the `tenant_agent_00` scope from `travel-sample` bucket as an example.
 
 
 [source,ruby]
@@ -82,6 +83,7 @@ Here we've used the `DefaultCollection`, which provides the same functionality a
 include::example$start_using.rb[tag=upsert-get,indent=0]
 ----
 
+The code shows how you would use a named collection and scope. A named or default collection will provide the same functionality as bucket-level operations did in previous versions of Couchbase Server.
 
 KV Operations are described in detail on the xref:howtos:kv-operations.adoc[KV Operations page].
 Now that you know the basics, you may wish to go straight to that page.
