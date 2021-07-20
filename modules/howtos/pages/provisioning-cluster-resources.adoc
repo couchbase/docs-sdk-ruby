@@ -7,7 +7,7 @@
 {description}
 Common use cases are outlined here, more recherché use cases are covered in the https://docs.couchbase.com/sdk-api/couchbase-ruby-client/Couchbase/Management.html[API docs].
 
-include::6.6@sdk:shared:partial$flush-info-pars.adoc[tag=management-intro]
+include::7.0@sdk:shared:partial$flush-info-pars.adoc[tag=management-intro]
 
 The Ruby SDK also comes with some convenience functionality for common Couchbase management requests.
 
@@ -36,7 +36,7 @@ NOTE: When using a Couchbase version earlier than 6.5, you must create a valid B
 The https://docs.couchbase.com/sdk-api/couchbase-ruby-client/Couchbase/Management/BucketManager.html[BucketManager] interface may be used to create and delete buckets from the Couchbase cluster.
 It is instantiated through the `#create_bucket()` method.
 
-include::6.6@sdk:shared:partial$flush-info-pars.adoc[tag=update-bucket-warning]
+include::7.0@sdk:shared:partial$flush-info-pars.adoc[tag=update-bucket-warning]
 
 See the https://docs.couchbase.com/sdk-api/couchbase-ruby-client/Couchbase/Management/BucketSettings.html[API docs^] for a full list of settings options.
 
@@ -60,7 +60,7 @@ As well as flushing the bucket.
 
 == Flushing Buckets
 
-include::6.6@sdk:shared:partial$flush-info-pars.adoc[tag=flush-intro]
+include::7.0@sdk:shared:partial$flush-info-pars.adoc[tag=flush-intro]
 
 You can flush a bucket in the SDK by using the `flush_bucket()` method.
 
@@ -75,7 +75,7 @@ The `flush_bucket()` operation may fail if the bucket does not have flush enable
 
 == Collection Management
 
-[.status]#Developer Preview#
+[.status]
 
 The CollectionManager interface may be used to create and delete scopes and collections from the Couchbase cluster.
 It is instantiated through the `Bucket.collections()` method.
@@ -108,6 +108,7 @@ Finally, you can drop unneeded collections and scopes:
 include::example$provisioning-resources-collections.rb[tag=drop-collection,indent=0]
 
 include::example$provisioning-resources-collections.rb[tag=drop-scope,indent=0]
+
 ----
 
 Note that you require at least the https://docs.couchbase.com/server/7.0/learn/security/roles.html#bucket-admin[Bucket Admin] privilege to create or drop a Scope.
@@ -120,6 +121,7 @@ You can create users with the appropriate RBAC programmatically:
 include::example$provisioning-resources-collections.rb[tag=bucketAdmin, indent=0]
 
 include::example$provisioning-resources-collections.rb[tag=scopeAdmin, indent=0]
+
 ----
 
 
@@ -134,9 +136,9 @@ For those occasions when you do, please see the relevant API docs, linked xref:#
 
 == View Management
 
-include::6.6@sdk:shared:partial$flush-info-pars.adoc[tag=view-management]
+include::7.0@sdk:shared:partial$flush-info-pars.adoc[tag=view-management]
 
-In the SDK, design documents are represented by the `DesignDocument` and `View` structs.
+In the SDK, design documents are represented by the `DesignDocument` and `View` classes.
 All operations on design documents are performed on the `ViewIndexManager` instance:
 
 There is a full example in the https://github.com/couchbase/couchbase-ruby-client/blob/master/examples/managing_view_indexes.rb[Ruby SDK repo on GitHub].

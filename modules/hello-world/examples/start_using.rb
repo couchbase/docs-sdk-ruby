@@ -3,6 +3,8 @@ require "couchbase"
 include Couchbase # to avoid repeating module name
 # end::imports[]
 
+bucket_name = "travel-sample"
+
 # tag::connect[]
 options = Cluster::ClusterOptions.new
 options.authenticate("Administrator", "password")
@@ -11,15 +13,13 @@ cluster = Cluster.connect("couchbase://localhost", options)
 
 # tag::bucket[]
 # get a bucket reference
-bucket = cluster.bucket("bucket-name")
+bucket = cluster.bucket(bucket_name)
 #end::bucket[]
 
 # tag::collection[]
-# get a collection reference
-collection = bucket.default_collection
-
-# or for named collection
-named_collection = bucket.scope("myapp").collection("my-collection")
+# get a user-defined collection reference
+scope = bucket.scope("tenant_agent_00")
+collection = scope.collection("users")
 # end::collection[]
 
 # tag::upsert-get[]

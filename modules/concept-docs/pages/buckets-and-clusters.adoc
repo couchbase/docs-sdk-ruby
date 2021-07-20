@@ -7,7 +7,7 @@
 [abstract]
 {description}
 
-include::6.5@sdk:shared:partial$clusters-buckets.adoc[tag=management]
+include::7.0@sdk:shared:partial$clusters-buckets.adoc[tag=management]
 
 Management operations in the Ruby SDK may be performed through several interfaces depending on the object:
 
@@ -25,7 +25,7 @@ cluster = Cluster.connect("couchbase://localhost", options)
 manager = cluster.buckets
 
 settings = Management::BucketSettings.new
-settings.name = "bucket_name"
+settings.name = "travel-sample"
 settings.ram_quota_mb = 100
 settings.flush_enabled = true
 manager.create_bucket(settings)

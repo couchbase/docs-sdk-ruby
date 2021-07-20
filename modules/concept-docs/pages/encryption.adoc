@@ -8,7 +8,6 @@ include::partial$attributes.adoc[]
 [abstract]
 {description}
 
-
+// JIRA here: https://issues.couchbase.com/browse/RCBC-284
 Client-side implementation of Field Level Encryption is available in previous versions of the C, .NET, Go, Java, Node.js, PHP, and Python SDK.
 It will be enabled in a future release of the third generation SDK, including the Ruby SDK.
-A developer preview is available for the xref:3.0@java-sdk:concept-docs:encryption.adoc[Java SDK 3.0].
