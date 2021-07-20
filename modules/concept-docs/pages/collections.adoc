@@ -26,6 +26,9 @@ And for a non-default scope:
 include::example$collections.rb[tag=collections_2,indent=0]
 ----
 
+// Add the section below when travel-sample app is available!
+////
 == Further Reading
 
 To see Collections in action, take a look at our xref:howtos:working-with-collections.adoc[Collections-enabled Travel Sample page].
+////
