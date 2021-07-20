@@ -149,4 +149,17 @@ time.
 // section on wide area network support
 
 
+== General Options
+
+Name: *Unordered Execution*::
+Cluster Option: `enable_unordered_execution`
++
+Default: `true`
++
+From Couchbase 7.0, Out-of-Order execution allows the server to concurrently handle multiple requests on the same connection, potentially improving performance for durable writes and multi-document ACID transactions. 
+This means that tuning the number of connections (KV endpoints) is no longer necessary as a workaround where data not available in the cache is causing timeouts.
++
+This is set to true by default. Note, changing the setting will only affect Server versions 7.0 onwards.
+
+
 include::7.0@sdk:shared:partial$client-settings-wide-network.adoc[]
