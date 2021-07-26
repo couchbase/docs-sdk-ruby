@@ -75,8 +75,6 @@ The `flush_bucket()` operation may fail if the bucket does not have flush enable
 
 == Collection Management
 
-[.status]
-
 The CollectionManager interface may be used to create and delete scopes and collections from the Couchbase cluster.
 It is instantiated through the `Bucket.collections()` method.
 Refer to the https://docs.couchbase.com/sdk-api/couchbase-ruby-client/Couchbase/Management/CollectionManager.html[`CollectionManager` API documentation]
@@ -86,6 +84,8 @@ for further details.
 ----
 include::example$provisioning-resources-collections.rb[tag=create-collection-manager,indent=0]
 ----
+
+=== Creating and Deleting Scopes and Collections
 
 You can create a scope:
 
@@ -111,19 +111,31 @@ include::example$provisioning-resources-collections.rb[tag=drop-scope,indent=0]
 
 ----
 
-Note that you require at least the https://docs.couchbase.com/server/7.0/learn/security/roles.html#bucket-admin[Bucket Admin] privilege to create or drop a Scope.
-The same role also lets you manage Collections, though a more minimal set of privileges is https://docs.couchbase.com/server/7.0/learn/security/roles.html#manage-collections-in-scope[Manage Collections in Scope] along with https://docs.couchbase.com/server/7.0/learn/security/roles.html#data-reader[Data Reader].
+Note that the most minimal permissions to create and drop a Scope or Collection is
+xref:server:learn:security/roles.adoc#manage-scopes[Manage Scopes]
+along with
+xref:server:learn:security/roles.adoc#data-reader[Data Reader]
 
 You can create users with the appropriate RBAC programmatically:
 
 [source,ruby]
 ----
-include::example$provisioning-resources-collections.rb[tag=bucketAdmin, indent=0]
-
 include::example$provisioning-resources-collections.rb[tag=scopeAdmin, indent=0]
 
 ----
 
+=== Listing the Scopes and Collections available
+
+You can enumerate Scopes and Collections using
+the `CollectionManager.get_all_scopes()` method and
+the `Scope.collections` property.
+
+[source,ruby]
+----
+include::example$provisioning-resources-collections.rb[tag=listing-scope-collection, indent=0]
+----
+
+=== More examples
 
 There is a full example in the https://github.com/couchbase/couchbase-ruby-client/blob/master/examples/managing_collections.rb[Ruby SDK repo on GitHub].
 
