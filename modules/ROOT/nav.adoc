@@ -17,6 +17,7 @@ Couchbase Ruby SDK
 * xref:howtos:concurrent-async-apis.adoc[Async API]
 * xref:howtos:concurrent-document-mutations.adoc[Concurrent Document Mutations]
 * xref:howtos:transcoders-nonjson.adoc[Transcoders & Non-JSON]
+* xref:howtos:working-with-collections.adoc[Working with Collections]
 
 
 .Managing Couchbase
