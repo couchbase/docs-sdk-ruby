@@ -4,7 +4,7 @@
 :content-type: tutorial
 :page-topic-type: tutorial
 :page-aliases: ROOT:sample-application,ROOT:tutorial4,ROOT:sample-app-backend
-
+:travel-sample-entrypoint: travel.rb
 :travel-sample-git-project: try-cb-ruby
 
 include::project-docs:partial$attributes.adoc[]
