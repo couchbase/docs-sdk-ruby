@@ -10,7 +10,7 @@ endif::[]
 :url-playbook: {url-org}/docs-site
 
 
-Documentation component for the renewed Couchbase Ruby 3.0 SDK.
+Documentation component for the renewed Couchbase Ruby 3.2 SDK.
 
 == Contributing
 
