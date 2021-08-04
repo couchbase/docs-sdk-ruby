@@ -7,7 +7,8 @@ Plus notes on Cloud, networks, and AWS Lambda.
 [abstract]
 {description}
 
-The Couchbase Ruby SDK is compatible with Ruby 2.5, 2.6, and 2.7.
+The Couchbase Ruby SDK is compatible with Ruby 2.6, 2.7, and 3.0.
+// We follow list of supported versions at https://www.ruby-lang.org/en/downloads/branches/
 
 
 == Couchbase Version/SDK Version Matrix
@@ -50,7 +51,7 @@ See the notes there for Support details.
 == Couchbase New Feature Availability Matrix
 
 .Couchbase Server and SDK Supported Version Matrix
-[.table-merge-cells] 
+[.table-merge-cells]
 [cols="7,5,6,5"]
 |===
 | | Server 6.0 | Server 6.5 & 6.6 | Server 7.0
@@ -58,7 +59,7 @@ See the notes there for Support details.
 | Enhanced Durability
 3+| All SDK versions
 
-| Durable Writes 
+| Durable Writes
 | Not Supported
 2+| Since 3.0
 
