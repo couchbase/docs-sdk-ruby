@@ -66,13 +66,13 @@ gem install couchbase-3.2.0-x86_64-linux-2.7.0.gem
 [#latest-release]
 == Version 3.2.0 (4 August 2021)
 
-This is the first GA release of 3.2 series.
+This is the first GA release of the 3.2 series.
 
 https://docs.couchbase.com/sdk-api/couchbase-ruby-client-3.2.0/index.html[API Reference]
 
 * https://issues.couchbase.com/browse/RCBC-301[RCBC-301]:
-  Implement metrics. This feature is enabled by default, could be disabled in connection string with
-  `enable_metrics=false` or programmatically:
+  Implemented metrics. 
+  This feature is enabled by default; it can be disabled in the connection string with `enable_metrics=false`, or programmatically:
 +
 [source,ruby]
 ----
@@ -89,8 +89,8 @@ options.metrics_emit_interval = 60_000 # in milliseconds, default 10 minutes
 ----
 
 * https://issues.couchbase.com/browse/RCBC-234[RCBC-234]:
- Implement tracing. This feature is enabled by default, but could be disabled in connection string with
-`enable_tracing=false` or programmatically:
+ Implemented tracing. 
+ This feature is enabled by default; it can be disabled in the connection string with `enable_tracing=false`, or programmatically:
 +
 [source,ruby]
 ----
@@ -117,21 +117,24 @@ options.management_threshold = 1_000 # in milliseconds
 ----
 
 * https://issues.couchbase.com/browse/RCBC-318[RCBC-318]:
-  Parse and use revEpoch field in configuration
+  Parse and use `revEpoch` field in configuration for improved bucket configuration handling.
 
 * https://issues.couchbase.com/browse/RCBC-324[RCBC-324]:
-  Map query error code 13014 to `AuthenticationFailure` exception.
+  Query error code 13014 is now mapped to an `AuthenticationFailure` exception.
 
 * https://issues.couchbase.com/browse/RCBC-227[RCBC-227]:
-  Manage remote links for analytics
+  Remote links for analytics can now be managed from the SDK,
+  enabling  connection to an external dataset such as an AWS S3 bucket.
 
 * https://issues.couchbase.com/browse/RCBC-283[RCBC-283]:
-  Add collections support for search queries
+  Added Collections support for Search queries.
 
 * https://issues.couchbase.com/browse/RCBC-311[RCBC-311]:
-  Fix scope qualifer encoding for analtyics
+  Fixed scope qualifer encoding for analtyics to work with latest decoding.
 
-Dropped support of Ruby 2.5 and many smaller fixes and improvements.
+* Dropped support of Ruby 2.5.
+
+* Many smaller fixes and improvements.
 
 [cols="9,5,19"]
 |===
