@@ -5,6 +5,7 @@
 :page-aliases: ROOT:relnotes-ruby-sdk,ROOT:release-notes,ROOT:sdk-release-notes
 
 
+// tag::all[]
 [abstract]
 {description}
 
@@ -478,3 +479,4 @@ https://docs.couchbase.com/sdk-api/couchbase-ruby-client-3.0.0.beta.1/index.html
 == Older Releases
 
 Although https://www.couchbase.com/support-policy/enterprise-software[no longer supported], documentation for older releases continues to be available in our https://docs-archive.couchbase.com/home/index.html[docs archive].
+// end::all[]
