@@ -5,7 +5,7 @@
 
 [abstract]
 {description}
-Common use cases are outlined here, more recherché use cases are covered in the https://docs.couchbase.com/sdk-api/couchbase-ruby-client/Couchbase/Management.html[API docs].
+Common use cases are outlined here, less common use cases are covered in the https://docs.couchbase.com/sdk-api/couchbase-ruby-client/Couchbase/Management.html[API docs].
 
 include::7.0@sdk:shared:partial$flush-info-pars.adoc[tag=management-intro]
 
