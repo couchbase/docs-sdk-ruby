@@ -8,7 +8,7 @@
 [abstract]
 {description}
 
-This page covers installation of the 3.1 versions of the Couchbase Ruby SDK, and release notes for all 3.x versions.
+This page covers installation of the 3.2 versions of the Couchbase Ruby SDK, and release notes for all 3.x versions.
 
 
 == SDK Installation
@@ -32,7 +32,6 @@ package, but also precompiled binaries for Linux and MacOS.
 | 3.0   | https://packages.couchbase.com/clients/ruby/3.0.0/
 | 2.7   | https://packages.couchbase.com/clients/ruby/2.7.0/
 | 2.6   | https://packages.couchbase.com/clients/ruby/2.6.0/
-| 2.5   | https://packages.couchbase.com/clients/ruby/2.5.0/
 |===
 
 To use official repository, it have to be registered in the `.gemrc` file:
@@ -44,14 +43,14 @@ Couchbase SDK library:
 
 [source,ruby]
 ----
-gem "couchbase", "3.1.1", :source => "https://packages.couchbase.com/clients/ruby/2.7.0/"
+gem "couchbase", "3.2.0", :source => "https://packages.couchbase.com/clients/ruby/2.7.0/"
 ----
 
 Or run in terminal:
 
 [source,bash]
 ----
-gem install couchbase --source https://packages.couchbase.com/clients/ruby/2.7.0/
+gem install couchbase --clear-sources --source https://packages.couchbase.com/clients/ruby/2.7.0/
 ----
 
 And finally, it is possible to download the package and install from the file. In the notes below, we specify tables
@@ -59,12 +58,104 @@ with links to every release package along with precompiled binaries.
 
 [source,bash]
 ----
-wget https://packages.couchbase.com/clients/ruby/sdk-3.1.1/couchbase-3.1.1-x86_64-linux-2.7.0.gem
-gem install couchbase-3.1.1-x86_64-linux-2.7.0.gem
+wget https://packages.couchbase.com/clients/ruby/sdk-3.2.0/couchbase-3.2.0-x86_64-linux-2.7.0.gem
+gem install couchbase-3.2.0-x86_64-linux-2.7.0.gem
 ----
 
 
 [#latest-release]
+== Version 3.2.0 (4 August 2021)
+
+This is the first GA release of the 3.2 series.
+
+https://docs.couchbase.com/sdk-api/couchbase-ruby-client-3.2.0/index.html[API Reference]
+
+* https://issues.couchbase.com/browse/RCBC-301[RCBC-301]:
+  Implemented metrics. 
+  This feature is enabled by default; it can be disabled in the connection string with `enable_metrics=false`, or programmatically:
++
+[source,ruby]
+----
+options = Cluster::ClusterOptions.new
+options.enable_metrics = false
+----
++
+Extra options:
++
+[source,ruby]
+----
+options = Cluster::ClusterOptions.new
+options.metrics_emit_interval = 60_000 # in milliseconds, default 10 minutes
+----
+
+* https://issues.couchbase.com/browse/RCBC-234[RCBC-234]:
+ Implemented tracing. 
+ This feature is enabled by default; it can be disabled in the connection string with `enable_tracing=false`, or programmatically:
++
+[source,ruby]
+----
+options = Cluster::ClusterOptions.new
+options.enable_tracing = false
+----
++
+Extra options:
++
+[source,ruby]
+----
+options = Cluster::ClusterOptions.new
+options.orphaned_emit_interval = 600_000 # in milliseconds
+options.orphaned_sample_size = 64
+
+options.threshold_emit_interval = 600_00 # in milliseconds
+options.threshold_sample_size = 64
+options.key_value_threshold = 500 # in milliseconds
+options.query_threshold = 1_000 # in milliseconds
+options.view_threshold = 1_000 # in milliseconds
+options.search_threshold = 1_000 # in milliseconds
+options.analytics_threshold = 1_000 # in milliseconds
+options.management_threshold = 1_000 # in milliseconds
+----
+
+* https://issues.couchbase.com/browse/RCBC-318[RCBC-318]:
+  Parse and use `revEpoch` field in configuration for improved bucket configuration handling.
+
+* https://issues.couchbase.com/browse/RCBC-324[RCBC-324]:
+  Query error code 13014 is now mapped to an `AuthenticationFailure` exception.
+
+* https://issues.couchbase.com/browse/RCBC-227[RCBC-227]:
+  Remote links for analytics can now be managed from the SDK,
+  enabling  connection to an external dataset such as an AWS S3 bucket.
+
+* https://issues.couchbase.com/browse/RCBC-283[RCBC-283]:
+  Added Collections support for Search queries.
+
+* https://issues.couchbase.com/browse/RCBC-311[RCBC-311]:
+  Fixed scope qualifer encoding for analtyics to work with latest decoding.
+
+* Dropped support of Ruby 2.5.
+
+* Many smaller fixes and improvements.
+
+[cols="9,5,19"]
+|===
+| Platform           | Ruby ABI | File
+| Checksums          |          | https://packages.couchbase.com/clients/ruby/sdk-3.2.0/couchbase-3.2.0.sha256sum[couchbase-3.2.0.sha256sum]
+| Source Archive     |          | https://packages.couchbase.com/clients/ruby/sdk-3.2.0/couchbase-3.2.0.gem[couchbase-3.2.0.gem]
+| Linux x86_64       | 3.0.0    | https://packages.couchbase.com/clients/ruby/sdk-3.2.0/couchbase-3.2.0-x86_64-linux-3.0.0.gem[couchbase-3.2.0-x86_64-linux-3.0.0.gem]
+| Linux x86_64       | 2.7.0    | https://packages.couchbase.com/clients/ruby/sdk-3.2.0/couchbase-3.2.0-x86_64-linux-2.7.0.gem[couchbase-3.2.0-x86_64-linux-2.7.0.gem]
+| Linux x86_64       | 2.6.0    | https://packages.couchbase.com/clients/ruby/sdk-3.2.0/couchbase-3.2.0-x86_64-linux-2.6.0.gem[couchbase-3.2.0-x86_64-linux-2.6.0.gem]
+| Linux x86_64       | 2.5.0    | https://packages.couchbase.com/clients/ruby/sdk-3.2.0/couchbase-3.2.0-x86_64-linux-2.5.0.gem[couchbase-3.2.0-x86_64-linux-2.5.0.gem]
+| macOS 10.15 x84_64 | 3.0.0    | https://packages.couchbase.com/clients/ruby/sdk-3.2.0/couchbase-3.2.0-x86_64-darwin-19-3.0.0.gem[couchbase-3.2.0-x86_64-darwin-19-3.0.0.gem]
+| macOS 10.15 x84_64 | 2.7.0    | https://packages.couchbase.com/clients/ruby/sdk-3.2.0/couchbase-3.2.0-x86_64-darwin-19-2.7.0.gem[couchbase-3.2.0-x86_64-darwin-19-2.7.0.gem]
+| macOS 10.15 x84_64 | 2.6.0    | https://packages.couchbase.com/clients/ruby/sdk-3.2.0/couchbase-3.2.0-x86_64-darwin-19-2.6.0.gem[couchbase-3.2.0-x86_64-darwin-19-2.6.0.gem]
+| macOS 10.15 x84_64 | 2.5.0    | https://packages.couchbase.com/clients/ruby/sdk-3.2.0/couchbase-3.2.0-x86_64-darwin-19-2.5.0.gem[couchbase-3.2.0-x86_64-darwin-19-2.5.0.gem]
+| macOS 11 x84_64 | 3.0.0    | https://packages.couchbase.com/clients/ruby/sdk-3.2.0/couchbase-3.2.0-x86_64-darwin-20-3.0.0.gem[couchbase-3.2.0-x86_64-darwin-20-3.0.0.gem]
+| macOS 11 x84_64 | 2.7.0    | https://packages.couchbase.com/clients/ruby/sdk-3.2.0/couchbase-3.2.0-x86_64-darwin-20-2.7.0.gem[couchbase-3.2.0-x86_64-darwin-20-2.7.0.gem]
+| macOS 11 x84_64 | 2.6.0    | https://packages.couchbase.com/clients/ruby/sdk-3.2.0/couchbase-3.2.0-x86_64-darwin-20-2.6.0.gem[couchbase-3.2.0-x86_64-darwin-20-2.6.0.gem]
+| macOS 11 x84_64 | 2.5.0    | https://packages.couchbase.com/clients/ruby/sdk-3.2.0/couchbase-3.2.0-x86_64-darwin-20-2.5.0.gem[couchbase-3.2.0-x86_64-darwin-20-2.5.0.gem]
+| macOS 11 Universal | 2.6.0    | https://packages.couchbase.com/clients/ruby/sdk-3.2.0/couchbase-3.2.0-universal-darwin-20.gem[couchbase-3.2.0-universal-darwin-20.gem]
+|===
+
 == Version 3.1.1 (8 April 2021)
 
 This is the second GA release of 3.1 series.
