@@ -10,12 +10,12 @@
 [abstract]
 {description}
 
-This page covers installation of the 3.2 versions of the Couchbase Ruby SDK, and release notes for all 3.x versions.
+This page covers installation of the 3.3 versions of the Couchbase Ruby SDK, and release notes for all 3.x versions.
 
 
 == SDK Installation
 
-Ruby SDK supports MRI Ruby versions 2.5, 2.6, 2.7, and 3.0.
+Ruby SDK supports MRI Ruby versions 2.7, 3.0 and 3.1.
 The source package is available through https://rubygems.org/gems/couchbase and can be installed with
 
 [source,console]
@@ -23,7 +23,8 @@ The source package is available through https://rubygems.org/gems/couchbase and 
 gem install couchbase
 ----
 
-Note that `--pre` is necessary when the SDK in Beta/Preview phase -- `gem install --pre couchbase` -- otherwise the latest stable release will be installed.
+Note that `--pre` is necessary when the SDK in Beta/Preview phase -- `gem install --pre couchbase` -- otherwise the
+latest stable release will be installed.
 
 In addition to rubygems.org, we also maintain official gem repositories, where we publish not only source version of the
 package, but also precompiled binaries for Linux and MacOS.
@@ -31,9 +32,9 @@ package, but also precompiled binaries for Linux and MacOS.
 [cols="4,17"]
 |===
 | Ruby ABI version | Source URL
+| 3.1   | https://packages.couchbase.com/clients/ruby/3.1.0/
 | 3.0   | https://packages.couchbase.com/clients/ruby/3.0.0/
 | 2.7   | https://packages.couchbase.com/clients/ruby/2.7.0/
-| 2.6   | https://packages.couchbase.com/clients/ruby/2.6.0/
 |===
 
 To use official repository, it have to be registered in the `.gemrc` file:
@@ -45,7 +46,7 @@ Couchbase SDK library:
 
 [source,ruby]
 ----
-gem "couchbase", "3.2.0", :source => "https://packages.couchbase.com/clients/ruby/2.7.0/"
+gem "couchbase", "3.3.0", :source => "https://packages.couchbase.com/clients/ruby/2.7.0/"
 ----
 
 Or run in terminal:
@@ -60,12 +61,60 @@ with links to every release package along with precompiled binaries.
 
 [source,bash]
 ----
-wget https://packages.couchbase.com/clients/ruby/sdk-3.2.0/couchbase-3.2.0-x86_64-linux-2.7.0.gem
-gem install couchbase-3.2.0-x86_64-linux-2.7.0.gem
+wget https://packages.couchbase.com/clients/ruby/sdk-3.3.0/couchbase-3.3.0-x86_64-linux-2.7.0.gem
+gem install couchbase-3.3.0-x86_64-linux-2.7.0.gem
 ----
 
 
 [#latest-release]
+== Version 3.3.0 (5 May 2022)
+
+This is the first GA release of the 3.3 series.
+
+https://docs.couchbase.com/sdk-api/couchbase-ruby-client-3.3.0/index.html[API Reference]
+
+Improvements:
+
+* https://issues.couchbase.com/browse/RCBC-338[RCBC-338]:
+  Added new options for the search API. 
+  You can now add the `operator` and `include_locations` properties to all search queries.
+
+* https://issues.couchbase.com/browse/RCBC-358[RCBC-358], https://issues.couchbase.com/browse/RCBC-346[RCBC-346]:
+  Added new options for the bucket API. 
+  The SDK now allows you to configure the custom conflict resolution storage backend for new buckets.
+
+* https://issues.couchbase.com/browse/RCBC-345[RCBC-345]:
+  We now support preserving expiry for the query API.
+
+* https://issues.couchbase.com/browse/RCBC-343[RCBC-343]:
+  SSL peer is now verified by default.
+
+* Added support for Ruby 3.1.
+
+* Dropped support for Ruby 2.5 and 2.6.
+
+Fixes:
+
+* https://issues.couchbase.com/browse/RCBC-358[RCBC-358]:
+  The SDK now initializes search locations only if they are returned by the server.
+
+
+[cols="9,5,19"]
+|===
+| Platform           | Ruby ABI | File
+| Checksums          |          | https://packages.couchbase.com/clients/ruby/sdk-3.2.0/couchbase-3.2.0.sha256sum[couchbase-3.2.0.sha256sum]
+| Source Archive     |          | https://packages.couchbase.com/clients/ruby/sdk-3.2.0/couchbase-3.2.0.gem[couchbase-3.2.0.gem]
+| Linux x86_64       | 3.1.0    | https://packages.couchbase.com/clients/ruby/sdk-3.2.0/couchbase-3.2.0-x86_64-linux-3.1.0.gem[couchbase-3.2.0-x86_64-linux-3.1.0.gem]
+| Linux x86_64       | 3.0.0    | https://packages.couchbase.com/clients/ruby/sdk-3.2.0/couchbase-3.2.0-x86_64-linux-3.0.0.gem[couchbase-3.2.0-x86_64-linux-3.0.0.gem]
+| Linux x86_64       | 2.7.0    | https://packages.couchbase.com/clients/ruby/sdk-3.2.0/couchbase-3.2.0-x86_64-linux-2.7.0.gem[couchbase-3.2.0-x86_64-linux-2.7.0.gem]
+| macOS 10.15 x84_64 | 3.1.0    | https://packages.couchbase.com/clients/ruby/sdk-3.2.0/couchbase-3.2.0-x86_64-darwin-19-3.1.0.gem[couchbase-3.2.0-x86_64-darwin-19-3.1.0.gem]
+| macOS 10.15 x84_64 | 3.0.0    | https://packages.couchbase.com/clients/ruby/sdk-3.2.0/couchbase-3.2.0-x86_64-darwin-19-3.0.0.gem[couchbase-3.2.0-x86_64-darwin-19-3.0.0.gem]
+| macOS 10.15 x84_64 | 2.7.0    | https://packages.couchbase.com/clients/ruby/sdk-3.2.0/couchbase-3.2.0-x86_64-darwin-19-2.7.0.gem[couchbase-3.2.0-x86_64-darwin-19-2.7.0.gem]
+| macOS 11 x84_64 | 3.1.0    | https://packages.couchbase.com/clients/ruby/sdk-3.2.0/couchbase-3.2.0-x86_64-darwin-20-3.1.0.gem[couchbase-3.2.0-x86_64-darwin-20-3.1.0.gem]
+| macOS 11 x84_64 | 3.0.0    | https://packages.couchbase.com/clients/ruby/sdk-3.2.0/couchbase-3.2.0-x86_64-darwin-20-3.0.0.gem[couchbase-3.2.0-x86_64-darwin-20-3.0.0.gem]
+| macOS 11 x84_64 | 2.7.0    | https://packages.couchbase.com/clients/ruby/sdk-3.2.0/couchbase-3.2.0-x86_64-darwin-20-2.7.0.gem[couchbase-3.2.0-x86_64-darwin-20-2.7.0.gem]
+|===
+
 == Version 3.2.0 (4 August 2021)
 
 This is the first GA release of the 3.2 series.
@@ -480,4 +529,5 @@ https://docs.couchbase.com/sdk-api/couchbase-ruby-client-3.0.0.beta.1/index.html
 == Older Releases
 
 Although https://www.couchbase.com/support-policy/enterprise-software[no longer supported], documentation for older releases continues to be available in our https://docs-archive.couchbase.com/home/index.html[docs archive].
+
 // end::all[]
