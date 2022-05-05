@@ -7,7 +7,7 @@ Plus notes on Cloud, networks, and AWS Lambda.
 [abstract]
 {description}
 
-The Couchbase Ruby SDK is compatible with Ruby 2.6, 2.7, and 3.0.
+The Couchbase Ruby SDK supports MRI Ruby versions 2.7, 3.0 and 3.1.
 // We follow list of supported versions at https://www.ruby-lang.org/en/downloads/branches/
 
 
@@ -24,29 +24,34 @@ It is best to upgrade either the SDK or the Couchbase version you are using.
 
 .Recommended SDK per Server Version Matrix
 [#table_sdk_versions]
-[cols="40,25, 20"]
+[cols="40,25, 20, 20"]
 |===
-|  | SDK 3.0, 3.1 | SDK 3.2
-
-| *Server 5.0-5.5*
-| ◎
-| ◎
+|  | SDK 3.0, 3.1 | SDK 3.2 | SDK 3.3
 
 | *Server 6.0*
 | *✔*
 | *✔*
+| *◎*
 
 | *Server 6.5-6.6*
 | *✔*
 | *✔*
+| *✔*
 
-| *Server 7.0*
+| *Server 7.0-7.1*
 | ◎
+| *✔*
 | *✔*
 |===
 
 Note the https://www.couchbase.com/support-policy[End of Life dates^] for Couchbase Server and SDK versions.
 See the notes there for Support details.
+
+=== Capella Compatibility
+
+At time of release, the Couchbase 3.3 Ruby SDK is fully compatible with Couchbase Capella, our fully-hosted database-as-a-service.
+To make development easier, the 3.3 SDK includes the Capella client certificate ready installed.
+
 
 == Couchbase New Feature Availability Matrix
 
@@ -54,7 +59,7 @@ See the notes there for Support details.
 [.table-merge-cells]
 [cols="7,5,6,5"]
 |===
-| | Server 6.0 | Server 6.5 & 6.6 | Server 7.0
+| | Server 6.0 | Server 6.5 & 6.6 | Server 7.0 & 7.1
 
 | Enhanced Durability
 3+| All SDK versions
