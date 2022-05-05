@@ -76,16 +76,18 @@ https://docs.couchbase.com/sdk-api/couchbase-ruby-client-3.3.0/index.html[API Re
 Improvements:
 
 * https://issues.couchbase.com/browse/RCBC-338[RCBC-338]:
-  New options for search API. Add `operator` and `include_locations` property to all search queries.
+  Added new options for the search API. 
+  You can now add the `operator` and `include_locations` properties to all search queries.
 
 * https://issues.couchbase.com/browse/RCBC-358[RCBC-358], https://issues.couchbase.com/browse/RCBC-346[RCBC-346]:
-  New options for bucket API. Allow to configure custom conflict resolution storage backend for new buckets.
+  Added new options for the bucket API. 
+  The SDK now allows you to configure the custom conflict resolution storage backend for new buckets.
 
 * https://issues.couchbase.com/browse/RCBC-345[RCBC-345]:
-  Support preserving expiry for query API.
+  We now support preserving expiry for the query API.
 
 * https://issues.couchbase.com/browse/RCBC-343[RCBC-343]:
-  Verify SSL peer by default
+  SSL peer is now verified by default.
 
 * Added support for Ruby 3.1.
 
@@ -94,7 +96,7 @@ Improvements:
 Fixes:
 
 * https://issues.couchbase.com/browse/RCBC-358[RCBC-358]:
-  initialize search locations only if they returned by server
+  The SDK now initializes search locations only if they are returned by the server.
 
 
 [cols="9,5,19"]
