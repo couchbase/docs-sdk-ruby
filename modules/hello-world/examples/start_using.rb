@@ -1,11 +1,9 @@
 # tag::imports[]
 require "couchbase"
-include Couchbase # to avoid repeating module name
 # end::imports[]
 
 # tag::connect[]
 # Update these credentials for your Local instance!
-
 options = Cluster::ClusterOptions.new
 options.authenticate("username", "Password!123")
 cluster = Cluster.connect("couchbase://db", options)

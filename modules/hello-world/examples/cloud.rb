@@ -1,6 +1,5 @@
 # tag::imports[]
 require "couchbase"
-include Couchbase # to avoid repeating module name
 # end::imports[]
 
 # tag::connect[]
