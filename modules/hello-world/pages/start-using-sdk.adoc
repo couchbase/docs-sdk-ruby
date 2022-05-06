@@ -51,7 +51,7 @@ or the xref:{version-server}@server:manage:manage-settings/install-sample-bucket
 
 == Quick Installation
 
-A more detailed guide in our xref:project-docs:sdk-full-installation.adoc[Installation page] covers every supported platform, but this section should be enough to get up and running in most cases.
+// A more detailed guide in our xref:project-docs:sdk-full-installation.adoc[Installation page] covers every supported platform, but this section should be enough to get up and running in most cases.
 
 // tag::install[]
 
@@ -63,7 +63,7 @@ gem install couchbase
 ----
 
 In addition to rubygems.org, we also maintain official gem repositories, where we publish not only source version of the package, but also precompiled binaries for Linux and MacOS.
-Further details can be found on the xref:project-docs:sdk-full-installation.adoc[Installation page].
+// Further details can be found on the xref:project-docs:sdk-full-installation.adoc[Installation page].
 // end::install[]
 
 
