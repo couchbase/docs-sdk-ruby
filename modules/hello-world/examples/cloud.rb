@@ -4,11 +4,10 @@ include Couchbase # to avoid repeating module name
 # end::imports[]
 
 # tag::connect[]
-# Update these credentials for your Local instance!
-
-options = Cluster::ClusterOptions.new
+# Update these credentials for your Capella instance!
+options = Cluster::Options::Cluster.new
 options.authenticate("username", "Password!123")
-cluster = Cluster.connect("couchbase://db", options)
+cluster = Cluster.connect("couchbases://cb.njg8j7mwqnvwjqah.cloud.couchbase.com?kv_timeout=10000", options)
 # end::connect[]
 
 # tag::bucket[]
