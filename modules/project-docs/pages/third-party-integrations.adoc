@@ -4,15 +4,17 @@
 :page-topic-type: project-doc
 :page-aliases: 
 
+include::project-docs:partial$attributes.adoc[]
+
 [abstract]
 
 {description}
 
 
-include::7.0@sdk:shared:partial$integrations.adoc[tag=intro]
+include::{version-server}@sdk:shared:partial$integrations.adoc[tag=intro]
 
 
-include::7.0@sdk:shared:partial$integrations.adoc[tag=important]
+include::{version-server}@sdk:shared:partial$integrations.adoc[tag=important]
 
 The Couchbase Ruby SDK integrates well with Ruby-on-Rails, particularly for use as a https://guides.rubyonrails.org/caching_with_rails.html#cache-stores[Rails Cache Store^].
 To do so, add the following to your Rails application config:

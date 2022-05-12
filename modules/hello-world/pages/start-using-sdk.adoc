@@ -75,7 +75,7 @@ Start a new project (in VS Code or RubyMine, etc.) and create a file `cb-test.rb
 
 === Prerequisites
 
-Install the latest SDK package -- see <<quick-install,above>>.
+Install the latest SDK package -- see <<quick-installation,above>>.
 
 The following code samples assume:
 

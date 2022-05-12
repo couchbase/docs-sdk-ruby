@@ -4,6 +4,8 @@
 :page-topic-type: reference
 :page-aliases: ROOT:client-settings
 
+include::project-docs:partial$attributes.adoc[]
+
 [abstract]
 {description}
 
@@ -162,4 +164,4 @@ This means that tuning the number of connections (KV endpoints) is no longer nec
 This is set to true by default. Note, changing the setting will only affect Server versions 7.0 onwards.
 
 
-include::7.0@sdk:shared:partial$client-settings-wide-network.adoc[]
+include::{version-server}@sdk:shared:partial$client-settings-wide-network.adoc[]

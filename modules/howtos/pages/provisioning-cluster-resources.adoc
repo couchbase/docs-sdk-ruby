@@ -3,11 +3,13 @@
 :navtitle: Provisioning Cluster Resources
 :page-aliases: ROOT:managing-clusters
 
+include::project-docs:partial$attributes.adoc[]
+
 [abstract]
 {description}
 Common use cases are outlined here, less common use cases are covered in the https://docs.couchbase.com/sdk-api/couchbase-ruby-client/Couchbase/Management.html[API docs].
 
-include::7.0@sdk:shared:partial$flush-info-pars.adoc[tag=management-intro]
+include::{version-server}@sdk:shared:partial$flush-info-pars.adoc[tag=management-intro]
 
 The Ruby SDK also comes with some convenience functionality for common Couchbase management requests.
 
@@ -36,7 +38,7 @@ NOTE: When using a Couchbase version earlier than 6.5, you must create a valid B
 The https://docs.couchbase.com/sdk-api/couchbase-ruby-client/Couchbase/Management/BucketManager.html[BucketManager] interface may be used to create and delete buckets from the Couchbase cluster.
 It is instantiated through the `#create_bucket()` method.
 
-include::7.0@sdk:shared:partial$flush-info-pars.adoc[tag=update-bucket-warning]
+include::{version-server}@sdk:shared:partial$flush-info-pars.adoc[tag=update-bucket-warning]
 
 See the https://docs.couchbase.com/sdk-api/couchbase-ruby-client/Couchbase/Management/BucketSettings.html[API docs^] for a full list of settings options.
 
@@ -60,7 +62,7 @@ As well as flushing the bucket.
 
 == Flushing Buckets
 
-include::7.0@sdk:shared:partial$flush-info-pars.adoc[tag=flush-intro]
+include::{version-server}@sdk:shared:partial$flush-info-pars.adoc[tag=flush-intro]
 
 You can flush a bucket in the SDK by using the `flush_bucket()` method.
 
@@ -148,7 +150,7 @@ For those occasions when you do, please see the relevant API docs, linked xref:#
 
 == View Management
 
-include::7.0@sdk:shared:partial$flush-info-pars.adoc[tag=view-management]
+include::{version-server}@sdk:shared:partial$flush-info-pars.adoc[tag=view-management]
 
 In the SDK, design documents are represented by the `DesignDocument` and `View` classes.
 All operations on design documents are performed on the `ViewIndexManager` instance:

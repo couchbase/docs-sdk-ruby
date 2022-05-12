@@ -4,6 +4,8 @@
 :page-topic-type: howto
 :page-aliases: document-operations.adoc
 
+include::project-docs:partial$attributes.adoc[]
+
 [abstract]
 {description}
 Here we cover CRUD operations, document expiration, and optimistic locking with CAS.
@@ -178,7 +180,7 @@ include::example$kv_operations.rb[tag=expiry-touch]
 ----
 
 
-include::7.0@sdk:shared:partial$documents.adoc[tag=exp-note]
+include::{version-server}@sdk:shared:partial$documents.adoc[tag=exp-note]
 
 
 == Atomic Counters
