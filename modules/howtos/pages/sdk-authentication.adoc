@@ -4,6 +4,8 @@
 :page-edition: Enterprise Edition
 :page-aliases: ROOT:sdk-authentication-overview
 
+include::project-docs:partial$attributes.adoc[]
+
 [abstract]
 {description}
 
@@ -21,14 +23,14 @@ include::hello-world:example$start_using.rb[tag=connect,indent=0]
 ----
 
 
-include::7.0@sdk:shared:partial$auth-overview.adoc[tag=rbac]
+include::{version-server}@sdk:shared:partial$auth-overview.adoc[tag=rbac]
 
-include::7.0@sdk:shared:partial$auth-overview.adoc[tag=cert-auth]
+include::{version-server}@sdk:shared:partial$auth-overview.adoc[tag=cert-auth]
 
 
 == Authenticating a Ruby Client by Certificate
 
-For sample procedures whereby certificates can be generated and deployed, see xref:7.0@server:manage:manage-security/manage-certificates.adoc[Manage Certificates].
+For sample procedures whereby certificates can be generated and deployed, see xref:7.1@server:manage:manage-security/manage-certificates.adoc[Manage Certificates].
 The rest of this document assumes that the processes there, or something similar, have been followed:
 
 
@@ -40,7 +42,7 @@ include::example$auth.rb[tag=auth2,indent=0]
 ----
 
 
-include::7.0@sdk:shared:partial$auth-overview.adoc[tag=ldap]
+include::{version-server}@sdk:shared:partial$auth-overview.adoc[tag=ldap]
 
 [source,ruby]
 ----

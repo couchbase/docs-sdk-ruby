@@ -1,4 +1,6 @@
-include::7.0@sdk:pages:partial$user-management.adoc[]
+include::project-docs:partial$attributes.adoc[]
+
+include::{version-server}@sdk:pages:partial$user-management.adoc[]
 
  
 
