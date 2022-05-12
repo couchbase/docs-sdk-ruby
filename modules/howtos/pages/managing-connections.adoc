@@ -87,9 +87,9 @@ a client running outside that environment may need additional information in ord
 Both the client and server require special configuration in this case.
 
 On the server side, each server node must be configured to advertise its external address as well as any custom port mapping.  
-This is done with the `setting-alternate-address` xref:7.0@server:cli:cbcli/couchbase-cli-setting-alternate-address.adoc[CLI command] introduced in Couchbase Server 6.5.
+This is done with the `setting-alternate-address` xref:7.1@server:cli:cbcli/couchbase-cli-setting-alternate-address.adoc[CLI command] introduced in Couchbase Server 6.5.
 A node configured in this way will advertise two addresses: one for connecting from the same network, and another for connecting from an external network.
-This can also be set and retrieved xref:7.0@server:rest-api:rest-set-up-alternate-address.adoc#assign-alternate-address-and-port-numbers[through the REST API].
+This can also be set and retrieved xref:7.1@server:rest-api:rest-set-up-alternate-address.adoc#assign-alternate-address-and-port-numbers[through the REST API].
 
 
 On the client side, the externally visible ports must be used when connecting.  
@@ -199,4 +199,4 @@ include::{version-server}@sdk:shared:partial$managing-connections.adoc[tag=cloud
 
 == Further Reading
 
-For more on RBAC, refer to the xref:7.0@server:learn:security/authorization-overview.adoc[Server docs].
+For more on RBAC, refer to the xref:7.1@server:learn:security/authorization-overview.adoc[Server docs].

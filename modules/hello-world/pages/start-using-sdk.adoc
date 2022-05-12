@@ -136,7 +136,7 @@ If you're developing client code on the same VM or machine as the Couchbase Serv
 
 If you are connecting to https://docs.couchbase.com/cloud/index.html[Couchbase Capella] rather than a local Couchbase Server, then also refer to the <<cloud-connections, Cloud section>>, below.
 
-Couchbase uses xref:7.0@server:learn:security/roles.adoc[Role Based Access Control (RBAC)] to control access to resources.
+Couchbase uses xref:7.1@server:learn:security/roles.adoc[Role Based Access Control (RBAC)] to control access to resources.
 For production client code, you will want to use more appropriate, restrictive settings
 -- but here we want to get you up and running quickly,
 so you can use the _Full Admin_ role created during installation of the Couchbase Data Platform, in which case set _Administrator_ as the username, and use the password that you defined in setting up your test Couchbase cluster.

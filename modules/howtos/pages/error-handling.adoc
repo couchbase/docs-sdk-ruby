@@ -145,7 +145,7 @@ Networks, remotely-located clusters, and XDCR all offer opportunities for packet
 === RBAC Roles - permissions on Service / Bucket / etc.
 
 Standard since Couchbase Data Platform 5.0, xref:[Role Based Access Control (RBAC)] gives fine-grained permissions designed to protect the security of and access to data with a range of user roles encompassing different privileges.
-xref:7.0@server:learn:security/authorization-overview.adoc[Refer to our Authorization pages] for a fuller understanding.
+xref:7.1@server:learn:security/authorization-overview.adoc[Refer to our Authorization pages] for a fuller understanding.
 
 The developer must match an application’s need for data access with the necessary permissions for access.
 // SCENARIO??
