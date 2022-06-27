@@ -105,3 +105,5 @@ The Ruby SDK can be combined with many other projects in the broader Ruby ecosys
 ++++
 </div>
 ++++
+
+include::7.1@sdk:shared:partial$archive.adoc[tag=link]
