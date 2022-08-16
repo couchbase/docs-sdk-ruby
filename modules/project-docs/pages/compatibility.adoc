@@ -53,7 +53,7 @@ See the notes there for Support details.
 At time of release, the Couchbase 3.3 Ruby SDK is fully compatible with Couchbase Capella, our fully-hosted database-as-a-service.
 To make development easier, the 3.3 SDK includes the Capella client certificate ready installed.
 
-include::{version-server}@sdk:shared:partial$capella.adoc[tag=cloud]
+include::7.1@sdk:shared:partial$capella.adoc[tag=cloud]
 
 
 == Couchbase New Feature Availability Matrix
