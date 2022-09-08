@@ -1,6 +1,6 @@
 name: ruby-sdk
 title: Ruby SDK
-version: '3.3'
+version: '3.4'
 start_page: hello-world:overview.adoc
 nav:
 - modules/ROOT/nav.adoc
