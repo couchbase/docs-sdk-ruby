@@ -65,34 +65,43 @@ xref:7.1@server:learn:buckets-memory-and-storage/expiration.adoc#expiration-buck
 include::example$kv_operations.rb[tag=expiry-insert]
 ----
 
-// TODO: old-style durability will come later
-
-// Here, we have added _Durability_ options, namely `PersistTo` and `ReplicateTo`.
-
 == Durability
 
-////
-In Couchbase Server releases before 6.5, Durability was set with these two options -- see the xref:2.6@php-sdk::durability.adoc[6.0 Durability documentation] -- covering  how many replicas the operation must be propagated to and how many persisted copies of the modified record must exist.
-////
+Writes in Couchbase are written to a single node, and from there the Couchbase Server will take care of sending that mutation to any configured replicas.
 
-If Server 6.5 or above is being used, you can take advantage of the xref:concept-docs:durability-replication-failure-considerations.adoc#durable-writes[Durable Write] feature,
+The optional `durability_level` parameter, which all mutating operations accept, allows the application to wait until this replication (or persistence) is successful before proceeding.
+
+It can be used like this:
+
+[source,ruby]
+----
+include::example$kv_operations.rb[tag=durability,indent=0]
+----
+
+If no argument is provided the application will report success back as soon as the primary node has acknowledged the mutation in its memory.
+However, we recognize that there are times when the application needs that extra certainty that especially vital mutations have been successfully replicated,
+and the other durability options provide the means to achieve this.
+
+The options differ depending on what Couchbase Server version is in use.
+If 6.5 or above is being used, you can take advantage of the xref:concept-docs:durability-replication-failure-considerations.adoc#durable-writes[Durable Write] feature,
 in which Couchbase Server will only return success to the SDK after the requested replication level has been achieved.
 The three replication levels are:
 
- * `:majority` - The server will ensure that the change is available in memory on the majority of configured replicas.
- * `:majority_and_persist_to_active` - Majority level, plus persisted to disk on the active node.
- * `:persist_to_majority` - Majority level, plus persisted to disk on the majority of configured replicas.
+* `:majority` - The server will ensure that the change is available in memory on the majority of configured replicas.
+* `:majority_and_persist_to_active` - Majority level, plus persisted to disk on the active node.
+* `:persist_to_majority` - Majority level, plus persisted to disk on the majority of configured replicas.
 
 The options are in increasing levels of safety.
 Note that nothing comes for free - for a given node, waiting for writes to storage is considerably slower than waiting for it to be available in-memory.
 These trade offs, as well as which settings may be tuned, are discussed in the xref:concept-docs:durability-replication-failure-considerations.adoc#durable-writes[durability page].
 
-The following example demonstrates using the newer durability features available in Couchbase server 6.5 onwards.
-
+If a version of Couchbase Server lower than 6.5 is being used then the application can fall-back to xref:concept-docs:durability-replication-failure-considerations.adoc#older-server-versions['client verified' durability].
+Here the SDK will do a simple poll of the replicas and only return once the requested durability level is achieved.
+This can be achieved like this:
 
 [source,ruby]
 ----
-include::example$kv_operations.rb[tag=durability]
+include::example$kv_operations.rb[tag=durability-observed,indent=0]
 ----
 
 To stress, durability is a useful feature but should not be the default for most applications, as there is a performance consideration,
@@ -103,7 +112,7 @@ and the default level of safety provided by Couchbase will be reasonable for the
 .Sub-Document Operations
 ====
 All of these operations involve fetching the complete document from the Cluster.
-Where the number of operations or other circumstances make bandwidth a significant issue, the SDK can work on just a specific _path_ of the document with xref:subdocument-operations.adoc[Sub-Docunent Operations].
+Where the number of operations or other circumstances make bandwidth a significant issue, the SDK can work on just a specific _path_ of the document with xref:subdocument-operations.adoc[Sub-Document Operations].
 ====
 
 == Retrieving full documents
