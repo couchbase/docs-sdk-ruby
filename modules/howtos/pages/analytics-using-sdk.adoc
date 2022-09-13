@@ -1,4 +1,4 @@
-= Analytics using the Ruby SDK
+= Analytics
 :description: Parallel data management for complex queries over many records, using a familiar SQL-like syntax.
 :page-topic-type: howto
 :page-edition: Enterprise Edition:
