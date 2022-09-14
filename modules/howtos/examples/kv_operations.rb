@@ -92,6 +92,13 @@ rescue Error::DurabilityImpossible
   puts "Example requires a multi-node environment"
 end
 
+begin
+  # tag::durability-observed[]
+  collection.upsert("my-document", {"doc" => true}, 
+                  Options::Upsert(persist_to: :none, replicate_to: :two))
+  # end::durability-observed[]
+rescue Error::DurabilityImpossible
+
 # tag::expiry-insert[]
 collection.upsert("my-document", {"doc" => true},
                   Options::Insert(expiry: 2 * 60 * 60))

@@ -18,8 +18,7 @@ include::{version-server}@sdk:shared:partial$durability-replication-failure-cons
 include::{version-server}@sdk:shared:partial$durability-replication-failure-considerations.adoc[tag=syncrep]
 include::{version-server}@sdk:shared:partial$durability-replication-failure-considerations.adoc[tag=syncrep3]
 
-// No old-style durability options in the 3.0 Ruby SDK.
-// include::{version-server}@sdk:shared:partial$durability-replication-failure-considerations.adoc[tag=older]
+include::{version-server}@sdk:shared:partial$durability-replication-failure-considerations.adoc[tag=older]
 
 include::{version-server}@sdk:shared:partial$durability-replication-failure-considerations.adoc[tag=performance]
 
