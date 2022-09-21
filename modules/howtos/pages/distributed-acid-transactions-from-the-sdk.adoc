@@ -1,7 +1,9 @@
-= Distributed Transactions from the Ruby SDK
-:description: Distributed ACID Transactions in Couchbase SDKs.
-:navtitle: ACID Transactions
+= Using Couchbase Transactions
+:description: A practical guide on using Couchbase Distributed ACID transactions, via the Java SDK.
 :page-topic-type: howto
+:page-toclevels: 2
+// TODO: Uncomment when we actually have transactions content to show.
+//:page-pagination: next
 
 include::project-docs:partial$attributes.adoc[]
 

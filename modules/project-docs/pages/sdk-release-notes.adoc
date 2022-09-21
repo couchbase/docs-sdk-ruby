@@ -1,6 +1,5 @@
-= Couchbase Ruby Release Notes and Archives
+= SDK Release Notes
 :description: Release notes, installation instructions, and download archive for the Couchbase Ruby Client.
-:navtitle: Release Notes
 :page-topic-type: project-doc
 :page-partial:
 :page-aliases: ROOT:relnotes-ruby-sdk,ROOT:release-notes,ROOT:sdk-release-notes
