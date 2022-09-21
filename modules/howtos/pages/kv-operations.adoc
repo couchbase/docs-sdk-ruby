@@ -1,9 +1,9 @@
-= Key Value Operations
-:description: Key-Value (KV) or data service offers the simplest way to retrieve or mutate data where the key is known.
-:navtitle: KV Operations
+= Data Operations
+:description: Data service offers the simplest way to retrieve or mutate data where the key is known.
 :page-topic-type: howto
 :page-aliases: document-operations.adoc
 :page-toclevels: 2
+:page-pagination: full
 
 include::project-docs:partial$attributes.adoc[]
 

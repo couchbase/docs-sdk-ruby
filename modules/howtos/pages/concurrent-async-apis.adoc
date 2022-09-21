@@ -1,20 +1,18 @@
-= Choosing an API
+= Async APIs
 :description: An async implementation is not yet available in the 3.x API Ruby SDK.
-:navtitle: Choosing an API
 :page-topic-type: howto
 :page-aliases: ROOT:async-programming,ROOT:batching-operations,multiple-apis
 
+[abstract]
 {description}
-// Awaiting `ractor` implementation.
 
-
-## Batching
+== Batching
 
 Upserting (or fetching or deleting) multiple documents simultaneously may be performed with the `get_multi()`,
 `upsert_multi()`, and `remove_multi()` methods.
-These are part of the https://docs.couchbase.com/sdk-api/couchbase-ruby-client/Couchbase/Collection.html[Collection^].
+These are part of the https://docs.couchbase.com/sdk-api/couchbase-ruby-client/Couchbase/Collection.html[Collection^] class.
 
-### Using the Collection Methods
+=== Using the Collection Methods
 
 .get_multi()
 [source,ruby]

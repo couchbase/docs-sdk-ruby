@@ -1,6 +1,5 @@
 = Handling Errors
 :description: Error handling from the Ruby SDK.
-:navtitle: Handling Errors
 :page-topic-type: howto
 :page-aliases: ROOT:handling-error-conditions,ROOT:exception-handling
 :source-language: ruby
