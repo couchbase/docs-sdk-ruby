@@ -15,16 +15,16 @@ The Ruby SDK includes high-performance native Ruby extensions to handle communic
 
 {empty} +
 
-== icon:database[] Using Your Database
+== icon:database[] Use Your Database
 
-How-to guides to help you start your development journey with Couchbase and the Java SDK.
+How-to guides to help you start your development journey with Couchbase and the Ruby SDK.
 
 ++++
 <div class="card-row three-column-row">
 ++++
 
 [.column]
-.Getting Started
+.Get Started
 * xref:hello-world:start-using-sdk.adoc[]
 * xref:howtos:kv-operations.adoc[]
 * xref:howtos:n1ql-queries-with-sdk.adoc[]
@@ -38,21 +38,21 @@ How-to guides to help you start your development journey with Couchbase and the 
 //* xref:concept-docs:transactions.adoc[]
 
 [.column]
-.Working with Data
+.Work with Data
 * xref:howtos:subdocument-operations.adoc[]
 * xref:howtos:analytics-using-sdk.adoc[]
 //* xref:howtos:encrypting-using-sdk.adoc[]
-* xref:howtos:working-with-collections.adoc[Working with Collections]
+* xref:howtos:working-with-collections.adoc[Organize Data with Collections]
 
 [.column]
-.Managing Couchbase
+.Manage Couchbase
 * xref:howtos:managing-connections.adoc[]
 * xref:howtos:sdk-authentication.adoc[]
 * xref:howtos:provisioning-cluster-resources.adoc[]
 * xref:howtos:sdk-user-management-example.adoc[]
 
 [.column]
-.Errors & Diagnostics
+.Explore Errors & Diagnostics
 * xref:howtos:error-handling.adoc[]
 * xref:howtos:collecting-information-and-logging.adoc[]
 * xref:howtos:slow-operations-logging.adoc[]
@@ -63,7 +63,7 @@ How-to guides to help you start your development journey with Couchbase and the 
 
 == icon:graduation-cap[] Learn
 
-Take a deep-dive into our concept material and learn more about Couchbase.
+Take a deep-dive into the SDK concept material and learn more about Couchbase.
 
 ++++
 <div class="card-row three-column-row">
@@ -87,7 +87,7 @@ Take a deep-dive into our concept material and learn more about Couchbase.
 
 == icon:book[] Resources
 
-Useful resources to help support your development experience with Couchbase and the Java SDK.
+Useful resources to help support your development experience with Couchbase and the Ruby SDK.
 
 ++++
 <div class="card-row three-column-row">
@@ -105,7 +105,7 @@ Useful resources to help support your development experience with Couchbase and 
 .Project Docs
 * xref:project-docs:sdk-release-notes.adoc[]
 * xref:project-docs:compatibility.adoc[Compatibility]
-* https://docs-archive.couchbase.com/home/index.html[Older Versions Archive]
+* https://docs-archive.couchbase.com/home/index.html[Earlier Versions Archive]
 * xref:project-docs:migrating-sdk-code-to-3.n.adoc[]
 * xref:project-docs:third-party-integrations.adoc[]
 //* xref:project-docs:sdk-full-installation.adoc[Full Installation]

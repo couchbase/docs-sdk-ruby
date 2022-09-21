@@ -1,4 +1,4 @@
-= Transcoders & Non-JSON Documents
+= Transcoders and Non-JSON Documents
 :description: The Ruby SDK supports common JSON document requirements out-of-the-box.
 :page-topic-type: howtos
 
