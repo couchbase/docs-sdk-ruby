@@ -190,7 +190,7 @@ include::example$kv_operations.rb[tag=expiry-touch]
 ----
 
 
-include::{version-server}@sdk:shared:partial$documents.adoc[tag=exp-note]
+include::{version-common}@sdk:shared:partial$documents.adoc[tag=exp-note]
 
 
 == Atomic Counters
