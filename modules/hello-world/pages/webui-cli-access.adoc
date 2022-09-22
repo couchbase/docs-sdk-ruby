@@ -1,1 +1,1 @@
-include::{version-server}@sdk:pages:partial$webui-cli-access.adoc[]
+include::{version-common}@sdk:pages:partial$webui-cli-access.adoc[]
