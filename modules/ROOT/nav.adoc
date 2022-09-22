@@ -18,7 +18,7 @@
 * xref:howtos:subdocument-operations.adoc[]
 * xref:howtos:analytics-using-sdk.adoc[]
 * xref:howtos:view-queries-with-sdk.adoc[]
-* xref:howtos:concurrent-async-apis.adoc[]
+* xref:howtos:concurrent-async-apis.adoc[Async & Batching APIs]
 * xref:howtos:concurrent-document-mutations.adoc[]
 // TODO: Uncomment this when we support FLE for Ruby SDK.
 //* xref:howtos:encrypting-using-sdk.adoc[]
