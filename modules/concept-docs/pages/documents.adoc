@@ -31,7 +31,7 @@ Although query and path-based (Sub-Document) services are available, the simplic
 
 
 
-include::{version-server}@sdk:shared:partial$documents.adoc[tag=document]
+include::{version-common}@sdk:shared:partial$documents.adoc[tag=document]
 
 == Primitive Key-Value Operations
 
@@ -44,9 +44,9 @@ collection.get(docid)
 collection.remove(docid)
 ----
 
-include::{version-server}@sdk:shared:partial$documents.adoc[tag=crud-overview]
+include::{version-common}@sdk:shared:partial$documents.adoc[tag=crud-overview]
 
-include::{version-server}@sdk:shared:partial$documents.adoc[tag=store-update]
+include::{version-common}@sdk:shared:partial$documents.adoc[tag=store-update]
 
 [NOTE]
 ====
@@ -65,7 +65,7 @@ UPDATE `travel-sample`.inventory.airline SET sale_price = msrp * 0.75 WHERE msrp
 ----
 ====
 
-include::{version-server}@sdk:shared:partial$documents.adoc[tag=get_generic]
+include::{version-common}@sdk:shared:partial$documents.adoc[tag=get_generic]
 
 [source,sql]
 ----
@@ -96,21 +96,21 @@ include::example$documents.rb[tag=lookup-in-projections]
 
 // Counters
 
-include::{version-server}@sdk:shared:partial$documents.adoc[tag=counters1]
+include::{version-common}@sdk:shared:partial$documents.adoc[tag=counters1]
 
 [source,ruby]
 ----
 include::example$documents.rb[tag=counters]
 ----
 
-include::{version-server}@sdk:shared:partial$documents.adoc[tag=counters2]
+include::{version-common}@sdk:shared:partial$documents.adoc[tag=counters2]
 
 [source,ruby]
 ----
 include::example$documents.rb[tag=counters-increment]
 ----
 
-include::{version-server}@sdk:shared:partial$documents.adoc[tag=counters3]
+include::{version-common}@sdk:shared:partial$documents.adoc[tag=counters3]
 
 
 === Use Cases
@@ -120,22 +120,22 @@ This enables you to work with counters using `get()` and `replace()` operations 
 You will find several ways of working with counters https://docs.couchbase.com/sdk-api/couchbase-ruby-client/Couchbase/BinaryCollection.html[in the API docs].
 
 // Expiry
-include::{version-server}@sdk:shared:partial$documents.adoc[tag=expiration]
+include::{version-common}@sdk:shared:partial$documents.adoc[tag=expiration]
 
 
 ////
-include::{version-server}@sdk:shared:partial$documents.adoc[tag=]
+include::{version-common}@sdk:shared:partial$documents.adoc[tag=]
 
 
-include::{version-server}@sdk:shared:partial$documents.adoc[tag=]
+include::{version-common}@sdk:shared:partial$documents.adoc[tag=]
 
-include::{version-server}@sdk:shared:partial$documents.adoc[tag=]
+include::{version-common}@sdk:shared:partial$documents.adoc[tag=]
 
-include::{version-server}@sdk:shared:partial$documents.adoc[tag=]
+include::{version-common}@sdk:shared:partial$documents.adoc[tag=]
 
-include::{version-server}@sdk:shared:partial$documents.adoc[tag=]
+include::{version-common}@sdk:shared:partial$documents.adoc[tag=]
 
-include::{version-server}@sdk:shared:partial$documents.adoc[tag=]
+include::{version-common}@sdk:shared:partial$documents.adoc[tag=]
 
-include::{version-server}@sdk:shared:partial$documents.adoc[tag=]
+include::{version-common}@sdk:shared:partial$documents.adoc[tag=]
 ////

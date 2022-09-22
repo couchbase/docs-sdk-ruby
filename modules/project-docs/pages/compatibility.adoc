@@ -4,6 +4,8 @@ Plus notes on Cloud, networks, and AWS Lambda.
 :page-aliases: ROOT:overview,ROOT:compatibility-versions-features,compatibility-versions-features
 :page-toclevels: 2
 
+include::project-docs:partial$attributes.adoc[]
+
 [abstract]
 {description}
 
@@ -52,7 +54,7 @@ See the notes there for Support details.
 At time of release, the Couchbase 3.3 Ruby SDK is fully compatible with Couchbase Capella, our fully-hosted database-as-a-service.
 To make development easier, the 3.3 SDK includes the Capella client certificate ready installed.
 
-include::7.1@sdk:shared:partial$capella.adoc[tag=cloud]
+include::{version-common}@sdk:shared:partial$capella.adoc[tag=cloud]
 
 
 == Couchbase New Feature Availability Matrix
@@ -87,11 +89,11 @@ include::7.1@sdk:shared:partial$capella.adoc[tag=cloud]
 2+| Since SDK 3.2.0
 |===
 
-include::7.1@sdk:shared:partial$network-requirements.adoc[]
+include::{version-common}@sdk:shared:partial$network-requirements.adoc[]
 
 
-include::7.1@sdk:shared:partial$interface-stability-pars.adoc[tag=interface-stability-section]
+include::{version-common}@sdk:shared:partial$interface-stability-pars.adoc[tag=interface-stability-section]
 
-include::7.1@sdk:shared:partial$api-version.adoc[tag=api-version]
+include::{version-common}@sdk:shared:partial$api-version.adoc[tag=api-version]
 
-include::7.1@sdk:shared:partial$archive.adoc[tag=link]
+include::{version-common}@sdk:shared:partial$archive.adoc[tag=link]
