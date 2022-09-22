@@ -1,4 +1,4 @@
-= Async APIs
+= Async and Batching APIs
 :description: An async implementation is not yet available in the 3.x API Ruby SDK.
 :page-topic-type: howto
 :page-aliases: ROOT:async-programming,ROOT:batching-operations,multiple-apis
