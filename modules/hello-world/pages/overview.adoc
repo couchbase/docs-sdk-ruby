@@ -105,7 +105,7 @@ Useful resources to help support your development experience with Couchbase and 
 .Project Docs
 * xref:project-docs:sdk-release-notes.adoc[]
 * xref:project-docs:compatibility.adoc[Compatibility]
-* https://docs-archive.couchbase.com/home/index.html[Earlier Versions Archive]
+* https://docs-archive.couchbase.com/home/index.html[Older Versions Archive]
 * xref:project-docs:migrating-sdk-code-to-3.n.adoc[]
 * xref:project-docs:third-party-integrations.adoc[]
 //* xref:project-docs:sdk-full-installation.adoc[Full Installation]

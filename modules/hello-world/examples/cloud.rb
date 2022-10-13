@@ -6,7 +6,13 @@ require "couchbase"
 # Update these credentials for your Capella instance!
 options = Cluster::Options::Cluster.new
 options.authenticate("username", "Password!123")
-cluster = Cluster.connect("couchbases://cb.njg8j7mwqnvwjqah.cloud.couchbase.com?kv_timeout=10000", options)
+
+# Sets a pre-configured profile called "wan-development" to help avoid latency issues
+# when accessing Capella from a different Wide Area Network
+# or Availability Zone (e.g. your laptop).
+opptions.apply_profile("wan_development")
+
+cluster = Cluster.connect("couchbases://cb.<your-endpoint>.cloud.couchbase.com", options)
 # end::connect[]
 
 # tag::bucket[]
@@ -40,10 +46,10 @@ p cas: get_result.cas,
 # end::upsert-get[]
 
 # tag::n1ql-query[]
-result = cluster.query('SELECT "Hello World" AS greeting')
+inventory_scope = bucket.scope("inventory")
+result = inventory_scope.query('SELECT * FROM airline WHERE id = 10;')
 result.rows.each do |row|
   p row
-  #=> {"greeting"=>"Hello World"}
 end
 # end::n1ql-query[]
 

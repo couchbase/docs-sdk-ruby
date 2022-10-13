@@ -6,7 +6,7 @@ require "couchbase"
 # Update these credentials for your Local instance!
 options = Cluster::ClusterOptions.new
 options.authenticate("username", "Password!123")
-cluster = Cluster.connect("couchbase://db", options)
+cluster = Cluster.connect("couchbase://localhost", options)
 # end::connect[]
 
 # tag::bucket[]
@@ -40,10 +40,10 @@ p cas: get_result.cas,
 # end::upsert-get[]
 
 # tag::n1ql-query[]
-result = cluster.query('SELECT "Hello World" AS greeting')
+inventory_scope = bucket.scope("inventory")
+result = inventory_scope.query('SELECT * FROM airline WHERE id = 10;')
 result.rows.each do |row|
   p row
-  #=> {"greeting"=>"Hello World"}
 end
 # end::n1ql-query[]
 
