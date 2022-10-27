@@ -139,13 +139,15 @@ The Ruby SDK uses https://github.com/couchbaselabs/couchbase-cxx-client[{cbpp}] 
 
 IMPORTANT: {cbpp} loads OpenSSL's root CA store, therefore you should make sure that your system or platform is configured to support this.
 
-Depending on your OpenSSL installation, OpenSSL might not contain any certificates in its CA store by default, which you might wish to populate. You can find the location of the OpenSSL executable used by Ruby by running:
+Depending on your OpenSSL installation, OpenSSL might not contain any certificates in its CA store by default, which you might wish to populate.
+You can find the location of the OpenSSL executable used by Ruby with the following command:
 
+[source,console]
 ----
 ruby -r rbconfig -e 'puts RbConfig::CONFIG["configure_args"]'
 ----
 
-Then, you can get find the directory where the certificates OpenSSL trusts are stored by running `./openssl version -d` where `openssl` is the relevant OpenSSL executable.
+You can get the directory where the certificate's OpenSSL trusts are stored by running `./openssl version -d` -- where `openssl` is the relevant OpenSSL executable.
 
 You can still provide a certificate explicitly if necessary:
 
