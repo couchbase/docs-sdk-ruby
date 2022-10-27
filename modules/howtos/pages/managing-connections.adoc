@@ -137,8 +137,7 @@ The cluster's root certificate just needs to be issued by a CA whose certificate
 This includes publicly trusted CAs (e.g., GoDaddy, Verisign, etc...), plus any other CA certificates that you wish to add.
 The Ruby SDK uses https://github.com/couchbaselabs/couchbase-cxx-client[{cbpp}] internally to retrieve the platform root CA.
 
-IMPORTANT: {cbpp} loads your platform's root CA store in a similar way to the Ruby OpenSSL wrapper.
-If your system does not have a default root CA store, it will use the Mozilla CA certificate store.
+IMPORTANT: {cbpp} loads your platform’s root CA store using OpenSSL, therefore you should make sure that your system or platform is configured to support this.
 
 You can still provide a certificate explicitly if necessary:
 
