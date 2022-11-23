@@ -30,4 +30,6 @@ config.cache_store = :couchbase_store, {
 
 An implementation of the Cache Store for Rails can be found in our https://github.com/couchbase/couchbase-ruby-client/blob/master/lib/active_support/cache/couchbase_store.rb[Ruby client repo].
 
+// TODO: Look at https://github.com/Mapotempo/couchbase-orm 
+
 // Add in Sinatra after we use it in the Travel Sample App.
