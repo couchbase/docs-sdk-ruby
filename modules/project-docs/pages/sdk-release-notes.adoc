@@ -77,7 +77,7 @@ https://packages.couchbase.com/clients/ruby/sdk-%{sdk_version}/couchbase-%{sdk_v
 ----
 
 where "platform" placeholder can take values: `arm64-darwin-20`, `x86_64-darwin-19`, `x86_64-darwin-20`, `x86_64-linux`,
-* `x86_64-linux-musl`. To see platform string the following command:
+`x86_64-linux-musl`. To see platform string the following command:
 
 [source,bash]
 ----
@@ -94,6 +94,11 @@ ruby -rrbconfig -e 'puts RbConfig::CONFIG["ruby_version"]'
 
 [#latest-release]
 == Version 3.4.0 (19 February 2022)
+
+[source,bash]
+----
+gem install couchbase -v 3.4.0
+----
 
 https://docs.couchbase.com/sdk-api/couchbase-ruby-client-3.4.0/index.html[API Reference]
 
@@ -172,11 +177,11 @@ Fix `get_all_replicas` behaviour: do not propagate error if result set is not em
 * https://issues.couchbase.com/browse/CXXCBC-142[CXXCBC-142]: 
 Update SRV resolution for Windows (https://github.com/couchbaselabs/couchbase-cxx-client/pull/303[#303])
 * https://issues.couchbase.com/browse/CXXCBC-172[CXXCBC-172]: 
-Refresh DNS SRV when cluster uncontactable (#275, #290)
+Refresh DNS SRV when cluster uncontactable (https://github.com/couchbaselabs/couchbase-cxx-client/pull/275[#275], https://github.com/couchbaselabs/couchbase-cxx-client/pull/290[#290])
 * https://issues.couchbase.com/browse/CXXCBC-234[CXXCBC-234]: 
-Error message for bucket hibernation and update error message for authentication_failure. (#280, #285)
+Error message for bucket hibernation and update error message for authentication_failure. (https://github.com/couchbaselabs/couchbase-cxx-client/pull/290[#280], https://github.com/couchbaselabs/couchbase-cxx-client/pull/285[#285])
 * https://issues.couchbase.com/browse/CXXCBC-235[CXXCBC-235]: 
-Load system CAs when the trust certificate is not provided and do not fail if trust certificate is not specified (#283, #281)
+Load system CAs when the trust certificate is not provided and do not fail if trust certificate is not specified (https://github.com/couchbaselabs/couchbase-cxx-client/pull/283[#283], https://github.com/couchbaselabs/couchbase-cxx-client/pull/281[#281])
 * https://issues.couchbase.com/browse/CXXCBC-245[CXXCBC-245]: 
 Fix encoding of durability frame (https://github.com/couchbaselabs/couchbase-cxx-client/pull/277[#277])
 * https://issues.couchbase.com/browse/CXXCBC-246[CXXCBC-246]: 
@@ -212,7 +217,7 @@ disable clustermap nofication by default (https://github.com/couchbaselabs/couch
 * https://issues.couchbase.com/browse/CXXCBC-159[CXXCBC-159]: 
 Increment/decrement should not have `preserve_expiry` (https://github.com/couchbaselabs/couchbase-cxx-client/pull/201[#201])
 * https://issues.couchbase.com/browse/CXXCBC-55[CXXCBC-55]: 
-External Tracing and Metrics support with OpenTelemetry support (#228, #231)
+External Tracing and Metrics support with OpenTelemetry support (https://github.com/couchbaselabs/couchbase-cxx-client/pull/228[#228], https://github.com/couchbaselabs/couchbase-cxx-client/pull/231[#231])
 * https://issues.couchbase.com/browse/CXXCBC-54[CXXCBC-54]: 
 Add log forwarding (https://github.com/couchbaselabs/couchbase-cxx-client/pull/206[#206])
 
@@ -262,6 +267,11 @@ ignore 'is_primary' for named primary indexes when dropping (https://github.com/
 
 This is the first GA release of the 3.3 series.
 
+[source,bash]
+----
+gem install couchbase -v 3.3.0
+----
+
 https://docs.couchbase.com/sdk-api/couchbase-ruby-client-3.3.0/index.html[API Reference]
 
 Improvements:
@@ -309,6 +319,11 @@ Fixes:
 == Version 3.2.0 (4 August 2021)
 
 This is the first GA release of the 3.2 series.
+
+[source,bash]
+----
+gem install couchbase -v 3.2.0
+----
 
 https://docs.couchbase.com/sdk-api/couchbase-ruby-client-3.2.0/index.html[API Reference]
 
@@ -402,6 +417,11 @@ options.management_threshold = 1_000 # in milliseconds
 
 This is the second GA release of 3.1 series.
 
+[source,bash]
+----
+gem install couchbase -v 3.1.1
+----
+
 https://docs.couchbase.com/sdk-api/couchbase-ruby-client-3.1.1/index.html[API Reference]
 
 * https://issues.couchbase.com/browse/RCBC-309[RCBC-309]:
@@ -452,6 +472,11 @@ collection.upsert(doc_id, {answer: 43},
 
 This is the first GA release of 3.1 series.
 
+[source,bash]
+----
+gem install couchbase -v 3.1.0
+----
+
 https://docs.couchbase.com/sdk-api/couchbase-ruby-client-3.1.0/index.html[API Reference]
 
 * https://issues.couchbase.com/browse/RCBC-314[RCBC-314]:
@@ -501,6 +526,11 @@ This change allows runtime to use fibers or threads, and do something useful whi
 
 
 == Version 3.0.3 (3 February 2021)
+
+[source,bash]
+----
+gem install couchbase -v 3.0.3
+----
 
 This is the fourth GA release of 3.0 series.
 
@@ -570,6 +600,11 @@ Also, it is now possible to provide custom qualifier in the options.
 
 This is the third GA release of 3.0 series.
 
+[source,bash]
+----
+gem install couchbase -v 3.0.2
+----
+
 https://docs.couchbase.com/sdk-api/couchbase-ruby-client-3.0.2/index.html[API Reference]
 
 * https://issues.couchbase.com/browse/RCBC-281[RCBC-281]:
@@ -617,6 +652,11 @@ https://docs.couchbase.com/sdk-api/couchbase-ruby-client-3.0.2/index.html[API Re
 == Version 3.0.1 (5 October 2020)
 
 This is the second GA release.
+
+[source,bash]
+----
+gem install couchbase -v 3.0.1
+----
 
 * https://issues.couchbase.com/browse/RCBC-219[RCBC-219], https://issues.couchbase.com/browse/RCBC-252[RCBC-252]:
   Implemented diagnostics API.
@@ -670,6 +710,11 @@ https://docs.couchbase.com/sdk-api/couchbase-ruby-client-3.0.1/index.html[API Re
 == Version 3.0.0 (8 September 2020)
 
 This is the first GA release.
+
+[source,bash]
+----
+gem install couchbase -v 3.0.0
+----
 
 https://docs.couchbase.com/sdk-api/couchbase-ruby-client-3.0.0/index.html[API Reference]
 
