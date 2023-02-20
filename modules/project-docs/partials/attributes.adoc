@@ -1,5 +1,5 @@
 :ruby-api-link: https://docs.couchbase.com/sdk-api/couchbase-ruby-client/index.html
-:ruby-current-version: 3.3.0
+:ruby-current-version: 3.4.0
 :name-sdk: Ruby SDK
 :version-server: 7.1
 :version-common: 7.1.2
