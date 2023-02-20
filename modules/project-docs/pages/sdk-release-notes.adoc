@@ -98,16 +98,16 @@ ruby -rrbconfig -e 'puts RbConfig::CONFIG["ruby_version"]'
 https://docs.couchbase.com/sdk-api/couchbase-ruby-client-3.4.0/index.html[API Reference]
 
 Improvements:
-* https://issues.couchbase.com/browse/RCBC-378: Implement change password for `Management::User` class. (#65)
-* https://issues.couchbase.com/browse/RCBC-388: Add Configuration Profiles. At the moment one profile is defined `"wan_development"`, and it could be applied using `Options::Cluster#apply_profile`.  (#55)
-* https://issues.couchbase.com/browse/RCBC-263: Implement legacy durability. See options `:persist_to` and `:replicate_to` of mutations. (#49)
-* https://issues.couchbase.com/browse/RCBC-387: Implement replica reads with `Collection#get_any_replica` and `Couchbase#get_all_replicas` (#48)
-* https://issues.couchbase.com/browse/RCBC-375: Implement log forwarding. See documentation of method `Couchbase.set_logger` and classes `Couchbase::Utils::GenericLoggerAdapter`, `Couchbase::Utils::GenericLoggerAdapter` (#45)
-* https://issues.couchbase.com/browse/RCBC-371: Return id for `*_multi` results. (#40)
-* https://issues.couchbase.com/browse/RCBC-393: Fix type conversion for query metrics. (#62)
-* https://issues.couchbase.com/browse/RCBC-398: Add `ClusterRegistry` to allow custom connection string handlers. (#68)
-* https://issues.couchbase.com/browse/RCBC-366: Allow to override default timeouts through `Options::Cluster` (#37)
-* https://issues.couchbase.com/browse/RCBC-399: Add default options objects as class constants. (#69)
+* https://issues.couchbase.com/browse/RCBC-378[RCBC-378]: Implement change password for `Management::User` class. (https://github.com/couchbase/docs-sdk-ruby/pull/65[#65])
+* https://issues.couchbase.com/browse/RCBC-388[RCBC-388]: Add Configuration Profiles. At the moment one profile is defined `"wan_development"`, and it could be applied using `Options::Cluster#apply_profile`.  (https://github.com/couchbase/docs-sdk-ruby/pull/55[#55])
+* https://issues.couchbase.com/browse/RCBC-263[RCBC-263]: Implement legacy durability. See options `:persist_to` and `:replicate_to` of mutations. (https://github.com/couchbase/docs-sdk-ruby/pull/49[#49])
+* https://issues.couchbase.com/browse/RCBC-387[RCBC-387]: Implement replica reads with `Collection#get_any_replica` and `Couchbase#get_all_replicas` (https://github.com/couchbase/docs-sdk-ruby/pull/48[#48])
+* https://issues.couchbase.com/browse/RCBC-375[RCBC-375]: Implement log forwarding. See documentation of method `Couchbase.set_logger` and classes `Couchbase::Utils::GenericLoggerAdapter`, `Couchbase::Utils::GenericLoggerAdapter` (https://github.com/couchbase/docs-sdk-ruby/pull/45[#45])
+* https://issues.couchbase.com/browse/RCBC-371[RCBC-371]: Return id for `*_multi` results. (https://github.com/couchbase/docs-sdk-ruby/pull/40[#40])
+* https://issues.couchbase.com/browse/RCBC-393[RCBC-393]: Fix type conversion for query metrics. (https://github.com/couchbase/docs-sdk-ruby/pull/62[#62])
+* https://issues.couchbase.com/browse/RCBC-398[RCBC-398]: Add `ClusterRegistry` to allow custom connection string handlers. (https://github.com/couchbase/docs-sdk-ruby/pull/68[#68])
+* https://issues.couchbase.com/browse/RCBC-366[RCBC-366]: Allow to override default timeouts through `Options::Cluster` (https://github.com/couchbase/docs-sdk-ruby/pull/37[#37])
+* https://issues.couchbase.com/browse/RCBC-399[RCBC-399]: Add default options objects as class constants. (https://github.com/couchbase/docs-sdk-ruby/pull/69[#69])
 
 Notable changes in C++ SDK 1.0.0-beta.5:
 
@@ -122,74 +122,74 @@ Notable changes in C++ SDK 1.0.0-beta.5:
 * https://issues.couchbase.com/browse/CXXCBC-291[CXXCBC-291]: Allow to disable mutation tokens for Key/Value mutations (use `enable_mutation_tokens` in connection string).
 
 * Resource management and performance improvements:
-    * Fix tracer and meter ref-counting (#370)
-    * Replace `minstd_rand` with `mt19937_64`, as it gives less collisions (#356)
-    * https://issues.couchbase.com/browse/CXXCBC-285[CXXCBC-285]: Write to sockets from IO threads, to eliminate potential race conditions. (#348)
-    * Eliminate looping transform in `mcbp_parser::next` (#347)
-    * https://issues.couchbase.com/browse/CXXCBC-295[CXXCBC-205]: Use thread-local UUID generator (#340)
+    * Fix tracer and meter ref-counting (https://github.com/couchbase/docs-sdk-ruby/pull/370[#370])
+    * Replace `minstd_rand` with `mt19937_64`, as it gives less collisions (https://github.com/couchbase/docs-sdk-ruby/pull/356[#356])
+    * https://issues.couchbase.com/browse/CXXCBC-285[CXXCBC-285]: Write to sockets from IO threads, to eliminate potential race conditions. (https://github.com/couchbase/docs-sdk-ruby/pull/348[#348])
+    * Eliminate looping transform in `mcbp_parser::next` (https://github.com/couchbase/docs-sdk-ruby/pull/347[#347])
+    * https://issues.couchbase.com/browse/CXXCBC-295[CXXCBC-205]: Use thread-local UUID generator (https://github.com/couchbase/docs-sdk-ruby/pull/340[#340])
     * https://issues.couchbase.com/browse/CXXCBC-293[CXXCBC-293]: Performance improvements:
-        * Speed up UUID serialization to string (#346)
-        * Don't allow to copy `mcbp_message` objects (#345)
-        * Avoid extra allocation and initialization (#344)
+        * Speed up UUID serialization to string (https://github.com/couchbase/docs-sdk-ruby/pull/346[#346])
+        * Don't allow to copy `mcbp_message` objects (https://github.com/couchbase/docs-sdk-ruby/pull/345[#345])
+        * Avoid extra allocation and initialization (https://github.com/couchbase/docs-sdk-ruby/pull/344[#344])
 
 * Build system fixes:
-    * Fix build with gcc-13 (#372)
-    * Fix gcc 12 issue (#367)
+    * Fix build with gcc-13 (https://github.com/couchbase/docs-sdk-ruby/pull/372[#372])
+    * Fix gcc 12 issue (https://github.com/couchbase/docs-sdk-ruby/pull/367[#367])
 
 * Enhancements:
-    * Include bucketless KV service when ping is requested. (#339)
-    * Include OS name in SDK identifier (#349)
+    * Include bucketless KV service when ping is requested. (https://github.com/couchbase/docs-sdk-ruby/pull/339[#339])
+    * Include OS name in SDK identifier (https://github.com/couchbase/docs-sdk-ruby/pull/349[#349])
 
 Notable changes in C++ SDK 1.0.0-beta.4
 
-* https://issues.couchbase.com/CXXCBC-276[CXXCBC-276]: Use interval from the options for config poll, which previous was hard-coded to 2.5 seconds. (#336)
+* https://issues.couchbase.com/CXXCBC-276[CXXCBC-276]: Use interval from the options for config poll, which previous was hard-coded to 2.5 seconds. (https://github.com/couchbase/docs-sdk-ruby/pull/336[#336])
 
 
 Notable changes in C++ SDK 1.0.0-dp.2
 
-* https://issues.couchbase.com/browse/CXXCBC-242[CXXCBC-242]: Drain waiting commands list on MCBP session close (#321)
-* https://issues.couchbase.com/browse/CXXCBC-271[CXXCBC-271]: Fix `get_all_replicas` behaviour: do not propagate error if result set is not empty, while the last response has failed. (#322)
+* https://issues.couchbase.com/browse/CXXCBC-242[CXXCBC-242]: Drain waiting commands list on MCBP session close (https://github.com/couchbase/docs-sdk-ruby/pull/321[#321])
+* https://issues.couchbase.com/browse/CXXCBC-271[CXXCBC-271]: Fix `get_all_replicas` behaviour: do not propagate error if result set is not empty, while the last response has failed. (https://github.com/couchbase/docs-sdk-ruby/pull/322[#322])
 
 Notable changes in C++ SDK 1.0.0-dp.1
 
-* https://issues.couchbase.com/browse/CXXCBC-142[CXXCBC-142]: Update SRV resolution for Windows (#303)
+* https://issues.couchbase.com/browse/CXXCBC-142[CXXCBC-142]: Update SRV resolution for Windows (https://github.com/couchbase/docs-sdk-ruby/pull/303[#303])
 * https://issues.couchbase.com/browse/CXXCBC-172[CXXCBC-172]: Refresh DNS SRV when cluster uncontactable (#275, #290)
 * https://issues.couchbase.com/browse/CXXCBC-234[CXXCBC-234]: Error message for bucket hibernation and update error message for authentication_failure. (#280, #285)
 * https://issues.couchbase.com/browse/CXXCBC-235[CXXCBC-235]: Load system CAs when the trust certificate is not provided and do not fail if trust certificate is not specified (#283, #281)
-* https://issues.couchbase.com/browse/CXXCBC-245[CXXCBC-245]: Fix encoding of durability frame (#277)
-* https://issues.couchbase.com/browse/CXXCBC-246[CXXCBC-246]: Convert `not_stored` code to `document_exists` (#278)
-* https://issues.couchbase.com/browse/CXXCBC-251[CXXCBC-251]: Fix snappy decompression for `get_replica` (#296)
-* https://issues.couchbase.com/browse/CXXCBC-253[CXXCBC-253]: `query_options` not setting `scope_qualifier` (#300)
-* https://issues.couchbase.com/browse/SDKQE-2761[SDKQE-2761]: Fix failures in serverless mode (#274)
-* Don't log expected warnings in DNS resolver (#294)
+* https://issues.couchbase.com/browse/CXXCBC-245[CXXCBC-245]: Fix encoding of durability frame (https://github.com/couchbase/docs-sdk-ruby/pull/277[#277])
+* https://issues.couchbase.com/browse/CXXCBC-246[CXXCBC-246]: Convert `not_stored` code to `document_exists` (https://github.com/couchbase/docs-sdk-ruby/pull/278[#278])
+* https://issues.couchbase.com/browse/CXXCBC-251[CXXCBC-251]: Fix snappy decompression for `get_replica` (https://github.com/couchbase/docs-sdk-ruby/pull/296[#296])
+* https://issues.couchbase.com/browse/CXXCBC-253[CXXCBC-253]: `query_options` not setting `scope_qualifier` (https://github.com/couchbase/docs-sdk-ruby/pull/300[#300])
+* https://issues.couchbase.com/browse/SDKQE-2761[SDKQE-2761]: Fix failures in serverless mode (https://github.com/couchbase/docs-sdk-ruby/pull/274[#274])
+* Don't log expected warnings in DNS resolver (https://github.com/couchbase/docs-sdk-ruby/pull/294[#294])
 
 Resource management and performance fixes:
-* https://issues.couchbase.com/browse/CXXCBC-225[CXXCBC-225]: don't throw exceptions when socket options cannot be set (#270)
+* https://issues.couchbase.com/browse/CXXCBC-225[CXXCBC-225]: don't throw exceptions when socket options cannot be set (https://github.com/couchbase/docs-sdk-ruby/pull/270[#270])
 
 Build system fixes:
-* Move away from `reinterpret_pointer_cast<>` for MacOS build issue (#288)
-* Improve OpenSSL detection on Windows (#272)
+* Move away from `reinterpret_pointer_cast<>` for MacOS build issue (https://github.com/couchbase/docs-sdk-ruby/pull/288[#288])
+* Improve OpenSSL detection on Windows (https://github.com/couchbase/docs-sdk-ruby/pull/272[#272])
 
 Notable changes in C++ SDK 1.0.0-beta.3
 
-* https://issues.couchbase.com/browse/CXXCBC-221[CXXCBC-221]: Support for configuration profiles (#268)
-* https://issues.couchbase.com/browse/CXXCBC-218[CXXCBC-218]: allow to check if subdoc result field has value (#263)
-* https://issues.couchbase.com/browse/CXXCBC-199[CXXCBC-199]: Always set `kv_collection_outdated` retry reason on unknown collection error (#223)
-* https://issues.couchbase.com/browse/CXXCBC-203[CXXCBC-203]: disable clustermap nofication by default (#233)
-* https://issues.couchbase.com/browse/CXXCBC-159[CXXCBC-159]: Increment/decrement should not have `preserve_expiry` (#201)
+* https://issues.couchbase.com/browse/CXXCBC-221[CXXCBC-221]: Support for configuration profiles (https://github.com/couchbase/docs-sdk-ruby/pull/268[#268])
+* https://issues.couchbase.com/browse/CXXCBC-218[CXXCBC-218]: allow to check if subdoc result field has value (https://github.com/couchbase/docs-sdk-ruby/pull/263[#263])
+* https://issues.couchbase.com/browse/CXXCBC-199[CXXCBC-199]: Always set `kv_collection_outdated` retry reason on unknown collection error (https://github.com/couchbase/docs-sdk-ruby/pull/223[#223])
+* https://issues.couchbase.com/browse/CXXCBC-203[CXXCBC-203]: disable clustermap nofication by default (https://github.com/couchbase/docs-sdk-ruby/pull/233[#233])
+* https://issues.couchbase.com/browse/CXXCBC-159[CXXCBC-159]: Increment/decrement should not have `preserve_expiry` (https://github.com/couchbase/docs-sdk-ruby/pull/201[#201])
 * https://issues.couchbase.com/browse/CXXCBC-55[CXXCBC-55]: External Tracing and Metrics support with OpenTelemetry support (#228, #231)
-* https://issues.couchbase.com/browse/CXXCBC-54[CXXCBC-54]: Add log forwarding (#206)
+* https://issues.couchbase.com/browse/CXXCBC-54[CXXCBC-54]: Add log forwarding (https://github.com/couchbase/docs-sdk-ruby/pull/206[#206])
 
 Bug fixes:
-* https://issues.couchbase.com/browse/CXXCBC-134[CXXCBC-134]: Close http_session before conecting to next endpoint (#213)
-* https://issues.couchbase.com/browse/CXXCBC-179[CXXCBC-179]: fix parsing responses with chunked meta trailer (#191)
-* https://issues.couchbase.com/browse/CXXCBC-170[CXXCBC-170]: add extra check for missing CA for TLS connections (#197)
-* https://issues.couchbase.com/browse/CXXCBC-182[CXXCBC-182]: add extra check for keywords in query index fields (#196)
-* https://issues.couchbase.com/browse/CXXCBC-173[CXXCBC-173]: complete streaming lexer even if pointer didn't match (#195)
-* https://issues.couchbase.com/browse/CXXCBC-212[CXXCBC-212]: reprepare and retry query on 4040, 4050 and 4070 (#257)
-* https://issues.couchbase.com/browse/CXXCBC-174[CXXCBC-174]: reduce scope of the http request lock (#259)
-* https://issues.couchbase.com/browse/CXXCBC-176[CXXCBC-176]: ignore 'is_primary' for named primary indexes when dropping (#202)
-* return subdocument error context from future-based subdoc methods (#258)
+* https://issues.couchbase.com/browse/CXXCBC-134[CXXCBC-134]: Close http_session before conecting to next endpoint (https://github.com/couchbase/docs-sdk-ruby/pull/213[#213])
+* https://issues.couchbase.com/browse/CXXCBC-179[CXXCBC-179]: fix parsing responses with chunked meta trailer (https://github.com/couchbase/docs-sdk-ruby/pull/191[#191])
+* https://issues.couchbase.com/browse/CXXCBC-170[CXXCBC-170]: add extra check for missing CA for TLS connections (https://github.com/couchbase/docs-sdk-ruby/pull/197[#197])
+* https://issues.couchbase.com/browse/CXXCBC-182[CXXCBC-182]: add extra check for keywords in query index fields (https://github.com/couchbase/docs-sdk-ruby/pull/196[#196])
+* https://issues.couchbase.com/browse/CXXCBC-173[CXXCBC-173]: complete streaming lexer even if pointer didn't match (https://github.com/couchbase/docs-sdk-ruby/pull/195[#195])
+* https://issues.couchbase.com/browse/CXXCBC-212[CXXCBC-212]: reprepare and retry query on 4040, 4050 and 4070 (https://github.com/couchbase/docs-sdk-ruby/pull/257[#257])
+* https://issues.couchbase.com/browse/CXXCBC-174[CXXCBC-174]: reduce scope of the http request lock (https://github.com/couchbase/docs-sdk-ruby/pull/259[#259])
+* https://issues.couchbase.com/browse/CXXCBC-176[CXXCBC-176]: ignore 'is_primary' for named primary indexes when dropping (https://github.com/couchbase/docs-sdk-ruby/pull/202[#202])
+* return subdocument error context from future-based subdoc methods (https://github.com/couchbase/docs-sdk-ruby/pull/258[#258])
 
 
 [cols="9,5,19"]
