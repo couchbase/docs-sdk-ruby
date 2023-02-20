@@ -71,25 +71,25 @@ gem install couchbase-3.4.0-x86_64-linux-3.1.0.gem
 
 The URL structure is:
 
-[source]
----
+[source,shell]
+----
 https://packages.couchbase.com/clients/ruby/sdk-%{sdk_version}/couchbase-%{sdk_version}-%{platform}-%{ruby_abi}.gem
----
+----
 
 where "platform" placeholder can take values: `arm64-darwin-20`, `x86_64-darwin-19`, `x86_64-darwin-20`, `x86_64-linux`,
 * `x86_64-linux-musl`. To see platform string the following command:
 
 [source,bash]
----
+----
 ruby -rrbconfig -e 'puts RbConfig::CONFIG["platform"]'
----
+----
 
 and "ruby_abi" placeholder represent Ruby ABI version, as it is reported in
 
 [source,bash]
----
+----
 ruby -rrbconfig -e 'puts RbConfig::CONFIG["ruby_version"]'
----
+---- 
 
 
 [#latest-release]
@@ -189,12 +189,12 @@ Fix snappy decompression for `get_replica` (https://github.com/couchbaselabs/cou
 Fix failures in serverless mode (https://github.com/couchbaselabs/couchbase-cxx-client/pull/274[#274])
 * Don't log expected warnings in DNS resolver (https://github.com/couchbaselabs/couchbase-cxx-client/pull/294[#294])
 
-==== Resource management and performance fixes
+===== Resource management and performance fixes
 
 * https://issues.couchbase.com/browse/CXXCBC-225[CXXCBC-225]: 
 Don't throw exceptions when socket options cannot be set (https://github.com/couchbaselabs/couchbase-cxx-client/pull/270[#270])
 
-==== Build system fixes
+===== Build system fixes
 
 * Move away from `reinterpret_pointer_cast<>` for MacOS build issue (https://github.com/couchbaselabs/couchbase-cxx-client/pull/288[#288])
 * Improve OpenSSL detection on Windows (https://github.com/couchbaselabs/couchbase-cxx-client/pull/272[#272])
@@ -216,7 +216,7 @@ External Tracing and Metrics support with OpenTelemetry support (#228, #231)
 * https://issues.couchbase.com/browse/CXXCBC-54[CXXCBC-54]: 
 Add log forwarding (https://github.com/couchbaselabs/couchbase-cxx-client/pull/206[#206])
 
-==== Bug fixes
+===== Bug fixes
 
 * https://issues.couchbase.com/browse/CXXCBC-134[CXXCBC-134]: 
 Close http_session before conecting to next endpoint (https://github.com/couchbaselabs/couchbase-cxx-client/pull/213[#213])
