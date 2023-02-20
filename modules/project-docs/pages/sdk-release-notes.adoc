@@ -172,11 +172,11 @@ Fix `get_all_replicas` behaviour: do not propagate error if result set is not em
 * https://issues.couchbase.com/browse/CXXCBC-142[CXXCBC-142]: 
 Update SRV resolution for Windows (https://github.com/couchbaselabs/couchbase-cxx-client/pull/303[#303])
 * https://issues.couchbase.com/browse/CXXCBC-172[CXXCBC-172]: 
-Refresh DNS SRV when cluster uncontactable (#275, #290)
+Refresh DNS SRV when cluster uncontactable (https://github.com/couchbaselabs/couchbase-cxx-client/pull/275[#275], https://github.com/couchbaselabs/couchbase-cxx-client/pull/290[#290])
 * https://issues.couchbase.com/browse/CXXCBC-234[CXXCBC-234]: 
-Error message for bucket hibernation and update error message for authentication_failure. (#280, #285)
+Error message for bucket hibernation and update error message for authentication_failure. (https://github.com/couchbaselabs/couchbase-cxx-client/pull/290[#280], https://github.com/couchbaselabs/couchbase-cxx-client/pull/285[#285])
 * https://issues.couchbase.com/browse/CXXCBC-235[CXXCBC-235]: 
-Load system CAs when the trust certificate is not provided and do not fail if trust certificate is not specified (#283, #281)
+Load system CAs when the trust certificate is not provided and do not fail if trust certificate is not specified (https://github.com/couchbaselabs/couchbase-cxx-client/pull/283[#283], https://github.com/couchbaselabs/couchbase-cxx-client/pull/281[#281])
 * https://issues.couchbase.com/browse/CXXCBC-245[CXXCBC-245]: 
 Fix encoding of durability frame (https://github.com/couchbaselabs/couchbase-cxx-client/pull/277[#277])
 * https://issues.couchbase.com/browse/CXXCBC-246[CXXCBC-246]: 
@@ -212,7 +212,7 @@ disable clustermap nofication by default (https://github.com/couchbaselabs/couch
 * https://issues.couchbase.com/browse/CXXCBC-159[CXXCBC-159]: 
 Increment/decrement should not have `preserve_expiry` (https://github.com/couchbaselabs/couchbase-cxx-client/pull/201[#201])
 * https://issues.couchbase.com/browse/CXXCBC-55[CXXCBC-55]: 
-External Tracing and Metrics support with OpenTelemetry support (#228, #231)
+External Tracing and Metrics support with OpenTelemetry support (https://github.com/couchbaselabs/couchbase-cxx-client/pull/228[#228], https://github.com/couchbaselabs/couchbase-cxx-client/pull/231[#231])
 * https://issues.couchbase.com/browse/CXXCBC-54[CXXCBC-54]: 
 Add log forwarding (https://github.com/couchbaselabs/couchbase-cxx-client/pull/206[#206])
 
