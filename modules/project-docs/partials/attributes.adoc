@@ -2,4 +2,4 @@
 :ruby-current-version: 3.4.0
 :name-sdk: Ruby SDK
 :version-server: 7.1
-:version-common: 7.1.2
+:version-common: 7.1.3
