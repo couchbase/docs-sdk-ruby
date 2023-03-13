@@ -122,14 +122,14 @@ include::example$error_handling.rb[tag=DurabilityLevelNotAvailable]
 
 == Query and Analytics Errors
 
-N1QL and Analytics either return results or an error. 
+Query and Analytics either return results or an error. 
 
 ////
 If there is an error then it exposed in the following way(s):
 
 == Search and View Errors
 
-Unlike N1QL and Analytics, Search and Views can return multiple errors as well as errors and partial results.
+Unlike Query and Analytics, Search and Views can return multiple errors as well as errors and partial results.
 // This next bit is going to be highly SDK specific too.
 
 == Connections...
