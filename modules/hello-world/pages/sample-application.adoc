@@ -1,5 +1,5 @@
 = Sample Application
-:description: Discover how to program interactions with the Couchbase Server via the data, Query, and search services -- using the Travel Sample Application with the built-in Travel Sample data Bucket.
+:description: Discover how to program interactions with the Couchbase Server via the Data, Query, and Search services -- using the Travel Sample Application with the built-in Travel Sample data Bucket.
 :nav-title: Travel Sample App
 :content-type: tutorial
 :page-topic-type: tutorial
@@ -58,7 +58,7 @@ def get_airports(search_param)
 end
 ----
 
-The https://github.com/couchbaselabs/{travel-sample-git-project}/blob/HEAD/{travel-sample-entrypoint}[{travel-sample-entrypoint}] file also contains the functions for handling users, registration, and N1QL queries.
+The https://github.com/couchbaselabs/{travel-sample-git-project}/blob/HEAD/{travel-sample-entrypoint}[{travel-sample-entrypoint}] file also contains the functions for handling users, registration, and {sqlpp} queries.
 
 
 include::{version-common}@sdk:shared:partial$sample-application.adoc[tag=data-model]
