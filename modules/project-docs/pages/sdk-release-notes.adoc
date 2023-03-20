@@ -111,7 +111,7 @@ Query index management is now available on `Collection` class as `Collection#que
 
 === Underlying C++ SDK Core Changes
 
-* Improved build with OpenSSL on CentOS 7 (https://github.com/couchbaselabs/couchbase-cxx-client/pull/382[#382])
+* Improved build with OpenSSL on CentOS 7 (https://github.com/couchbaselabs/couchbase-cxx-client/pull/382[#382]).
 * https://issues.couchbase.com/browse/CXXCBC-144[CXXCBC-144]:
 Search query on collections no longer requires you to pass in the scope name -- it is inferred from the index
 (https://github.com/couchbaselabs/couchbase-cxx-client/pull/379[#379]).
