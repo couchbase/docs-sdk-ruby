@@ -50,7 +50,7 @@ Couchbase SDK library:
 
 [source,ruby]
 ----
-gem "couchbase", "3.4.0", :source => "https://packages.couchbase.com/clients/ruby/3.1.0/"
+gem "couchbase", "3.4.1", :source => "https://packages.couchbase.com/clients/ruby/3.1.0/"
 ----
 
 Or run in terminal:
@@ -65,8 +65,8 @@ with links to every release package along with precompiled binaries.
 
 [source,bash]
 ----
-wget https://packages.couchbase.com/clients/ruby/sdk-3.4.0/couchbase-3.4.0-x86_64-linux-3.1.0.gem
-gem install couchbase-3.4.0-x86_64-linux-3.1.0.gem
+wget https://packages.couchbase.com/clients/ruby/sdk-3.4.1/couchbase-3.4.1-x86_64-linux-3.1.0.gem
+gem install couchbase-3.4.1-x86_64-linux-3.1.0.gem
 ----
 
 The URL structure is:
@@ -91,9 +91,57 @@ and "ruby_abi" placeholder represent Ruby ABI version, as it is reported in
 ruby -rrbconfig -e 'puts RbConfig::CONFIG["ruby_version"]'
 ----
 
-
 [#latest-release]
-== Version 3.4.0 (19 February 2022)
+
+== Version 3.4.1 (20 March 2023)
+
+[source,bash]
+----
+gem install couchbase -v 3.4.1
+----
+
+https://docs.couchbase.com/sdk-api/couchbase-ruby-client-3.4.1/index.html[API Reference]
+
+=== Improvements
+
+* https://issues.couchbase.com/browse/RCBC-396[RCBC-396]:
+Query index management is now available on `Collection` class as `Collection#query_indexes`. 
+`scope_name` and `collection_name` in `QueryIndexManager` are now deprected
+(https://github.com/couchbase/couchbase-ruby-client/pull/75[#75]).
+
+=== Underlying C++ SDK Core Changes
+
+* Improved build with OpenSSL on CentOS 7 (https://github.com/couchbaselabs/couchbase-cxx-client/pull/382[#382])
+* https://issues.couchbase.com/browse/CXXCBC-144[CXXCBC-144]:
+Search query on collections no longer requires you to pass in the scope name -- it is inferred from the index
+(https://github.com/couchbaselabs/couchbase-cxx-client/pull/379[#379]).
+* https://issues.couchbase.com/browse/CXXCBC-145[CXXCBC-145]:
+Search query request, raw option added
+(https://github.com/couchbaselabs/couchbase-cxx-client/pull/380[#380]).
+
+=== Download Links
+
+[cols="9,5,19"]
+|===
+| Platform            | Ruby ABI | File
+| Checksums           |          | https://packages.couchbase.com/clients/ruby/sdk-3.4.1/couchbase-3.4.1.sha256sum[couchbase-3.4.1.sha256sum]
+| Source Archive      |          | https://packages.couchbase.com/clients/ruby/sdk-3.4.1/couchbase-3.4.1.gem[couchbase-3.4.1.gem]
+| Linux x86_64        | 3.2.0    | https://packages.couchbase.com/clients/ruby/sdk-3.4.1/couchbase-3.4.1-x86_64-linux-3.2.0.gem[couchbase-3.4.1-x86_64-linux-3.2.0.gem]
+| Linux x86_64        | 3.1.0    | https://packages.couchbase.com/clients/ruby/sdk-3.4.1/couchbase-3.4.1-x86_64-linux-3.1.0.gem[couchbase-3.4.1-x86_64-linux-3.1.0.gem]
+| Linux x86_64        | 3.0.0    | https://packages.couchbase.com/clients/ruby/sdk-3.4.1/couchbase-3.4.1-x86_64-linux-3.0.0.gem[couchbase-3.4.1-x86_64-linux-3.0.0.gem]
+| Linux x86_64 (musl) | 3.2.0    | https://packages.couchbase.com/clients/ruby/sdk-3.4.1/couchbase-3.4.1-x86_64-linux-musl-3.2.0.gem[couchbase-3.4.1-x86_64-linux-musl-3.2.0.gem]
+| Linux x86_64 (musl) | 3.1.0    | https://packages.couchbase.com/clients/ruby/sdk-3.4.1/couchbase-3.4.1-x86_64-linux-musl-3.1.0.gem[couchbase-3.4.1-x86_64-linux-musl-3.1.0.gem]
+| Linux x86_64 (musl) | 3.0.0    | https://packages.couchbase.com/clients/ruby/sdk-3.4.1/couchbase-3.4.1-x86_64-linux-musl-3.0.0.gem[couchbase-3.4.1-x86_64-linux-musl-3.0.0.gem]
+| macOS 10.15 x84_64  | 3.2.0    | https://packages.couchbase.com/clients/ruby/sdk-3.4.1/couchbase-3.4.1-x86_64-darwin-19-3.2.0.gem[couchbase-3.4.1-x86_64-darwin-19-3.2.0.gem]
+| macOS 10.15 x84_64  | 3.0.0    | https://packages.couchbase.com/clients/ruby/sdk-3.4.1/couchbase-3.4.1-x86_64-darwin-19-3.0.0.gem[couchbase-3.4.1-x86_64-darwin-19-3.0.0.gem]
+| macOS 11 x84_64     | 3.2.0    | https://packages.couchbase.com/clients/ruby/sdk-3.4.1/couchbase-3.4.1-x86_64-darwin-20-3.2.0.gem[couchbase-3.4.1-x86_64-darwin-20-3.2.0.gem]
+| macOS 11 x84_64     | 3.1.0    | https://packages.couchbase.com/clients/ruby/sdk-3.4.1/couchbase-3.4.1-x86_64-darwin-20-3.1.0.gem[couchbase-3.4.1-x86_64-darwin-20-3.1.0.gem]
+| macOS 11 x84_64     | 3.0.0    | https://packages.couchbase.com/clients/ruby/sdk-3.4.1/couchbase-3.4.1-x86_64-darwin-20-3.0.0.gem[couchbase-3.4.1-x86_64-darwin-20-3.0.0.gem]
+| macOS 11 M1         | 3.2.0    | https://packages.couchbase.com/clients/ruby/sdk-3.4.1/couchbase-3.4.1-arm64-darwin-20-3.0.0.gem[couchbase-3.4.1-arm64-darwin-20-3.0.0.gem]
+|===
+
+
+== Version 3.4.0 (19 February 2023)
 
 [source,bash]
 ----
