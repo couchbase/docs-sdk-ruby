@@ -136,7 +136,7 @@ Capella Connection::
 From version 3.3, the Ruby SDK includes Capella's standard certificates by default, so you do not need to additional configuration.
 You do need to enable TLS, which can be done by simply using `couchbases://` in the connection string as in this example.
 
-[source,csharp]
+[source,ruby]
 ----
 include::example$cloud.rb[tag=connect,indent=0]
 ----
