@@ -25,8 +25,8 @@ In this guide, you will learn:
 
 We will go through the code sample step by step, but for those in a hurry to see it, here it is:
 
-[{tabs}] 
-==== 
+[{tabs}]
+====
 Couchbase Capella Sample::
 +
 --
@@ -41,8 +41,8 @@ The Couchbase Capella free trial version comes with the Travel Sample Bucket, an
 --
 
 Local Couchbase Server::
-+ 
--- 
++
+--
 [source,ruby]
 ----
 include::hello-world:example$start_using.rb[tags=**]
@@ -128,7 +128,7 @@ include::example$start_using.rb[tag=imports,indent=0]
 Connect to your cluster by calling the `Cluster.connect()` method and pass it your connection details.
 The basic connection details that you’ll need are given below -- for more background information, see xref:howtos:managing-connections.adoc[].
 
-[{tabs}] 
+[{tabs}]
 ====
 Capella Connection::
 +
@@ -223,7 +223,7 @@ Now you're up and running, try one of the following:
 
 === Additional Resources
 
-The API reference is generated for each release and can be found https://docs.couchbase.com/sdk-api/couchbase-ruby-client/Couchbase.html[here].
+The API reference is generated for each release and can be found https://docs.couchbase.com/sdk-api/couchbase-ruby-client/[here].
 Older API references are linked from their respective sections in the xref:project-docs:sdk-release-notes.adoc[Release Notes].
 
 Couchbase welcomes community contributions to the Ruby SDK.

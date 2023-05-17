@@ -95,7 +95,7 @@ Useful resources to help support your development experience with Couchbase and 
 
 [.column]
 .Reference
-* https://docs.couchbase.com/sdk-api/couchbase-ruby-client/Couchbase.html[API Reference]
+* https://docs.couchbase.com/sdk-api/couchbase-ruby-client/[API Reference]
 * xref:ref:client-settings.adoc[]
 * xref:ref:error-codes.adoc[]
 * xref:ref:glossary.adoc[Glossary]
