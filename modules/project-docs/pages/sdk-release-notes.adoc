@@ -140,7 +140,8 @@ Parse `bootstrap_timeout` and `resolve_timeout` in connection string
 
 * https://issues.couchbase.com/browse/CXXCBC-327[CXXCBC-327]:
 Bundle Mozilla certificates with the library
-(https://github.com/couchbaselabs/couchbase-cxx-client/pull/405[#405]).
+(https://github.com/couchbaselabs/couchbase-cxx-client/pull/405[#405],
+https://github.com/couchbaselabs/couchbase-cxx-client/pull/408[#408]).
 Source: https://curl.se/docs/caextract.html. Use `disable_mozilla_ca_certificates` connection string option to disable
 bundled certificates. Use the following script to inspect certificates metadata:
 [source,ruby]
