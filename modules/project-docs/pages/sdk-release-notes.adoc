@@ -14,8 +14,8 @@ This page covers installation of the 3.4 versions of the Couchbase Ruby SDK, and
 
 == SDK Installation
 
-Ruby SDK supports MRI Ruby versions 3.0, 3.1 and 3.2.
-The source package is available through https://rubygems.org/gems/couchbase and can be installed with
+Ruby SDK supports MRI Ruby versions 3.0, 3.1, and 3.2.
+The source package is available through https://rubygems.org/gems/couchbase and can be installed with:
 
 [source,console]
 ----
@@ -50,7 +50,7 @@ Couchbase SDK library:
 
 [source,ruby]
 ----
-gem "couchbase", "3.4.2", :source => "https://packages.couchbase.com/clients/ruby/3.1.0/"
+gem "couchbase", "3.4.3", :source => "https://packages.couchbase.com/clients/ruby/3.1.0/"
 ----
 
 Or run in terminal:
@@ -65,8 +65,8 @@ with links to every release package along with precompiled binaries.
 
 [source,bash]
 ----
-wget https://packages.couchbase.com/clients/ruby/sdk-3.4.2/couchbase-3.4.2-x86_64-linux-3.1.0.gem
-gem install couchbase-3.4.2-x86_64-linux-3.1.0.gem
+wget https://packages.couchbase.com/clients/ruby/sdk-3.4.3/couchbase-3.4.3-x86_64-linux-3.1.0.gem
+gem install couchbase-3.4.3-x86_64-linux-3.1.0.gem
 ----
 
 The URL structure is:
@@ -93,6 +93,97 @@ ruby -rrbconfig -e 'puts RbConfig::CONFIG["ruby_version"]'
 
 [#latest-release]
 
+
+== Version 3.4.3 (17 May 2023)
+
+[source,bash]
+----
+gem install couchbase -v 3.4.3
+----
+
+https://docs.couchbase.com/sdk-api/couchbase-ruby-client-3.4.3/index.html[API Reference]
+
+=== Improvements
+
+* https://issues.couchbase.com/browse/RCBC-420[RCBC-420]:
+Implemented support for `RawJsonTranscoder`, `RawBinaryTranscoder`, and `RawStringTranscoder`,
+and checking flags when decoding document content (https://github.com/couchbase/couchbase-ruby-client/pull/93[#93]).
+
+* https://issues.couchbase.com/browse/RCBC-427[RCBC-427]:
+Add missing query index management options -- `scope_name`, `collection_name`, and `index_name` for `#create_primary` method.
+Replaced `ArgumentError` with `InvalidArgument` error when `scope_name` and `collection_name` are used in the CollectionQueryIndexManager
+(https://github.com/couchbase/couchbase-ruby-client/pull/92[#92]).
+
+* https://issues.couchbase.com/browse/RCBC-436[RCBC-436]:
+To support LDAP authentication, always use PLAIN SASL mechanism with TLS connections
+(https://github.com/couchbase/couchbase-ruby-client/pull/103[#103],
+https://issues.couchbase.com/browse/CXXCBC-296[CXXCBC-296]).
+
+* Fix the durability level always being set to `none` in the C++ core
+(https://github.com/couchbase/couchbase-ruby-client/pull/99[#99]).
+
+* Added constructor for `SearchRowLocation`
+(https://github.com/couchbase/couchbase-ruby-client/pull/95[#95]).
+
+* Changed `attr` to `attr_reader`
+(https://github.com/couchbase/couchbase-ruby-client/pull/104[#104]).
+
+
+=== Underlying C++ SDK Core Changes
+
+* https://issues.couchbase.com/browse/CXXCBC-324[CXXCBC-324]:
+Port and network name now checked on session restart, improving performance during rebalance
+(https://github.com/couchbaselabs/couchbase-cxx-client/pull/401[#401]).
+
+* https://issues.couchbase.com/browse/CXXCBC-323[CXXCBC-323]:
+`bootstrap_timeout` and `resolve_timeout` can now be used in the connection string
+(https://github.com/couchbaselabs/couchbase-cxx-client/pull/400[#400]).
+
+* https://issues.couchbase.com/browse/CXXCBC-327[CXXCBC-327]:
+Bundled Mozilla certificates with the library
+(https://github.com/couchbaselabs/couchbase-cxx-client/pull/405[#405],
+https://github.com/couchbaselabs/couchbase-cxx-client/pull/408[#408]).
+Source: https://curl.se/docs/caextract.html. 
+Use the `disable_mozilla_ca_certificates` connection string option to disable the bundled certificates. 
+Use the following script to inspect the certificates' metadata:
++
+[source,ruby]
+----
+Couchbase::BUILD_INFO[:cxx_client].select{|k, _| k =~ /mozilla/}
+# =>
+# {:mozilla_ca_bundle_date=>"Tue Jan 10 04:12:06 2023 GMT",
+#  :mozilla_ca_bundle_embedded=>true,
+#  :mozilla_ca_bundle_sha256=>"fb1ecd641d0a02c01bc9036d513cb658bbda62a75e246bedbc01764560a639f0",
+#  :mozilla_ca_bundle_size=>137}
+----
+
+* Introduced connection string option `dump_configuration` for debugging
+(https://github.com/couchbaselabs/couchbase-cxx-client/pull/398[#398]).
+It logs cluster configuration at trace level.
+
+=== Download Links
+
+[cols="9,5,19"]
+|===
+| Platform            | Ruby ABI | File
+| Checksums           |          | https://packages.couchbase.com/clients/ruby/sdk-3.4.3/couchbase-3.4.3.sha256sum[couchbase-3.4.3.sha256sum]
+| Source Archive      |          | https://packages.couchbase.com/clients/ruby/sdk-3.4.3/couchbase-3.4.3.gem[couchbase-3.4.3.gem]
+| Linux x86_64        | 3.2.0    | https://packages.couchbase.com/clients/ruby/sdk-3.4.3/couchbase-3.4.3-x86_64-linux-3.2.0.gem[couchbase-3.4.3-x86_64-linux-3.2.0.gem]
+| Linux x86_64        | 3.1.0    | https://packages.couchbase.com/clients/ruby/sdk-3.4.3/couchbase-3.4.3-x86_64-linux-3.1.0.gem[couchbase-3.4.3-x86_64-linux-3.1.0.gem]
+| Linux x86_64        | 3.0.0    | https://packages.couchbase.com/clients/ruby/sdk-3.4.3/couchbase-3.4.3-x86_64-linux-3.0.0.gem[couchbase-3.4.3-x86_64-linux-3.0.0.gem]
+| Linux x86_64 (musl) | 3.2.0    | https://packages.couchbase.com/clients/ruby/sdk-3.4.3/couchbase-3.4.3-x86_64-linux-musl-3.2.0.gem[couchbase-3.4.3-x86_64-linux-musl-3.2.0.gem]
+| Linux x86_64 (musl) | 3.1.0    | https://packages.couchbase.com/clients/ruby/sdk-3.4.3/couchbase-3.4.3-x86_64-linux-musl-3.1.0.gem[couchbase-3.4.3-x86_64-linux-musl-3.1.0.gem]
+| Linux x86_64 (musl) | 3.0.0    | https://packages.couchbase.com/clients/ruby/sdk-3.4.3/couchbase-3.4.3-x86_64-linux-musl-3.0.0.gem[couchbase-3.4.3-x86_64-linux-musl-3.0.0.gem]
+| macOS 10.15 x84_64  | 3.2.0    | https://packages.couchbase.com/clients/ruby/sdk-3.4.3/couchbase-3.4.3-x86_64-darwin-19-3.2.0.gem[couchbase-3.4.3-x86_64-darwin-19-3.2.0.gem]
+| macOS 10.15 x84_64  | 3.0.0    | https://packages.couchbase.com/clients/ruby/sdk-3.4.3/couchbase-3.4.3-x86_64-darwin-19-3.0.0.gem[couchbase-3.4.3-x86_64-darwin-19-3.0.0.gem]
+| macOS 11 x84_64     | 3.2.0    | https://packages.couchbase.com/clients/ruby/sdk-3.4.3/couchbase-3.4.3-x86_64-darwin-20-3.2.0.gem[couchbase-3.4.3-x86_64-darwin-20-3.2.0.gem]
+| macOS 11 x84_64     | 3.1.0    | https://packages.couchbase.com/clients/ruby/sdk-3.4.3/couchbase-3.4.3-x86_64-darwin-20-3.1.0.gem[couchbase-3.4.3-x86_64-darwin-20-3.1.0.gem]
+| macOS 11 x84_64     | 3.0.0    | https://packages.couchbase.com/clients/ruby/sdk-3.4.3/couchbase-3.4.3-x86_64-darwin-20-3.0.0.gem[couchbase-3.4.3-x86_64-darwin-20-3.0.0.gem]
+| macOS 11 M1         | 3.2.0    | https://packages.couchbase.com/clients/ruby/sdk-3.4.3/couchbase-3.4.3-arm64-darwin-20-3.0.0.gem[couchbase-3.4.3-arm64-darwin-20-3.0.0.gem]
+|===
+
+
+
 == Version 3.4.2 (12 April 2023)
 
 [source,bash]
@@ -109,11 +200,11 @@ Accept `Couchbase::Configuration` object on `Couchbase::Cluster.connect`
 (https://github.com/couchbase/couchbase-ruby-client/pull/85[#85]).
 
 * https://issues.couchbase.com/browse/RCBC-418[RCBC-418]:
-Add durability to append and prepend options 
+Add durability to append and prepend options
 (https://github.com/couchbase/couchbase-ruby-client/pull/88[#88]).
 
 * https://issues.couchbase.com/browse/RCBC-422[RCBC-422]:
-Cleanup search options 
+Cleanup search options
 (https://github.com/couchbase/couchbase-ruby-client/pull/89[#89]).
 
 === Underlying C++ SDK Core Changes
