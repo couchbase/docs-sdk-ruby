@@ -128,6 +128,7 @@ Loading the Mozilla certificates can be disabled by setting the `disable_mozilla
 
 The {cbpp} core's metadata provide information about where OpenSSL's default certificate store is located,  which version of the Mozilla CA certificate store was bundled, and other useful details. If you have debug-level logging enabled the metadata will be outputted after the {cbpp} core is initialized.
 
+[source]
 ----
 [2023-05-16 14:13:39.593] [debug] couchbase backend build info:
 {
@@ -147,6 +148,7 @@ The {cbpp} core's metadata provide information about where OpenSSL's default cer
 
 With debug-level logging enabled, if the Mozilla certificates have been loaded, a message with the information about the version of the Mozilla CA certificate store will be outputted. For example:
 
+[source]
 ----
 loading 137 CA certificates from Mozilla bundle. Update date: "Tue Jan 10 04:12:06 2023 GMT", SHA256: "fb1ecd641d0a02c01bc9036d513cb658bbda62a75e246bedbc01764560a639f0"
 ----
