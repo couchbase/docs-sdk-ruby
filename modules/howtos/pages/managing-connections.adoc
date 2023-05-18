@@ -126,12 +126,12 @@ The OpenSSL defaults can be overridden using the `SSL_CERT_DIR` and `SSL_CERT_FI
 
 Loading the Mozilla certificates can be disabled by setting the `disable_mozilla_ca_certificates` parameter in the connection string.
 
-The {cbpp} core's metadata provide information about where OpenSSL's default certificate store is located,  which version of the Mozilla CA certificate store was bundled, and other useful details. You can get the relevant metadata using the following command:
+The {cbpp} core's metadata provide information about where OpenSSL's default certificate store is located, which version of the Mozilla CA certificate store was bundled, and other useful details. You can get the relevant metadata using the following command:
 
 ====
 [source,console]
 ----
-$ ruby -rcouchbase -e 'pp Couchbase::BUILD_INFO[:cxx_client].select{|k, _| k =~ /^(mozilla|openssl_default)/}'
+$ ruby -r couchbase -e 'pp Couchbase::BUILD_INFO[:cxx_client].select{|k, _| k =~ /^(mozilla|openssl_default)/}'
 ----
 [source,console]
 ----
