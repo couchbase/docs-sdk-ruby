@@ -133,7 +133,7 @@ The {cbpp} core's metadata provide information about where OpenSSL's default cer
 ----
 $ ruby -r couchbase -e 'pp Couchbase::BUILD_INFO[:cxx_client].select{|k, _| k =~ /^(mozilla|openssl_default)/}'
 ----
-[source,console]
+[source,ruby]
 ----
 {:mozilla_ca_bundle_date=>"Tue Jan 10 04:12:06 2023 GMT",
  :mozilla_ca_bundle_embedded=>true,
