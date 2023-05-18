@@ -126,25 +126,25 @@ The OpenSSL defaults can be overridden using the `SSL_CERT_DIR` and `SSL_CERT_FI
 
 Loading the Mozilla certificates can be disabled by setting the `disable_mozilla_ca_certificates` parameter in the connection string.
 
-The {cbpp} core's metadata provide information about where OpenSSL's default certificate store is located,  which version of the Mozilla CA certificate store was bundled, and other useful details. If you have debug-level logging enabled the metadata will be outputted after the {cbpp} core is initialized.
+The {cbpp} core's metadata provide information about where OpenSSL's default certificate store is located,  which version of the Mozilla CA certificate store was bundled, and other useful details. You can get the relevant metadata using the following command:
 
-[source]
+====
+[source,console]
 ----
-[2023-05-16 14:13:39.593] [debug] couchbase backend build info:
-{
- ...
- :mozilla_ca_bundle_date=>"Tue Jan 10 04:12:06 2023 GMT",
+$ ruby -rcouchbase -e 'pp Couchbase::BUILD_INFO[:cxx_client].select{|k, _| k =~ /^(mozilla|openssl_default)/}'
+----
+[source,console]
+----
+{:mozilla_ca_bundle_date=>"Tue Jan 10 04:12:06 2023 GMT",
  :mozilla_ca_bundle_embedded=>true,
  :mozilla_ca_bundle_sha256=>"fb1ecd641d0a02c01bc9036d513cb658bbda62a75e246bedbc01764560a639f0",
  :mozilla_ca_bundle_size=>137,
- ...
- :openssl_default_cert_dir=>"/opt/homebrew/etc/openssl@1.1/certs",
+ :openssl_default_cert_dir=>"/etc/pki/tls/certs",
  :openssl_default_cert_dir_env=>"SSL_CERT_DIR",
- :openssl_default_cert_file=>"/opt/homebrew/etc/openssl@1.1/cert.pem",
- :openssl_default_cert_file_env=>"SSL_CERT_FILE",
- ...
-}
+ :openssl_default_cert_file=>"/etc/pki/tls/cert.pem",
+ :openssl_default_cert_file_env=>"SSL_CERT_FILE"}
 ----
+====
 
 With debug-level logging enabled, if the Mozilla certificates have been loaded, a message with the information about the version of the Mozilla CA certificate store will be outputted. For example:
 
