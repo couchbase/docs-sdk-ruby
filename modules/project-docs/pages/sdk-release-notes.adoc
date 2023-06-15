@@ -9,7 +9,7 @@
 [abstract]
 {description}
 
-This page covers installation of the 3.4 versions of the Couchbase Ruby SDK, and release notes for all 3.x versions.
+This page covers installation of the 3.x versions of the Couchbase Ruby SDK, and release notes for all 3.x versions.
 
 
 == SDK Installation
