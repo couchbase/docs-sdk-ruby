@@ -14,7 +14,7 @@
 //** xref:concept-docs:transactions-cleanup.adoc[]
 //** xref:concept-docs:transactions-error-handling.adoc[]
 
-.Working with Data
+.Further Data Ops
 * xref:howtos:subdocument-operations.adoc[]
 * xref:howtos:analytics-using-sdk.adoc[]
 * xref:howtos:view-queries-with-sdk.adoc[]
@@ -23,7 +23,6 @@
 // TODO: Uncomment this when we support FLE for Ruby SDK.
 //* xref:howtos:encrypting-using-sdk.adoc[]
 * xref:howtos:transcoders-nonjson.adoc[Transcoders & Non-JSON Documents]
-* xref:howtos:working-with-collections.adoc[Working with Collections]
 
 .Managing Couchbase
 * xref:howtos:managing-connections.adoc[]
@@ -72,6 +71,7 @@
 .Project Docs
 * xref:project-docs:sdk-release-notes.adoc[]
 * xref:project-docs:compatibility.adoc[]
+** xref:howtos:working-with-collections.adoc[Working with Collections]
 ** xref:project-docs:third-party-integrations.adoc[3rd Party Integrations]
 * https://docs-archive.couchbase.com/home/index.html[Older Versions Archive]
 * xref:project-docs:sdk-licenses.adoc[]
