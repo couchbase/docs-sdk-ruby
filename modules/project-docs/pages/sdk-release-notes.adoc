@@ -50,7 +50,7 @@ Couchbase SDK library:
 
 [source,ruby]
 ----
-gem "couchbase", "3.4.3", :source => "https://packages.couchbase.com/clients/ruby/3.1.0/"
+gem "couchbase", "3.4.4", :source => "https://packages.couchbase.com/clients/ruby/3.1.0/"
 ----
 
 Or run in terminal:
@@ -65,8 +65,8 @@ with links to every release package along with precompiled binaries.
 
 [source,bash]
 ----
-wget https://packages.couchbase.com/clients/ruby/sdk-3.4.3/couchbase-3.4.3-x86_64-linux-3.1.0.gem
-gem install couchbase-3.4.3-x86_64-linux-3.1.0.gem
+wget https://packages.couchbase.com/clients/ruby/sdk-3.4.4/couchbase-3.4.4-x86_64-linux-3.1.0.gem
+gem install couchbase-3.4.4-x86_64-linux-3.1.0.gem
 ----
 
 The URL structure is:
@@ -93,6 +93,84 @@ ruby -rrbconfig -e 'puts RbConfig::CONFIG["ruby_version"]'
 
 [#latest-release]
 
+== Version 3.4.4 (17 May 2023)
+
+[source,bash]
+----
+gem install couchbase -v 3.4.4
+----
+
+https://docs.couchbase.com/sdk-api/couchbase-ruby-client-3.4.4/index.html[API Reference]
+Full Changelog: https://github.com/couchbase/couchbase-ruby-client/compare/3.4.3...3.4.4[3.4.3...3.4.4]
+Rubygems: https://rubygems.org/gems/couchbase/versions/3.4.4[couchbase-3.4.4]
+
+=== Improvements
+
+* https://issues.couchbase.com/browse/RCBC-441[RCBC-441] interpret Integer as milliseconds in duration context (http://github.com/couchbase/couchbase-ruby-client/pull/110[#110], http://github.com/couchbase/couchbase-ruby-client/pull/111[#111]).
+
+* https://issues.couchbase.com/browse/RCBC-442[RCBC-442] Support query with read from replica (http://github.com/couchbase/couchbase-ruby-client/pull/112[#112]).
+
+* https://issues.couchbase.com/browse/RCBC-391[RCBC-391] SDK Support for Native KV Range Scans (http://github.com/couchbase/couchbase-ruby-client/pull/113[#113], http://github.com/couchbase/couchbase-ruby-client/pull/117[#117]).
+
+* https://issues.couchbase.com/browse/RCBC-443[RCBC-443] Support for Subdocument Read from Replica (http://github.com/couchbase/couchbase-ruby-client/pull/116[#116]).
+
+* https://issues.couchbase.com/browse/RCBC-451[RCBC-451], https://issues.couchbase.com/browse/RCBC-452[RCBC-451]: Expose any specific `lookup_in` spec errors (http://github.com/couchbase/couchbase-ruby-client/pull/118[#118]).
+
+=== Underlying C++ SDK Core Changes
+
+* https://issues.couchbase.com/browse/CXXCBC-333[CXXCBC-333]:
+Fixed parsing 'resolv.conf' on Linux (https://github.com/couchbaselabs/couchbase-cxx-client/pull/416[#416]).
+** The library might not ignore trailing characters when reading nameserver address from the file.
+
+* https://issues.couchbase.com/browse/CXXCBC-335[CXXCBC-335]:
+Now logging connection options for visibility (https://github.com/couchbaselabs/couchbase-cxx-client/pull/417[#417]).
+
+* https://issues.couchbase.com/browse/CXXCBC-343[CXXCBC-343]: Continue bootsrap if DNS-SRV resolution fails (https://github.com/couchbaselabs/couchbase-cxx-client/pull/422[#422]).
+
+* https://issues.couchbase.com/browse/CXXCBC-242[CXXCBC-242]:
+SDK Support for Native KV Range Scans (https://github.com/couchbaselabs/couchbase-cxx-client/pull/419[#419], https://github.com/couchbaselabs/couchbase-cxx-client/pull/423[#423], 
+https://github.com/couchbaselabs/couchbase-cxx-client/pull/424[#424], 
+https://github.com/couchbaselabs/couchbase-cxx-client/pull/426[#426], 
+https://github.com/couchbaselabs/couchbase-cxx-client/pull/428[#428], 
+https://github.com/couchbaselabs/couchbase-cxx-client/pull/431[#431], 
+https://github.com/couchbaselabs/couchbase-cxx-client/pull/432[#432], 
+https://github.com/couchbaselabs/couchbase-cxx-client/pull/433[#433],  
+https://github.com/couchbaselabs/couchbase-cxx-client/pull/434[#434]).
+
+* https://issues.couchbase.com/browse/CXXCBC-339[CXXCBC-339]: Disable older TLS protocols (https://github.com/couchbaselabs/couchbase-cxx-client/pull/418[#418]).
+
+* https://issues.couchbase.com/browse/CXXCBC-346[CXXCBC-346]: Protocol communication can now be logged in a separate file (https://github.com/couchbaselabs/couchbase-cxx-client/pull/425[#425]).
++
+[source,ruby]
+----
+Couchbase::Backend.enable_protocol_logger_to_save_network_traffic_to_file("/tmp/cb.log")
+----
+
+* https://issues.couchbase.com/browse/CXXCBC-350[CXXCBC-350]: 
+Collection ID was resolved on a per-request basis -- which could result in situations where results from a single scan can originate from more than one collection.
+This could happen if a collection was dropped and then immediately recreated with the same name.
+We now resolve collection ID before performing any scan operations (https://github.com/couchbaselabs/couchbase-cxx-client/pull/433[#433]).
+
+=== Download Links
+
+[cols="9,5,19"]
+|===
+| Platform            | Ruby ABI | File
+| Checksums           |          | https://packages.couchbase.com/clients/ruby/sdk-3.4.4/couchbase-3.4.4.sha256sum[couchbase-3.4.4.sha256sum]
+| Source Archive      |          | https://packages.couchbase.com/clients/ruby/sdk-3.4.4/couchbase-3.4.4.gem[couchbase-3.4.4.gem]
+| Linux x86_64        | 3.2.0    | https://packages.couchbase.com/clients/ruby/sdk-3.4.4/couchbase-3.4.4-x86_64-linux-3.2.0.gem[couchbase-3.4.4-x86_64-linux-3.2.0.gem]
+| Linux x86_64        | 3.1.0    | https://packages.couchbase.com/clients/ruby/sdk-3.4.4/couchbase-3.4.4-x86_64-linux-3.1.0.gem[couchbase-3.4.4-x86_64-linux-3.1.0.gem]
+| Linux x86_64        | 3.0.0    | https://packages.couchbase.com/clients/ruby/sdk-3.4.4/couchbase-3.4.4-x86_64-linux-3.0.0.gem[couchbase-3.4.4-x86_64-linux-3.0.0.gem]
+| Linux x86_64 (musl) | 3.2.0    | https://packages.couchbase.com/clients/ruby/sdk-3.4.4/couchbase-3.4.4-x86_64-linux-musl-3.2.0.gem[couchbase-3.4.4-x86_64-linux-musl-3.2.0.gem]
+| Linux x86_64 (musl) | 3.1.0    | https://packages.couchbase.com/clients/ruby/sdk-3.4.4/couchbase-3.4.4-x86_64-linux-musl-3.1.0.gem[couchbase-3.4.4-x86_64-linux-musl-3.1.0.gem]
+| Linux x86_64 (musl) | 3.0.0    | https://packages.couchbase.com/clients/ruby/sdk-3.4.4/couchbase-3.4.4-x86_64-linux-musl-3.0.0.gem[couchbase-3.4.4-x86_64-linux-musl-3.0.0.gem]
+| macOS 10.15 x84_64  | 3.2.0    | https://packages.couchbase.com/clients/ruby/sdk-3.4.4/couchbase-3.4.4-x86_64-darwin-19-3.2.0.gem[couchbase-3.4.4-x86_64-darwin-19-3.2.0.gem]
+| macOS 10.15 x84_64  | 3.0.0    | https://packages.couchbase.com/clients/ruby/sdk-3.4.4/couchbase-3.4.4-x86_64-darwin-19-3.0.0.gem[couchbase-3.4.4-x86_64-darwin-19-3.0.0.gem]
+| macOS 11 x84_64     | 3.2.0    | https://packages.couchbase.com/clients/ruby/sdk-3.4.4/couchbase-3.4.4-x86_64-darwin-20-3.2.0.gem[couchbase-3.4.4-x86_64-darwin-20-3.2.0.gem]
+| macOS 11 x84_64     | 3.1.0    | https://packages.couchbase.com/clients/ruby/sdk-3.4.4/couchbase-3.4.4-x86_64-darwin-20-3.1.0.gem[couchbase-3.4.4-x86_64-darwin-20-3.1.0.gem]
+| macOS 11 x84_64     | 3.0.0    | https://packages.couchbase.com/clients/ruby/sdk-3.4.4/couchbase-3.4.4-x86_64-darwin-20-3.0.0.gem[couchbase-3.4.4-x86_64-darwin-20-3.0.0.gem]
+| macOS 11 M1         | 3.2.0    | https://packages.couchbase.com/clients/ruby/sdk-3.4.4/couchbase-3.4.4-arm64-darwin-20-3.0.0.gem[couchbase-3.4.4-arm64-darwin-20-3.0.0.gem]
+|===
 
 == Version 3.4.3 (17 May 2023)
 
@@ -143,8 +221,8 @@ Port and network name now checked on session restart, improving performance duri
 Bundled Mozilla certificates with the library
 (https://github.com/couchbaselabs/couchbase-cxx-client/pull/405[#405],
 https://github.com/couchbaselabs/couchbase-cxx-client/pull/408[#408]).
-Source: https://curl.se/docs/caextract.html. 
-Use the `disable_mozilla_ca_certificates` connection string option to disable the bundled certificates. 
+Source: https://curl.se/docs/caextract.html.
+Use the `disable_mozilla_ca_certificates` connection string option to disable the bundled certificates.
 Use the following script to inspect the certificates' metadata:
 +
 [source,ruby]
