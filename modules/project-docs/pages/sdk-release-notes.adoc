@@ -93,7 +93,7 @@ ruby -rrbconfig -e 'puts RbConfig::CONFIG["ruby_version"]'
 
 [#latest-release]
 
-== Version 3.4.4 (17 May 2023)
+== Version 3.4.4 (21 August 2023)
 
 [source,bash]
 ----
