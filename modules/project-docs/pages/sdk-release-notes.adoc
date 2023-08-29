@@ -108,7 +108,7 @@ https://rubygems.org/gems/couchbase/versions/3.4.4[Rubygems]
 
 * https://issues.couchbase.com/browse/RCBC-441[RCBC-441] interpret Integer as milliseconds in duration context (http://github.com/couchbase/couchbase-ruby-client/pull/110[#110], http://github.com/couchbase/couchbase-ruby-client/pull/111[#111]).
 
-* https://issues.couchbase.com/browse/RCBC-442[RCBC-442] Support query with read from replica (http://github.com/couchbase/couchbase-ruby-client/pull/112[#112]).
+* https://issues.couchbase.com/browse/RCBC-442[RCBC-442] Support query with Read from Replica (http://github.com/couchbase/couchbase-ruby-client/pull/112[#112]).
 
 * https://issues.couchbase.com/browse/RCBC-391[RCBC-391] SDK Support for Native KV Range Scans (http://github.com/couchbase/couchbase-ruby-client/pull/113[#113], http://github.com/couchbase/couchbase-ruby-client/pull/117[#117]).
 
