@@ -2,6 +2,7 @@
 :description: Release notes, installation instructions, and download archive for the Couchbase Ruby Client.
 :page-topic-type: project-doc
 :page-partial:
+:page-toclevels: 2
 :page-aliases: ROOT:relnotes-ruby-sdk,ROOT:release-notes,ROOT:sdk-release-notes
 
 
@@ -111,7 +112,7 @@ https://docs.couchbase.com/sdk-api/couchbase-ruby-client-3.4.4/index.html[API Re
 link:++https://github.com/couchbase/couchbase-ruby-client/compare/3.4.3...3.4.4++[Full Changelog] |
 https://rubygems.org/gems/couchbase/versions/3.4.4[Rubygems]
 
-=== Improvements
+==== Improvements
 
 * https://issues.couchbase.com/browse/RCBC-441[RCBC-441] interpret Integer as milliseconds in duration context (http://github.com/couchbase/couchbase-ruby-client/pull/110[#110], http://github.com/couchbase/couchbase-ruby-client/pull/111[#111]).
 
@@ -123,7 +124,7 @@ https://rubygems.org/gems/couchbase/versions/3.4.4[Rubygems]
 
 * https://issues.couchbase.com/browse/RCBC-451[RCBC-451], https://issues.couchbase.com/browse/RCBC-452[RCBC-451]: Expose any specific `lookup_in` spec errors (http://github.com/couchbase/couchbase-ruby-client/pull/118[#118]).
 
-=== Underlying C++ SDK Core Changes
+==== Underlying C++ SDK Core Changes
 
 * https://issues.couchbase.com/browse/CXXCBC-333[CXXCBC-333]:
 Fixed parsing 'resolv.conf' on Linux (https://github.com/couchbaselabs/couchbase-cxx-client/pull/416[#416]).
@@ -158,7 +159,7 @@ Collection ID was resolved on a per-request basis -- which could result in situa
 This could happen if a collection was dropped and then immediately recreated with the same name.
 We now resolve collection ID before performing any scan operations (https://github.com/couchbaselabs/couchbase-cxx-client/pull/433[#433]).
 
-=== Download Links
+==== Download Links
 
 [cols="9,5,19"]
 |===
