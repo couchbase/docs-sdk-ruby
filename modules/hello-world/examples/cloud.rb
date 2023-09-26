@@ -10,7 +10,7 @@ options.authenticate("username", "Password!123")
 # Sets a pre-configured profile called "wan-development" to help avoid latency issues
 # when accessing Capella from a different Wide Area Network
 # or Availability Zone (e.g. your laptop).
-opptions.apply_profile("wan_development")
+options.apply_profile("wan_development")
 
 cluster = Cluster.connect("couchbases://cb.<your-endpoint>.cloud.couchbase.com", options)
 # end::connect[]
