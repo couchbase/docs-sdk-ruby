@@ -101,6 +101,7 @@ We always recommend using the latest version of the SDK -- it contains all of th
 All patch releases for each dot minor release should be API compatible, and safe to upgrade;
 any changes to expected behavior are noted in the release notes that follow.
 
+
 === Version 3.4.5 (10 October 2023)
 
 [source,bash]
@@ -115,28 +116,35 @@ https://rubygems.org/gems/couchbase/versions/3.4.5[Rubygems]
 ==== Improvements
 
 * https://issues.couchbase.com/browse/RCBC-450[RCBC-450]:
-  Set value of subdoc exists to true or false if result is success or path-not-found (http://github.com/couchbase/couchbase-ruby-client/pull/120[#120])
-
+Subdoc exists was returning `nil` for content.
+It should now return the value of the  content: true if result is success, or false if path-not-found 
+(http://github.com/couchbase/couchbase-ruby-client/pull/120[#120]).
 * https://issues.couchbase.com/browse/RCBC-453[RCBC-453]:
-  Support history retention in collection and bucket management (http://github.com/couchbase/couchbase-ruby-client/pull/119[#119])
+.added support history retention in collection and bucket management (http://github.com/couchbase/couchbase-ruby-client/pull/119[#119]).
 
 ==== Underlying C++ SDK Core Changes
 
-* https://issues.couchbase.com/browse/CXXCBC-376[CXXCBC-376]: Revisit what 'create' and 'update' bucket operations send
-to the server. Make optional bucket settings fields optional, and do not send anything unless the settings explicitly
-specified. (https://github.com/couchbaselabs/couchbase-cxx-client/pull/451[#451])
-* https://issues.couchbase.com/browse/CXXCBC-374[CXXCBC-374]: Return 'bucket_exists' error when the bucket already
-exists during 'create' operation. (https://github.com/couchbaselabs/couchbase-cxx-client/pull/449[#449])
-* https://issues.couchbase.com/browse/CXXCBC-359[CXXCBC-359]: Reduce default HTTP idle timeout to 1 second
-(https://github.com/couchbaselabs/couchbase-cxx-client/pull/448[#448])
-* https://issues.couchbase.com/browse/CXXCBC-367[CXXCBC-367]:
-https://issues.couchbase.com/browse/CXXCBC-370[CXXCBC-370]: Add history retention settings to buckets/collection
-management. (https://github.com/couchbaselabs/couchbase-cxx-client/pull/446[#446])
-* https://issues.couchbase.com/browse/CXXCBC-119[CXXCBC-119]: Return booleans for subdocument 'exists' operation instead
-of error code. (https://github.com/couchbaselabs/couchbase-cxx-client/pull/444[#444],
-https://github.com/couchbaselabs/couchbase-cxx-client/pull/452[#452])
+* https://issues.couchbase.com/browse/CXXCBC-376[CXXCBC-376]: 
+Changed what 'create' and 'update' bucket operations send to the server. 
+Unrequired `BucketSettings` fields are now set to optional, and are not sent unless the settings are explicitly specified. 
+(https://github.com/couchbaselabs/couchbase-cxx-client/pull/451[#451]).
+* https://issues.couchbase.com/browse/CXXCBC-374[CXXCBC-374]: 
+The SDK should now return a 'bucket_exists' error when the bucket already exists during a 'create' operation. 
+(https://github.com/couchbaselabs/couchbase-cxx-client/pull/449[#449]).
+* https://issues.couchbase.com/browse/CXXCBC-359[CXXCBC-359]: 
+Reduced the default timeout for idle HTTP connections to 1 second. 
+The previous default (4.5 seconds) was too close to the 5-second server-side timeout, and could lead to spurious request failures.
+(https://github.com/couchbaselabs/couchbase-cxx-client/pull/448[#448]).
+* https://issues.couchbase.com/browse/CXXCBC-367[CXXCBC-367], 
+https://issues.couchbase.com/browse/CXXCBC-370[CXXCBC-370]: 
+Added history retention settings to buckets/collection management
+(https://github.com/couchbaselabs/couchbase-cxx-client/pull/446[#446]).
+* https://issues.couchbase.com/browse/CXXCBC-119[CXXCBC-119]: 
+Return booleans for subdocument 'exists' operation, instead of error code
+(https://github.com/couchbaselabs/couchbase-cxx-client/pull/444[#444],
+https://github.com/couchbaselabs/couchbase-cxx-client/pull/452[#452]).
 * Detect 'collection_not_found' error in 'update_collection' response
-(https://github.com/couchbaselabs/couchbase-cxx-client/pull/450[#450])
+(https://github.com/couchbaselabs/couchbase-cxx-client/pull/450[#450]).
 
 ==== Download Links
 
