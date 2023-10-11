@@ -120,7 +120,8 @@ Subdoc exists was returning `nil` for content.
 It should now return the value of the  content: true if result is success, or false if path-not-found 
 (http://github.com/couchbase/couchbase-ruby-client/pull/120[#120]).
 * https://issues.couchbase.com/browse/RCBC-453[RCBC-453]:
-.added support history retention in collection and bucket management (http://github.com/couchbase/couchbase-ruby-client/pull/119[#119]).
+Added support history retention in collection and bucket management 
+(http://github.com/couchbase/couchbase-ruby-client/pull/119[#119]).
 
 ==== Underlying C++ SDK Core Changes
 
