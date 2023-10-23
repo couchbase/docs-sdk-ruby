@@ -10,7 +10,7 @@ include::project-docs:partial$attributes.adoc[]
 {description}
 
 The Couchbase Ruby SDK supports MRI Ruby versions 3.0, 3.1, and 3.2
- -- see the table below for <<php-version-compatibility,supported versions and dates>>.
+ -- see the table below for <<ruby-version-compatibility,supported versions and dates>>.
 // We follow list of supported versions at https://www.ruby-lang.org/en/downloads/branches/
 
 
