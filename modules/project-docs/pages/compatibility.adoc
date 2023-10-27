@@ -9,7 +9,8 @@ include::project-docs:partial$attributes.adoc[]
 [abstract]
 {description}
 
-The Couchbase Ruby SDK supports MRI Ruby versions 2.7, 3.0 and 3.1.
+The Couchbase Ruby SDK supports MRI Ruby versions 3.0, 3.1, and 3.2
+ -- see the table below for <<ruby-version-compatibility,supported versions and dates>>.
 // We follow list of supported versions at https://www.ruby-lang.org/en/downloads/branches/
 
 
@@ -50,6 +51,35 @@ The Ruby SDK is fully compatible with Couchbase Capella, our fully-hosted databa
 To make development easier, the SDK includes the Capella client certificate ready installed.
 
 include::{version-common}@sdk:shared:partial$capella.adoc[tag=cloud]
+
+
+
+== Ruby Version Compatibility
+
+The Couchbase Ruby SDK aims to support https://www.ruby-lang.org/en/downloads/branches/[all supported versions] of Ruby.
+The table below indicates the Ruby SDK version where support of a version of Ruby was added.
+Ruby versions that have reached their https://www.ruby-lang.org/en/downloads/branches/[End-of-Life date] are not supported.
+
+.Supported Ruby Versions
+[cols="5,8,8"]
+|===
+| Ruby Version | Support EOL | Couchbase SDK Versions Supported
+
+| 3.0
+| until 2024-03-31
+| from 3.1.0
+
+| 3.1
+| until 2025-03-31
+| from 3.3.0
+
+| 3.2
+| until 2026-03-31
+| from 3.4.0
+
+|===
+
+
 
 // TODO: Verify this with dev team (this has been copied over from Python, so best to double check that it is correct).
 == Platform Compatibility
