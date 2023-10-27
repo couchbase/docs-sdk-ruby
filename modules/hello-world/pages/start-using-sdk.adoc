@@ -1,17 +1,18 @@
 = Start Using the Ruby SDK
-:description: A quick start guide to get you up and running with Couchbase and the Ruby SDK.
+:description: Install, connect, try. A quick start guide to get you up and running with Couchbase and the Ruby SDK.
 :page-aliases: ROOT:getting-started,ROOT:start-using,ROOT:hello-couchbase,ROOT:start-using-sdk
 :page-toclevels: 2
-:page-pagination: next
+// :page-pagination: next
 
 include::project-docs:partial$attributes.adoc[]
 
 [abstract]
 {description}
+
 The Couchbase Ruby SDK allows you to connect to a Couchbase cluster from Ruby.
 The Ruby SDK includes high-performance native Ruby extensions to handle communicating to the cluster over Couchbase’s binary protocols.
 
-Ruby SDK supports https://www.ruby-lang.org/en/downloads/branches/[currently maintained Ruby versions], and recommends the latest stable version where possible (currently 3.4 as of October 2022.)
+Ruby SDK supports https://www.ruby-lang.org/en/downloads/branches/[currently maintained Ruby versions], and recommends the latest stable version where possible (currently 3.3 as of January 2023.)
 
 In this guide, you will learn:
 

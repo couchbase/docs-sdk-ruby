@@ -1,0 +1,64 @@
+= Data Modelling, Durability, and ACID Transactions
+
+
+
+
+Designing an application to offer guarantees of durability or consistency in a networked environment is hard.
+The newcomer to the area has to wrestle with concepts like [CAP Theorum] and the [many possible interpretations] of ACID transactions. 
+Here we hope to keep it _relatively_ simple, with a look at which Couchbase features give you which guarantees, when you may prefer to use them, and -- 
+perhaps equally important, though sometimes overlooked -- what is the performance cost of these choices.
+
+
+== Data and Good Schema Design
+
+
+
+=== Object Mapping & Modelling JSON
+
+
+
+== Durability
+
+
+
+
+
+
+== Concurrent Document Mutations
+
+
+
+
+=== Performance considerations
+
+CAS operations incur no additional overhead.
+CAS values are always returned from the server for each operation. 
+Comparing CAS at the server involves a simple integer comparison which incurs no overhead.
+
+=== CAS value format
+
+The CAS value should be treated as an opaque object at the application level. 
+No assumptions should be made with respect to how the value is changed (for example, it is wrong to assume that it is a simple counter value). 
+In the SDK, the CAS is represented as a 64 bit integer for efficient copying but should otherwise be treated as an opaque 8 byte buffer.
+
+
+
+== Pessimistic locking
+
+
+
+
+
+
+== Multi-Document ACID Transactions
+
+
+
+
+
+== Further Readong
+
+* Backups
+
+* Retry strategy
+

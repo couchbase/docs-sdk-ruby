@@ -60,12 +60,13 @@ The Ruby SDK is built on top of the C++ SDK (not currently available separately)
 [discrete]
 === GNU/Linux
 
-* Amazon Linux 2.
-* Red Hat Enterprise Linux 7 & 8 -- but see note below;
-* CentOS 7 & 8 -- but see note below.
-* Ubuntu (LTS) 16.04 (_Xenial_), 18.04 (_Bionic_), & 20.04 (_Focal_).
-* Debian 9 (_Stretch_) & 10 (_Buster_).
-* Alpine Linux
+* Amazon Linux AL2023 x86, 2.
+* Red Hat Enterprise Linux 7 & 8 -- but see note below -- and RHEL 9;
+* CentOS 7 & 8 -- _Deprecated_
+* Oracle Linux 7 -- _Deprecated_.
+* Ubuntu (LTS) 16.04 (_Xenial_), 18.04 (_Bionic_),  -- both _Deprecated_ --  20.04 (_Focal_) & 22.04 (_Jammy_).
+* Debian 9 (_Stretch_) -- _Deprecated_, 10 (_Buster_), 11 (_Bullseye_), & 12 (_Bookworm_).
+* Alpine Linux 3.17, 3.18
 
 [discrete]
 === Microsoft Windows
@@ -76,13 +77,13 @@ Microsoft Windows 10 / All LTS releases from Windows Server 2016.
 === Mac OS X
 
 The current and previous two releases of OS X.
-At time of writing (October 2022): 13 (Ventura), 12 (Monterey), and 11 (Big Sur).
+At time of writing (October 2023): 13 (Ventura), 12 (Monterey), and 11 (Big Sur).
 M1 ARM architecture is fully supported.
 ****
 
 === ARM Processor Support
 
-AWS Amazon Graviton2, Apple M1 ARM processors, and ARMv8 on Ubuntu 20.04 (from SDK 3.4).
+AWS Amazon Graviton2, Apple M1 ARM processors, and ARMv8 on Ubuntu 20.04 & 22.04 (from SDK 3.4).
 
 
 == Couchbase New Feature Availability Matrix

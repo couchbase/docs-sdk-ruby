@@ -1,7 +1,19 @@
 name: ruby-sdk
+version: '3.5'
 title: Ruby SDK
-version: '3.4'
 start_page: hello-world:overview.adoc
 nav:
 - modules/ROOT/nav.adoc
-server_version: '7.1'
+asciidoc:
+  attributes:
+    server_version: '7.6'
+    sdk_current_version: '3.5.0'
+    sdk_dot_minor: '3.5'
+    sdk_dot_major: '3.x'
+    version-server: '7.5'
+    version-common: '7.5'
+    name_platform: 'Ruby'
+    name-sdk: 'Ruby SDK'
+    sdk_api: '3.5'
+    sdk-api-link: https://docs.couchbase.com/sdk-api/couchbase-ruby-client/
+    sdk-gh-link: https://github.com/couchbase/couchbase-ruby-client/

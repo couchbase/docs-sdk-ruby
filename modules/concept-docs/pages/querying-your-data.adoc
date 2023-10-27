@@ -1,0 +1,45 @@
+= Querying Your Data
+
+
+
+You want to query your data, but does that always mean a {sqlpp} query to the Data Service?
+
+{sqlpp} is a familiar language, and an easy way for anyone familiar with Relational Databases (RDBMS) to work with Couchbase.
+However it is not the most efficient choice for every use case.
+Let's take a quick look at what you need to know to make an informed choice, and get the best performance you can out of your app.
+
+
+
+
+KV /
+Range Scan
+
+
+
+
+Query
+
++ index - or not!
+
+
+
+Search
+
+
+
+
+Analytics
+
+
+
+
+Eventing / Connectors
+
+
+
+
+
+An honourable mention of Map/Reduce Views
+
+
+
