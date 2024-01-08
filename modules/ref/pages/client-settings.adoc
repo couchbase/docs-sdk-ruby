@@ -167,7 +167,7 @@ This means that tuning the number of connections (KV endpoints) is no longer nec
 This is set to true by default. Note, changing the setting will only affect Server versions 7.0 onwards.
 
 
-include::{version-common}@sdk:shared:partial$client-settings-wide-network.adoc[]
+include::{version-common}@sdk:shared:partial$client-settings-nowait.adoc[]
 
 
 == Configuration Profiles
