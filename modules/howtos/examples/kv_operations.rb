@@ -94,10 +94,12 @@ end
 
 begin
   # tag::durability-observed[]
-  collection.upsert("my-document", {"doc" => true}, 
+  collection.upsert("my-document", {"doc" => true},
                   Options::Upsert(persist_to: :none, replicate_to: :two))
   # end::durability-observed[]
 rescue Error::DurabilityImpossible
+  puts "Example requires a multi-node environment"
+end
 
 # tag::expiry-insert[]
 collection.upsert("my-document", {"doc" => true},
@@ -144,3 +146,31 @@ document = {"name" => "John Doe", "preferred_email" => "johndoe111@test123.test"
 result = users_collection.upsert("user-key", document)
 # end::named-collection-upsert[]
 puts "CAS: #{result.cas}"
+
+# tag::range-scan-all-documents[]
+result = collection.scan(RangeScan.new) # <1>
+result.each do |item|
+  puts "ID: #{item.id}, Content: #{item.content}"
+end
+# end::range-scan-all-documents[]
+
+# tag::range-scan-all-document-ids[]
+result = collection.scan(RangeScan.new, Options::Scan.new(ids_only: true))
+result.each do |item|
+  puts "ID: #{item.id}"
+end
+# end::range-scan-all-document-ids[]
+
+# tag::range-scan-prefix[]
+result = collection.scan(PrefixScan.new('alice::')) # <1>
+result.each do |item|
+  puts "ID: #{item.id}, Content: #{item.content}"
+end
+# end::range-scan-prefix[]
+
+# tag::range-scan-sample[]
+result = collection.scan(SamplingScan.new(100))
+result.each do |item|
+  puts "ID: #{item.id}, Content: #{item.content}"
+end
+# end::range-scan-sample[]

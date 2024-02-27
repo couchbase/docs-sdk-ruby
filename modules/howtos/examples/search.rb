@@ -6,6 +6,7 @@ include Couchbase # to avoid repeating module name
 options = Cluster::ClusterOptions.new
 options.authenticate("Administrator", "password")
 cluster = Cluster.connect("couchbase://localhost", options)
+scope = cluster.bucket("default").default_collection
 
 # tag::index[]
 search_indexes = cluster.search_indexes.get_all_indexes
@@ -118,7 +119,7 @@ end
 result = cluster.search_query(
     "my-index-name",
     Cluster::SearchQuery.query_string("hop beer")
-)
+  )
 result.rows.each do |row|
   puts "id: #{row.id}, score: #{row.score}"
 end
@@ -138,7 +139,7 @@ result = cluster.search_query(
     "my-index-name",
     Cluster::SearchQuery.match_phrase("hop beer"),
     options
-)
+  )
 result.rows.each do |row|
   puts "id: #{row.id}, score: #{row.score}\n  fields: #{row.fields}"
 end
@@ -160,7 +161,7 @@ result = cluster.search_query(
     "my-index-name",
     Cluster::SearchQuery.query_string("hop beer"),
     options
-)
+  )
 result.rows.each do |row|
   puts "id: #{row.id}, score: #{row.score}"
 end
@@ -190,7 +191,7 @@ result = cluster.search_query(
     "my-index-name",
     Cluster::SearchQuery.match_phrase("randomness"),
     options
-)
+  )
 result.rows.each do |row|
   puts "id: #{row.id}, score: #{row.score}\n  fields: #{row.fields}"
 end
@@ -210,7 +211,7 @@ result = cluster.search_query(
     "my-index-name",
     Cluster::SearchQuery.match_phrase("banana"),
     options
-)
+  )
 result.rows.each do |row|
   puts "id: #{row.id}, score: #{row.score}"
   row.fragments.each do |field, excerpts|
@@ -240,7 +241,7 @@ cluster.search_query(
     "my-index-name",
     Cluster::SearchQuery.match_phrase("hop beer"),
     options
-)
+  )
 # end::sort[]
 
 # bigger example at https://github.com/couchbase/couchbase-ruby-client/blob/master/examples/search.rb
@@ -253,5 +254,65 @@ cluster.search_query(
     "my-index-name",
     Cluster::SearchQuery.query_string("hop beer"),
     options
-)
+  )
 # end::facet[]
+
+vector_query = [1.1, 1.2]
+another_vector_query = [1.1, 1.3]
+
+# tag::single-vector-query[]
+request = SearchRequest.new(
+  VectorSearch.new(VectorQuery.new('vector_field', vector_query))
+)
+result = scope.search('vector-index', request)
+
+result.rows.each do |row|
+  puts "Document ID: #{row.id}, search score: #{row.score}"
+end
+# end::single-vector-query[]
+
+# tag::multiple-vector-queries[]
+request = SearchRequest.new(
+  VectorSearch.new(
+    [
+      VectorQuery.new('vector_field', vector_query) do |q|
+        q.num_candidates = 2
+        q.boost = 0.3
+      end,
+      VectorQuery.new('vector_field', another_vector_query) do |q|
+        q.num_candidates = 5
+        q.boost = 0.7
+      end,
+    ],
+    Options::VectorSearch.new(vector_query_combination: :and)
+  )
+)
+result = scope.search('vector-index', request)
+
+result.rows.each do |row|
+  puts "Document ID: #{row.id}, search score: #{row.score}"
+end
+# end::multiple-vector-queries[]
+
+# tag::vector-fts-query-combination[]
+request = SearchRequest.new(
+  VectorSearch.new(VectorQuery.new('vector_field', vector_query))
+)
+request.search_query(SearchQuery.match_all)
+result = scope.search('vector-and-fts-index', request)
+
+result.rows.each do |row|
+  puts "Document ID: #{row.id}, search score: #{row.score}"
+end
+# end::vector-fts-query-combination[]
+
+# tag::fts-search-request[]
+request = SearchRequest.new(
+  SearchQuery.match('swanky')
+)
+result = scope.search('travel-sample-index', request)
+
+result.rows.each do |row|
+  puts "Document ID: #{row.id}, search score: #{row.score}"
+end
+# end::fts-search-request[]

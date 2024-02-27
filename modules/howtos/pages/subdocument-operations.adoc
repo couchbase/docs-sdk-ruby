@@ -311,6 +311,26 @@ In this case, the _create-path_ option may be used.
 include::example$subdoc.rb[tag=create-path]
 ----
 
+[#subdoc-from-replica]
+== Reading Sub-Documents From Replicas
+
+Couchbase Server 7.6 and later support Sub-Doc lookup from replicas.
+
+The `Collection#lookup_in_any_replica` method returns the first response -- from active or replica:
+
+.Sub-Document read from any replica
+[source,ruby]
+----
+include::example$subdoc.rb[tag=lookupin-any-replica]
+----
+
+The `Collection#lookup_in_all_replicas` method fetches all available replicas (and the active copy), and returns all responses:
+
+.Sub-Document read from all replicas
+[source,ruby]
+----
+include::example$subdoc.rb[tag=lookupin-all-replicas]
+----
 
 == CAS Semantics
 

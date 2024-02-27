@@ -60,6 +60,28 @@ puts "exists: #{result.exists?(1)}"
 #=> exists: false
 # end::combine[]
 
+# tag::lookupin-any-replica[]
+result = collection.lookup_in_any_replica("customer123", [
+  LookupInSpec.get("addresses.delivery.country")
+])
+puts "Country = #{result.content(0)}"
+#=> Country = United Kingdom
+puts "is replica?: #{result.replica?}"
+#=> is replica?: false|true
+# end::lookupin-any-replica[]
+
+# tag::lookupin-all-replicas[]
+results = collection.lookup_in_all_replicas("customer123", [
+  LookupInSpec.get("addresses.delivery.country")
+])
+results.each do |res|
+  puts "Country = #{res.content(0)}"
+  #=> Country = United Kingdom
+  puts "is replica?: #{res.replica?}"
+  #=> is replica?: false|true
+end
+# end::lookupin-all-replicas[]
+
 # tag::upsert[]
 result = collection.mutate_in("customer123", [
     MutateInSpec.upsert("email", "dougr96@hotmail.com")
