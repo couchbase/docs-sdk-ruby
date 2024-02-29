@@ -1,9 +1,9 @@
-= Couchbase Ruby SDK 3.4
+= Couchbase Ruby SDK 3.5
 :page-layout: landing-page-top-level-sdk
 :page-role: tiles
 :!sectids:
 
-= Couchbase Ruby SDK 3.4
+= Couchbase Ruby SDK 3.5
 
 [source,ruby]
 ----
@@ -12,6 +12,8 @@ include::howtos:example$kv_operations.rb[tag=named-collection-upsert]
 
 The Couchbase Ruby SDK allows you to connect to a Couchbase database from Ruby.
 The Ruby SDK includes high-performance native Ruby extensions to handle communicating to the cluster over Couchbase’s binary protocols.
+
+Ruby SDK supports https://www.ruby-lang.org/en/downloads/branches/[currently maintained Ruby versions], and recommends the latest stable version where possible.
 
 {empty} +
 

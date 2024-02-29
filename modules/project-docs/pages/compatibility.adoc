@@ -9,8 +9,13 @@ include::project-docs:partial$attributes.adoc[]
 [abstract]
 {description}
 
-The Couchbase Ruby SDK supports MRI Ruby versions 2.7, 3.0 and 3.1.
-// We follow list of supported versions at https://www.ruby-lang.org/en/downloads/branches/
+
+The Couchbase Ruby SDK allows you to connect to a Couchbase database from Ruby.
+The Ruby SDK includes high-performance native Ruby extensions to handle communicating to the cluster over Couchbase’s binary protocols.
+
+Ruby SDK supports https://www.ruby-lang.org/en/downloads/branches/[currently maintained Ruby versions], and recommends the latest stable version where possible (currently 3.3 as of January 2023.)
+
+The Couchbase Ruby SDK supports MRI Ruby versions 3.0, 3.1, 3.2, and 3.3.
 
 
 == Couchbase Version/SDK Version Matrix
@@ -28,14 +33,14 @@ It is best to upgrade either the SDK or the Couchbase version you are using.
 [#table_sdk_versions]
 [cols="40,25, 20, 20"]
 |===
-|  | SDK 3.0, 3.1 | SDK 3.2 | SDK 3.3, 3.4
+|  | SDK 3.0, 3.1 | SDK 3.2 | SDK 3.3 - 3.5
 
 | *Server 6.6*
 | *✔*
 | *✔*
 | *✔*
 
-| *Server 7.0-7.2*
+| *Server 7.0-7.6*
 | ◎
 | *✔*
 | *✔*
@@ -50,6 +55,39 @@ The Ruby SDK is fully compatible with Couchbase Capella, our fully-hosted databa
 To make development easier, the SDK includes the Capella client certificate ready installed.
 
 include::{version-common}@sdk:shared:partial$capella.adoc[tag=cloud]
+
+
+
+== Ruby Version Compatibility
+
+The Couchbase Ruby SDK aims to support https://www.ruby-lang.org/en/downloads/branches/[all supported versions] of Ruby.
+The table below indicates the Ruby SDK version where support of a version of Ruby was added.
+Ruby versions that have reached their https://www.ruby-lang.org/en/downloads/branches/[End-of-Life date] are not supported.
+
+.Supported Ruby Versions
+[cols="5,8,8"]
+|===
+| Ruby Version | Support EOL | Couchbase SDK Versions Supported
+
+| 3.0
+| until 2024-03-31
+| from 3.1.0
+
+| 3.1
+| until 2025-03-31
+| from 3.3.0
+
+| 3.2
+| until 2026-03-31
+| from 3.4.0
+
+| 3.3
+| until 2027-03-31
+| from 3.5.0
+
+|===
+
+
 
 // TODO: Verify this with dev team (this has been copied over from Python, so best to double check that it is correct).
 == Platform Compatibility
