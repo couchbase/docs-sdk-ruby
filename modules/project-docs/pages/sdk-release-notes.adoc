@@ -96,12 +96,18 @@ ruby -rrbconfig -e 'puts RbConfig::CONFIG["ruby_version"]'
 
 
 [#latest-release]
-== Ruby SDK 3.4 Releases
+== Ruby SDK 3.5 Releases
 
 We always recommend using the latest version of the SDK -- it contains all of the latest security patches and support for new and upcoming features.
 All patch releases for each dot minor release should be API compatible, and safe to upgrade;
 any changes to expected behavior are noted in the release notes that follow.
 
+
+=== Version 3.5.0 (15 March 2024)
+
+
+
+== Ruby SDK 3.4 Releases
 
 === Version 3.4.5 (10 October 2023)
 
