@@ -42,7 +42,7 @@ Ruby versions that have reached their https://www.ruby-lang.org/en/downloads/bra
 | from 3.4.0
 
 | 3.3
-| until 2026-03-31 (expected, TBD)
+| until 2026-03-31 (expected, TBC)
 | from 3.5.0
 
 |===
@@ -109,7 +109,7 @@ It is best to upgrade either the SDK or the Couchbase version you are using.
 .Recommended SDK per Server Version Matrix
 [#table_sdk_versions]
 |===
-| | 3.2, 4.0 - 4.2 | 4.3
+| | 3.2 - 3.4 | 3.5
 
 | *Server 7.0 - 7.2*
 | *✔*
