@@ -16,7 +16,7 @@ This page covers installation of the 3.x versions of the Couchbase Ruby SDK, and
 
 == SDK Installation
 
-Ruby SDK supports MRI Ruby versions 3.0, 3.1, and 3.2.
+Ruby SDK supports MRI Ruby versions 3.0, 3.1, 3.2, and 3.3.
 The source package is available through https://rubygems.org/gems/couchbase and can be installed with:
 
 [source,console]
@@ -30,36 +30,26 @@ latest stable release will be installed.
 In addition to rubygems.org, we also maintain official gem repositories, where we publish not only source version of the
 package, but also precompiled binaries for Linux and MacOS.
 
-[cols="4,17"]
-|===
-| Ruby ABI version | Source URL
-| 3.2              | https://packages.couchbase.com/clients/ruby/3.2.0/
-| 3.1              | https://packages.couchbase.com/clients/ruby/3.1.0/
-| 3.0              | https://packages.couchbase.com/clients/ruby/3.0.0/
-|===
-
 To use official repository, it have to be registered in the `.gemrc` file:
 
 [source,bash]
 ----
-gem sources --add https://packages.couchbase.com/clients/ruby/3.1.0/
+gem sources --add https://packages.couchbase.com/clients/ruby/
 ----
-
-The example above selects repository with the packages for Ruby 3.1.x. For other version, please refer the table.
 
 The repository could be also specified in `Gemfile` for bundler. And in this case the source would be applied only for
 Couchbase SDK library:
 
 [source,ruby]
 ----
-gem "couchbase", "3.4.5", :source => "https://packages.couchbase.com/clients/ruby/3.1.0/"
+gem "couchbase", "3.5.0", :source => "https://packages.couchbase.com/clients/ruby/"
 ----
 
 Or run in terminal:
 
 [source,bash]
 ----
-gem install couchbase --clear-sources --source https://packages.couchbase.com/clients/ruby/3.1.0/
+gem install couchbase --clear-sources --source https://packages.couchbase.com/clients/ruby/
 ----
 
 And finally, it is possible to download the package and install from the file. In the notes below, we specify tables
@@ -67,18 +57,18 @@ with links to every release package along with precompiled binaries.
 
 [source,bash]
 ----
-wget https://packages.couchbase.com/clients/ruby/sdk-3.4.5/couchbase-3.4.5-x86_64-linux-3.1.0.gem
-gem install couchbase-3.4.5-x86_64-linux-3.1.0.gem
+wget https://packages.couchbase.com/clients/ruby/sdk-3.5.0/couchbase-3.5.0-x86_64-linux.gem
+gem install couchbase-3.5.0-x86_64-linux.gem
 ----
 
 The URL structure is:
 
 [source,shell]
 ----
-https://packages.couchbase.com/clients/ruby/sdk-%{sdk_version}/couchbase-%{sdk_version}-%{platform}-%{ruby_abi}.gem
+https://packages.couchbase.com/clients/ruby/sdk-%{sdk_version}/couchbase-%{sdk_version}-%{platform}.gem
 ----
 
-where "platform" placeholder can take values: `arm64-darwin-20`, `x86_64-darwin-19`, `x86_64-darwin-20`, `x86_64-linux`,
+where "platform" placeholder can take values: `arm64-darwin-22`, `x86_64-darwin-20`, `x86_64-linux`,
 `x86_64-linux-musl`. To see platform string the following command:
 
 [source,bash]
@@ -103,7 +93,175 @@ All patch releases for each dot minor release should be API compatible, and safe
 any changes to expected behavior are noted in the release notes that follow.
 
 
-=== Version 3.5.0 (15 March 2024)
+=== Version 3.5.0 (17 March 2024)
+
+[source,bash]
+----
+gem install couchbase -v 3.5.0
+----
+
+https://docs.couchbase.com/sdk-api/couchbase-ruby-client-3.5.0/index.html[API Reference] |
+link:++https://github.com/couchbase/couchbase-ruby-client/compare/3.4.5...3.5.0++[Full Changelog] |
+https://rubygems.org/gems/couchbase/versions/3.5.0[Rubygems]
+
+==== Improvements
+
+* https://issues.couchbase.com/browse/RCBC-469[RCBC-469]:
+Support added for Scoped Search Indexes (https://github.com/couchbase/couchbase-ruby-client/pull/132[#132]).
+* https://issues.couchbase.com/browse/RCBC-467[RCBC-467]:
+Added support for Vector search (https://github.com/couchbase/couchbase-ruby-client/pull/131[#131]).
+* https://issues.couchbase.com/browse/RCBC-468[RCBC-468]:
+Support added for `maxTTL` value of -1 for collection 'no expiry' (https://github.com/couchbase/couchbase-ruby-client/pull/130[#130]).
+* https://issues.couchbase.com/browse/RCBC-410[RCBC-410], https://issues.couchbase.com/browse/RCBC-458[RCBC-458]:
+Added support for the `couchbase2` protocol
+(https://github.com/couchbase/couchbase-ruby-client/pull/126[#126], https://github.com/couchbase/couchbase-ruby-client/pull/127[#127]).
+* https://issues.couchbase.com/browse/RCBC-472[RCBC-472]:
+Ping now returns result for management service when specified in options (https://github.com/couchbase/couchbase-ruby-client/pull/134[#134]).
+* https://issues.couchbase.com/browse/RCBC-463[RCBC-463]:
+Adedd `DocumentNotLocked` error to corresponds with the {cpp} error code `couchbase::errc::key_value::document_not_locked`
+(https://github.com/couchbase/couchbase-ruby-client/pull/128[#128]).
+
+==== Bug Fixes
+
+* Ensure that truncating keys in CouchbaseStore preserves the validity of their encoding (https://github.com/couchbase/couchbase-ruby-client/pull/125[#125]).
+* https://issues.couchbase.com/browse/RCBC-461[RCBC-461]:
+`extract_expiry_time` is now called in the setter instead of the constructor, so that the expiry is sent to the backend in the correct format, and there should no longer be an `ArgumentError`
+(https://github.com/couchbase/couchbase-ruby-client/pull/124[#124]).
+
+==== Build and Test Improvements
+
+* https://issues.couchbase.com/browse/RCBC-464[RCBC-464]:
+Improved stability of management tests (https://github.com/couchbase/couchbase-ruby-client/pull/133[#133]).
+* Migrated most of the build and test tasks to GitHub Actions.
+
+==== Underlying C++ SDK Core Changes
+
+===== Changes in Couchbase C++ SDK 1.0.0-dp.14
+
+.Fixes
+
+* https://issues.couchbase.com/browse/CXXCBC-482[CXXCBC-482]:
+Updated range scan orchestrator to use best effort retry strategy by default (https://github.com/couchbaselabs/couchbase-cxx-client/pull/542[#542]).
+* https://issues.couchbase.com/browse/CXXCBC-481[CXXCBC-481]:
+Fixed potential crash when parsing search result hits (https://github.com/couchbaselabs/couchbase-cxx-client/pull/541[#541]).
+* https://issues.couchbase.com/browse/CXXCBC-461[CXXCBC-461]:
+Updated ping operation to not send to nodes that have not completed bootstrap (https://github.com/couchbaselabs/couchbase-cxx-client/pull/540[#540]).
+* https://issues.couchbase.com/browse/CXXCBC-462[CXXCBC-462]:
+Fixed hanging when specifying a custom metadata collection via the public API & expose errors (https://github.com/couchbaselabs/couchbase-cxx-client/pull/532[#532]).
+* https://issues.couchbase.com/browse/CXXCBC-480[CXXCBC-480]:
+Fixed capabilities check for replica LookupIn operations (https://github.com/couchbaselabs/couchbase-cxx-client/pull/539[#539]).
+* https://issues.couchbase.com/browse/CXXCBC-479[CXXCBC-479]:
+Fixed capabilities check for replica `LookupIn` operations (https://github.com/couchbaselabs/couchbase-cxx-client/pull/537[#537]).
+* https://issues.couchbase.com/browse/CXXCBC-336[CXXCBC-336]:
+Updated DNS config to not fallback to 8.8.8.8 if SDK cannot obtain system DNS server (https://github.com/couchbaselabs/couchbase-cxx-client/pull/533[#533]).
+
+===== Changes in Couchbase C++ SDK 1.0.0-dp.13
+
+New features and enhancements
+
+* https://issues.couchbase.com/browse/CXXCBC-456[CXXCBC-456]:
+Updated configuration logic when 0x0d (`EConfigOnly`) status code is received to have the SDK request new configuration and send current operation to retry orchestrator (https://github.com/couchbaselabs/couchbase-cxx-client/pull/523[#523]).
+* https://issues.couchbase.com/browse/CXXCBC-191[CXXCBC-191]:
+Index Key Encoding (https://github.com/couchbaselabs/couchbase-cxx-client/pull/519[#519]) --
+in line with the https://github.com/couchbaselabs/sdk-rfcs/blob/master/rfc/0054-sdk3-management-apis.md[rfc],
+the `fields` paramaeter is now remamed to keys in the Public API's `create_index()`,
+and each index key provided to `create_index()` is encoded by surrounding them with backticks.
+
+.Fixes
+
+* https://issues.couchbase.com/browse/CXXCBC-345[CXXCBC-345]:
+Added range scan improvements and resolved concurrency issues (https://github.com/couchbaselabs/couchbase-cxx-client/pull/525[#525]).
+* https://issues.couchbase.com/browse/CXXCBC-284[CXXCBC-284]:
+Updated config polling to not use session that is not bootstrapped (https://github.com/couchbaselabs/couchbase-cxx-client/pull/528[#528]).
+* https://issues.couchbase.com/browse/CXXCBC-447[CXXCBC-447]:
+Updated bootstrap logic to use addresses from the config to bootstrap bucket (https://github.com/couchbaselabs/couchbase-cxx-client/pull/516[#516]).
+* https://issues.couchbase.com/browse/CXXCBC-450[CXXCBC-450]:
+Updated bootstrap logic to reset bootstrap handler before re-bootstrap (https://github.com/couchbaselabs/couchbase-cxx-client/pull/524[#524]).
+** We do not want any actions from the old bootstrap handler once the session decided to re-bootstrap.
+For example, bucket could not be selected, but we might still get configuration responses before socket reset.
+* https://issues.couchbase.com/browse/CXXCBC-452[CXXCBC-452]:
+Updated capabilities and fail fast when selected feature is not available
+(https://github.com/couchbaselabs/couchbase-cxx-client/pull/522[#522], https://github.com/couchbaselabs/couchbase-cxx-client/pull/513[#513]).
+* https://issues.couchbase.com/browse/CXXCBC-431[CXXCBC-431]:
+Added check for history retention bucket capability in collection create/update (https://github.com/couchbaselabs/couchbase-cxx-client/pull/502[#502], https://github.com/couchbaselabs/couchbase-cxx-client/pull/505[#505]).
+* https://issues.couchbase.com/browse/CXXCBC-421[CXXCBC-421]:
+Updated query operation to return `feature_not_available` if query preserve expiry is specified but is not supported on the server(https://github.com/couchbaselabs/couchbase-cxx-client/pull/510[#510]).
+
+===== Changes in Couchbase C++ SDK 1.0.0-dp.12
+
+.New features and enhancements
+
+* https://issues.couchbase.com/browse/CXXCBC-401[CXXCBC-401]:
+Added ping & diagnostics to public API
+(https://github.com/couchbaselabs/couchbase-cxx-client/pull/498[#498], https://github.com/couchbaselabs/couchbase-cxx-client/pull/503[#503]).
+* https://issues.couchbase.com/browse/CXXCBC-346[CXXCBC-346]:
+Support added for `maxTTL` value of -1 for collection 'no expiry' (https://github.com/couchbaselabs/couchbase-cxx-client/pull/500[#500]).
+* https://issues.couchbase.com/browse/CXXCBC-442[CXXCBC-442]:
+Transcoder support - which was previously limited in the SDK to `JSON` and `RawBinary` transcoders --
+has now been extended to `raw_json` and `raw_string` transcoders (https://github.com/couchbaselabs/couchbase-cxx-client/pull/514[#514]).
+* https://issues.couchbase.com/browse/CXXCBC-440[CXXCBC-440]:
+Support added for Scoped Search Indexes
+(https://github.com/couchbaselabs/couchbase-cxx-client/pull/512[#512], https://github.com/couchbaselabs/couchbase-cxx-client/pull/513[#513]).
+
+.Fixes
+
+* https://issues.couchbase.com/browse/CXXCBC-284[CXXCBC-284]:
+Updated config polling to not use session that is not bootstrapped, to reduce network traffic when polling for cluster configuration
+(https://github.com/couchbaselabs/couchbase-cxx-client/pull/504[#504], https://github.com/couchbaselabs/couchbase-cxx-client/pull/528[#528]).
+* https://issues.couchbase.com/browse/CXXCBC-422[CXXCBC-422]:
+Added insufficient credentials error code to common query error code conversion (https://github.com/couchbaselabs/couchbase-cxx-client/pull/511[#511]).
+* https://issues.couchbase.com/browse/CXXCBC-421[CXXCBC-421]:
+Updated query operation to return `feature_not_available` if query preserve expiry is specified but is not supported on the server(https://github.com/couchbaselabs/couchbase-cxx-client/pull/510[#510]).
+* https://issues.couchbase.com/browse/CXXCBC-426[CXXCBC-426]:
+Under testing, a get with very large projection was returning fields outside of the projection.
+This has been fixed, with the projections now set correctly, and the SDK should fall back to a full-doc fetch and return a valid projected result
+(https://github.com/couchbaselabs/couchbase-cxx-client/pull/499[#499]).
+
+===== Changes in Couchbase C++ SDK 1.0.0-dp.11
+
+.Fixes
+
+* https://issues.couchbase.com/browse/CXXCBC-404[CXXCBC-404]:
+Fixed `unlock` operations to expose `KV_LOCKED` status as `cas_mismatch` (https://github.com/couchbaselabs/couchbase-cxx-client/pull/479[#479]).
+* https://issues.couchbase.com/browse/CXXCBC-403[CXXCBC-403]:
+Updated `not_my_vbucket` KV response to allow retries (https://github.com/couchbaselabs/couchbase-cxx-client/pull/480[#480]).
+* https://issues.couchbase.com/browse/CXXCBC-368[CXXCBC-368]:
+Added support for subscribing to clustermap notifications to speed up failover (https://github.com/couchbaselabs/couchbase-cxx-client/pull/490[#490]).
+* https://issues.couchbase.com/browse/CXXCBC-419[CXXCBC-419]:
+Updated MCBP protocol parser to start with clean state.
+Fixes protocol parsing issues when bootstrap sequence is being retried (https://github.com/couchbaselabs/couchbase-cxx-client/pull/496[#496]).
+* https://issues.couchbase.com/browse/CXXCBC-409[CXXCBC-409]:
+Added handling for `index does not exist` query error (https://github.com/couchbaselabs/couchbase-cxx-client/pull/492[#492]).
+* https://issues.couchbase.com/browse/CXXCBC-412[CXXCBC-412]:
+Added support for the `document_not_locked` (0x0e) KV status, mapping it to the `errc::key_value::document_not_locked` error code
+(https://github.com/couchbaselabs/couchbase-cxx-client/pull/491[#491]).
+
+===== Changes in Couchbase C++ SDK 1.0.0-dp.10
+
+.Fixes
+
+* https://issues.couchbase.com/browse/CXXCBC-383[CXXCBC-383]:
+The `subdoc_doc_too_deep` (0xc4) KV status now returns a`path_too_deep` error code (https://github.com/couchbaselabs/couchbase-cxx-client/pull/455[#455]).
+* https://issues.couchbase.com/browse/CXXCBC-382[CXXCBC-382]:
+Fixed `raw_binary_transcoder` so that `get`s on binary data are now possible.. (https://github.com/couchbaselabs/couchbase-cxx-client/pull/459[#459]).
+* https://issues.couchbase.com/browse/CXXCBC-387[CXXCBC-387]:
+Optimising tags for `noop_tracer` and cache formatted `mbcp_session` endpoints
+(https://github.com/couchbaselabs/couchbase-cxx-client/pull/461[#461], https://github.com/couchbaselabs/couchbase-cxx-client/pull/462[#462], https://github.com/couchbaselabs/couchbase-cxx-client/pull/464[#464])..
+* Added more information to diagnose timeouts on NMV responses (https://github.com/couchbaselabs/couchbase-cxx-client/pull/475[#475]).
+
+
+==== Download Links
+
+[cols="9,19"]
+|===
+| Platform            | File
+| Checksums           | https://packages.couchbase.com/clients/ruby/sdk-3.5.0/couchbase-3.5.0.sha256sum[couchbase-3.5.0.sha256sum]
+| Source Archive      | https://packages.couchbase.com/clients/ruby/sdk-3.5.0/couchbase-3.5.0.gem[couchbase-3.5.0.gem]
+| Linux x86_64        | https://packages.couchbase.com/clients/ruby/sdk-3.5.0/couchbase-3.5.0-x86_64-linux.gem[couchbase-3.5.0-x86_64-linux.gem]
+| Linux x86_64 (musl) | https://packages.couchbase.com/clients/ruby/sdk-3.5.0/couchbase-3.5.0-x86_64-linux-musl.gem[couchbase-3.5.0-x86_64-linux-musl.gem]
+| macOS 11 x84_64     | https://packages.couchbase.com/clients/ruby/sdk-3.5.0/couchbase-3.5.0-x86_64-darwin-20.gem[couchbase-3.5.0-x86_64-darwin-20.gem]
+| macOS 13 arm64      | https://packages.couchbase.com/clients/ruby/sdk-3.5.0/couchbase-3.5.0-arm64-darwin-22.gem[couchbase-3.5.0-arm64-darwin-22.gem]
+|===
 
 
 
@@ -124,30 +282,30 @@ https://rubygems.org/gems/couchbase/versions/3.4.5[Rubygems]
 
 * https://issues.couchbase.com/browse/RCBC-450[RCBC-450]:
 Subdoc exists was returning `nil` for content.
-It should now return the value of the  content: true if result is success, or false if path-not-found 
+It should now return the value of the  content: true if result is success, or false if path-not-found
 (http://github.com/couchbase/couchbase-ruby-client/pull/120[#120]).
 * https://issues.couchbase.com/browse/RCBC-453[RCBC-453]:
-Added support history retention in collection and bucket management 
+Added support history retention in collection and bucket management
 (http://github.com/couchbase/couchbase-ruby-client/pull/119[#119]).
 
 ==== Underlying C++ SDK Core Changes
 
-* https://issues.couchbase.com/browse/CXXCBC-376[CXXCBC-376]: 
-Changed what 'create' and 'update' bucket operations send to the server. 
-Unrequired `BucketSettings` fields are now set to optional, and are not sent unless the settings are explicitly specified. 
+* https://issues.couchbase.com/browse/CXXCBC-376[CXXCBC-376]:
+Changed what 'create' and 'update' bucket operations send to the server.
+Unrequired `BucketSettings` fields are now set to optional, and are not sent unless the settings are explicitly specified.
 (https://github.com/couchbaselabs/couchbase-cxx-client/pull/451[#451]).
-* https://issues.couchbase.com/browse/CXXCBC-374[CXXCBC-374]: 
-The SDK should now return a 'bucket_exists' error when the bucket already exists during a 'create' operation. 
+* https://issues.couchbase.com/browse/CXXCBC-374[CXXCBC-374]:
+The SDK should now return a 'bucket_exists' error when the bucket already exists during a 'create' operation.
 (https://github.com/couchbaselabs/couchbase-cxx-client/pull/449[#449]).
-* https://issues.couchbase.com/browse/CXXCBC-359[CXXCBC-359]: 
-Reduced the default timeout for idle HTTP connections to 1 second. 
+* https://issues.couchbase.com/browse/CXXCBC-359[CXXCBC-359]:
+Reduced the default timeout for idle HTTP connections to 1 second.
 The previous default (4.5 seconds) was too close to the 5-second server-side timeout, and could lead to spurious request failures.
 (https://github.com/couchbaselabs/couchbase-cxx-client/pull/448[#448]).
-* https://issues.couchbase.com/browse/CXXCBC-367[CXXCBC-367], 
-https://issues.couchbase.com/browse/CXXCBC-370[CXXCBC-370]: 
+* https://issues.couchbase.com/browse/CXXCBC-367[CXXCBC-367],
+https://issues.couchbase.com/browse/CXXCBC-370[CXXCBC-370]:
 Added history retention settings to buckets/collection management
 (https://github.com/couchbaselabs/couchbase-cxx-client/pull/446[#446]).
-* https://issues.couchbase.com/browse/CXXCBC-119[CXXCBC-119]: 
+* https://issues.couchbase.com/browse/CXXCBC-119[CXXCBC-119]:
 Return booleans for subdocument 'exists' operation, instead of error code
 (https://github.com/couchbaselabs/couchbase-cxx-client/pull/444[#444],
 https://github.com/couchbaselabs/couchbase-cxx-client/pull/452[#452]).
