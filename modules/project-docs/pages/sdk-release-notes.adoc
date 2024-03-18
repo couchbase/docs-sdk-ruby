@@ -16,7 +16,7 @@ This page covers installation of the 3.x versions of the Couchbase Ruby SDK, and
 
 == SDK Installation
 
-Ruby SDK supports MRI Ruby versions 3.0, 3.1, 3.2 and 3.3.
+Ruby SDK supports MRI Ruby versions 3.0, 3.1, 3.2, and 3.3.
 The source package is available through https://rubygems.org/gems/couchbase and can be installed with:
 
 [source,console]
@@ -92,6 +92,7 @@ We always recommend using the latest version of the SDK -- it contains all of th
 All patch releases for each dot minor release should be API compatible, and safe to upgrade;
 any changes to expected behavior are noted in the release notes that follow.
 
+
 === Version 3.5.0 (17 March 2024)
 
 [source,bash]
@@ -106,29 +107,32 @@ https://rubygems.org/gems/couchbase/versions/3.5.0[Rubygems]
 ==== Improvements
 
 * https://issues.couchbase.com/browse/RCBC-469[RCBC-469]:
-  Support for Scoped Search Indexes. (https://github.com/couchbase/couchbase-ruby-client/pull/132[#132])
+Support added for Scoped Search Indexes (https://github.com/couchbase/couchbase-ruby-client/pull/132[#132]).
 * https://issues.couchbase.com/browse/RCBC-467[RCBC-467]:
-  Add support for Vector search. (https://github.com/couchbase/couchbase-ruby-client/pull/131[#131])
+Added support for Vector search (https://github.com/couchbase/couchbase-ruby-client/pull/131[#131]).
 * https://issues.couchbase.com/browse/RCBC-468[RCBC-468]:
-  Support for maxTTL value of -1 for collection 'no expiry' (https://github.com/couchbase/couchbase-ruby-client/pull/130[#130])
+Support added for `maxTTL` value of -1 for collection 'no expiry' (https://github.com/couchbase/couchbase-ruby-client/pull/130[#130]).
 * https://issues.couchbase.com/browse/RCBC-410[RCBC-410], https://issues.couchbase.com/browse/RCBC-458[RCBC-458]:
-  Add support for the `couchbase2` protocol (https://github.com/couchbase/couchbase-ruby-client/pull/126[#126], https://github.com/couchbase/couchbase-ruby-client/pull/127[#127])
+Added support for the `couchbase2` protocol
+(https://github.com/couchbase/couchbase-ruby-client/pull/126[#126], https://github.com/couchbase/couchbase-ruby-client/pull/127[#127]).
 * https://issues.couchbase.com/browse/RCBC-472[RCBC-472]:
-  Ping management service when specified in options. (https://github.com/couchbase/couchbase-ruby-client/pull/134[#134])
+Ping now returns result for management service when specified in options (https://github.com/couchbase/couchbase-ruby-client/pull/134[#134]).
 * https://issues.couchbase.com/browse/RCBC-463[RCBC-463]:
-  Add DocumentNotLocked error. (https://github.com/couchbase/couchbase-ruby-client/pull/128[#128])
+Adedd `DocumentNotLocked` error to corresponds with the {cpp} error code `couchbase::errc::key_value::document_not_locked`
+(https://github.com/couchbase/couchbase-ruby-client/pull/128[#128]).
 
 ==== Bug Fixes
 
-* Ensure that truncating keys in CouchbaseStore preserves the validity of their encoding (https://github.com/couchbase/couchbase-ruby-client/pull/125[#125])
+* Ensure that truncating keys in CouchbaseStore preserves the validity of their encoding (https://github.com/couchbase/couchbase-ruby-client/pull/125[#125]).
 * https://issues.couchbase.com/browse/RCBC-461[RCBC-461]:
-  Call extract_expiry_time in to_backend of options instead of constructor (https://github.com/couchbase/couchbase-ruby-client/pull/124[#124])
+`extract_expiry_time` is now called in the setter instead of the constructor, so that the expiry is sent to the backend in the correct format, and there should no longer be an `ArgumentError`
+(https://github.com/couchbase/couchbase-ruby-client/pull/124[#124]).
 
 ==== Build and Test Improvements
 
 * https://issues.couchbase.com/browse/RCBC-464[RCBC-464]:
-  Improve stability of management tests. (https://github.com/couchbase/couchbase-ruby-client/pull/133[#133])
-* Migrate most of the build & test tasks to Github Actions.
+Improved stability of management tests (https://github.com/couchbase/couchbase-ruby-client/pull/133[#133]).
+* Migrated most of the build and test tasks to GitHub Actions.
 
 ==== Underlying C++ SDK Core Changes
 
