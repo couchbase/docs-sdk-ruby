@@ -12,7 +12,7 @@ include::project-docs:partial$attributes.adoc[]
 The Couchbase Ruby SDK allows you to connect to a Couchbase cluster from Ruby.
 The Ruby SDK includes high-performance native Ruby extensions to handle communicating to the cluster over Couchbase’s binary protocols.
 
-Ruby SDK supports https://www.ruby-lang.org/en/downloads/branches/[currently maintained Ruby versions], and recommends the latest stable version where possible (currently 3.2 as of October 2023).
+Ruby SDK supports https://www.ruby-lang.org/en/downloads/branches/[currently maintained Ruby versions], and recommends the latest stable version where possible (currently 3.3 as of March 2024).
 
 In this guide, you will learn:
 
@@ -21,6 +21,7 @@ In this guide, you will learn:
 * How to xref:add-and-retrieve-documents[add and retrieve Documents].
 
 * How to xref:sql-lookup[lookup documents] with the {sqlpp_url}[{sqlpp} (formerly N1QL)] query language.
+
 
 == Hello Couchbase
 
