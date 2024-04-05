@@ -104,6 +104,13 @@ https://docs.couchbase.com/sdk-api/couchbase-ruby-client-3.5.0/index.html[API Re
 link:++https://github.com/couchbase/couchbase-ruby-client/compare/3.4.5...3.5.0++[Full Changelog] |
 https://rubygems.org/gems/couchbase/versions/3.5.0[Rubygems]
 
+
+==== Known Issues
+
+* https://issues.couchbase.com/browse/CXXCBC-447[CXXCBC-447]:
+This version of the SDK will not be able to connect to a cluster utilizing alternate addressing.
+The recommendation is to wait to upgrade to a version of the {name-sdk} that contains {cpp} SDK 1.0.0-dp.15 (or later).
+
 ==== Improvements
 
 * https://issues.couchbase.com/browse/RCBC-469[RCBC-469]:
