@@ -6,4 +6,4 @@
 :page-aliases: ROOT:relnotes-ruby-sdk,ROOT:release-notes,ROOT:sdk-release-notes
 
 
-include::3.4@ruby-sdk:project-docs:page$sdk-release-notes.adoc[tag=all]
+include::3.5@ruby-sdk:project-docs:page$sdk-release-notes.adoc[tag=all]
