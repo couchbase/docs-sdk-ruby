@@ -93,6 +93,69 @@ All patch releases for each dot minor release should be API compatible, and safe
 any changes to expected behavior are noted in the release notes that follow.
 
 
+=== Version 3.5.1 (23 April 2024)
+
+[source,bash]
+----
+gem install couchbase -v 3.5.1
+----
+
+https://docs.couchbase.com/sdk-api/couchbase-ruby-client-3.5.1/index.html[API Reference] |
+link:++https://github.com/couchbase/couchbase-ruby-client/compare/3.5.0...3.5.1++[Full Changelog] |
+https://rubygems.org/gems/couchbase/versions/3.5.1[Rubygems]
+
+==== Download Links
+
+[cols="9,19"]
+|===
+| Platform            | File
+| Checksums           | https://packages.couchbase.com/clients/ruby/sdk-3.5.1/couchbase-3.5.1.sha256sum[couchbase-3.5.1.sha256sum]
+| Source Archive      | https://packages.couchbase.com/clients/ruby/sdk-3.5.1/couchbase-3.5.1.gem[couchbase-3.5.1.gem]
+| Linux x86_64        | https://packages.couchbase.com/clients/ruby/sdk-3.5.1/couchbase-3.5.1-x86_64-linux.gem[couchbase-3.5.1-x86_64-linux.gem]
+| Linux x86_64 (musl) | https://packages.couchbase.com/clients/ruby/sdk-3.5.1/couchbase-3.5.1-x86_64-linux-musl.gem[couchbase-3.5.1-x86_64-linux-musl.gem]
+| macOS 11 x84_64     | https://packages.couchbase.com/clients/ruby/sdk-3.5.1/couchbase-3.5.1-x86_64-darwin-20.gem[couchbase-3.5.1-x86_64-darwin-20.gem]
+| macOS 13 arm64      | https://packages.couchbase.com/clients/ruby/sdk-3.5.1/couchbase-3.5.1-arm64-darwin-22.gem[couchbase-3.5.1-arm64-darwin-22.gem]
+|===
+
+====  Improvements
+
+* https://issues.couchbase.com/browse/RCBC-482[RCBC-482]:
+Only expand MutateIn macros when the relevant symbols are used as values (#141).
+
+==== Bug Fixes
+
+* https://issues.couchbase.com/browse/RCBC-476[RCBC-476]:
+`FeatureNotAvailable` message for `couhbase2://` `ping` and `diagnostics` (#139).
+
+==== Underlying C++ SDK Core Changes
+
+===== Enhancements
+
+* https://issues.couchbase.com/browse/CXXCBC-489[CXXCBC-489]:
+Added support for scoped eventing functions (https://github.com/couchbaselabs/couchbase-cxx-client/pull/548[#548], https://github.com/couchbaselabs/couchbase-cxx-client/pull/554[#554]).
+* https://issues.couchbase.com/browse/CXXCBC-470[CXXCBC-470]:
+Distinguish between 'unset' and 'off' `query_profile` (https://github.com/couchbaselabs/couchbase-cxx-client/pull/551[#551]).
+
+===== Fixes
+
+* https://issues.couchbase.com/browse/CXXCBC-487[CXXCBC-487]:
+Added logic during bootstrap to check if alternate addressing is being used (https://github.com/couchbaselabs/couchbase-cxx-client/pull/545[#545]).
+* https://issues.couchbase.com/browse/CXXCBC-503[CXXCBC-503]:
+Added logic to ignore configuration if it contains an empty vBucket map (https://github.com/couchbaselabs/couchbase-cxx-client/pull/556[#556], https://github.com/couchbaselabs/couchbase-cxx-client/pull/558[#558]).
+* https://issues.couchbase.com/browse/CXXCBC-30[CXXCBC-30]:
+Fixed inconsistent behaviour when using subdoc opcodes incorrectly (https://github.com/couchbaselabs/couchbase-cxx-client/pull/559[#559]).
+* https://issues.couchbase.com/browse/CXXCBC-492[CXXCBC-492]:
+Updated collection_component get_collection_id to use retry strategy (https://github.com/couchbaselabs/couchbase-cxx-client/pull/552[#552]).
+* https://issues.couchbase.com/browse/CXXCBC-494[CXXCBC-494]:
+Fixed memory issue in range scan implementation (https://github.com/couchbaselabs/couchbase-cxx-client/pull/549[#549]).
+* Always attempt to extract common query code if error has not been set (https://github.com/couchbaselabs/couchbase-cxx-client/pull/561[#561]). This fixes quota/rate limit checks for older servers.
+
+===== Build and Tests Fixes
+
+* https://issues.couchbase.com/browse/CXXCBC-502[CXXCBC-502]:
+Apply `/bigobj` for SDK objects only (https://github.com/couchbaselabs/couchbase-cxx-client/pull/550[#550]). Avoid using global `add_definitions()` as it might leak to non-{cpp} languages (like `ASM_NASM` on Windows).
+
+
 === Version 3.5.0 (17 March 2024)
 
 [source,bash]
