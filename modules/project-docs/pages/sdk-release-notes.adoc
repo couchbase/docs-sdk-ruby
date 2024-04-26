@@ -42,7 +42,7 @@ Couchbase SDK library:
 
 [source,ruby]
 ----
-gem "couchbase", "3.5.0", :source => "https://packages.couchbase.com/clients/ruby/"
+gem "couchbase", "{sdk_current_version}", :source => "https://packages.couchbase.com/clients/ruby/"
 ----
 
 Or run in terminal:
@@ -57,8 +57,8 @@ with links to every release package along with precompiled binaries.
 
 [source,bash]
 ----
-wget https://packages.couchbase.com/clients/ruby/sdk-3.5.0/couchbase-3.5.0-x86_64-linux.gem
-gem install couchbase-3.5.0-x86_64-linux.gem
+wget https://packages.couchbase.com/clients/ruby/sdk-{sdk_current_version}/couchbase-{sdk_current_version}-x86_64-linux.gem
+gem install couchbase-{sdk_current_version}-x86_64-linux.gem
 ----
 
 The URL structure is:
