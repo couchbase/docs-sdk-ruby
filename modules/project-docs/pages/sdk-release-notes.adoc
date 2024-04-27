@@ -40,7 +40,7 @@ gem sources --add https://packages.couchbase.com/clients/ruby/
 The repository could be also specified in `Gemfile` for bundler. And in this case the source would be applied only for
 Couchbase SDK library:
 
-[source,ruby]
+[source,ruby,subs="+attributes"]
 ----
 gem "couchbase", "{sdk_current_version}", :source => "https://packages.couchbase.com/clients/ruby/"
 ----
@@ -55,7 +55,7 @@ gem install couchbase --clear-sources --source https://packages.couchbase.com/cl
 And finally, it is possible to download the package and install from the file. In the notes below, we specify tables
 with links to every release package along with precompiled binaries.
 
-[source,bash]
+[source,bash,subs="+attributes"]
 ----
 wget https://packages.couchbase.com/clients/ruby/sdk-{sdk_current_version}/couchbase-{sdk_current_version}-x86_64-linux.gem
 gem install couchbase-{sdk_current_version}-x86_64-linux.gem
@@ -63,7 +63,7 @@ gem install couchbase-{sdk_current_version}-x86_64-linux.gem
 
 The URL structure is:
 
-[source,shell]
+[source,shell,subs="+attributes"]
 ----
 https://packages.couchbase.com/clients/ruby/sdk-%{sdk_version}/couchbase-%{sdk_version}-%{platform}.gem
 ----
