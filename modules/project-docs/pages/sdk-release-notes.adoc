@@ -55,7 +55,7 @@ gem install couchbase --clear-sources --source https://packages.couchbase.com/cl
 And finally, it is possible to download the package and install from the file. In the notes below, we specify tables
 with links to every release package along with precompiled binaries.
 
-[source,bash,subs="+attributes"]
+[source,bash]
 ----
 wget https://packages.couchbase.com/clients/ruby/sdk-{sdk_current_version}/couchbase-{sdk_current_version}-x86_64-linux.gem
 gem install couchbase-{sdk_current_version}-x86_64-linux.gem
@@ -63,7 +63,7 @@ gem install couchbase-{sdk_current_version}-x86_64-linux.gem
 
 The URL structure is:
 
-[source,shell,subs="+attributes"]
+[source,shell]
 ----
 https://packages.couchbase.com/clients/ruby/sdk-%{sdk_version}/couchbase-%{sdk_version}-%{platform}.gem
 ----
