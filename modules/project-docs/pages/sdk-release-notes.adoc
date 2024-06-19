@@ -16,7 +16,7 @@ This page covers installation of the 3.x versions of the Couchbase Ruby SDK, and
 
 == SDK Installation
 
-Ruby SDK supports MRI Ruby versions 3.0, 3.1, 3.2, and 3.3.
+Ruby SDK supports MRI Ruby versions 3.1, 3.2, and 3.3.
 The source package is available through https://rubygems.org/gems/couchbase and can be installed with:
 
 [source,console]
@@ -86,12 +86,33 @@ ruby -rrbconfig -e 'puts RbConfig::CONFIG["ruby_version"]'
 
 
 [#latest-release]
-== Ruby SDK 3.5 Releases
+== Ruby SDK 3.6 Releases
 
 We always recommend using the latest version of the SDK -- it contains all of the latest security patches and support for new and upcoming features.
 All patch releases for each dot minor release should be API compatible, and safe to upgrade;
 any changes to expected behavior are noted in the release notes that follow.
 
+
+=== Version 3.6.0 (???? June 2024)
+
+[source,bash]
+----
+gem install couchbase -v 3.6.0
+----
+
+https://docs.couchbase.com/sdk-api/couchbase-ruby-client-3.6.0/index.html[API Reference] |
+link:++https://github.com/couchbase/couchbase-ruby-client/compare/3.5.1...3.6.0++[Full Changelog] |
+https://rubygems.org/gems/couchbase/versions/3.6.0[Rubygems]
+
+
+==== Known Issues
+
+// ???
+
+
+
+
+== Ruby SDK 3.5 Releases
 
 === Version 3.5.1 (23 April 2024)
 
