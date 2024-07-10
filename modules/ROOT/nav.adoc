@@ -1,5 +1,6 @@
-xref:hello-world:overview.adoc[*Getting Started*]
+* xref:hello-world:overview.adoc[Ruby SDK Overview]
 
+.Getting Started
 * xref:hello-world:start-using-sdk.adoc[]
 * xref:howtos:kv-operations.adoc[]
 * xref:howtos:n1ql-queries-with-sdk.adoc[]
