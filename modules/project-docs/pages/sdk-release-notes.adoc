@@ -110,13 +110,12 @@ https://rubygems.org/gems/couchbase/versions/3.5.3[Rubygems]
 ==== Fixes
 
 * https://issues.couchbase.com/browse/RCBC-496[RCBC-496]:
-Do not include googletest into release package
+Removed `googletest` from release package
 (https://github.com/couchbase/couchbase-ruby-client/pull/154[#154]).
 
 * Updated core to 1.0.1
 (https://github.com/couchbase/couchbase-ruby-client/pull/157[#157]).
-Release notes:
-https://docs.couchbase.com/cxx-sdk/current/project-docs/sdk-release-notes.html#version-1-0-1-22-august-2024[C++ SDK 1.0.1].
+Release notes: xref:cxx-sdk:project-docs:sdk-release-notes.adoc#version-1-0-1-22-august-2024[C++ SDK 1.0.1].
 
 
 === Version 3.5.2 (25 July 2024)
