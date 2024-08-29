@@ -27,7 +27,9 @@ Rails.application.configure do
       connection_string: ENV.fetch("COUCHBASE_CONNECTION_STRING", "couchbase://localhost"),
       username: ENV.fetch("COUCHBASE_USERNAME", "Administrator"),
       password: ENV.fetch("COUCHBASE_PASSWORD", "password"),
-      bucket: ENV.fetch("COUCHBASE_BUCKET", "default")
+      bucket: ENV.fetch("COUCHBASE_BUCKET", "default"),
+      scope: ENV.fetch("COUCHBASE_SCOPE", "_default"),
+      collection: ENV.fetch("COUCHBASE_COLLECTION", "_default")
     }
 
     config.public_file_server.headers = { "Cache-Control" => "public, max-age=#{2.days.to_i}" }
