@@ -23,7 +23,13 @@ Rails.application.configure do
     config.action_controller.perform_caching = true
     config.action_controller.enable_fragment_cache_logging = true
 
-    config.cache_store = :memory_store
+    config.cache_store = :couchbase_store, {
+      connection_string: ENV.fetch("COUCHBASE_CONNECTION_STRING", "couchbase://localhost"),
+      username: ENV.fetch("COUCHBASE_USERNAME", "Administrator"),
+      password: ENV.fetch("COUCHBASE_PASSWORD", "password"),
+      bucket: ENV.fetch("COUCHBASE_BUCKET", "default")
+    }
+
     config.public_file_server.headers = { "Cache-Control" => "public, max-age=#{2.days.to_i}" }
   else
     config.action_controller.perform_caching = false
