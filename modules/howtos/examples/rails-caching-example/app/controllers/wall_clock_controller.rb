@@ -1,9 +1,11 @@
+# tag::cache_time_for_3_seconds[]
 class WallClockController < ApplicationController
   def now
     @current_time = Rails.cache.fetch("current_time", expires_in: 3.seconds) do
       Time.now
     end
   end
+  # end::cache_time_for_3_seconds[]
 
   private
 
