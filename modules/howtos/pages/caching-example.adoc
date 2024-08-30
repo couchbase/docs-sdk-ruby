@@ -1,60 +1,50 @@
 = Caching Example
 :description: A walk-through of the steps to use Couchbase as a caching layer for Rails.
 :page-topic-type: howto
-:page-pagination: full
-
-include::project-docs:partial$attributes.adoc[]
 
 [abstract]
 {description}
 
-This example demonstrates how to integrate Couchbase into caching layer of
-https://rubyonrails.org/[Rails] web-framework.
+This example demonstrates how to integrate Couchbase into a caching layer of the https://rubyonrails.org/[Rails] web-framework.
 
-You can also find the
-https://github.com/couchbase/docs-sdk-ruby/blob/release/3.5/modules/howtos/examples/rails-caching-example[full code for _this_ example here].
+You can also find the https://github.com/couchbase/docs-sdk-ruby/blob/release/3.5/modules/howtos/examples/rails-caching-example[full code for _this_ example here].
+
 
 == Configuration
 
-All necessary classes that implement rails caching API are part of the official
-SDK for Ruby, so to add it to the application you just need to update `Gemfile`:
+All necessary classes that implement rails caching API are part of the official SDK for Ruby,
+so to add it to the application you just need to update your `Gemfile`:
 
 [source,ruby]
 ----
 include::howtos:example$rails-caching-example/Gemfile[tag=add_dependency]
 ----
 
-Do not forget to run `bundle install` to ensure that all dependencies have been
-satisfied.
+Do not forget to run `bundle install` to ensure that all dependencies have been satisfied.
 
 Now the application have to be configured to use Couchbase as a caching backend.
-Corresponding configuration usually kept in the configuration environment file
-and looks like this:
+Corresponding configuration usually kept in the configuration environment file and looks like this:
 
 [source,ruby]
 ----
 include::howtos:example$rails-caching-example/config/environments/development.rb[tag=cache_store_config]
 ----
 
-In this particular example, we try to discover cluster location and credentials
-in the environment variables, with a fallback to localhost and safe default. In
-production environment all sensitive information (like passwords) must be
-managed in secure way using secrets providers.
+In this development example, we will try to discover cluster location and credentials in the environment variables, with a fallback to localhost and safe default.
+In a production environment all sensitive information (like passwords) must be managed in secure ways, using secrets providers.
+
 
 == Usage
 
-With configuration step all Couchbase-specific code is done, because after that
-familiar API of the `Rails.cache` will be used. In this example, we cache the
-current time for the 3 seconds:
+With the configuration step, all Couchbase-specific code is done -- after that familiar API of the `Rails.cache` will be used.
+In this example, we cache the current time for the 3 seconds:
 
 ----
 include::howtos:example$rails-caching-example/app/controllers/wall_clock_controller.rb[tag=cache_time_for_3_seconds]
 ----
 
+
 == Additional Resources
 
-* You can find an overview of the Rails Caching API at
-https://guides.rubyonrails.org/caching_with_rails.html[Rails Guides]
-
-* The API reference of `CouchbaseStore` class could be found at
-https://docs.couchbase.com/sdk-api/couchbase-ruby-client/ActiveSupport/Cache/CouchbaseStore.html[official API referece]
+* You can find an overview of the Rails Caching API at https://guides.rubyonrails.org/caching_with_rails.html[Rails Guides].
+* The API reference of `CouchbaseStore` class can be found at the https://docs.couchbase.com/sdk-api/couchbase-ruby-client/ActiveSupport/Cache/CouchbaseStore.html[official API referece].
