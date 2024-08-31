@@ -7,7 +7,7 @@
 
 This example demonstrates how to integrate Couchbase into a caching layer of the https://rubyonrails.org/[Rails] web-framework.
 
-You can also find the https://github.com/couchbase/docs-sdk-ruby/blob/release/3.5/modules/howtos/examples/rails-caching-example[full code for _this_ example here].
+You can also find the https://github.com/couchbase/docs-sdk-ruby/blob/temp/3.5/modules/howtos/examples/rails-caching-example[full code for _this_ example here].
 
 
 == Configuration
