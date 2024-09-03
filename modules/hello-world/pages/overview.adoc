@@ -10,7 +10,7 @@
 include::howtos:example$kv_operations.rb[tag=named-collection-upsert]
 ----
 
-The Couchbase Ruby SDK allows you to connect to a Couchbase database from Ruby.
+The Couchbase Ruby SDK allows you to connect to a Couchbase cluster from Ruby.
 The Ruby SDK includes high-performance native Ruby extensions to handle communicating to the cluster over Couchbase’s binary protocols.
 
 {empty} +
