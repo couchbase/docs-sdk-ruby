@@ -39,6 +39,7 @@ In a production environment all sensitive information (like passwords) must be m
 With the configuration step, all Couchbase-specific code is done -- after that familiar API of the `Rails.cache` will be used.
 In this example, we cache the current time for the 3 seconds:
 
+[source,ruby]
 ----
 include::howtos:example$rails-caching-example/app/controllers/wall_clock_controller.rb[tag=cache_time_for_3_seconds]
 ----
