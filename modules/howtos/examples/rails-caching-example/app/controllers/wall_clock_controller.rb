@@ -35,7 +35,10 @@ class WallClockController < ApplicationController
           options[:username],
           options[:password]
         )
-        cluster.bucket(options[:bucket]).default_collection
+        cluster
+          .bucket(options[:bucket])
+          .scope(options[:scope])
+          .collection(options[:collection])
       end
   end
 end

@@ -7,7 +7,7 @@
 
 This example demonstrates how to integrate Couchbase into a caching layer of the https://rubyonrails.org/[Rails] web-framework.
 
-You can also find the https://github.com/couchbase/docs-sdk-ruby/blob/release/3.5/modules/howtos/examples/rails-caching-example[full code for _this_ example here].
+You can also find the https://github.com/couchbase/docs-sdk-ruby/blob/temp/3.5/modules/howtos/examples/rails-caching-example[full code for _this_ example here].
 
 
 == Configuration
@@ -39,6 +39,7 @@ In a production environment all sensitive information (like passwords) must be m
 With the configuration step, all Couchbase-specific code is done -- after that familiar API of the `Rails.cache` will be used.
 In this example, we cache the current time for the 3 seconds:
 
+[source,ruby]
 ----
 include::howtos:example$rails-caching-example/app/controllers/wall_clock_controller.rb[tag=cache_time_for_3_seconds]
 ----
