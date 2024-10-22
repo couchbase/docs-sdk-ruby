@@ -83,6 +83,39 @@ We always recommend using the latest version of the SDK -- it contains all of th
 All patch releases for each dot minor release should be API compatible, and safe to upgrade;
 any changes to expected behavior are noted in the release notes that follow.
 
+=== Version 3.5.4 (27 August 2024)
+
+[source,bash]
+----
+gem install couchbase -v 3.5.4
+----
+
+https://docs.couchbase.com/sdk-api/couchbase-ruby-client-3.5.4/index.html[API Reference] |
+link:++https://github.com/couchbase/couchbase-ruby-client/compare/3.5.3...3.5.4++[Full Changelog] |
+https://rubygems.org/gems/couchbase/versions/3.5.4[Rubygems]
+
+==== Download Links
+
+[cols="9,19"]
+|===
+| Platform            | File
+| Checksums           | https://packages.couchbase.com/clients/ruby/sdk-3.5.4/couchbase-3.5.4.sha256sum[couchbase-3.5.4.sha256sum]
+| Source Archive      | https://packages.couchbase.com/clients/ruby/sdk-3.5.4/couchbase-3.5.4.gem[couchbase-3.5.4.gem]
+| Linux x86_64        | https://packages.couchbase.com/clients/ruby/sdk-3.5.4/couchbase-3.5.4-x86_64-linux.gem[couchbase-3.5.4-x86_64-linux.gem]
+| Linux x86_64 (musl) | https://packages.couchbase.com/clients/ruby/sdk-3.5.4/couchbase-3.5.4-x86_64-linux-musl.gem[couchbase-3.5.4-x86_64-linux-musl.gem]
+| macOS x86_64        | https://packages.couchbase.com/clients/ruby/sdk-3.5.4/couchbase-3.5.4-x86_64-darwin.gem[couchbase-3.5.4-x86_64-darwin-20.gem]
+| macOS arm64         | https://packages.couchbase.com/clients/ruby/sdk-3.5.4/couchbase-3.5.4-arm64-darwin.gem[couchbase-3.5.4-arm64-darwin.gem]
+|===
+
+==== Fixes
+
+* Updated core to 1.0.3
+(https://github.com/couchbase/couchbase-ruby-client/pull/161[#161]).
+Release notes: xref:cxx-sdk:project-docs:sdk-release-notes.adoc#version-1-0-3-22-october-2024[C++ SDK 1.0.3].
+
+* Add CI scripts for Rocky Linux
+(https://github.com/couchbase/couchbase-ruby-client/pull/159[#159]).
+
 === Version 3.5.3 (27 August 2024)
 
 [source,bash]
