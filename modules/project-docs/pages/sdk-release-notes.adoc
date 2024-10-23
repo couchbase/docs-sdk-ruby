@@ -83,6 +83,43 @@ We always recommend using the latest version of the SDK -- it contains all of th
 All patch releases for each dot minor release should be API compatible, and safe to upgrade;
 any changes to expected behavior are noted in the release notes that follow.
 
+
+
+=== Version 3.5.4 (27 August 2024)
+
+[source,bash]
+----
+gem install couchbase -v 3.5.4
+----
+
+https://docs.couchbase.com/sdk-api/couchbase-ruby-client-3.5.4/index.html[API Reference] |
+link:++https://github.com/couchbase/couchbase-ruby-client/compare/3.5.3...3.5.4++[Full Changelog] |
+https://rubygems.org/gems/couchbase/versions/3.5.4[Rubygems]
+
+==== Download Links
+
+[cols="9,19"]
+|===
+| Platform            | File
+| Checksums           | https://packages.couchbase.com/clients/ruby/sdk-3.5.4/couchbase-3.5.4.sha256sum[couchbase-3.5.4.sha256sum]
+| Source Archive      | https://packages.couchbase.com/clients/ruby/sdk-3.5.4/couchbase-3.5.4.gem[couchbase-3.5.4.gem]
+| Linux x86_64        | https://packages.couchbase.com/clients/ruby/sdk-3.5.4/couchbase-3.5.4-x86_64-linux.gem[couchbase-3.5.4-x86_64-linux.gem]
+| Linux x86_64 (musl) | https://packages.couchbase.com/clients/ruby/sdk-3.5.4/couchbase-3.5.4-x86_64-linux-musl.gem[couchbase-3.5.4-x86_64-linux-musl.gem]
+| macOS x86_64        | https://packages.couchbase.com/clients/ruby/sdk-3.5.4/couchbase-3.5.4-x86_64-darwin.gem[couchbase-3.5.4-x86_64-darwin-20.gem]
+| macOS arm64         | https://packages.couchbase.com/clients/ruby/sdk-3.5.4/couchbase-3.5.4-arm64-darwin.gem[couchbase-3.5.4-arm64-darwin.gem]
+|===
+
+==== Fixes
+
+* Updated core to 1.0.3
+(https://github.com/couchbase/couchbase-ruby-client/pull/161[#161]).
+Release notes: xref:cxx-sdk:project-docs:sdk-release-notes.adoc#version-1-0-3-22-october-2024[{cpp} SDK 1.0.3].
+
+* Added CI scripts for Rocky Linux
+(https://github.com/couchbase/couchbase-ruby-client/pull/159[#159]).
+
+
+
 === Version 3.5.3 (27 August 2024)
 
 [source,bash]
@@ -115,7 +152,7 @@ Removed `googletest` from release package
 
 * Updated core to 1.0.1
 (https://github.com/couchbase/couchbase-ruby-client/pull/157[#157]).
-Release notes: xref:cxx-sdk:project-docs:sdk-release-notes.adoc#version-1-0-1-22-august-2024[C++ SDK 1.0.1].
+Release notes: xref:cxx-sdk:project-docs:sdk-release-notes.adoc#version-1-0-1-22-august-2024[{cpp} SDK 1.0.1].
 
 
 === Version 3.5.2 (25 July 2024)
@@ -158,7 +195,7 @@ https://github.com/couchbase/couchbase-ruby-client/pull/148[#148]).
 * Updated core to 1.0.0
 (https://github.com/couchbase/couchbase-ruby-client/pull/152[#152]).
 Release notes:
-https://docs.couchbase.com/cxx-sdk/current/project-docs/sdk-release-notes.html#version-1-0-0-26-june-2024[C++ SDK 1.0.0].
+https://docs.couchbase.com/cxx-sdk/current/project-docs/sdk-release-notes.html#version-1-0-0-26-june-2024[{cpp} SDK 1.0.0].
 
 
 === Version 3.5.1 (23 April 2024)
@@ -195,7 +232,7 @@ Only expand MutateIn macros when the relevant symbols are used as values (#141).
 * https://issues.couchbase.com/browse/RCBC-476[RCBC-476]:
 `FeatureNotAvailable` message for `couhbase2://` `ping` and `diagnostics` (#139).
 
-==== Underlying C++ SDK Core Changes
+==== Underlying {cpp} SDK Core Changes
 
 ===== Enhancements
 
@@ -272,9 +309,9 @@ Adedd `DocumentNotLocked` error to corresponds with the {cpp} error code `couchb
 Improved stability of management tests (https://github.com/couchbase/couchbase-ruby-client/pull/133[#133]).
 * Migrated most of the build and test tasks to GitHub Actions.
 
-==== Underlying C++ SDK Core Changes
+==== Underlying {cpp} SDK Core Changes
 
-===== Changes in Couchbase C++ SDK 1.0.0-dp.14
+===== Changes in Couchbase {cpp} SDK 1.0.0-dp.14
 
 .Fixes
 
@@ -293,7 +330,7 @@ Fixed capabilities check for replica `LookupIn` operations (https://github.com/c
 * https://issues.couchbase.com/browse/CXXCBC-336[CXXCBC-336]:
 Updated DNS config to not fallback to 8.8.8.8 if SDK cannot obtain system DNS server (https://github.com/couchbaselabs/couchbase-cxx-client/pull/533[#533]).
 
-===== Changes in Couchbase C++ SDK 1.0.0-dp.13
+===== Changes in Couchbase {cpp} SDK 1.0.0-dp.13
 
 New features and enhancements
 
@@ -325,7 +362,7 @@ Added check for history retention bucket capability in collection create/update 
 * https://issues.couchbase.com/browse/CXXCBC-421[CXXCBC-421]:
 Updated query operation to return `feature_not_available` if query preserve expiry is specified but is not supported on the server(https://github.com/couchbaselabs/couchbase-cxx-client/pull/510[#510]).
 
-===== Changes in Couchbase C++ SDK 1.0.0-dp.12
+===== Changes in Couchbase {cpp} SDK 1.0.0-dp.12
 
 .New features and enhancements
 
@@ -355,7 +392,7 @@ Under testing, a get with very large projection was returning fields outside of 
 This has been fixed, with the projections now set correctly, and the SDK should fall back to a full-doc fetch and return a valid projected result
 (https://github.com/couchbaselabs/couchbase-cxx-client/pull/499[#499]).
 
-===== Changes in Couchbase C++ SDK 1.0.0-dp.11
+===== Changes in Couchbase {cpp} SDK 1.0.0-dp.11
 
 .Fixes
 
@@ -374,7 +411,7 @@ Added handling for `index does not exist` query error (https://github.com/couchb
 Added support for the `document_not_locked` (0x0e) KV status, mapping it to the `errc::key_value::document_not_locked` error code
 (https://github.com/couchbaselabs/couchbase-cxx-client/pull/491[#491]).
 
-===== Changes in Couchbase C++ SDK 1.0.0-dp.10
+===== Changes in Couchbase {cpp} SDK 1.0.0-dp.10
 
 .Fixes
 
@@ -426,7 +463,7 @@ It should now return the value of the  content: true if result is success, or fa
 Added support history retention in collection and bucket management
 (http://github.com/couchbase/couchbase-ruby-client/pull/119[#119]).
 
-==== Underlying C++ SDK Core Changes
+==== Underlying {cpp} SDK Core Changes
 
 * https://issues.couchbase.com/browse/CXXCBC-376[CXXCBC-376]:
 Changed what 'create' and 'update' bucket operations send to the server.
@@ -494,7 +531,7 @@ https://rubygems.org/gems/couchbase/versions/3.4.4[Rubygems]
 
 * https://issues.couchbase.com/browse/RCBC-451[RCBC-451], https://issues.couchbase.com/browse/RCBC-452[RCBC-451]: Expose any specific `lookup_in` spec errors (http://github.com/couchbase/couchbase-ruby-client/pull/118[#118]).
 
-==== Underlying C++ SDK Core Changes
+==== Underlying {cpp} SDK Core Changes
 
 * https://issues.couchbase.com/browse/CXXCBC-333[CXXCBC-333]:
 Fixed parsing 'resolv.conf' on Linux (https://github.com/couchbaselabs/couchbase-cxx-client/pull/416[#416]).
@@ -577,7 +614,7 @@ To support LDAP authentication, always use PLAIN SASL mechanism with TLS connect
 (https://github.com/couchbase/couchbase-ruby-client/pull/103[#103],
 https://issues.couchbase.com/browse/CXXCBC-296[CXXCBC-296]).
 
-* Fix the durability level always being set to `none` in the C++ core
+* Fix the durability level always being set to `none` in the {cpp} core
 (https://github.com/couchbase/couchbase-ruby-client/pull/99[#99]).
 
 * Added constructor for `SearchRowLocation`
@@ -587,7 +624,7 @@ https://issues.couchbase.com/browse/CXXCBC-296[CXXCBC-296]).
 (https://github.com/couchbase/couchbase-ruby-client/pull/104[#104]).
 
 
-==== Underlying C++ SDK Core Changes
+==== Underlying {cpp} SDK Core Changes
 
 * https://issues.couchbase.com/browse/CXXCBC-324[CXXCBC-324]:
 Port and network name now checked on session restart, improving performance during rebalance
@@ -665,7 +702,7 @@ Add durability to append and prepend options
 Cleanup search options
 (https://github.com/couchbase/couchbase-ruby-client/pull/89[#89]).
 
-==== Underlying C++ SDK Core Changes
+==== Underlying {cpp} SDK Core Changes
 
 * https://issues.couchbase.com/browse/CXXCBC-31[CXXCBC-31]:
 Allow the use of schemaless connection strings (e.g. `"cb1.example.com,cb2.example.com"`)
@@ -713,7 +750,7 @@ Query index management is now available on `Collection` class as `Collection#que
 `scope_name` and `collection_name` in `QueryIndexManager` are now deprected
 (https://github.com/couchbase/couchbase-ruby-client/pull/75[#75]).
 
-==== Underlying C++ SDK Core Changes
+==== Underlying {cpp} SDK Core Changes
 
 * Improved build with OpenSSL on CentOS 7 (https://github.com/couchbaselabs/couchbase-cxx-client/pull/382[#382]).
 * https://issues.couchbase.com/browse/CXXCBC-144[CXXCBC-144]:
@@ -777,9 +814,9 @@ Allow to override default timeouts through `Options::Cluster` (https://github.co
 * https://issues.couchbase.com/browse/RCBC-399[RCBC-399]:
 Add default options objects as class constants. (https://github.com/couchbase/couchbase-ruby-client/pull/69[#69])
 
-==== Underlying C++ SDK Core
+==== Underlying {cpp} SDK Core
 
-==== Notable Changes in C++ SDK 1.0.0-dp.4
+==== Notable Changes in {cpp} SDK 1.0.0-dp.4
 
 * https://issues.couchbase.com/browse/CXXCBC-275[CXXCBC-275]:
 Update implementation query context fields passed to the server. In future versions of the server versions it will become mandatory to specify context of the statement (bucket, scope and collection).
@@ -812,19 +849,19 @@ Performance improvements:
 ** Include bucketless KV service when ping is requested. (https://github.com/couchbaselabs/couchbase-cxx-client/pull/339[#339])
 ** Include OS name in SDK identifier (https://github.com/couchbaselabs/couchbase-cxx-client/pull/349[#349])
 
-==== Notable changes in C++ SDK 1.0.0-dp.3
+==== Notable changes in {cpp} SDK 1.0.0-dp.3
 
 * https://issues.couchbase.com/CXXCBC-276[CXXCBC-276]:
 Use interval from the options for config poll, which previous was hard-coded to 2.5 seconds. (https://github.com/couchbaselabs/couchbase-cxx-client/pull/336[#336])
 
-==== Notable changes in C++ SDK 1.0.0-dp.2
+==== Notable changes in {cpp} SDK 1.0.0-dp.2
 
 * https://issues.couchbase.com/browse/CXXCBC-242[CXXCBC-242]:
 Drain waiting commands list on MCBP session close (https://github.com/couchbaselabs/couchbase-cxx-client/pull/321[#321])
 * https://issues.couchbase.com/browse/CXXCBC-271[CXXCBC-271]:
 Fix `get_all_replicas` behaviour: do not propagate error if result set is not empty, while the last response has failed. (https://github.com/couchbaselabs/couchbase-cxx-client/pull/322[#322])
 
-==== Notable changes in C++ SDK 1.0.0-dp.1
+==== Notable changes in {cpp} SDK 1.0.0-dp.1
 
 * https://issues.couchbase.com/browse/CXXCBC-142[CXXCBC-142]:
 Update SRV resolution for Windows (https://github.com/couchbaselabs/couchbase-cxx-client/pull/303[#303])
@@ -856,7 +893,7 @@ Don't throw exceptions when socket options cannot be set (https://github.com/cou
 * Move away from `reinterpret_pointer_cast<>` for MacOS build issue (https://github.com/couchbaselabs/couchbase-cxx-client/pull/288[#288])
 * Improve OpenSSL detection on Windows (https://github.com/couchbaselabs/couchbase-cxx-client/pull/272[#272])
 
-==== Notable changes in C++ SDK 1.0.0-beta.3
+==== Notable changes in {cpp} SDK 1.0.0-beta.3
 
 * https://issues.couchbase.com/browse/CXXCBC-221[CXXCBC-221]:
 Support for configuration profiles (https://github.com/couchbaselabs/couchbase-cxx-client/pull/268[#268])
