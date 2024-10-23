@@ -85,7 +85,7 @@ any changes to expected behavior are noted in the release notes that follow.
 
 
 
-=== Version 3.5.4 (27 August 2024)
+=== Version 3.5.4 (22 October 2024)
 
 [source,bash]
 ----
