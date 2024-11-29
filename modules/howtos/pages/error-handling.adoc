@@ -75,9 +75,9 @@ include::example$error_handling.rb[tag=handle_retryable]
 ----
 ////
 
-== KV
+== Data Service
 
-The KV Service exposes several common errors that can be encountered -- both during development, and to be handled by the production app. 
+The Data Service exposes several common errors that can be encountered -- both during development, and to be handled by the production app. 
 Here we will cover some of the most common errors.
 
 === Document does not exist
