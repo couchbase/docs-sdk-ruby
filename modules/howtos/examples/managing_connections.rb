@@ -39,7 +39,7 @@ cluster = Cluster("couchbases://127.0.0.1?trust_certificate=/path/to/certificate
 #tag::dnssrv[]
 options = Couchbase::ClusterOptions.new
 options.authenticator = Couchbase::PasswordAuthenticator.new("Administrator", "password")
-cluster = Cluster.connect("couchbases://couchbase.example.org?enable_dns_srv=true", options)
+cluster = Cluster.connect("couchbases://couchbase.example.com?enable_dns_srv=true", options)
 #end::dnssrv[]
 
 #tag::explicitports[]
