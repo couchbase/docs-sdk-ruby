@@ -254,7 +254,7 @@ If the DNS SRV records could not be loaded properly you'll get the message logge
 [2020-09-07 14:30:26.358] [186383,186390] [warning] 47ms, DNS SRV query returned 0 records for "localhost", assuming that cluster is listening this address
 ----
 
-Also, if you pass in more than one node, DNS SRV bootstrap will not be initiated:
+// Also, if you pass in more than one node, DNS SRV bootstrap will not be initiated:
 
 
 // Cloud connections
