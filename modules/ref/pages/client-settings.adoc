@@ -186,33 +186,43 @@ A `wan_development` configuration profile can be used to modify client settings 
 This profile changes the default timeouts.
 
 .Profile Settings
-[cols="1,1"]
+[cols="4,3,3"]
 |===
-| Setting | Value
+| Setting | Default Value | WAN Profile Value
 
 | `connect_timeout`
+| 10s
 | 20s
 
 | `key_value_timeout`
+| 2.5s
 | 20s
 
 // TODO: This option is not yet available.
-//https://github.com/couchbase/couchbase-ruby-client/blob/main/lib/couchbase/config_profiles.rb#L43
-//| `key_value_durable_timeout`
-//| 20s
+// https://github.com/couchbase/couchbase-ruby-client/blob/main/lib/couchbase/config_profiles.rb#L43
+// | `key_value_durable_timeout`
+// | 10s
+// | 20s
 
 | `view_timeout`
+| 75s
 | 120s
 
 | `query_timeout`
+| 75s
 | 120s
 
 | `analytics_timeout`
+| 75s
 | 120s
 
 | `search_timeout`
+| 75s
 | 120s
 
 | `management_timeout`
+| 75s
 | 120s
 |===
+
+// *Do not* set `key_value_durable_timeout` above 65s, which is the maximum possible `SyncWrite` timeout on the Server side.
