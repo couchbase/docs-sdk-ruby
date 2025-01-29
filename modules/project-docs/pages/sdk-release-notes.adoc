@@ -84,6 +84,44 @@ All patch releases for each dot minor release should be API compatible, and safe
 any changes to expected behavior are noted in the release notes that follow.
 
 
+=== Version 3.5.5 (28 January 2025)
+
+[source,bash]
+----
+gem install couchbase -v 3.5.5
+----
+
+https://docs.couchbase.com/sdk-api/couchbase-ruby-client-3.5.5/index.html[API Reference] |
+link:++https://github.com/couchbase/couchbase-ruby-client/compare/3.5.4...3.5.5++[Full Changelog] |
+https://rubygems.org/gems/couchbase/versions/3.5.5[Rubygems]
+
+==== Download Links
+
+[cols="9,19"]
+|===
+| Platform            | File
+| Checksums           | https://packages.couchbase.com/clients/ruby/sdk-3.5.5/couchbase-3.5.5.sha256sum[couchbase-3.5.5.sha256sum]
+| Source Archive      | https://packages.couchbase.com/clients/ruby/sdk-3.5.5/couchbase-3.5.5.gem[couchbase-3.5.5.gem]
+| Linux x86_64        | https://packages.couchbase.com/clients/ruby/sdk-3.5.5/couchbase-3.5.5-x86_64-linux.gem[couchbase-3.5.5-x86_64-linux.gem]
+| Linux x86_64 (musl) | https://packages.couchbase.com/clients/ruby/sdk-3.5.5/couchbase-3.5.5-x86_64-linux-musl.gem[couchbase-3.5.5-x86_64-linux-musl.gem]
+| macOS x86_64        | https://packages.couchbase.com/clients/ruby/sdk-3.5.5/couchbase-3.5.5-x86_64-darwin.gem[couchbase-3.5.5-x86_64-darwin-20.gem]
+| macOS arm64         | https://packages.couchbase.com/clients/ruby/sdk-3.5.5/couchbase-3.5.5-arm64-darwin.gem[couchbase-3.5.5-arm64-darwin.gem]
+|===
+
+==== Fixes
+
+* https://issues.couchbase.com/browse/RCBC-487[RCBC-487]:
+New APIs added to allow getting KV documents from a preferred server group.
+This feature allows the implementation of network optimization when traffic cost between server groups is higher than in the local group.
+In this case the application might select preferred server group in the connection options,
+and later opt-in for local operations during replica reads (https://github.com/couchbase/couchbase-ruby-client/pull/163[#163]).
+
+* https://issues.couchbase.com/browse/RCBC-504[RCBC-504]:
+Updated core and version generation (https://github.com/couchbase/couchbase-ruby-client/pull/162[#162]).
+
+* Updated core to 1.0.5.
+Release notes: xref:cxx-sdk:project-docs:sdk-release-notes.adoc#version-1-0-5-24-january-2025[{cpp} SDK 1.0.5].
+
 
 === Version 3.5.4 (22 October 2024)
 
