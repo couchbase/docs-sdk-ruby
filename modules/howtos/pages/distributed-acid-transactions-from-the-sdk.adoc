@@ -1,5 +1,6 @@
 = Using Couchbase Transactions
-:description: A practical guide on using Couchbase Distributed ACID transactions, via the Java SDK.
+:reftext: Distributed ACID Transactions from the Ruby SDK
+// :description: A practical guide on using Couchbase Distributed ACID transactions, via the Ruby SDK.
 :page-topic-type: howto
 :page-toclevels: 2
 // TODO: Uncomment when we actually have transactions content to show.
