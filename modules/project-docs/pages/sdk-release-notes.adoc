@@ -69,7 +69,7 @@ https://packages.couchbase.com/clients/ruby/sdk-{sdk_current_version}/couchbase-
 ----
 
 where "platform" placeholder can take values: `arm64-darwin`, `x86_64-darwin`, `x86_64-linux`,
-`x86_64-linux-musl`. To see platform string the following command:
+`aarch64-linux`, `x86_64-linux-musl`. To see platform string the following command:
 
 [source,bash]
 ----
