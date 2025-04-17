@@ -10,7 +10,7 @@ Plus notes on Cloud, networks, and AWS Lambda.
 {description}
 
 
-The Couchbase Ruby SDK supports MRI Ruby versions 3.0, 3.1, 3.2, and 3.3
+The Couchbase Ruby SDK supports MRI Ruby versions 3.2, 3.3, and 3.4
  -- see the table below for <<ruby-version-compatibility,supported versions and dates>>.
 // We follow list of supported versions at https://www.ruby-lang.org/en/downloads/branches/
 
@@ -57,7 +57,7 @@ However, the {name-sdk} is tested and supported specifically on the following OS
 * Amazon Linux 2 & AL2023.
 * Red Hat Enterprise Linux 8 & 9;
 * Oracle Linux 8 & 9.
-* Ubuntu (LTS) 20.04 (_Focal_) & 22.04 (_Jammy_).
+* Ubuntu (LTS) 22.04 (_Jammy_) & 24.04 (_Noble_).
 * Debian 10 (_Buster_), 11 (_Bullseye_), and Debian 12 (_Bookworm_).
 * SUSE Enterprise Linux 12 & 15.
 * Alpine Linux 3.18.
@@ -105,13 +105,15 @@ It is best to upgrade either the SDK or the Couchbase version you are using.
 .Recommended SDK per Server Version Matrix
 [#table_sdk_versions]
 |===
-| | 3.2 - 3.4 | 3.5
+| | 3.2 - 3.4 | 3.5 | 3.6
 
 | *Server 7.0 - 7.2*
 | *✔*
 | *✔*
+| *✔*
 
 | *Server 7.6*
+| *✔*
 | *✔*
 | *✔*
 |===
@@ -171,8 +173,7 @@ include::{version-common}@sdk:shared:partial$capella.adoc[tag=cloud]
 
 === API Version
 
-include::7.6@sdk:shared:partial$api-version.adoc[tag=api-version]
-// include::{version-common}@sdk:shared:partial$api-version.adoc[tag=api-version]
+include::{version-common}@sdk:shared:partial$api-version.adoc[tag=api-version]
 
 
 
