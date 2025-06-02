@@ -111,15 +111,21 @@ https://rubygems.org/gems/couchbase/versions/3.6.0[Rubygems]
 
 ==== New Features
 
-* https://issues.couchbase.com/browse/516[RCBC-516]: Include storage_backend in get_bucket/get_all_buckets results. (https://github.com/couchbase/couchbase-ruby-client/pull/173[#173])
-* https://issues.couchbase.com/browse/510[RCBC-510]: Add `BucketSettings#num_vbuckets`.  (https://github.com/couchbase/couchbase-ruby-client/pull/174[#174])
+* https://issues.couchbase.com/browse/516[RCBC-516]:
+Include `storage_backend` in `get_bucket/get_all_buckets` results (https://github.com/couchbase/couchbase-ruby-client/pull/173[#173]).
+
+* https://issues.couchbase.com/browse/510[RCBC-510]:
+Added `BucketSettings#num_vbuckets`  (https://github.com/couchbase/couchbase-ruby-client/pull/174[#174]).
 
 ==== Fixes
 
-* https://issues.couchbase.com/browse/511[RCBC-511]: Update core to pick up improved user lock/unlock error messages & logs. (https://github.com/couchbase/couchbase-ruby-client/pull/177[#177])
+* https://issues.couchbase.com/browse/511[RCBC-511]:
+Updated core to pick up improved user lock/unlock error messages & logs (https://github.com/couchbase/couchbase-ruby-client/pull/177[#177]).
 
 * Updated core to 1.1.0.
 Release notes: xref:cxx-sdk:project-docs:sdk-release-notes.adoc#version-1-1-0-01-june-2025[{cpp} SDK 1.1.0].
+
+
 
 == Ruby SDK 3.5 Releases
 
