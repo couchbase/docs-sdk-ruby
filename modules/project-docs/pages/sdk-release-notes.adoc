@@ -84,7 +84,7 @@ All patch releases for each dot minor release should be API compatible, and safe
 any changes to expected behavior are noted in the release notes that follow.
 
 
-=== Version 3.6.0 (?? April 2025)
+=== Version 3.6.0 (2 June 2025)
 
 [source,bash]
 ----
@@ -95,9 +95,35 @@ https://docs.couchbase.com/sdk-api/couchbase-ruby-client-3.6.0/index.html[API Re
 link:++https://github.com/couchbase/couchbase-ruby-client/compare/3.5.7...3.6.0++[Full Changelog] |
 https://rubygems.org/gems/couchbase/versions/3.6.0[Rubygems]
 
+==== Download Links
 
-==== Known Issues
+[cols="9,19"]
+|===
+| Platform            | File
+| Checksums           | https://packages.couchbase.com/clients/ruby/sdk-3.6.0/couchbase-3.6.0.sha256sum[couchbase-3.6.0.sha256sum]
+| Source Archive      | https://packages.couchbase.com/clients/ruby/sdk-3.6.0/couchbase-3.6.0.gem[couchbase-3.6.0.gem]
+| Linux x86_64        | https://packages.couchbase.com/clients/ruby/sdk-3.6.0/couchbase-3.6.0-x86_64-linux.gem[couchbase-3.6.0-x86_64-linux.gem]
+| Linux arm64         | https://packages.couchbase.com/clients/ruby/sdk-3.6.0/couchbase-3.6.0-aarch64-linux.gem[couchbase-3.6.0-aarch64-linux.gem]
+| Linux x86_64 (musl) | https://packages.couchbase.com/clients/ruby/sdk-3.6.0/couchbase-3.6.0-x86_64-linux-musl.gem[couchbase-3.6.0-x86_64-linux-musl.gem]
+| macOS x86_64        | https://packages.couchbase.com/clients/ruby/sdk-3.6.0/couchbase-3.6.0-x86_64-darwin.gem[couchbase-3.6.0-x86_64-darwin.gem]
+| macOS arm64         | https://packages.couchbase.com/clients/ruby/sdk-3.6.0/couchbase-3.6.0-arm64-darwin.gem[couchbase-3.6.0-arm64-darwin.gem]
+|===
 
+==== New Features
+
+* https://issues.couchbase.com/browse/516[RCBC-516]:
+Include `storage_backend` in `get_bucket/get_all_buckets` results (https://github.com/couchbase/couchbase-ruby-client/pull/173[#173]).
+
+* https://issues.couchbase.com/browse/510[RCBC-510]:
+Added `BucketSettings#num_vbuckets`  (https://github.com/couchbase/couchbase-ruby-client/pull/174[#174]).
+
+==== Fixes
+
+* https://issues.couchbase.com/browse/511[RCBC-511]:
+Updated core to pick up improved user lock/unlock error messages & logs (https://github.com/couchbase/couchbase-ruby-client/pull/177[#177]).
+
+* Updated core to 1.1.0.
+Release notes: xref:cxx-sdk:project-docs:sdk-release-notes.adoc#version-1-1-0-01-june-2025[{cpp} SDK 1.1.0].
 
 
 
