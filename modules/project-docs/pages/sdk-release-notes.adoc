@@ -112,21 +112,19 @@ https://rubygems.org/gems/couchbase/versions/3.7.0[Rubygems]
 ==== New Features
 
 
-* https://jira.issues.couchbase.com/browse/RCBC-517[RCBC-517]: Support vector search prefilter (https://github.com/couchbase/couchbase-ruby-client/pull/180[#180])
-
-* https://jira.issues.couchbase.com/browse/RCBC-518[RCBC-518]: Add way to disable enterprise analytics check programmatically (https://github.com/couchbase/couchbase-ruby-client/pull/186[#186])
-
-* Update core to 1.2.0 (https://github.com/couchbase/couchbase-ruby-client/pull/188[#188], https://github.com/couchbase/couchbase-ruby-client/pull/181[#181])
+* https://jira.issues.couchbase.com/browse/RCBC-517[RCBC-517]:
+Added support vector search prefilter (https://github.com/couchbase/couchbase-ruby-client/pull/180[#180]).
+* https://jira.issues.couchbase.com/browse/RCBC-518[RCBC-518]:
+Added way to disable enterprise analytics check programmatically (https://github.com/couchbase/couchbase-ruby-client/pull/186[#186]).
+* Updated core to `1.2.0` (https://github.com/couchbase/couchbase-ruby-client/pull/188[#188], https://github.com/couchbase/couchbase-ruby-client/pull/181[#181]).
 
 ==== Build and Test Infrastructure Improvements
 
-* Fix rubocop error & warnings (https://github.com/couchbase/couchbase-ruby-client/pull/185[#185], https://github.com/couchbase/couchbase-ruby-client/pull/187[#187])
-
-* Test helper: Fix simplecov error (https://github.com/couchbase/couchbase-ruby-client/pull/184[#184])
-
-* Github Actions: Pin clang tools in linters workflow (https://github.com/couchbase/couchbase-ruby-client/pull/183[#183])
-
-* Github Actions: Update Windows runners (https://github.com/couchbase/couchbase-ruby-client/pull/182[#182])
+* Fixed `rubocop` error & warnings (https://github.com/couchbase/couchbase-ruby-client/pull/185[#185], https://github.com/couchbase/couchbase-ruby-client/pull/187[#187]).
+* Fix `simplecov` error in test helper (https://github.com/couchbase/couchbase-ruby-client/pull/184[#184]).
+* Github Actions:
+** Pinned `clang` tools in linters workflow (https://github.com/couchbase/couchbase-ruby-client/pull/183[#183]);
+** Updated Windows runners (https://github.com/couchbase/couchbase-ruby-client/pull/182[#182]).
 
 
 == Ruby SDK 3.6 Releases
