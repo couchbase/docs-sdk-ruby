@@ -72,6 +72,7 @@ Parameterizing the query, as with xref:sqlpp-queries-with-sdk.adoc#parameterized
 This can be more efficient, unless you are doing a lot of optimization to your query.
 
 .Parameterized Vector Query
+[source,ruby]
 ----
       result = myscope.query(
         "SELECT d.id, d.question, d.wanted_similar_color_from_search, " +
