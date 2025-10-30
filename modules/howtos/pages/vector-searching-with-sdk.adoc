@@ -84,6 +84,7 @@ This can be more efficient, unless you are doing a lot of optimization to your q
 		"WHERE d.id = $id;")
       result.rows.each do |row|
         puts row
+      end
 ----
 
 
