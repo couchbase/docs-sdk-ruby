@@ -141,13 +141,14 @@ VectorQuery#prefilter ⇒ SearchQuery
 
 If no prefilter is specified, the server executes the vector query on all indexed documents.
 
-[source,java]
+[source,ruby]
 ----
-  .setOptions(VectorQueryOptions.newBuilder()
-                    .setNumCandidates(numCandidates)
-                        .setPrefilter(SearchQuery.newBuilder()
-                                .setMatch(MatchQuery.newBuilder()
-                                        .setMatch("primary").setField("color_wheel_pos"))))
+VectorQuery.new("vector_field", vector_query) do |v|
+  v.num_candidates = num_candidates
+  v.prefilter = SearchQuery.match("primary") do |m|
+    m.field = "color_wheel_pos"
+  end
+end
 ----
 
 The prefilter can be any Search Query --
