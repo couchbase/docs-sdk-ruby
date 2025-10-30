@@ -134,9 +134,9 @@ xref:server:vector-search:pre-filtering-vector-search.adoc#about-pre-filtering[p
 This is a non-vector query that the server executes first to get an intermediate result.
 Then it executes the vector query on the intermediate result to get the final result.
 
-[source,java]
+[source,ruby]
 ----
-public VectorQuery prefilter(SearchQuery prefilter)
+VectorQuery#prefilter ⇒ SearchQuery
 ----
 
 If no prefilter is specified, the server executes the vector query on all indexed documents.
