@@ -154,11 +154,9 @@ end
 The prefilter can be any Search Query --
 from a simple match, as above, to a string query:
 
-[source,java]
+[source,ruby]
 ----
-  .setPrefilter(SearchQuery.newBuilder()
-                        .setQueryString(QueryStringQuery.newBuilder()
-                                .setQuery("+description:sea -color_hex:fff5ee")))
+  v.prefilter = SearchQuery.query_string("+description:sea -color_hex:fff5ee")
 ----
 
 See the link:++https://docs.couchbase.com/sdk-api/couchbase-ruby-client/Couchbase/VectorQuery.html#prefilter-instance_method++[API reference].
