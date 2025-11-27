@@ -71,6 +71,7 @@ gem install couchbase
 
 In addition to rubygems.org, we also maintain official gem repositories, where we publish not only source version of the package, but also precompiled binaries for Linux and MacOS.
 // Further details can be found on the xref:project-docs:sdk-full-installation.adoc[Installation page].
+Further details can be found in the xref:project-docs:sdk-release-notes.adoc#sdk-installation[full installation guide].
 // end::install[]
 
 == Prerequisites
