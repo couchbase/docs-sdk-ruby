@@ -171,6 +171,12 @@ Following successful authentication, add this code snippet to access your `Bucke
 include::example$start_using.rb[tag=bucket,indent=0]
 ----
 
+
+// No waituntilready() in wrappers
+include::{version-common}@sdk:shared:partial$managing-connections.adoc[tag=bootstrap-completion]
+
+
+
 === Add and Retrieve Documents
 
 Collections allow Documents to be grouped by purpose or theme, according to specified _Scope_.
