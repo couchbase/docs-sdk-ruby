@@ -25,7 +25,7 @@ Most of this documentation will focus on the former API, as the latter is in @St
 == Index Creation
 
 For the purposes of the below examples we will use the Beer Sample sample bucket.
-Full Text Search indexes can be xref:7.1@server:fts:fts-creating-indexes.adoc[created through the UI or throuth the REST API], or created programatically as follows:
+Full Text Search indexes can be xref:{version-server}@server:fts:fts-creating-indexes.adoc[created through the UI or throuth the REST API], or created programatically as follows:
 
 [source,ruby]
 ----
