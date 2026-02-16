@@ -76,12 +76,24 @@ where "platform" placeholder can take values: `arm64-darwin`, `x86_64-darwin`, `
 ruby -rrbconfig -e 'puts RbConfig::CONFIG["platform"]'
 ----
 
+
+
 [#latest-release]
-== Ruby SDK 3.7 Releases
+== Ruby SDK 3.8 Releases
 
 We always recommend using the latest version of the SDK -- it contains all of the latest security patches and support for new and upcoming features.
 All patch releases for each dot minor release should be API compatible, and safe to upgrade;
 any changes to expected behavior are noted in the release notes that follow.
+
+
+=== Version 3.8.0 (??? February 2026)
+
+
+
+
+
+
+== Ruby SDK 3.7 Releases
 
 
 === Version 3.7.0 (29 September 2025)
