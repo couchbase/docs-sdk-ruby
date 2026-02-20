@@ -1,9 +1,9 @@
-= Couchbase Ruby SDK 3.7
+= Couchbase Ruby SDK 3.8
 :page-layout: landing-page-top-level-sdk
 :page-role: tiles
 :!sectids:
 
-= Couchbase Ruby SDK 3.7
+= Couchbase Ruby SDK 3.8
 
 [source,ruby]
 ----
