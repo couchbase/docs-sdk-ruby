@@ -1,15 +1,14 @@
 = Using Couchbase Transactions
-:reftext: Distributed ACID Transactions from the Ruby SDK
+:reftext: Distributed ACID Transactions
+// :reftext: Distributed ACID Transactions from the Ruby SDK
+:description: Distributed ACID Transactions are not currently available for the Ruby SDK. Strong durable gurarantees within a single bucket, and some re-architecture, may achieve similar ends within the Ruby SDK.
 // :description: A practical guide on using Couchbase Distributed ACID transactions, via the Ruby SDK.
-:page-topic-type: howto
 :page-toclevels: 2
-// TODO: Uncomment when we actually have transactions content to show.
-//:page-pagination: next
 
-include::project-docs:partial$attributes.adoc[]
-
+////
 [abstract]
 {description}
+////
 
 
 Distributed ACID Transactions are not currently available for the Ruby SDK.
