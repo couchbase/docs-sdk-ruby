@@ -39,7 +39,7 @@ Ruby versions that have reached their https://www.ruby-lang.org/en/downloads/bra
 
 | 4.0
 | until 2029-03-31? (TBD)
-| from 4.5.0
+| from 3.8.0
 
 |===
 
