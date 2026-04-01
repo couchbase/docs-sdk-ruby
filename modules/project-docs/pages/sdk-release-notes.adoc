@@ -86,8 +86,137 @@ All patch releases for each dot minor release should be API compatible, and safe
 any changes to expected behavior are noted in the release notes that follow.
 
 
-=== Version 3.8.0 (??? February 2026)
+=== Version 3.8.0 (31 March 2026)
 
+link:++https://github.com/couchbase/couchbase-ruby-client/compare/3.7.0...3.8.0++[Full Changelog]
+
+Version 3.8.0 is a minor release of the third generation Ruby SDK, bringing a number of improvements.
+Most notably the 4.6.0 release adds observability support (with the ability to integrate with `OpenTelemetry`, via the `couchbase-opentelemetry` extension),
+and adds support for Ruby 4.0 --  see xref:compatibility.adoc#ruby-version-compatibility[Ruby Version Compatibility] for details of supported Ruby versions.
+
+==== Ruby SDK
+
+https://docs.couchbase.com/sdk-api/couchbase-ruby-client-3.8.0/index.html[API Reference] |
+https://rubygems.org/gems/couchbase/versions/3.8.0[Rubygems]
+
+===== Installing the SDK
+
+[source,bash]
+----
+gem install couchbase -v 3.8.0
+----
+
+[source,ruby]
+----
+# rubygems.org version
+gem "couchbase", "3.8.0"
+
+# using official repository
+gem "couchbase", "3.8.0", :source => "https://packages.couchbase.com/clients/ruby"
+----
+
+==== OpenTelemetry Extension
+
+https://docs.couchbase.com/sdk-api/couchbase-ruby-client-opentelemetry-3.8.0/index.html[API Reference] |
+https://rubygems.org/gems/couchbase-opentelemetry/versions/3.8.0[Rubygems]
+
+===== Installing the OpenTelemetry Extension
+
+[source,bash]
+----
+gem install couchbase-opentelemetry -v 3.8.0
+----
+
+[source,ruby]
+----
+# rubygems.org version
+gem "couchbase-opentelemetry", "3.8.0"
+
+# using official repository
+gem "couchbase-opentelemetry", "3.8.0", :source => "https://packages.couchbase.com/clients/ruby"
+----
+
+==== Download Links
+
+[cols="9,19"]
+|===
+| Platform            | File
+| Checksums           | https://packages.couchbase.com/clients/ruby/sdk-3.8.0/couchbase-3.8.0.sha256.txt[couchbase-3.8.0.sha256.txt]
+| Source Archive      | https://packages.couchbase.com/clients/ruby/sdk-3.8.0/couchbase-3.8.0.gem[couchbase-3.8.0.gem]
+| Source Archive      | https://packages.couchbase.com/clients/ruby/sdk-3.8.0/couchbase-opentelemetry-3.8.0.gem[couchbase-opentelemetry-3.8.0.gem]
+| Linux x86_64        | https://packages.couchbase.com/clients/ruby/sdk-3.8.0/couchbase-3.8.0-x86_64-linux.gem[couchbase-3.8.0-x86_64-linux.gem]
+| Linux arm64         | https://packages.couchbase.com/clients/ruby/sdk-3.8.0/couchbase-3.8.0-aarch64-linux.gem[couchbase-3.8.0-aarch64-linux.gem]
+| Linux x86_64 (musl) | https://packages.couchbase.com/clients/ruby/sdk-3.8.0/couchbase-3.8.0-x86_64-linux-musl.gem[couchbase-3.8.0-x86_64-linux-musl.gem]
+| macOS x86_64        | https://packages.couchbase.com/clients/ruby/sdk-3.8.0/couchbase-3.8.0-x86_64-darwin.gem[couchbase-3.8.0-x86_64-darwin.gem]
+| macOS arm64         | https://packages.couchbase.com/clients/ruby/sdk-3.8.0/couchbase-3.8.0-arm64-darwin.gem[couchbase-3.8.0-arm64-darwin.gem]
+|===
+
+
+==== Fixes and Enhancements
+
+* https://issues.couchbase.com/browse/RCBC-524[RCBC-524],
+https://issues.couchbase.com/browse/RCBC-525[RCBC-525],
+https://issues.couchbase.com/browse/RCBC-526[RCBC-526]:
+OpenTelemetry integration
+(https://github.com/couchbase/couchbase-ruby-client/pull/216[#216],
+https://github.com/couchbase/couchbase-ruby-client/pull/195[#195],
+https://github.com/couchbase/couchbase-ruby-client/pull/197[#197]).
++
+Full support for distributed tracing and metrics using the `OpenTelemetry` API.
+Operations now create spans and record latency and throughput metrics that can be exported to backends like Jaeger or Prometheus.
+
+* https://issues.couchbase.com/browse/RCBC-522[RCBC-522]:
+Support for JWT authentication (https://github.com/couchbase/couchbase-ruby-client/pull/218[#218]). 
++
+Added `Couchbase::Management::Options::User::JwtAuthenticator` to enable authentication using JSON Web Tokens.
+
+* https://issues.couchbase.com/browse/RCBC-521[RCBC-521]:
+The new `Couchbase::Cluster#update_authenticator` method allows rotating credentials (passwords or certificates) on an active cluster connection without requiring a restart (https://github.com/couchbase/couchbase-ruby-client/pull/191[#191]).
+
+* https://issues.couchbase.com/browse/RCBC-503[RCBC-503]:
+New configuration settings in `Couchbase::Options::Cluster` to control the SDK's internal telemetry collection, 
+including endpoint overrides and connection backoff (https://github.com/couchbase/couchbase-ruby-client/pull/190[#190]). 
+
+* https://issues.couchbase.com/browse/RCBC-528[RCBC-528]:
+Migrated all Key-Value operations to use the high-performance {cpp} backend,
+ensuring feature parity and consistent behavior across Couchbase SDKs
+(https://github.com/couchbase/couchbase-ruby-client/pull/196[#196]). 
+
+* https://issues.couchbase.com/browse/RCBC-529[RCBC-529]:
+Standardized management operation options:
+Added parent span for search, user, and view management options, and moved to the `Management::Options` module, 
+and added support for distributed tracing across administrative tasks (https://github.com/couchbase/couchbase-ruby-client/pull/192[#192]).
+
+* https://issues.couchbase.com/browse/RCBC-527[RCBC-527]:
+Enhanced observability by surfacing internal {cpp} core timing spans (e.g., encoding, dispatch, decoding) within the Ruby span hierarchy
+(https://github.com/couchbase/couchbase-ruby-client/pull/210[#210]).
+
+* https://issues.couchbase.com/browse/RCBC-536[RCBC-536]:
+Added cluster name and cluster uuid span/metric attributes (https://github.com/couchbase/couchbase-ruby-client/pull/202[#202]).
+Automatically attaches `db.couchbase.cluster_name` and `db.couchbase.cluster_uuid` to all telemetry signals.
+
+* https://issues.couchbase.com/browse/RCBC-530[RCBC-530]:
+Deprecated Support for MapReduce Views
+(https://github.com/couchbase/couchbase-ruby-client/pull/194[#194]).
+MapReduce View APIs are now marked as deprecated in alignment with the Couchbase Server deprecation schedule.
+
+* https://issues.couchbase.com/browse/RCBC-525[RCBC-525]:
+Fixed names of `lookup_in_all_replicas` and `lookup_in_any_replica` spans
+(https://github.com/couchbase/couchbase-ruby-client/pull/220[#220]).
+
+* https://issues.couchbase.com/browse/RCBC-534[RCBC-534]:
+Correctly set tracer to external tracer if one is provided
+(https://github.com/couchbase/couchbase-ruby-client/pull/199[#199]).
+
+* Added support for Ruby 4.0
+(https://github.com/couchbase/couchbase-ruby-client/pull/198[#198]).
+
+* Added `inventory_with_opentelemetry` example for the `couchbase-opentelemetry` gem
+(https://github.com/couchbase/couchbase-ruby-client/pull/222[#222]).
+
+* Updated core to 1.3.1
+(https://github.com/couchbase/couchbase-ruby-client/pull/221[#221],
+https://github.com/couchbase/couchbase-ruby-client/pull/219[#219]).
 
 
 
