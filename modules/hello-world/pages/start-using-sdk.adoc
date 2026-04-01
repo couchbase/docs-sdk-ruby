@@ -12,7 +12,7 @@ include::project-docs:partial$attributes.adoc[]
 The Couchbase Ruby SDK allows you to connect to a Couchbase cluster from Ruby.
 The Ruby SDK includes high-performance native Ruby extensions to handle communicating to the cluster over Couchbase’s binary protocols.
 
-Ruby SDK supports https://www.ruby-lang.org/en/downloads/branches/[currently maintained Ruby versions], and recommends the latest stable version where possible (currently 3.3 as of March 2024).
+The Ruby SDK supports https://www.ruby-lang.org/en/downloads/branches/[currently maintained Ruby versions], and recommends the latest stable version where possible (currently 4.0 as of March 2026).
 
 In this guide, you will learn:
 
