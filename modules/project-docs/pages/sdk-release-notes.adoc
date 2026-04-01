@@ -103,11 +103,13 @@ https://rubygems.org/gems/couchbase/versions/3.8.0[Rubygems]
 
 ===== Installing the SDK
 
+.Command line installation
 [source,bash]
 ----
-gem install couchbase -v 3.8.0
+$ gem install couchbase -v 3.8.0
 ----
 
+.Gemfile
 [source,ruby]
 ----
 # rubygems.org version
@@ -124,11 +126,13 @@ https://rubygems.org/gems/couchbase-opentelemetry/versions/3.8.0[Rubygems]
 
 ===== Installing the OpenTelemetry Extension
 
+.Command line installation
 [source,bash]
 ----
-gem install couchbase-opentelemetry -v 3.8.0
+$ gem install couchbase-opentelemetry -v 3.8.0
 ----
 
+.Gemfile
 [source,ruby]
 ----
 # rubygems.org version
