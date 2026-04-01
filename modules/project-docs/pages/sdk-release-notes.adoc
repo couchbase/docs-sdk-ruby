@@ -134,7 +134,7 @@ gem "couchbase-opentelemetry", "3.8.0"
 
 # using official repository
 gem "couchbase-opentelemetry", "3.8.0", :source => "https://packages.couchbase.com/clients/ruby"
----
+----
 
 ==== Download Links
 
