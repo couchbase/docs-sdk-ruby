@@ -1,5 +1,5 @@
 = Search
-:description: You can use the Search Service to create queryable, search indexes in Couchbase Server.
+:description: You can use the Search Service to create queryable Search indexes in Couchbase Server.
 :page-topic-type: howto
 :page-toclevels: 2
 :page-pagination: full
@@ -8,7 +8,7 @@
 {description}
 
 
-The Search Service -- or _Search_ for short -- allows you to create, manage, and query search indexes on JSON documents stored in Couchbase buckets. 
+The Search Service allows you to create, manage, and query Search indexes on JSON documents stored in Couchbase buckets. 
 It uses natural language processing for querying documents, provides relevance scoring on the results of your queries, and has fast indexes for querying a wide range of possible text searches.
 
 Some of the supported query types include simple queries like Match and Term queries; range queries like Date Range and Numeric Range; and compound queries for conjunctions, disjunctions, and/or boolean queries.
@@ -37,7 +37,7 @@ For information about pagination in Search responses, see xref:server:fts:fts-se
 == Index Creation
 
 For the purposes of the below examples we will use the Beer Sample sample bucket.
-The Search indexes can be xref:{version-server}@server:fts:fts-creating-indexes.adoc[created through the UI or throuth the REST API], or created programatically as follows:
+Search indexes can be xref:{version-server}@server:fts:fts-creating-indexes.adoc[created through the UI or throuth the REST API], or created programatically as follows:
 
 [source,ruby]
 ----
@@ -50,7 +50,7 @@ include::example$search.rb[tag=index]
 In versions of Couchbase Server starting from 7.6, Search queries are executed at either the Scope or the Cluster level;
 in earlier versions, they are just performed at the cluster level. (not bucket or collection). 
 
-We will perform an Search query here - see the <<vector search>> section for examples of that.
+We will perform a Search query here - see the <<vector search>> section for examples of that.
 Here is a simple query that looks for the text "hop beer" using the defined index:
 
 [source,ruby]
