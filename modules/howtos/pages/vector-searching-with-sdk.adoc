@@ -90,7 +90,7 @@ This can be more efficient, unless you are doing a lot of optimization to your q
 
 == Vector Search With the Search Service
 
-Vector search is also implemented using xref:full-text-searching-with-sdk.adoc[Search Indexes], and can be combined with traditional search queries.
+Vector search is also implemented using xref:full-text-searching-with-sdk.adoc[Search Indexes], and can be combined with traditional Search queries.
 Vector embeddings can be an array of floats or a xref:server:vector-search:run-vector-search-ui.adoc#base64[base64 encoded string].
 
 === Prerequisites
