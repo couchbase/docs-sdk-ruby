@@ -1,5 +1,5 @@
 = Search
-:description: You can use the Full Text Search service (FTS) to create queryable, full-text indexes in Couchbase Server.
+:description: You can use the Search Service to create queryable, search indexes in Couchbase Server.
 :page-topic-type: howto
 :page-toclevels: 2
 :page-pagination: full
@@ -8,7 +8,7 @@
 {description}
 
 
-Full Text Search (FTS) -- or _Search_ for short -- allows you to create, manage, and query full text indexes on JSON documents stored in Couchbase buckets. 
+The Search Service -- or _Search_ for short -- allows you to create, manage, and query search indexes on JSON documents stored in Couchbase buckets. 
 It uses natural language processing for querying documents, provides relevance scoring on the results of your queries, and has fast indexes for querying a wide range of possible text searches.
 
 Some of the supported query types include simple queries like Match and Term queries; range queries like Date Range and Numeric Range; and compound queries for conjunctions, disjunctions, and/or boolean queries.
@@ -17,7 +17,7 @@ Some of the supported query types include simple queries like Match and Term que
 There are two APIs for querying search: `cluster.searchQuery()`, and `cluster.search()`.
 Both are also available at the Scope level.
 
-The former API supports FTS queries (`SearchQuery`), while the latter additionally supports the `VectorSearch` added in 7.6.
+The former API supports Search queries (`SearchQuery`), while the latter additionally supports the `VectorSearch` added in 7.6.
 Most of this documentation will focus on the former API, as the latter is in @Stability.Volatile status.
 
 
@@ -37,7 +37,7 @@ For information about pagination in Search responses, see xref:server:fts:fts-se
 == Index Creation
 
 For the purposes of the below examples we will use the Beer Sample sample bucket.
-Full Text Search indexes can be xref:{version-server}@server:fts:fts-creating-indexes.adoc[created through the UI or throuth the REST API], or created programatically as follows:
+The Search indexes can be xref:{version-server}@server:fts:fts-creating-indexes.adoc[created through the UI or throuth the REST API], or created programatically as follows:
 
 [source,ruby]
 ----
@@ -50,7 +50,7 @@ include::example$search.rb[tag=index]
 In versions of Couchbase Server starting from 7.6, Search queries are executed at either the Scope or the Cluster level;
 in earlier versions, they are just performed at the cluster level. (not bucket or collection). 
 
-We will perform an FTS query here - see the <<vector search>> section for examples of that.
+We will perform an Search query here - see the <<vector search>> section for examples of that.
 Here is a simple query that looks for the text "hop beer" using the defined index:
 
 [source,ruby]
@@ -106,9 +106,9 @@ include::example$search.rb[tag=facet,]
 
 == Scoped vs Global Indexes
 
-The FTS APIs exist at both the `Cluster` and `Scope` levels.
+The Search APIs exist at both the `Cluster` and `Scope` levels.
 
-This is because FTS supports, as of Couchbase Server 7.6, a new form of "scoped index" in addition to the traditional "global index".
+This is because the Search Service supports, as of Couchbase Server 7.6, a new form of "scoped index" in addition to the traditional "global index".
 
 It's important to use the `Cluster.searchQuery()` / `Cluster.search()` for global indexes, and `Scope.search()` for scoped indexes.
 
@@ -123,7 +123,7 @@ The `SearchQuery` is created in the same way as detailed earlier.
 
 == Consistency
 
-Like the xref:n1ql-queries-with-sdk.adoc#scan-consistency[Couchbase Query Service], FTS allows `consistent_with()` queries -- _Read-Your-Own_Writes (RYOW)_ consistency,
+Like the xref:n1ql-queries-with-sdk.adoc#scan-consistency[Couchbase Query Service], the Search Service allows `consistent_with()` queries -- _Read-Your-Own_Writes (RYOW)_ consistency,
 ensuring results contain information from updated indexes:
 
 [source,ruby]

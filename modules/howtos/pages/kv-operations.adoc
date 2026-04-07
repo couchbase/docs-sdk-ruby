@@ -155,7 +155,7 @@ xref:concept-docs:transactions.adoc[multi-document ACID transactions].
 
 
 
-== Retrieving full documents
+== Retrieving Full Documents
 
 Using the `.get()` method with the document key can be done in a similar fashion to the other operations:
 
@@ -279,11 +279,11 @@ TIP: KV range scan is suitable for use cases that require relatively low concurr
 If your application does many scans at once, or requires low latency results, we recommend using {sqlpp} (with a primary index on the collection) instead of KV range scan.
 
 [#kv-range-scan-range]
-=== Range scan
+=== Range Scan
 
 Here's an example of a KV range scan that gets all documents in a collection:
 
-.KV Range Scan for all documents in a collection
+.KV Range Scan for all Documents in a Collection
 [source,ruby]
 ----
 include::example$kv_operations.rb[tag=range-scan-all-documents, indent=0]
@@ -296,7 +296,7 @@ Instead, it's more common to use the "prefix" scan type shown in the next exampl
 
 
 [#kv-range-scan-prefix]
-=== Prefix scan
+=== Prefix Scan
 
 KV range scan can also give you all documents whose IDs start with the same prefix.
 Imagine you have a collection where documents are named like this: `<username>::<uuid>`.
@@ -317,18 +317,18 @@ include::example$kv_operations.rb[tag=range-scan-prefix, indent=0]
 
 If you want to get random documents from a collection, use a sample scan.
 
-.KV Range Scan for 100 random documents
+.KV Range Scan for 100 Random Documents
 [source,ruby]
 ----
 include::example$kv_operations.rb[tag=range-scan-sample, indent=0]
 ----
 
 [#kv-range-scan-only-ids]
-=== Get IDs instead of full documents
+=== Get IDs Instead of Full Documents
 
 If you only want the document IDs, set the `ids_only` attribute of `Options::Scan` to `true`, like this:
 
-.KV Range Scan for all document IDs in a collection
+.KV Range Scan for all Document IDs in a Collection
 [source,ruby]
 ----
 include::example$kv_operations.rb[tag=range-scan-all-document-ids, indent=0]
