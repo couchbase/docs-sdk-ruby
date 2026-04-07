@@ -1,12 +1,19 @@
 = Tracing
 :description: Tracing and Metrics provide fine-grained insight into how an application is performing, and helps to diagnose when it is not.
-:nav-title: Request Tracing and Metrics
-:page-topic-type: concept
-:page-aliases: ROOT:threshold-logging.adoc
+// :nav-title: Request Tracing and Metrics
+:page-toclevels: 2
 
-include::project-docs:partial$attributes.adoc[]
 
 [abstract]
 {description}
+
+
+[TIP] 
+====
+In addition to Tracing and other metrics, and client logging, SDK is telemetry is also sent to the Server -- available from 8.0, and in new Capella Operational clusters -- for ingestion with other Prometheus metrics.
+Capella Operational exposes these metrics through the UI.
+====
+
+
 
 include::{version-common}@sdk:shared:partial$rto.adoc[tag=rto]

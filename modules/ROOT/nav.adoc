@@ -40,7 +40,8 @@
 * xref:howtos:error-handling.adoc[]
 * xref:howtos:collecting-information-and-logging.adoc[]
 // * xref:howtos:health-check.adoc[]
-* xref:howtos:slow-operations-logging.adoc[]
+* xref:concept-docs:response-time-observability.adoc[]
+** xref:howtos:slow-operations-logging.adoc[]
 
 .Learn
 * xref:concept-docs:concepts.adoc[]
@@ -54,7 +55,6 @@
 ** xref:concept-docs:xattr.adoc[]
 * xref:concept-docs:errors.adoc[Errors & Diagnostics]
 ** xref:concept-docs:health-check.adoc[]
-** xref:concept-docs:response-time-observability.adoc[]
 * xref:concept-docs:durability-replication-failure-considerations.adoc[]
 //* xref:concept-docs:encryption.adoc[]
 * xref:concept-docs:data-services.adoc[Service Selection]
