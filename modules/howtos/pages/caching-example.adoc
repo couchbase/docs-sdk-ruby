@@ -17,7 +17,7 @@ so to add it to the application you just need to update your `Gemfile`:
 
 [source,ruby]
 ----
-include::howtos:example$rails-caching-example/Gemfile[tag=add_dependency]
+include::devguide:example$ruby/rails-caching-example/Gemfile[tag=add_dependency]
 ----
 
 Do not forget to run `bundle install` to ensure that all dependencies have been satisfied.
@@ -27,7 +27,7 @@ Corresponding configuration usually kept in the configuration environment file a
 
 [source,ruby]
 ----
-include::howtos:example$rails-caching-example/config/environments/development.rb[tag=cache_store_config]
+include::devguide:example$ruby/rails-caching-example/config/environments/development.rb[tag=cache_store_config]
 ----
 
 In this development example, we will try to discover cluster location and credentials in the environment variables, with a fallback to localhost and safe default.
@@ -41,7 +41,7 @@ In this example, we cache the current time for the 3 seconds:
 
 [source,ruby]
 ----
-include::howtos:example$rails-caching-example/app/controllers/wall_clock_controller.rb[tag=cache_time_for_3_seconds]
+include::devguide:example$ruby/rails-caching-example/app/controllers/wall_clock_controller.rb[tag=cache_time_for_3_seconds]
 ----
 
 

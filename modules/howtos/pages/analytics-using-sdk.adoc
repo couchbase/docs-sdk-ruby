@@ -24,7 +24,7 @@ In these examples we will be using an `airports` dataset created on the `travel-
 
 [source,ruby]
 ----
-include::example$analytics.rb[tag=simple]
+include::devguide:example$ruby/analytics.rb[tag=simple]
 ----
 
 
@@ -36,13 +36,13 @@ If parameters are used, they can either be `positional` or `named`:
 .Positional parameters
 [source,ruby]
 ----
-include::example$analytics.rb[tag=positional]
+include::devguide:example$ruby/analytics.rb[tag=positional]
 ----
 
 .Named parameters
 [source,ruby]
 ----
-include::example$analytics.rb[tag=named]
+include::devguide:example$ruby/analytics.rb[tag=named]
 ----
 
 NOTE: As timeouts are propagated to the server by the client, a timeout set on the client side may be used to stop the processing of a request, in order to save system resources.
@@ -72,21 +72,21 @@ Here, we set a `client_context_id`:
 
 [source,ruby]
 ----
-include::example$analytics.rb[tag=clientcontextid]
+include::devguide:example$ruby/analytics.rb[tag=clientcontextid]
 ----
 
 And here we set high priority for the query:
 
 [source,ruby]
 ----
-include::example$analytics.rb[tag=priority]
+include::devguide:example$ruby/analytics.rb[tag=priority]
 ----
 
 Here we pass `readonly` to explicitly mark a query as being read only, and not mutating any documents on the server side.
 
 [source,ruby]
 ----
-include::example$analytics.rb[tag=readonly]
+include::devguide:example$ruby/analytics.rb[tag=readonly]
 ----
 
 
@@ -116,7 +116,7 @@ The `metadata` object contains useful metadata, such as `Metrics` and `ClientCon
 
 [source,ruby]
 ----
-include::example$analytics.rb[tag=printmetrics]
+include::devguide:example$ruby/analytics.rb[tag=printmetrics]
 ----
 
 // For a listing of available `Metrics` in `MetaData`, see the xref:concept-docs:analytics-for-sdk-users.adoc[Understanding Analytics] SDK doc.
@@ -131,7 +131,7 @@ Analytics allows `:request_plus` queries -- ensuring results contain information
 
 [source,ruby]
 ----
-include::example$analytics.rb[tag=scanconsistency]
+include::devguide:example$ruby/analytics.rb[tag=scanconsistency]
 ----
 
 
@@ -149,12 +149,12 @@ You can run a query as follows:
 
 [source,ruby]
 ----
-include::example$analytics.rb[tag=handle-collection]
+include::devguide:example$ruby/analytics.rb[tag=handle-collection]
 ----
 
 In addition to running a query via the `Cluster` object, you can run one via the `Scope` object.
 
 [source,ruby]
 ----
-include::example$analytics.rb[tag=handle-scope]
+include::devguide:example$ruby/analytics.rb[tag=handle-scope]
 ----

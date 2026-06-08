@@ -7,7 +7,7 @@
 
 [source,ruby]
 ----
-include::howtos:example$kv_operations.rb[tag=named-collection-upsert]
+include::devguide:example$ruby/kv_operations.rb[tag=named-collection-upsert]
 ----
 
 The Couchbase Ruby SDK allows you to connect to a Couchbase cluster from Ruby.
