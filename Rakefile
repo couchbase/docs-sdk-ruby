@@ -4,7 +4,7 @@ task :check_syntax do
   fail_count = 0
   errors = []
 
-  Dir.glob("modules/**/*.rb").sort.each do |file|
+  Dir.glob("modules/devguide/examples/*/*.rb").sort.each do |file|
     source = File.read(file)
     RubyVM::InstructionSequence.compile(source, file)
     pass += 1

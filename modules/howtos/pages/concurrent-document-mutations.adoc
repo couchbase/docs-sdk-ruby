@@ -29,7 +29,7 @@ include::{version-common}@sdk:shared:partial$cas.adoc[tag=locking]
 
 [source,ruby]
 ----
-include::example$cas.rb[tag=locking]
+include::devguide:example$ruby/cas.rb[tag=locking]
 ----
 
 The handler will unlock the item either via an explicit unlock operation ([.api]`unlock`) or implicitly via modifying the item with the correct CAS.
