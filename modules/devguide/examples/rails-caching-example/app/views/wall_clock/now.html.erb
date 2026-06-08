@@ -1,0 +1,20 @@
+<h1>Wall Clock</h1>
+
+<p>
+  Realtime time is <%= Time.now %>
+</p>
+
+<h2>Cached Time</h2>
+<p>
+  Current time is <%= @current_time %>
+</p>
+<p>
+  <%= @current_time.to_f %> seconds since Unix Epoch
+</p>
+
+<% if @cache_entry %>
+  <h2>Cache Entry</h2>
+  <pre><%= @cache_entry.pretty_inspect %></pre>
+<% else %>
+  <h2>Cache Miss</h2>
+<% end %>
