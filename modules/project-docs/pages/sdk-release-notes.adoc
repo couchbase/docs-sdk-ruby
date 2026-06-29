@@ -85,6 +85,73 @@ All patch releases for each dot minor release should be API compatible, and safe
 any changes to expected behavior are noted in the release notes that follow.
 
 
+=== Version 3.8.1 (2 June 2026)
+
+[source,bash]
+----
+gem install couchbase -v 3.8.1
+----
+
+https://docs.couchbase.com/sdk-api/couchbase-ruby-client-3.8.1/index.html[API Reference] |
+link:++https://github.com/couchbase/couchbase-ruby-client/compare/3.8.0...3.8.1++[Full Changelog] |
+https://rubygems.org/gems/couchbase/versions/3.8.1[Rubygems]
+
+==== Download Links
+
+[cols="9,19"]
+|===
+| Platform            | File
+| Checksums           | https://packages.couchbase.com/clients/ruby/sdk-3.8.1/couchbase-3.8.1.sha256.txt[couchbase-3.8.1.sha256.txt]
+| Source Archive      | https://packages.couchbase.com/clients/ruby/sdk-3.8.1/couchbase-3.8.1.gem[couchbase-3.8.1.gem]
+| Source Archive      | https://packages.couchbase.com/clients/ruby/sdk-3.8.1/couchbase-opentelemetry-3.8.1.gem[couchbase-opentelemetry-3.8.1.gem]
+| Linux x86_64        | https://packages.couchbase.com/clients/ruby/sdk-3.8.1/couchbase-3.8.1-x86_64-linux.gem[couchbase-3.8.1-x86_64-linux.gem]
+| Linux arm64         | https://packages.couchbase.com/clients/ruby/sdk-3.8.1/couchbase-3.8.1-aarch64-linux.gem[couchbase-3.8.1-aarch64-linux.gem]
+| Linux x86_64 (musl) | https://packages.couchbase.com/clients/ruby/sdk-3.8.1/couchbase-3.8.1-x86_64-linux-musl.gem[couchbase-3.8.1-x86_64-linux-musl.gem]
+| macOS x86_64        | https://packages.couchbase.com/clients/ruby/sdk-3.8.1/couchbase-3.8.1-x86_64-darwin.gem[couchbase-3.8.1-x86_64-darwin.gem]
+| macOS arm64         | https://packages.couchbase.com/clients/ruby/sdk-3.8.1/couchbase-3.8.1-arm64-darwin.gem[couchbase-3.8.1-arm64-darwin.gem]
+|===
+
+==== Fixes and Enhancements
+
+* https://issues.couchbase.com/browse/RCBC-542[RCBC-542]:
+Forward the supplied CAS value to the {cpp} core in `Append` and `Prepend` operations,
+so that compare-and-swap is now honored for these mutations
+(https://github.com/couchbase/couchbase-ruby-client/pull/225[#225]).
+
+* https://issues.couchbase.com/browse/RCBC-550[RCBC-550]:
+Access the {cpp} core log level through the core API instead of spdlog's default logger
+(https://github.com/couchbase/couchbase-ruby-client/pull/229[#229]).
+
+* https://issues.couchbase.com/browse/RCBC-540[RCBC-540],
+https://issues.couchbase.com/browse/RCBC-541[RCBC-541]:
+Updated the Protostellar protocol definitions to the latest version
+(https://github.com/couchbase/couchbase-ruby-client/pull/226[#226]).
+
+* Updated core to 1.3.2
+(https://github.com/couchbase/couchbase-ruby-client/pull/232[#232],
+https://github.com/couchbase/couchbase-ruby-client/pull/224[#224]).
+
+==== Build and Test Infrastructure Improvements
+
+* https://issues.couchbase.com/browse/RCBC-535[RCBC-535]:
+Upgraded the test suite to Minitest 6
+(https://github.com/couchbase/couchbase-ruby-client/pull/228[#228]).
+
+* https://issues.couchbase.com/browse/RCBC-543[RCBC-543]:
+Added a consistency helper for `update_collection` tests
+(https://github.com/couchbase/couchbase-ruby-client/pull/227[#227]).
+
+* https://issues.couchbase.com/browse/RCBC-541[RCBC-541]:
+Added GitHub Actions testing against Couchbase Cloud Native Gateway (CNG)
+(https://github.com/couchbase/couchbase-ruby-client/pull/226[#226]).
+
+* Fixed `rubocop` `Lint/SafeNavigationWithEmpty` offenses
+(https://github.com/couchbase/couchbase-ruby-client/pull/230[#230]).
+
+* Updated GitHub Actions versions
+(https://github.com/couchbase/couchbase-ruby-client/pull/231[#231]).
+
+
 === Version 3.8.0 (31 March 2026)
 
 link:++https://github.com/couchbase/couchbase-ruby-client/compare/3.7.0...3.8.0++[Full Changelog]
@@ -171,7 +238,7 @@ Full support for distributed tracing and metrics using the `OpenTelemetry` API.
 Operations now create spans and record latency and throughput metrics that can be exported to backends like Jaeger or Prometheus.
 
 * https://issues.couchbase.com/browse/RCBC-522[RCBC-522]:
-Support for JWT authentication (https://github.com/couchbase/couchbase-ruby-client/pull/218[#218]). 
+Support for JWT authentication (https://github.com/couchbase/couchbase-ruby-client/pull/218[#218]).
 +
 Added `Couchbase::Management::Options::User::JwtAuthenticator` to enable authentication using JSON Web Tokens.
 
@@ -179,17 +246,17 @@ Added `Couchbase::Management::Options::User::JwtAuthenticator` to enable authent
 The new `Couchbase::Cluster#update_authenticator` method allows rotating credentials (passwords or certificates) on an active cluster connection without requiring a restart (https://github.com/couchbase/couchbase-ruby-client/pull/191[#191]).
 
 * https://issues.couchbase.com/browse/RCBC-503[RCBC-503]:
-New configuration settings in `Couchbase::Options::Cluster` to control the SDK's internal telemetry collection, 
-including endpoint overrides and connection backoff (https://github.com/couchbase/couchbase-ruby-client/pull/190[#190]). 
+New configuration settings in `Couchbase::Options::Cluster` to control the SDK's internal telemetry collection,
+including endpoint overrides and connection backoff (https://github.com/couchbase/couchbase-ruby-client/pull/190[#190]).
 
 * https://issues.couchbase.com/browse/RCBC-528[RCBC-528]:
 Migrated all Key-Value operations to use the high-performance {cpp} backend,
 ensuring feature parity and consistent behavior across Couchbase SDKs
-(https://github.com/couchbase/couchbase-ruby-client/pull/196[#196]). 
+(https://github.com/couchbase/couchbase-ruby-client/pull/196[#196]).
 
 * https://issues.couchbase.com/browse/RCBC-529[RCBC-529]:
 Standardized management operation options:
-Added parent span for search, user, and view management options, and moved to the `Management::Options` module, 
+Added parent span for search, user, and view management options, and moved to the `Management::Options` module,
 and added support for distributed tracing across administrative tasks (https://github.com/couchbase/couchbase-ruby-client/pull/192[#192]).
 
 * https://issues.couchbase.com/browse/RCBC-527[RCBC-527]:
