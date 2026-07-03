@@ -85,7 +85,7 @@ All patch releases for each dot minor release should be API compatible, and safe
 any changes to expected behavior are noted in the release notes that follow.
 
 
-=== Version 3.8.1 (2 June 2026)
+=== Version 3.8.1 (2 July 2026)
 
 [source,bash]
 ----
