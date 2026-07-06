@@ -4,6 +4,7 @@
 :page-partial:
 :page-toclevels: 2
 :page-aliases: ROOT:relnotes-ruby-sdk.adoc,ROOT:release-notes.adoc,ROOT:sdk-release-notes.adoc
+:name_platform_lc: ruby
 
 
 // tag::all[]
@@ -11,6 +12,10 @@
 {description}
 
 This page covers installation of the 3.x versions of the Couchbase Ruby SDK, and release notes for all 3.x versions.
+
+
+include::6.5@sdk:shared:partial$use-latest.adoc[tag=latest]
+
 
 
 == SDK Installation
