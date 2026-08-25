@@ -41,7 +41,7 @@ Here’s the basics of how to run a simple query to fetch 10 random rows from tr
 
 [source,ruby]
 ----
-include::example$queries.rb[tag=simple]
+include::devguide:example$ruby/queries.rb[tag=simple]
 ----
 
 A query is always performed at the `Cluster` level, using the `query()` method.
@@ -52,7 +52,7 @@ Here we pass `readonly` to explicitly mark a query as being read only, and not m
 
 [source,ruby]
 ----
-include::example$queries.rb[tag=read-only]
+include::devguide:example$ruby/queries.rb[tag=read-only]
 ----
 
 
@@ -67,13 +67,13 @@ Note that both parameters and options are optional.
 .Positional parameter example:
 [source,ruby]
 ----
-include::example$queries.rb[tag=positional]
+include::devguide:example$ruby/queries.rb[tag=positional]
 ----
 
 .Named parameter example:
 [source,ruby]
 ----
-include::example$queries.rb[tag=named]
+include::devguide:example$ruby/queries.rb[tag=named]
 ----
 
 
@@ -84,7 +84,7 @@ If no exception gets raised the request succeeded and provides access to both th
 
 [source,ruby]
 ----
-include::example$queries.rb[tag=client-context-id]
+include::devguide:example$ruby/queries.rb[tag=client-context-id]
 ----
 
 The `QueryMetaData` provides insight into some basic profiling/timing information as well as information like the `clientContextId`.
@@ -107,7 +107,7 @@ For example, here is how you can print the `executionTime` of a query:
 
 [source,ruby]
 ----
-include::example$queries.rb[tag=print-metrics]
+include::devguide:example$ruby/queries.rb[tag=print-metrics]
 ----
 
 
@@ -128,7 +128,7 @@ Select this when consistency is always more important than performance.
 
 [source,ruby]
 ----
-include::example$queries.rb[tag=scan-consistency]
+include::devguide:example$ruby/queries.rb[tag=scan-consistency]
 ----
 
 
@@ -143,7 +143,7 @@ the assumption is that the `airline` collection exists within a scope `us`.
 
 [source,ruby]
 ----
-include::example$queries.rb[tag=scope]
+include::devguide:example$ruby/queries.rb[tag=scope]
 ----
 
 A complete list of `QueryOptions` can be found in the https://docs.couchbase.com/sdk-api/couchbase-ruby-client/Couchbase/Options/Query.html[API docs].

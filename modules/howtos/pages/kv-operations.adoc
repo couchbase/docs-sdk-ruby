@@ -35,7 +35,7 @@ Here is the _Insert_ operation, with simple error handling:
 
 [source,ruby]
 ----
-include::example$kv_operations.rb[tag=insert]
+include::devguide:example$ruby/kv_operations.rb[tag=insert]
 ----
 
 
@@ -50,7 +50,7 @@ Without explicitly setting it, a newly-created document would have a CAS value o
 
 [source,ruby]
 ----
-include::example$kv_operations.rb[tag=replace]
+include::devguide:example$ruby/kv_operations.rb[tag=replace]
 ----
 
 // The example above also shows how to handle the case when optimistic falure will fail.
@@ -62,7 +62,7 @@ xref:{version-server}@server:learn:buckets-memory-and-storage/expiration.adoc#ex
 
 [source,ruby]
 ----
-include::example$kv_operations.rb[tag=expiry-insert]
+include::devguide:example$ruby/kv_operations.rb[tag=expiry-insert]
 ----
 
 == Durability
@@ -75,7 +75,7 @@ It can be used like this:
 
 [source,ruby]
 ----
-include::example$kv_operations.rb[tag=durability,indent=0]
+include::devguide:example$ruby/kv_operations.rb[tag=durability,indent=0]
 ----
 
 If no argument is provided the application will report success back as soon as the primary node has acknowledged the mutation in its memory.
@@ -101,7 +101,7 @@ This can be achieved like this:
 
 [source,ruby]
 ----
-include::example$kv_operations.rb[tag=durability-observed,indent=0]
+include::devguide:example$ruby/kv_operations.rb[tag=durability-observed,indent=0]
 ----
 
 To stress, durability is a useful feature but should not be the default for most applications, as there is a performance consideration,
@@ -161,14 +161,14 @@ Using the `.get()` method with the document key can be done in a similar fashion
 
 [source,ruby]
 ----
-include::example$kv_operations.rb[tag=get-simple]
+include::devguide:example$ruby/kv_operations.rb[tag=get-simple]
 ----
 
 You can then add in logic to filter on the fields returned:
 
 [source,ruby]
 ----
-include::example$kv_operations.rb[tag=get]
+include::devguide:example$ruby/kv_operations.rb[tag=get]
 ----
 
 
@@ -179,7 +179,7 @@ When removing a document, you will have the same concern for durability as with 
 
 [source,ruby]
 ----
-include::example$kv_operations.rb[tag=remove]
+include::devguide:example$ruby/kv_operations.rb[tag=remove]
 ----
 
 // TODO: old-style durability will come later
@@ -196,14 +196,14 @@ You can set an expiry value when creating a document:
 
 [source,ruby]
 ----
-include::example$kv_operations.rb[tag=expiry-insert]
+include::devguide:example$ruby/kv_operations.rb[tag=expiry-insert]
 ----
 
 When getting a document, the expiry is not provided automatically by Couchbase Server but it can be requested:
 
 [source,ruby]
 ----
-include::example$kv_operations.rb[tag=expiry-get]
+include::devguide:example$ruby/kv_operations.rb[tag=expiry-get]
 ----
 
 
@@ -217,7 +217,7 @@ Here's how:
 
 [source,ruby]
 ----
-include::example$kv_operations.rb[tag=expiry-replace]
+include::devguide:example$ruby/kv_operations.rb[tag=expiry-replace]
 ----
 
 Some applications may find `getAndTouch` useful, which fetches a document while updating its expiry field.
@@ -226,7 +226,7 @@ It can be used like this:
 
 [source,ruby]
 ----
-include::example$kv_operations.rb[tag=expiry-touch]
+include::devguide:example$ruby/kv_operations.rb[tag=expiry-touch]
 ----
 
 
@@ -242,24 +242,24 @@ NOTE: Increment & Decrement are considered part of the ‘binary’ API and as s
 .Increment
 [source,ruby]
 ----
-include::example$kv_counter.rb[tag=increment]
+include::devguide:example$ruby/kv_counter.rb[tag=increment]
 ----
 
 [source,ruby]
 ----
-include::example$kv_counter.rb[tag=incrementwithoptions]
+include::devguide:example$ruby/kv_counter.rb[tag=incrementwithoptions]
 ----
 
 .Decrement
 [source,ruby]
 ----
-include::example$kv_counter.rb[tag=decrement]
+include::devguide:example$ruby/kv_counter.rb[tag=decrement]
 ----
 
 .Decrement (with options)
 [source,ruby]
 ----
-include::example$kv_counter.rb[tag=decrementwithoptions]
+include::devguide:example$ruby/kv_counter.rb[tag=decrementwithoptions]
 ----
 
 TIP: Setting the document expiry time only works when a document is created, and it is not possible to update the expiry time of an existing counter document with the Increment method -- to do this during an increment, use with the `Touch()` method.
@@ -286,7 +286,7 @@ Here's an example of a KV range scan that gets all documents in a collection:
 .KV Range Scan for all Documents in a Collection
 [source,ruby]
 ----
-include::example$kv_operations.rb[tag=range-scan-all-documents, indent=0]
+include::devguide:example$ruby/kv_operations.rb[tag=range-scan-all-documents, indent=0]
 ----
 
 <1> The `RangeScan` class has two optional attributes: `from` and `to`.
@@ -307,7 +307,7 @@ For example, to get all documents associated with user "alice", you would write:
 .KV Range Scan for all documents in a collection whose IDs start with `alice::`
 [source,ruby]
 ----
-include::example$kv_operations.rb[tag=range-scan-prefix, indent=0]
+include::devguide:example$ruby/kv_operations.rb[tag=range-scan-prefix, indent=0]
 ----
 
 <1> Note the scan type is `PrefixScan`
@@ -320,7 +320,7 @@ If you want to get random documents from a collection, use a sample scan.
 .KV Range Scan for 100 Random Documents
 [source,ruby]
 ----
-include::example$kv_operations.rb[tag=range-scan-sample, indent=0]
+include::devguide:example$ruby/kv_operations.rb[tag=range-scan-sample, indent=0]
 ----
 
 [#kv-range-scan-only-ids]
@@ -331,7 +331,7 @@ If you only want the document IDs, set the `ids_only` attribute of `Options::Sca
 .KV Range Scan for all Document IDs in a Collection
 [source,ruby]
 ----
-include::example$kv_operations.rb[tag=range-scan-all-document-ids, indent=0]
+include::devguide:example$ruby/kv_operations.rb[tag=range-scan-all-document-ids, indent=0]
 ----
 
 == Scoped KV Operations
@@ -343,7 +343,7 @@ Here is an example showing an upsert in the `users` collection, which lives in t
 
 [source,ruby]
 ----
-include::example$kv_operations.rb[tag=named-collection-upsert]
+include::devguide:example$ruby/kv_operations.rb[tag=named-collection-upsert]
 ----
 
 == Additional Resources

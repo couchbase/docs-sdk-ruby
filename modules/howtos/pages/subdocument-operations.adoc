@@ -67,13 +67,13 @@ The latter saves even more bandwidth by not retrieving the contents of the path 
 .Retrieve sub-document value
 [source,ruby]
 ----
-include::example$subdoc.rb[tag=get]
+include::devguide:example$ruby/subdoc.rb[tag=get]
 ----
 
 .Check existence of sub-document path
 [source,ruby]
 ----
-include::example$subdoc.rb[tag=exists]
+include::devguide:example$ruby/subdoc.rb[tag=exists]
 ----
 
 Multiple operations can be combined as well:
@@ -81,7 +81,7 @@ Multiple operations can be combined as well:
 .Combine multiple lookup operations
 [source,ruby]
 ----
-include::example$subdoc.rb[tag=combine]
+include::devguide:example$ruby/subdoc.rb[tag=combine]
 ----
 
 == Mutating
@@ -92,7 +92,7 @@ The simplest of these operations is _subdoc-upsert_, which, similar to the fulld
 .Upserting a new sub-document
 [source,ruby]
 ----
-include::example$subdoc.rb[tag=upsert]
+include::devguide:example$ruby/subdoc.rb[tag=upsert]
 ----
 
 Likewise, the _subdoc-insert_ operation will only add the new value to the path if it does not exist:
@@ -100,7 +100,7 @@ Likewise, the _subdoc-insert_ operation will only add the new value to the path 
 .Inserting a sub-document
 [source,ruby]
 ----
-include::example$subdoc.rb[tag=insert]
+include::devguide:example$ruby/subdoc.rb[tag=insert]
 ----
 
 Dictionary values can also be replaced or removed, and you may combine any number of mutation operations within the same general _mutate-in_ API.
@@ -108,7 +108,7 @@ Here's an example of one which replaces one path and removes another.
 
 [source,ruby]
 ----
-include::example$subdoc.rb[tag=multi]
+include::devguide:example$ruby/subdoc.rb[tag=multi]
 ----
 
 NOTE: `mutateIn` is an _atomic_ operation.
@@ -122,12 +122,12 @@ Unlike fulldoc _append_/_prepend_ operations (which simply concatenate bytes to 
 
 [source,ruby]
 ----
-include::example$subdoc.rb[tag=array-append]
+include::devguide:example$ruby/subdoc.rb[tag=array-append]
 ----
 
 [source,ruby]
 ----
-include::example$subdoc.rb[tag=array-prepend]
+include::devguide:example$ruby/subdoc.rb[tag=array-prepend]
 ----
 
 If your document only needs to contain an array, you do not have to create a top-level object wrapper to contain it.
@@ -136,7 +136,7 @@ Simply initialize the document with an empty array and then use the empty path f
 .Creating and populating an array document
 [source,ruby]
 ----
-include::example$subdoc.rb[tag=array-create]
+include::devguide:example$ruby/subdoc.rb[tag=array-create]
 ----
 
 ////
@@ -146,7 +146,7 @@ Be sure to know the difference between passing a collection of multiple elements
 .Add multiple elements to an array
 [source,ruby]
 ----
-include::example$subdoc.rb[tag=get]
+include::devguide:example$ruby/subdoc.rb[tag=get]
 ----
 [source,php]
 ----
@@ -160,7 +160,7 @@ $result = $collection->mutateIn("my_array", [
 .Add single array as element to existing array
 [source,ruby]
 ----
-include::example$subdoc.rb[tag=get]
+include::devguide:example$ruby/subdoc.rb[tag=get]
 ----
 [source,php]
 ----
@@ -175,7 +175,7 @@ Note that passing multiple values to a single _array-append_ operation results i
 .Adding multiple elements to array (slow)
 [source,ruby]
 ----
-include::example$subdoc.rb[tag=get]
+include::devguide:example$ruby/subdoc.rb[tag=get]
 ----
 [source,php]
 ----
@@ -194,7 +194,7 @@ If you wish to create an array if it does not exist and also push elements to it
 
 [source,ruby]
 ----
-include::example$subdoc.rb[tag=array-upsert]
+include::devguide:example$ruby/subdoc.rb[tag=array-upsert]
 ----
 
 
@@ -205,7 +205,7 @@ This will do a check to determine if the given value exists or not before actual
 
 [source,ruby]
 ----
-include::example$subdoc.rb[tag=array-unique]
+include::devguide:example$ruby/subdoc.rb[tag=array-unique]
 ----
 
 Note that currently the `.array_add_unique()` will fail with a _Path Mismatch_ error if the array contains JSON _floats_, _objects_, or _arrays_.
@@ -222,7 +222,7 @@ For example, to insert `"cruel"` as the second element in the array `["Hello", "
 
 [source,ruby]
 ----
-include::example$subdoc.rb[tag=array-insert]
+include::devguide:example$ruby/subdoc.rb[tag=array-insert]
 ----
 
 // for your examples, above, CD: “I feel like somewhere in this we should also just add an example path like "my.path[1]" too, just to show how to use the index with a nested path. I don't think it's necessarily clear.”
@@ -238,7 +238,7 @@ These operations are logically similar to the _counter_ operation on an entire d
 
 [source,ruby]
 ----
-include::example$subdoc.rb[tag=counter-inc]
+include::devguide:example$ruby/subdoc.rb[tag=counter-inc]
 ----
 
 The _subdoc-counter_ operation performs simple arithmetic against a numeric value, either incrementing or decrementing the existing value.
@@ -246,7 +246,7 @@ The new value is returned.
 
 [source,ruby]
 ----
-include::example$subdoc.rb[tag=counter-dec]
+include::devguide:example$ruby/subdoc.rb[tag=counter-dec]
 ----
 
 The existing value for _subdoc-counter_ operations must be within range of a 64 bit signed integer.
@@ -308,7 +308,7 @@ In this case, the _create-path_ option may be used.
 
 [source,ruby]
 ----
-include::example$subdoc.rb[tag=create-path]
+include::devguide:example$ruby/subdoc.rb[tag=create-path]
 ----
 
 [#subdoc-from-replica]
@@ -321,7 +321,7 @@ The `Collection#lookup_in_any_replica` method returns the first response -- from
 .Sub-Document read from any replica
 [source,ruby]
 ----
-include::example$subdoc.rb[tag=lookupin-any-replica]
+include::devguide:example$ruby/subdoc.rb[tag=lookupin-any-replica]
 ----
 
 The `Collection#lookup_in_all_replicas` method fetches all available replicas (and the active copy), and returns all responses:
@@ -329,7 +329,7 @@ The `Collection#lookup_in_all_replicas` method fetches all available replicas (a
 .Sub-Document read from all replicas
 [source,ruby]
 ----
-include::example$subdoc.rb[tag=lookupin-all-replicas]
+include::devguide:example$ruby/subdoc.rb[tag=lookupin-all-replicas]
 ----
 
 == CAS Semantics
@@ -339,7 +339,7 @@ Subdoc operations are atomic and therefore if two different threads access two d
 
 [source,ruby]
 ----
-include::example$subdoc.rb[tag=cas]
+include::devguide:example$ruby/subdoc.rb[tag=cas]
 ----
 
 Even when modifying the _same_ part of the document, operations will not necessarily conflict.
@@ -364,7 +364,7 @@ In Couchbase Server 6.5 and up, this is built upon with xref:concept-docs:durabi
 
 [source,ruby]
 ----
-include::example$subdoc.rb[tag=durability]
+include::devguide:example$ruby/subdoc.rb[tag=durability]
 ----
 
 

@@ -56,7 +56,7 @@ If you wish to only modify certain parts of a document, you can use xref:subdocu
 
 [source,ruby]
 ----
-include::example$documents.rb[tag=mutate-in]
+include::devguide:example$ruby/documents.rb[tag=mutate-in]
 ----
 
 or xref:{version-server}@server:n1ql:n1ql-language-reference/update.adoc[N1QL UPDATE] to update documents based on specific query criteria:
@@ -86,14 +86,14 @@ specifying one or more sections of the document to be retrieved
 
 [source,ruby]
 ----
-include::example$documents.rb[tag=lookup-in]
+include::devguide:example$ruby/documents.rb[tag=lookup-in]
 ----
 
 The same behaviour could be achieved by using get with projections:
 
 [source,ruby]
 ----
-include::example$documents.rb[tag=lookup-in-projections]
+include::devguide:example$ruby/documents.rb[tag=lookup-in-projections]
 ----
 
 // Counters
@@ -102,14 +102,14 @@ include::{version-common}@sdk:shared:partial$documents.adoc[tag=counters1]
 
 [source,ruby]
 ----
-include::example$documents.rb[tag=counters]
+include::devguide:example$ruby/documents.rb[tag=counters]
 ----
 
 include::{version-common}@sdk:shared:partial$documents.adoc[tag=counters2]
 
 [source,ruby]
 ----
-include::example$documents.rb[tag=counters-increment]
+include::devguide:example$ruby/documents.rb[tag=counters-increment]
 ----
 
 include::{version-common}@sdk:shared:partial$documents.adoc[tag=counters3]

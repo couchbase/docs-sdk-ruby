@@ -105,7 +105,7 @@ Couchbase Server 7.6.0 (7.6.2 for base64-encoded vectors) — or recent Cape
 In this first example we are performing a single vector query:
 [source,ruby]
 ----
-include::example$search.rb[tag=single-vector-query, indent=0]
+include::devguide:example$ruby/search.rb[tag=single-vector-query, indent=0]
 ----
 
 Let's break this down.
@@ -172,7 +172,7 @@ You can run multiple vector queries together:
 
 [source,ruby]
 ----
-include::example$search.rb[tag=multiple-vector-queries, indent=0]
+include::devguide:example$ruby/search.rb[tag=multiple-vector-queries, indent=0]
 ----
 
 How the results are combined (ANDed or ORed) can be controlled with the `vector_query_combination` attribute of `Options::VectorSearch`.
@@ -182,7 +182,7 @@ You can combine a traditional FTS query with vector queries:
 
 [source,ruby]
 ----
-include::example$search.rb[tag=vector-fts-query-combination, indent=0]
+include::devguide:example$ruby/search.rb[tag=vector-fts-query-combination, indent=0]
 ----
 
 .Scoring for these hybrid search queries combines the boost multipliers to get to the final score.

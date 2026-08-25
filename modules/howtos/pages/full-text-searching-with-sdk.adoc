@@ -41,7 +41,7 @@ Search indexes can be xref:{version-server}@server:fts:fts-creating-indexes.adoc
 
 [source,ruby]
 ----
-include::example$search.rb[tag=index]
+include::devguide:example$ruby/search.rb[tag=index]
 ----
 
 
@@ -55,7 +55,7 @@ Here is a simple query that looks for the text "hop beer" using the defined inde
 
 [source,ruby]
 ----
-include::example$search.rb[tag=simple]
+include::devguide:example$ruby/search.rb[tag=simple]
 ----
 
 `match_phrase()` builds a phrase query is built from the results of an analysis of the terms in the query phrase; 
@@ -63,7 +63,7 @@ here it's built on a search in the name field.
 
 [source,ruby]
 ----
-include::example$search.rb[tag=query_fields]
+include::devguide:example$ruby/search.rb[tag=query_fields]
 ----
 
 
@@ -81,27 +81,27 @@ and the total number of rows is taken from the `metrics` returned in the metadat
 
 [source,ruby]
 ----
-include::example$search.rb[tag=highlight]
+include::devguide:example$ruby/search.rb[tag=highlight]
 ----
 
 With `skip` and `limit` a slice of the returned data may be selected:
 
 [source,ruby]
 ----
-include::example$search.rb[tag=limit]
+include::devguide:example$ruby/search.rb[tag=limit]
 ----
 
 Ordering rules can be applied via `sort` and `SearchSort`:
 
 [source,ruby]
 ----
-include::example$search.rb[tag=sort]
+include::devguide:example$ruby/search.rb[tag=sort]
 ----
 
 .Facets
 [source,ruby]
 ----
-include::example$search.rb[tag=facet,]
+include::devguide:example$ruby/search.rb[tag=facet,]
 ----
 
 == Scoped vs Global Indexes
@@ -116,7 +116,7 @@ It's important to use the `Cluster.searchQuery()` / `Cluster.search()` for globa
 
 [source,ruby]
 ----
-include::example$search.rb[tag=fts-search-request, indent=0]
+include::devguide:example$ruby/search.rb[tag=fts-search-request, indent=0]
 ----
 The `SearchQuery` is created in the same way as detailed earlier.
 
@@ -128,5 +128,5 @@ ensuring results contain information from updated indexes:
 
 [source,ruby]
 ----
-include::example$search.rb[tag=consistency]
+include::devguide:example$ruby/search.rb[tag=consistency]
 ----

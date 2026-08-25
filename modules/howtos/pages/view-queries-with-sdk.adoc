@@ -25,7 +25,7 @@ Here is an example:
 
 [source,ruby]
 ----
-include::example$views.rb[tag=simple]
+include::devguide:example$ruby/views.rb[tag=simple]
 ----
 
 
@@ -35,7 +35,7 @@ The `meta_data` returned with the results can be used to show the total number o
 
 [source,ruby]
 ----
-include::example$views.rb[tag=meta]
+include::devguide:example$ruby/views.rb[tag=meta]
 ----
 
 For more details, see the https://docs.couchbase.com/sdk-api/couchbase-ruby-client/Couchbase/Bucket/ViewMetaData.html[API reference].

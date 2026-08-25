@@ -14,7 +14,7 @@ include::{version-common}@sdk:shared:partial$cas.adoc[tag=errors]
 
 [source,ruby]
 ----
-include::example$cas.rb[tag=handlingerrors]
+include::devguide:example$ruby/cas.rb[tag=handlingerrors]
 ----
 
 Sometimes more logic is needed when performing updates, for example, if a property is mutually exclusive with another property; only one or the other can exist, but not both.

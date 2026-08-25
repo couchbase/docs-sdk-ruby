@@ -15,14 +15,14 @@ Access a non-default collection, in the default scope, with:
 
 [source,ruby]
 ----
-include::example$collections.rb[tag=collections_1,indent=0]
+include::devguide:example$ruby/collections.rb[tag=collections_1,indent=0]
 ----
 
 And for a non-default scope:
 
 [source,ruby]
 ----
-include::example$collections.rb[tag=collections_2,indent=0]
+include::devguide:example$ruby/collections.rb[tag=collections_2,indent=0]
 ----
 
 // Add the section below when travel-sample app is available!

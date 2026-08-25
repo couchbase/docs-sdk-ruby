@@ -50,14 +50,14 @@ The following example creates a new bucket, adding settings including making it 
 
 [source,ruby]
 ----
-include::example$provisioning-resources-buckets.rb[tag=create]
+include::devguide:example$ruby/provisioning-resources-buckets.rb[tag=create]
 ----
 
 We can retrieve information on various settings:
 
 [source,ruby]
 ----
-include::example$provisioning-resources-buckets.rb[tag=get]
+include::devguide:example$ruby/provisioning-resources-buckets.rb[tag=get]
 ----
 
 As well as flushing the bucket.
@@ -87,7 +87,7 @@ for further details.
 
 [source,ruby]
 ----
-include::example$provisioning-resources-collections.rb[tag=create-collection-manager,indent=0]
+include::devguide:example$ruby/provisioning-resources-collections.rb[tag=create-collection-manager,indent=0]
 ----
 
 === Creating and Deleting Scopes and Collections
@@ -96,23 +96,23 @@ You can create a scope:
 
 [source,ruby]
 ----
-include::example$provisioning-resources-collections.rb[tag=create-scope,indent=0]
+include::devguide:example$ruby/provisioning-resources-collections.rb[tag=create-scope,indent=0]
 ----
 
 You can then create a collection within that scope:
 
 [source,ruby]
 ----
-include::example$provisioning-resources-collections.rb[tag=create-collection,indent=0]
+include::devguide:example$ruby/provisioning-resources-collections.rb[tag=create-collection,indent=0]
 ----
 
 Finally, you can drop unneeded collections and scopes:
 
 [source,ruby]
 ----
-include::example$provisioning-resources-collections.rb[tag=drop-collection,indent=0]
+include::devguide:example$ruby/provisioning-resources-collections.rb[tag=drop-collection,indent=0]
 
-include::example$provisioning-resources-collections.rb[tag=drop-scope,indent=0]
+include::devguide:example$ruby/provisioning-resources-collections.rb[tag=drop-scope,indent=0]
 
 ----
 
@@ -125,7 +125,7 @@ You can create users with the appropriate RBAC programmatically:
 
 [source,ruby]
 ----
-include::example$provisioning-resources-collections.rb[tag=scopeAdmin, indent=0]
+include::devguide:example$ruby/provisioning-resources-collections.rb[tag=scopeAdmin, indent=0]
 
 ----
 
@@ -137,7 +137,7 @@ the `Scope.collections` property.
 
 [source,ruby]
 ----
-include::example$provisioning-resources-collections.rb[tag=listing-scope-collection, indent=0]
+include::devguide:example$ruby/provisioning-resources-collections.rb[tag=listing-scope-collection, indent=0]
 ----
 
 === More examples

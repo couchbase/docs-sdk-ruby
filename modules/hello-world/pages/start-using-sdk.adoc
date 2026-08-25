@@ -123,7 +123,7 @@ Firstly, you will need to have `require` statement at the top of your Ruby progr
 
 [source,ruby]
 ----
-include::example$start_using.rb[tag=imports,indent=0]
+include::devguide:example$ruby/start_using.rb[tag=imports,indent=0]
 ----
 
 === Connect
@@ -141,7 +141,7 @@ You do need to enable TLS, which can be done by simply using `couchbases://` in 
 
 [source,ruby]
 ----
-include::example$cloud.rb[tag=connect,indent=0]
+include::devguide:example$ruby/cloud.rb[tag=connect,indent=0]
 ----
 
 When accessing Capella from a different Wide Area Network or Availability Zone, you may experience latency issues with the default connection settings.
@@ -156,7 +156,7 @@ Local Server Connection::
 --
 [source,ruby]
 ----
-include::example$start_using.rb[tag=connect,indent=0]
+include::devguide:example$ruby/start_using.rb[tag=connect,indent=0]
 ----
 
 For developing locally on the same machine as Couchbase Server, your URI can be `couchbase://localhost` as shown here.
@@ -168,7 +168,7 @@ Following successful authentication, add this code snippet to access your `Bucke
 
 [source,ruby]
 ----
-include::example$start_using.rb[tag=bucket,indent=0]
+include::devguide:example$ruby/start_using.rb[tag=bucket,indent=0]
 ----
 
 
@@ -186,7 +186,7 @@ Here we refer to the `users` collection within the `tenant_agent_00` scope from 
 
 [source,ruby]
 ----
-include::example$start_using.rb[tag=collection,indent=0]
+include::devguide:example$ruby/start_using.rb[tag=collection,indent=0]
 ----
 
 xref:howtos:kv-operations.adoc[Data operations], like storing and retrieving documents, can be done using simple methods on the `Collection` class such as `Collection.get()` and `Collection.upsert()`.
@@ -195,7 +195,7 @@ To get you started the following code creates a new document in a custom scope a
 
 [source,ruby]
 ----
-include::example$start_using.rb[tag=upsert-get,indent=0]
+include::devguide:example$ruby/start_using.rb[tag=upsert-get,indent=0]
 ----
 
 === {sqlpp} Lookup
@@ -207,7 +207,7 @@ However, with a Scope level query you only need to specify the Collection name -
 
 [source,rb]
 ----
-include::example$start_using.rb[tag=n1ql-query,indent=0]
+include::devguide:example$ruby/start_using.rb[tag=n1ql-query,indent=0]
 ----
 
 You can learn more about {sqlpp} queries on the xref:howtos:n1ql-queries-with-sdk.adoc[Query page].
@@ -216,7 +216,7 @@ After completing operations, finish with (otherwise resources will be released b
 
 [source,ruby]
 ----
-include::example$start_using.rb[tag=disconnect,indent=0]
+include::devguide:example$ruby/start_using.rb[tag=disconnect,indent=0]
 ----
 
 == Next Steps

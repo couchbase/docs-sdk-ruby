@@ -36,7 +36,7 @@ Multiple addresses may be specified in a connection string by delimiting them wi
 
 [source,ruby]
 ----
-include::example$managing_connections.rb[tag=multinodeconnect,indent=0]
+include::devguide:example$ruby/managing_connections.rb[tag=multinodeconnect,indent=0]
 ----
 
 TIP: You don't need to include the address of every node in the cluster.
@@ -99,7 +99,7 @@ If the external ports are not the default, you can specify custom ports explicit
 
 [source,ruby]
 ----
-include::example$managing_connections.rb[tag=explicitports,indent=0]
+include::devguide:example$ruby/managing_connections.rb[tag=explicitports,indent=0]
 ----
 
 TIP: In a deployment that uses multi-dimensional scaling, a custom KV port is only applicable for nodes running the KV service.  
@@ -213,7 +213,7 @@ and pass it the path to the certificate file via '?trust_certificate=...' in the
 
 [source,ruby]
 ----
-include::example$managing_connections.rb[tag=tls,indent=0]
+include::devguide:example$ruby/managing_connections.rb[tag=tls,indent=0]
 ----
 
 Then use this custom `Cluster` when opening the connection to the cluster.
@@ -247,7 +247,7 @@ In order to make the SDK use the SRV records, you need to pass in the hostname f
 
 [source,ruby]
 ----
-include::example$managing_connections.rb[tag=dnssrv,indent=0]
+include::devguide:example$ruby/managing_connections.rb[tag=dnssrv,indent=0]
 ----
 
 If the DNS SRV records could not be loaded properly you'll get the message logged and the given host name will be used as an A record lookup.

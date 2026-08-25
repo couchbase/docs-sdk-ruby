@@ -34,11 +34,11 @@ For sample procedures whereby certificates can be generated and deployed, see xr
 The rest of this document assumes that the processes there, or something similar, have been followed:
 
 
-// include::example$auth.rb[tag=auth1,indent=0]
+// include::devguide:example$ruby/auth.rb[tag=auth1,indent=0]
 
 [source,ruby]
 ----
-include::example$auth.rb[tag=auth2,indent=0]
+include::devguide:example$ruby/auth.rb[tag=auth2,indent=0]
 ----
 
 
@@ -46,5 +46,5 @@ include::{version-common}@sdk:shared:partial$auth-overview.adoc[tag=ldap]
 
 [source,ruby]
 ----
-include::example$auth.rb[tag=auth3,indent=0]
+include::devguide:example$ruby/auth.rb[tag=auth3,indent=0]
 ----
