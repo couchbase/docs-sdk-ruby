@@ -19,7 +19,7 @@ Our xref:hello-world:start-using-sdk.adoc[Getting Started] guide introduced basi
 
 [source,ruby]
 ----
-include::hello-world:example$start_using.rb[tag=connect,indent=0]
+include::devguide:example$ruby/start_using.rb[tag=connect,indent=0]
 ----
 
 
