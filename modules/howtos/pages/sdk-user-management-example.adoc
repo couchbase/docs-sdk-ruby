@@ -20,20 +20,20 @@ The most common uses of the `UserManager` API are creating and listing users:
 .Creating Users
 [source,ruby]
 ----
-include::example$managing_users.rb[tag=creating-users]
+include::devguide:example$ruby/managing_users.rb[tag=creating-users]
 ----
 
 .Listing Users
 [source,ruby]
 ----
-include::example$managing_users.rb[tag=listing-users]
+include::devguide:example$ruby/managing_users.rb[tag=listing-users]
 ----
 
 Using a user created in the SDK to access data:
 
 [source,ruby]
 ----
-include::example$managing_users.rb[tag=accessing-data]
+include::devguide:example$ruby/managing_users.rb[tag=accessing-data]
 ----
 
 

@@ -10,7 +10,7 @@ Plus notes on Cloud, networks, and AWS Lambda.
 {description}
 
 
-The Couchbase Ruby SDK supports MRI Ruby versions 3.2, 3.3, and 3.4
+The Couchbase Ruby SDK supports MRI Ruby versions 4.0, 3.4, and 3.3
  -- see the table below for <<ruby-version-compatibility,supported versions and dates>>.
 // We follow list of supported versions at https://www.ruby-lang.org/en/downloads/branches/
 
@@ -46,47 +46,25 @@ Ruby versions that have reached their https://www.ruby-lang.org/en/downloads/bra
 
 === OS Compatibility
 
-The {name-sdk} will run on, and is supported on, the following OSs and platforms.
-The SDK has been tested on a representative subset of the platforms listed below.
-
-****
-[discrete]
-=== GNU/Linux
-
-* Amazon Linux 2 & AL2023.
-* Red Hat Enterprise Linux 8, 9, & 10.
-* Oracle Linux 8, 9, & 10.
-
-* Ubuntu (LTS) 22.04 (_Jammy_) & 24.04 (_Noble_).
-* Debian 11 (_Bullseye_), Debian 12 (_Bookworm_), & Debian 13 (_Trixie_).
-* SUSE Enterprise Linux 12 & 15.
-* Alpine Linux 3.21 - 3.23.
-
-
-[discrete]
-=== Microsoft Windows
-
-* Microsoft Windows 10 & 11;
-* Windows Server 2019, 2022, & 2025.
-
-[discrete]
-=== Mac OS X
-
-* The current and previous two releases of OS X.
-At time of writing (March 2026): 26 (Tahoe), 15 (Sequoia), and 14 (Sonoma).
-****
-
+include::{version-common}@sdk:shared:partial$compat.adoc[tag=os-compat]
 
 
 
 // Platforms, Chipsets, and Virtual Environments.
-include::{version-common}@sdk:shared:partial$platform.adoc[tag=virtual]
+include::{version-common}@sdk:shared:partial$compat.adoc[tag=virtual]
+
 
 
 
 
 // Network Requirements
-include::{version-common}@sdk:shared:partial$network-requirements.adoc[]
+include::{version-common}@sdk:shared:partial$compat.adoc[tag=network-requirements]
+
+
+
+// Serverless Environments
+include::{version-common}@sdk:shared:partial$compat.adoc[tag=serverless]
+
 
 
 
@@ -97,18 +75,14 @@ Couchbase SDKs are tested against a variety of different environments to ensure 
 
 === Couchbase Version/SDK Version Matrix
 
-The matrix below denotes the version of Couchbase Server, the version of the Ruby SDK and whether the SDK is:
 
-* ✖ *Unsupported*: This combination is not tested, and is not within the scope of technical support if you have purchased a support agreement.
-* ◎ *Compatible*: This combination has been tested previously, and should be compatible.
-This combination is not recommended by our technical support organization.
-It is best to upgrade either the SDK or the Couchbase version you are using.
-* ✔ *Supported*: This combination is subject to ongoing quality assurance, and is fully supported by our technical support organization.
+include::{version-common}@sdk:shared:partial$compat.adoc[tag=matrix-notes1]
+
 
 .Recommended SDK per Server Version Matrix
 [#table_sdk_versions]
 |===
-| | 3.5 | 3.6 | 3.7 - 3.8
+| | 3.5 | 3.6 | 3.7 - 3.9
 
 | *Server 7.0 - 7.2* ②
 | *✔*
@@ -126,80 +100,61 @@ It is best to upgrade either the SDK or the Couchbase version you are using.
 | *✔*
 |===
 
-Note the https://www.couchbase.com/support-policy/EOL/[End of Life dates^] for Couchbase Server and SDK versions.
-See the notes there for Support details.
 
-① Server 7.6 & 8.0 are compatible with all supported (not yet End-of-Life) versions of the {name-sdk}, but for full support of the latest features you need to upgrade to a recent version of the SDK.
-See the <<#couchbase-new-feature-availability-matrix,Feature Availablity matrix below>> and the xref:sdk-release-notes.adoc[Release Notes page].
-
-② Earlier versions of Server, back to 7.0, should be compatible with newer releases of the SDK (unless the release notes mention specific deprecations), but these older Server versions are EOL and no longer supported.
 
 
 === Capella Compatibility
 
-The Couchbase Ruby SDK is fully compatible with Couchbase Capella, our fully-hosted database-as-a-service.
-To make development easier, the SDK includes the Capella client certificate ready installed.
+include::{version-common}@sdk:shared:partial$compat.adoc[tag=cloud]
 
-include::{version-common}@sdk:shared:partial$capella.adoc[tag=cloud]
 
+// add in Columnar link
 
 === Couchbase New Feature Availability Matrix
+
 
 .Couchbase Server and SDK Supported Version Matrix
 [.table-merge-cells]
 [cols="7,6,6,6"]
 |===
-| | Server 7.0 & 7.1 | Server 7.2 | Server 7.6
+| | Server 7.2 | Server 7.6  | Server 8.0
 
-| Enhanced Durability
-3+| All SDK versions
-
-| Durable Writes
-3+| Since 3.0
-
-| Analytics
-3+| Since 2.6
-
-| Collections
-3+| Since 3.0.3
-
-| Scope-Level {sqlpp} (formerly N1QL) Queries & all Collections features
-3+| Since SDK 3.2.0
-
-| Request Tracing
-3+| Since SDK 3.2.0
-
-| Distributed ACID Transactions
-3+| Not Yet Supported
-
-| Cloud Native Gateway
-3+| Not Yet Supported
+| KV Range Scan
+| N/A
+2+| All supported SDK versions
 
 | Vector Search
+| N/A
+2+| From SDK 3.5.0 (base64 encoded vectors from 1.7.0)
+
+| Preferred Server Group Replica Reads
+| N/A
+2+| From SDK 3.5.5 (with Server 7.6.2 onwards)
+
+| Vector Query using GSI
 2+| N/A
-| From SDK 3.5.0
+| From SDK 3.7.0 ①
 |===
 
-
+include::{version-common}@sdk:shared:partial$compat.adoc[tag=feature-notes]
 
 
 
 === API Version
 
-include::{version-common}@sdk:shared:partial$api-version.adoc[tag=api-version]
-
+include::{version-common}@sdk:shared:partial$compat.adoc[tag=api-version]
 
 
 
 == SDK API Stability
 
 
-include::{version-common}@sdk:shared:partial$interface-stability-pars.adoc[tag=interface-stability-section]
+=== Interface Stability
+
+include::{version-common}@sdk:shared:partial$compat.adoc[tag=interface-stability-section]
 
 
 === Older SDK Versions
 
-include::{version-common}@sdk:shared:partial$archive.adoc[tag=link]
 
-
-
+include::{version-common}@sdk:shared:partial$compat.adoc[tag=archive-link]

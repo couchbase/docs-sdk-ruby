@@ -1,8 +1,7 @@
 = Search
 :description: You can use the Search Service to create queryable Search indexes in Couchbase Server.
-:page-topic-type: howto
 :page-toclevels: 2
-:page-pagination: full
+
 
 [abstract]
 {description}

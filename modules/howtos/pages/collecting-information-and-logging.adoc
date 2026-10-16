@@ -1,6 +1,6 @@
 = Logging
 :description: Setting log levels.
-:page-topic-type: howto
+
 
 [abstract]
 {description}

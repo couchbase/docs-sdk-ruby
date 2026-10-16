@@ -1,5 +1,4 @@
 = Data Modelling, Durability, and Consistency
-// :page-aliases: 
 // :page-aliases: durability-replication-failure-considerations.adoc
 :description: Performance, availability, consistency -- balance your priorities, and model your data to achieve these goals.
 :page-toclevels: 2
@@ -12,15 +11,11 @@
 // This page pulls in content from -sdk-common-
 // and code samples from -example-dir-
 // 
-// It can be seen built at http://docs.couchbase.com/scala-sdk/1.7/concept-docs/data-durability-acid-transactions.html
+// It can be seen built at http://docs.couchbase.com/ruby-sdk/3.9/concept-docs/data-durability-acid-transactions.html
 
 
 [abstract]
 {description}
-
-
-**TODO: Scala --> Python**
-
 
 
 You want to query your data, but does that always mean a {sqlpp} query to the Query Service?
@@ -29,7 +24,7 @@ The CRUD API of the {sqlpp} Query service is mirrored by the Data Service's API,
 
 [source,python]
 ----
-include::devguide:example$python/kv_operations.py[tag=durability]
+include::devguide:example$ruby/kv_operations.rb[tag=durability]
 ----
 
 At its heart, a database is in the business of storing data and letting you query and retrieve it.

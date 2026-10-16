@@ -37,21 +37,32 @@ The information logged can be configured, although configurability does vary sli
  
 Advanced users can build their own implementations of the interface:
 
-[source,java]
+////
+[source,ruby]
 ----
-interface Meter {
-     Counter counter(String name, Map<String, String> tags)
-     ValueRecorder valueRecorder(String name, Map<String, String> tags)
-}
+module Couchbase
+  module Metrics
+    class Meter
+      # @param name [String]
+      # @param tags [Hash{String => String}]
+      # @return [ValueRecorder]
+      def value_recorder(name, tags)
+        raise NotImplementedError
+      end
 
-interface Counter {
-    void incrementBy(ulong number)
-}
+      def close; end
+    end
 
-interface ValueRecorder {
-    void recordValue(ulong value)
-}
+    class ValueRecorder
+      # @param value [Integer]
+      def record_value(value)
+        raise NotImplementedError
+      end
+    end
+  end
+end
 ----
+////
 
 // The different Meter implementation names are heavily based on their _OpenTelemetry_ counterparts.
 

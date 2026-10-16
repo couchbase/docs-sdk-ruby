@@ -1,6 +1,4 @@
 = Concurrent Document Mutations
-:page-topic-type: howto
-include::project-docs:partial$attributes.adoc[]
 :page-aliases: ROOT:concurrent-document-mutations.adoc
 
 include::{version-common}@sdk:shared:partial$cas.adoc[tag=intro]
@@ -34,5 +32,5 @@ include::devguide:example$ruby/cas.rb[tag=locking]
 
 The handler will unlock the item either via an explicit unlock operation ([.api]`unlock`) or implicitly via modifying the item with the correct CAS.
 
-If the item has already been locked, the server will respond with CasMismatch which means that the operation could not be executed temporarily, but may succeed later on.
+If the item has already been locked, the server will respond with `CasMismatch` which means that the operation could not be executed temporarily, but may succeed later on.
 

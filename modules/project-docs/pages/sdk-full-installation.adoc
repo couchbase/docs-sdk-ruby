@@ -1,0 +1,89 @@
+= Full Installation
+:description: Installation instructions for the Couchbase Ruby Client.
+:page-partial:
+
+[abstract]
+{description}
+
+
+
+
+
+== Prerequisites
+
+Ruby SDK supports MRI Ruby versions 4.0, 3.4, and 3.3.
+
+
+
+== Installing the SDK
+
+The source package is available through https://rubygems.org/gems/couchbase and can be installed with:
+
+[source,console]
+----
+gem install couchbase
+----
+
+Note that `--pre` is necessary when the SDK in Beta/Preview phase -- `gem install --pre couchbase` -- otherwise the
+latest stable release will be installed.
+
+In addition to rubygems.org, we also maintain official gem repositories, where we publish not only source version of the
+package, but also precompiled binaries for Linux and MacOS.
+
+To use official repository, it have to be registered in the `.gemrc` file:
+
+[source,bash]
+----
+gem sources --add https://packages.couchbase.com/clients/ruby/
+----
+
+The repository could be also specified in `Gemfile` for bundler. And in this case the source would be applied only for
+Couchbase SDK library:
+
+[source,ruby,subs="+attributes"]
+----
+gem "couchbase", "{sdk_current_version}", :source => "https://packages.couchbase.com/clients/ruby/"
+----
+
+Or run in terminal:
+
+[source,bash]
+----
+gem install couchbase --clear-sources --source https://packages.couchbase.com/clients/ruby/
+----
+
+And finally, it is possible to download the package and install from the file. In the notes below, we specify tables
+with links to every release package along with precompiled binaries.
+
+[source,bash,subs="+attributes"]
+----
+wget https://packages.couchbase.com/clients/ruby/sdk-{sdk_current_version}/couchbase-{sdk_current_version}-x86_64-linux.gem
+gem install couchbase-{sdk_current_version}-x86_64-linux.gem
+----
+
+The URL structure is:
+
+[source,shell,subs="+attributes"]
+----
+https://packages.couchbase.com/clients/ruby/sdk-{sdk_current_version}/couchbase-{sdk_current_version}-%{platform}.gem
+----
+
+where "platform" placeholder can take values: `arm64-darwin`, `x86_64-darwin`, `x86_64-linux`,
+`x86_64-linux-musl`. To see platform string the following command:
+
+[source,bash]
+----
+ruby -rrbconfig -e 'puts RbConfig::CONFIG["platform"]'
+----
+
+
+
+
+
+
+
+////
+== Further Reading
+
+For those who spend little or no time using {name_platform}, but have to evaluate the platform, further installation and background help is available on the xref:hello-world:platform-help.adoc[{name_platform} Platform Introduction page].
+////
