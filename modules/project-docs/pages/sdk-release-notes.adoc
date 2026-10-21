@@ -68,7 +68,7 @@ https://packages.couchbase.com/clients/ruby/sdk-{sdk_current_version}/couchbase-
 ----
 
 where "platform" placeholder can take values: `arm64-darwin`, `x86_64-darwin`, `x86_64-linux`,
-`x86_64-linux-musl`. To see platform string the following command:
+`aarch64-linux`, `x86_64-linux-musl`, `aarch64-linux-musl`, `x64-mingw-ucrt`, `aarch64-mingw-ucrt`. To see platform string the following command:
 
 [source,bash]
 ----
@@ -87,12 +87,240 @@ any changes to expected behavior are noted in the release notes that follow.
 
 
 
-=== Version 3.9.0 (???? October 2026)
+=== Version 3.9.0 (21 October 2026)
 
+This is the first GA release of the 3.9 Ruby SDK.
+The {cpp} core moves from 1.3.3 to 1.5.0.
 
+[source,bash]
+----
+gem install couchbase -v 3.9.0
+----
 
+https://docs.couchbase.com/sdk-api/couchbase-ruby-client-3.9.0/index.html[API Reference] |
+link:++https://github.com/couchbase/couchbase-ruby-client/compare/3.8.2...3.9.0++[Full Changelog] |
+https://rubygems.org/gems/couchbase/versions/3.9.0[Rubygems]
 
+[IMPORTANT]
+.Behaviour changes
+====
+Review these before upgrading from 3.8.x:
 
+* TLS connections now verify the server certificate against the dialed hostname (https://jira.issues.couchbase.com/browse/CXXCBC-838[CXXCBC-838]). A certificate that does not match the hostname now fails the handshake.
+* Query, analytics, search, eventing and management requests raise `Error::InvalidArgument` for an unrecognised HTTP 400 (https://jira.issues.couchbase.com/browse/CXXCBC-1049[CXXCBC-1049]). SDK-RFC 0058 requires it.
+* `retry_strategy:` takes `:best_effort` or `:fail_fast` (https://jira.issues.couchbase.com/browse/RCBC-582[RCBC-582]). On the operations that honour it, any other value, such as a `Proc`, raises `Error::InvalidArgument`.
+* An `Options::Base` subclass defined by the application must yield in its own `initialize` (https://jira.issues.couchbase.com/browse/RCBC-583[RCBC-583]). `Options::Base` no longer yields for subclasses.
+* `Bucket#ping` reports the cluster-level HTTP services as well as key-value (https://jira.issues.couchbase.com/browse/CXXCBC-845[CXXCBC-845], https://jira.issues.couchbase.com/browse/CXXCBC-1022[CXXCBC-1022]).
+* The application telemetry latency histograms for HTTP services report `_sum` in milliseconds (https://jira.issues.couchbase.com/browse/CXXCBC-1002[CXXCBC-1002]). Dashboards built on the old values need review.
+====
+
+==== Download Links
+
+[cols="9,19"]
+|===
+| Platform            | File
+| Checksums           | https://packages.couchbase.com/clients/ruby/sdk-3.9.0/couchbase-3.9.0.sha256.txt[couchbase-3.9.0.sha256.txt]
+| Source Archive      | https://packages.couchbase.com/clients/ruby/sdk-3.9.0/couchbase-3.9.0.gem[couchbase-3.9.0.gem]
+| Source Archive      | https://packages.couchbase.com/clients/ruby/sdk-3.9.0/couchbase-opentelemetry-3.9.0.gem[couchbase-opentelemetry-3.9.0.gem]
+| Linux x86_64        | https://packages.couchbase.com/clients/ruby/sdk-3.9.0/couchbase-3.9.0-x86_64-linux.gem[couchbase-3.9.0-x86_64-linux.gem]
+| Linux arm64         | https://packages.couchbase.com/clients/ruby/sdk-3.9.0/couchbase-3.9.0-aarch64-linux.gem[couchbase-3.9.0-aarch64-linux.gem]
+| Linux x86_64 (musl) | https://packages.couchbase.com/clients/ruby/sdk-3.9.0/couchbase-3.9.0-x86_64-linux-musl.gem[couchbase-3.9.0-x86_64-linux-musl.gem]
+| Linux arm64 (musl)  | https://packages.couchbase.com/clients/ruby/sdk-3.9.0/couchbase-3.9.0-aarch64-linux-musl.gem[couchbase-3.9.0-aarch64-linux-musl.gem]
+| macOS x86_64        | https://packages.couchbase.com/clients/ruby/sdk-3.9.0/couchbase-3.9.0-x86_64-darwin.gem[couchbase-3.9.0-x86_64-darwin.gem]
+| macOS arm64         | https://packages.couchbase.com/clients/ruby/sdk-3.9.0/couchbase-3.9.0-arm64-darwin.gem[couchbase-3.9.0-arm64-darwin.gem]
+| Windows x64         | https://packages.couchbase.com/clients/ruby/sdk-3.9.0/couchbase-3.9.0-x64-mingw-ucrt.gem[couchbase-3.9.0-x64-mingw-ucrt.gem]
+| Windows arm64       | https://packages.couchbase.com/clients/ruby/sdk-3.9.0/couchbase-3.9.0-aarch64-mingw-ucrt.gem[couchbase-3.9.0-aarch64-mingw-ucrt.gem]
+|===
+
+==== New Features
+
+* https://jira.issues.couchbase.com/browse/RCBC-558[RCBC-558], https://jira.issues.couchbase.com/browse/CXXCBC-980[CXXCBC-980]:
+**Read a Named Replica** -- `Collection#get_replica` reads one specific replica of a document, as defined by SDK-RFC 0053.
+** `get_any_replica` returns whichever copy answers first. `get_replica` lets the application choose the copy.
+** The copy is selected with `GetReplicaStrategy.from_index(:first)`, or `:second` and `:third`. The active copy cannot be selected.
+** The result is a `GetReplicaResult`, and `replica?` is `true`.
+** Three new errors describe why the chosen copy cannot answer. The first two are raised without a network round trip.
+*** `Error::ReplicaIndexOutOfBounds`: the bucket has fewer replicas than the index.
+*** `Error::ReplicaIndexCurrentlyUnavailable`: the replica is configured but not placed on a node.
+*** `Error::DocumentNotFoundOnReplica`: the replica does not hold the document. It subclasses `Error::DocumentNotFound`.
+** `GetReplicaStrategy.from_index(:first, wrap: true)` reads the next readable replica instead of failing. It still fails if the bucket has no replicas, or if no replica is readable.
+** The replica is chosen from the vBucket map, not from node health. A read of a replica whose node is down waits until its timeout. The API reference shows how to bound the wait and fall back to `get_any_replica`.
+** Over `couchbase2://` the operation raises `Error::FeatureNotAvailable`.
+
+* https://jira.issues.couchbase.com/browse/RCBC-304[RCBC-304], https://jira.issues.couchbase.com/browse/CXXCBC-845[CXXCBC-845]:
+**wait_until_ready** -- `Cluster#wait_until_ready` and `Bucket#wait_until_ready` ping the services until they respond or the timeout elapses.
+** `Options::WaitUntilReady` selects the desired state and the service types.
+** `:online` waits for every endpoint of each requested service. `:degraded` waits for at least one.
+** For a bucket, `:online` also waits for the vBucket map. Every vBucket needs its active copy and each placeable replica on a node.
+** The wait raises `Error::UnambiguousTimeout` on timeout, and `Error::ClusterClosed` once `Cluster#disconnect` has run.
+** `Thread#raise`, `Thread#kill` and `Timeout.timeout` do not interrupt the wait.
+** Over `couchbase2://` the wait raises `Error::FeatureNotAvailable`.
+
+* https://jira.issues.couchbase.com/browse/RCBC-554[RCBC-554], https://jira.issues.couchbase.com/browse/CXXCBC-911[CXXCBC-911]:
+**Hybrid Search Score Fusion** -- `Options::Search#scoring` controls how a hybrid search merges its FTS and vector results into one ranked list.
+** `SearchScoring.reciprocal_rank_fusion` merges the two lists by rank. It accepts `rank_constant` and `window_size`.
+** `SearchScoring.relative_score_fusion` merges the two lists by normalized score. It accepts `window_size`.
+** `SearchScoring.none` turns scoring off.
+** Both fusion strategies require Couchbase Server 8.1. On an older server the request raises `Error::FeatureNotAvailable`.
+** Over `couchbase2://` only `SearchScoring.none` is supported. The fusion strategies raise `Error::FeatureNotAvailable`.
+** The two fusion strategies are uncommitted.
+** Setting both `scoring` and `disable_scoring` raises `Error::InvalidArgument`.
+
+* https://jira.issues.couchbase.com/browse/RCBC-582[RCBC-582]:
+**Retry Strategy per Operation** -- Key-value operations honour `retry_strategy:`.
+** `:fail_fast` makes a request fail at once instead of retrying. A mutation on a locked document then raises `Error::DocumentLocked` immediately.
+** `:best_effort` and `nil` keep the default strategy of the `Cluster` object.
+** These operations honour the option:
+*** `get_multi`, `upsert_multi` and `remove_multi`;
+*** `get_replica`;
+*** every other single-document operation except the replica reads below.
+** These operations ignore the option:
+*** `get_any_replica`, `get_all_replicas`, `lookup_in_any_replica` and `lookup_in_all_replicas`.
+*** Range scans.
+*** Query, analytics, search and view requests.
+** Observe requests issued for `persist_to:` and `replicate_to:` still use the default strategy.
+
+* https://jira.issues.couchbase.com/browse/CXXCBC-978[CXXCBC-978]:
+**Log Redaction** -- With `log_redaction=true` in the connection string, the core tags sensitive values in its log messages.
+** `<ud>` marks user data, `<md>` metadata and `<sd>` system data.
+** A tool such as `cblogredaction` then strips or hashes them before the logs are shared.
+** The setting is off by default. When it is off, log output is unchanged.
+
+* https://jira.issues.couchbase.com/browse/RCBC-575[RCBC-575]:
+**ActiveSupport Cache Mutation Tracking** -- The `mutation_tracking:` store option selects which writes `delete_matched` and `clear` wait for.
+** `:last`, the default, waits for the last write, as before.
+** `:all` waits for the newest write to every vBucket the store wrote to.
+** Any object that responds to `record` and `mutation_state` can be given instead.
+** Writes by other store instances or processes are not covered.
+
+==== Improvements
+
+* **Vector Search Committed** -- `VectorSearch`, `VectorQuery` and `SearchRequest#vector_search` are no longer marked uncommitted.
+
+* **Platforms** -- Precompiled gems are published for more platforms:
+** Windows x64 (`x64-mingw-ucrt`).
+** Windows arm64 (`aarch64-mingw-ucrt`). This gem does not depend on `grpc`, so `couchbase2://` is unavailable on it.
+** Linux arm64 with musl (`aarch64-linux-musl`).
+** The musl gems are built on Alpine 3.21.
+
+* https://jira.issues.couchbase.com/browse/RCBC-480[RCBC-480]:
+**Windows Connections** -- The extension links Winsock ahead of the Ruby library on MinGW. Every connection previously failed with `WSAENOTSOCK`.
+
+==== Security Fixes
+
+* https://jira.issues.couchbase.com/browse/CXXCBC-1072[CXXCBC-1072], https://jira.issues.couchbase.com/browse/CXXCBC-1106[CXXCBC-1106]:
+**Management Request Encoding** -- Names and values passed by the application can no longer change the meaning of a management request.
+** User and group upsert bodies are now form-encoded. A password such as `Pw123456&roles=admin` previously added a `roles` field.
+** Names placed into REST paths are now escaped. A `#`, `?` or `/` in a name could cut the path short or address a different entity.
+
+* https://jira.issues.couchbase.com/browse/CXXCBC-981[CXXCBC-981]:
+**vBucket Map Bounds Check** -- Replica reads no longer index past the end of a vBucket map row. A row is short right after replicas are added to a bucket. Such a read could route a request to a node that does not hold the vBucket.
+
+* https://jira.issues.couchbase.com/browse/CXXCBC-837[CXXCBC-837]:
+**MCBP Frame Bounds Check** -- A key-value response frame whose prefix length exceeds its body length is rejected. It previously drove the parser past the receive buffer.
+
+* https://jira.issues.couchbase.com/browse/CXXCBC-836[CXXCBC-836]:
+**Analytics Identifier Quoting** -- Bucket, scope and collection names are quoted and escaped in the Analytics statements the SDK composes.
+
+==== Bug Fixes
+
+* https://jira.issues.couchbase.com/browse/RCBC-559[RCBC-559], https://jira.issues.couchbase.com/browse/RCBC-567[RCBC-567], https://jira.issues.couchbase.com/browse/RCBC-586[RCBC-586], https://jira.issues.couchbase.com/browse/RCBC-304[RCBC-304]:
+**Memory Leaks on Errors and Interrupts** -- A failing operation no longer leaks its request, its response or its reference to the core cluster.
+** 100,000 gets of a missing document grew RSS by about 23 MB.
+** `Timeout.timeout`, `Thread#kill` or a signal during an operation leaked its response. RSS growth per interrupted 4 MiB get drops from about 4 MiB to under 0.2 MiB.
+** These leaked the arguments already copied:
+*** a tracer that raises;
+*** an `inspect` that raises;
+*** an out-of-range Integer;
+*** a non-Symbol durability option.
+** A dynamic Symbol as a view namespace no longer crashes the process. It raises `ArgumentError`.
+** Errors reach Ruby with the same class, message and backtrace as before.
+** An interrupt that arrives just before an operation now takes effect when the operation completes. That can be as late as the operation timeout.
+
+* https://jira.issues.couchbase.com/browse/RCBC-568[RCBC-568]:
+**Logger Hang** -- A failing Ruby logger callback no longer hangs the process.
+** The failure can be a non-`StandardError` exception, a `Timeout` or a `Thread#kill`.
+** The sink mutex stayed locked, and the next flush blocked while holding the GVL. The process then ignored `SIGTERM`.
+** Unwritten messages, including the one whose callback failed, are delivered by the next flush.
+** `Couchbase.set_logger(nil)` no longer raises `ArgumentError`.
+
+* https://jira.issues.couchbase.com/browse/RCBC-571[RCBC-571], https://jira.issues.couchbase.com/browse/CXXCBC-913[CXXCBC-913], https://jira.issues.couchbase.com/browse/CXXCBC-914[CXXCBC-914], https://jira.issues.couchbase.com/browse/CXXCBC-1087[CXXCBC-1087]:
+**fork() Handling** -- The child is now notified as the child.
+** The child was notified as the parent, so it restarted the I/O it inherited. Both processes read the same sockets.
+** An asynchronous exception during the fork no longer leaves the parent's `Cluster` objects stopped.
+** The child closes the sockets it inherited before it starts its own I/O.
+** The child reopens each `Cluster` object without waiting for its bootstrap (https://jira.issues.couchbase.com/browse/CXXCBC-1087[CXXCBC-1087]). Requests issued meanwhile are held until the bootstrap completes. Each request is still bounded by its own timeout.
+
+* https://jira.issues.couchbase.com/browse/RCBC-564[RCBC-564]:
+**Range Scan Use-After-Free** -- A scan result keeps the core cluster behind its `Cluster` object alive. Freeing the result after `Cluster#disconnect` could crash or hang the process. So could freeing both in one GC sweep.
+
+* https://jira.issues.couchbase.com/browse/RCBC-566[RCBC-566]:
+**replica? Flag** -- `GetReplicaResult#replica?` now reports whether `get_any_replica` and `get_all_replicas` returned a replica. It previously returned `nil` over `couchbase://`.
+
+* https://jira.issues.couchbase.com/browse/RCBC-580[RCBC-580]:
+**Raw Query and Analytics Parameters** -- Raw parameters reach the server as given.
+** A Symbol key passed to `Options::Query#raw` silently dropped that parameter and every raw parameter after it.
+** `Options::Analytics#raw` sent the entry as a statement binding `$name`. It is now sent as a request option.
+** A non-String key or value now raises `ArgumentError`. Such entries were previously dropped. This covers:
+*** query and analytics parameters, raw and named;
+*** search raw parameters.
+
+* https://jira.issues.couchbase.com/browse/RCBC-584[RCBC-584]:
+**Raw View Parameters** -- `Options::View#raw` raised `NoMethodError` on every call, and stored values were never sent. Raw view parameters are now form-encoded and sent.
+
+* https://jira.issues.couchbase.com/browse/RCBC-583[RCBC-583]:
+**Options Block** -- A block passed to an options constructor runs once, after the defaults are set. `Options::Query.new { |o| o.raw("k", 1) }` previously raised `NoMethodError`.
+
+* https://jira.issues.couchbase.com/browse/RCBC-574[RCBC-574]:
+**ActiveSupport Cache After Multi-Key Writes** -- `delete_matched` and `clear` no longer raise `NoMethodError` after `write_multi` or `delete_multi`.
+
+* https://jira.issues.couchbase.com/browse/RCBC-569[RCBC-569]:
+**Histogram Lock** -- A non-Float percentile no longer leaves `HdrHistogramC` locked. The next `record_value` previously aborted or blocked every Ruby thread. Integer percentiles are now accepted.
+
+* https://jira.issues.couchbase.com/browse/RCBC-573[RCBC-573]:
+**Log Timestamps on macOS** -- Log times carry the correct sub-second part. On macOS it was a thousand times too small.
+
+* **Windows Exit Hang** -- A process that loads the extension no longer hangs at exit on Windows.
+
+* **libstdc++ Symbol Interposition** -- Precompiled Linux gems no longer export the libstdc++ symbols they link statically. They interposed on the system libstdc++ and crashed other C++ extensions, such as `mini_racer`.
+
+* https://jira.issues.couchbase.com/browse/CXXCBC-984[CXXCBC-984], https://jira.issues.couchbase.com/browse/CXXCBC-985[CXXCBC-985], https://jira.issues.couchbase.com/browse/CXXCBC-986[CXXCBC-986], https://jira.issues.couchbase.com/browse/CXXCBC-987[CXXCBC-987], https://jira.issues.couchbase.com/browse/CXXCBC-1022[CXXCBC-1022], https://jira.issues.couchbase.com/browse/CXXCBC-1023[CXXCBC-1023], https://jira.issues.couchbase.com/browse/CXXCBC-1090[CXXCBC-1090], https://jira.issues.couchbase.com/browse/CXXCBC-1093[CXXCBC-1093]:
+**Request Completion** -- Several core paths no longer drop a key-value request without completing it.
+** A request waiting in a retry backoff when the `Cluster` object closes now completes with an error.
+** A key-value request's timeout now includes the wait for its bucket to open.
+** A range scan of a missing collection fails at once with `Error::CollectionNotFound`.
+** `ping` no longer completes before every ping request has been sent.
+
+* https://jira.issues.couchbase.com/browse/CXXCBC-1039[CXXCBC-1039], https://jira.issues.couchbase.com/browse/CXXCBC-1046[CXXCBC-1046], https://jira.issues.couchbase.com/browse/CXXCBC-1048[CXXCBC-1048]:
+**HTTP Session Lifecycle** -- HTTP session shutdown is serialised and runs once. Closing a busy session no longer causes a use-after-free.
+
+* https://jira.issues.couchbase.com/browse/CXXCBC-1057[CXXCBC-1057]:
+**Client Certificate Rotation** -- A certificate set with `Cluster#update_authenticator` is used by the next HTTP request. Pooled HTTP connections previously kept the old certificate until their idle timeout.
+
+* https://jira.issues.couchbase.com/browse/CXXCBC-882[CXXCBC-882], https://jira.issues.couchbase.com/browse/CXXCBC-1059[CXXCBC-1059]:
+**Query Error Mapping** --
+** Query error 2120 (`E_ADMIN_AUTH`) raises `Error::AuthenticationFailure`.
+** Dropping a query index that does not exist raises `Error::IndexNotFound`, whatever HTTP status the server returns.
+
+* https://jira.issues.couchbase.com/browse/CXXCBC-823[CXXCBC-823], https://jira.issues.couchbase.com/browse/CXXCBC-839[CXXCBC-839], https://jira.issues.couchbase.com/browse/CXXCBC-841[CXXCBC-841], https://jira.issues.couchbase.com/browse/CXXCBC-876[CXXCBC-876]:
+**Connection Management** -- Fixes from core 1.4.0:
+** A cluster-level configuration no longer displaces a bucket's configuration. This caused stale routing and Not-My-VBucket loops during failover and rebalance.
+** Dead idle pooled HTTP connections are detected and closed.
+** Bucket create and update work against Couchbase Server 8.1.
+
+* https://jira.issues.couchbase.com/browse/CXXCBC-785[CXXCBC-785], https://jira.issues.couchbase.com/browse/CXXCBC-787[CXXCBC-787], https://jira.issues.couchbase.com/browse/CXXCBC-788[CXXCBC-788], https://jira.issues.couchbase.com/browse/CXXCBC-797[CXXCBC-797]:
+**Key-Value Correctness** -- A projected `get` with more than 16 paths no longer fails when a path is missing. `lookup_in_all_replicas` reports its paths and total failure correctly.
+
+==== Deprecations
+
+* https://jira.issues.couchbase.com/browse/RCBC-554[RCBC-554]:
+**Options::Search#disable_scoring** -- Replaced by `scoring: SearchScoring.none`, which sends the same request.
+
+==== Build and Test Infrastructure
+
+* The test suite runs on Windows x64 and arm64 against CAVES.
+* `rake compile` uses the dependencies and CA bundle vendored in `ext/cache`.
+* The gem no longer ships a copy of the core's BoringSSL patch for MinGW.
 
 
 
