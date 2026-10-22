@@ -107,11 +107,15 @@ https://rubygems.org/gems/couchbase/versions/3.9.0[Rubygems]
 Review these before upgrading from 3.8.x:
 
 * TLS connections now verify the server certificate against the dialed hostname (https://jira.issues.couchbase.com/browse/CXXCBC-838[CXXCBC-838]). A certificate that does not match the hostname now fails the handshake.
-* Query, analytics, search, eventing and management requests raise `Error::InvalidArgument` for an unrecognised HTTP 400 (https://jira.issues.couchbase.com/browse/CXXCBC-1049[CXXCBC-1049]). SDK-RFC 0058 requires it.
-* `retry_strategy:` takes `:best_effort` or `:fail_fast` (https://jira.issues.couchbase.com/browse/RCBC-582[RCBC-582]). On the operations that honour it, any other value, such as a `Proc`, raises `Error::InvalidArgument`.
-* An `Options::Base` subclass defined by the application must yield in its own `initialize` (https://jira.issues.couchbase.com/browse/RCBC-583[RCBC-583]). `Options::Base` no longer yields for subclasses.
+* Query, analytics, search, eventing, and management requests raise `Error::InvalidArgument` for an unrecognised HTTP 400 (https://jira.issues.couchbase.com/browse/CXXCBC-1049[CXXCBC-1049]).
+SDK RFC 58 requires it.
+* `retry_strategy:` takes `:best_effort` or `:fail_fast` (https://jira.issues.couchbase.com/browse/RCBC-582[RCBC-582]).
+On the operations that honour it, any other value, such as a `Proc`, raises `Error::InvalidArgument`.
+* An `Options::Base` subclass defined by the application must yield in its own `initialize` (https://jira.issues.couchbase.com/browse/RCBC-583[RCBC-583]).
+`Options::Base` no longer yields for subclasses.
 * `Bucket#ping` reports the cluster-level HTTP services as well as key-value (https://jira.issues.couchbase.com/browse/CXXCBC-845[CXXCBC-845], https://jira.issues.couchbase.com/browse/CXXCBC-1022[CXXCBC-1022]).
-* The application telemetry latency histograms for HTTP services report `_sum` in milliseconds (https://jira.issues.couchbase.com/browse/CXXCBC-1002[CXXCBC-1002]). Dashboards built on the old values need review.
+* The application telemetry latency histograms for HTTP services report `_sum` in milliseconds (https://jira.issues.couchbase.com/browse/CXXCBC-1002[CXXCBC-1002]).
+Dashboards built on the old values need review.
 ====
 
 ==== Download Links
