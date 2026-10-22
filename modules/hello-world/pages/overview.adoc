@@ -82,6 +82,8 @@ The Couchbase Ruby SDK integrates into the Ruby ecosystem through a number of ex
 
 * https://guides.rubyonrails.org/caching_with_rails.html#cache-stores[Rails Cache Store]
 
+{empty} +
+
 
 == Exploring the Ruby SDK
 
@@ -122,14 +124,14 @@ How-to guides to help you start your development journey with Couchbase and the 
 * xref:howtos:kv-operations.adoc[]
 * xref:howtos:subdocument-operations.adoc[]
 * xref:howtos:encrypting-using-sdk.adoc[]
-* xref:howtos:distributed-acid-transactions-from-the-sdk.adoc[Multi-Document Distributed ACID Transactions]
+// * xref:howtos:distributed-acid-transactions-from-the-sdk.adoc[Multi-Document Distributed ACID Transactions]
 
 [.column]
 .Observability & Error Handling
 * xref:howtos:error-handling.adoc[]
 * xref:howtos:collecting-information-and-logging.adoc[]
 * xref:howtos:slow-operations-logging.adoc[]
-* xref:howtos:health-check.adoc[]
+// * xref:howtos:health-check.adoc[]
 
 ++++
 </div>

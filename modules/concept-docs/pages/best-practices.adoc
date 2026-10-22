@@ -105,7 +105,7 @@ Advanced zone aware....
 
 // ....this paragraph different for each SDK.
 
-The PHP SDK offers only a blocking API — but this is not necessarily a limitation.
+The Ruby SDK offers only a blocking API — but this is not necessarily a limitation.
 Using data batching or process forks you can perform effective bulk operations over data.
 Practical information can be found on the xref:howtos:concurrent-async-apis.adoc[] page.
 

@@ -45,7 +45,7 @@ Testing environments may also differ from deployment.
 
 The {name-sdk} docs note whenever a shortcut is being taken, but here is a non-exhaustive list of those development practices which should not be carried over to production deployments:
 
-* Over-priveleged access
+* Over-privileged access
 * Geographical separation of app server and database
 * Skipping certificate verification
 // * more

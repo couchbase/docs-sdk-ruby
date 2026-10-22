@@ -43,7 +43,7 @@ but the complete set of discussion docs for the SDK is listed and linked below:
 ** xref:concept-docs:subdocument-operations.adoc[Sub-Documents]
 ** xref:concept-docs:xattr.adoc[XATTR & Virtual XATTR]
 * xref:concept-docs:best-practices.adoc#error-handling[Errors and Diagnostics]
-** xref:concept-docs:health-check.adoc[Health Check]
+// ** xref:concept-docs:health-check.adoc[Health Check]
 ** xref:concept-docs:response-time-observability.adoc[Tracing]
 * xref:concept-docs:durability-replication-failure-considerations.adoc[Failure Considerations]
 * xref:concept-docs:encryption.adoc[Field Level Encryption]

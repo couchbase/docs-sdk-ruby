@@ -1,6 +1,7 @@
 = Couchbase Ruby SDK Documentation
 
 This repository hosts the documentation source for the https://docs.couchbase.com/python-sdk/3.9/hello-world/overview.html[Couchbase Ruby SDK].
+Source code for the Ruby SDK itself can be found at https://github.com/couchbase/couchbase-ruby-client[].
 
 This branch documents the 3.9 release of the SDK.
 It follows the https://docs.couchbase.com/python-sdk/3.9/project-docs/compatibility.html#api-version[SDK 3.10 API].

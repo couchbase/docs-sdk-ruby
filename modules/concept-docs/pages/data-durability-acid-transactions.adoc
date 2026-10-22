@@ -22,7 +22,7 @@ You want to query your data, but does that always mean a {sqlpp} query to the Qu
 The CRUD API of the {sqlpp} Query service is mirrored by the Data Service's API, but without the need for indexes, and using a binary protocol gives faster access than streaming JSON from the Query Service.
 
 
-[source,python]
+[source,ruby]
 ----
 include::devguide:example$ruby/kv_operations.rb[tag=durability]
 ----
